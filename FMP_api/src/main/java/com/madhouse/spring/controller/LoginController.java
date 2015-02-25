@@ -48,7 +48,9 @@ public class LoginController {
 public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac) throws JsonProcessingException {
 	System.out.println("------test----");
 	FbAccount fbaccount=new FbAccount();
+	System.out.println(ac);
 	fbaccount.setAccess_token(ac);
+	System.out.println(new ObjectMapper().writeValueAsString(fbaccount));
 	System.out.println(fbaccount);
 	fbaccountDAO.saveOrUpdate(fbaccount);
 	return new ObjectMapper().writeValueAsString(fbaccount);
