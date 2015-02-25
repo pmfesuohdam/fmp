@@ -36,6 +36,14 @@ public class LoginController {
 	private FmpUserDAO fmpuserDAO = (FmpUserDAO) JdbcSpringUtil
             .getBean("fmpuserDAO");
 
+/*save fb account*/
+@RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
+@ResponseStatus(HttpStatus.OK)
+public String saveLoginInfo() {
+	return "";
+}
+
+/*logout system*/
 @RequestMapping(value="/login/delete/self",method=RequestMethod.GET,produces={"application/json"})
 @ResponseStatus(HttpStatus.OK)
 public String logOut(HttpSession session) {
@@ -43,6 +51,7 @@ public String logOut(HttpSession session) {
 	return "{\"status\":\"false\"}";
 }
 
+/*get login status*/
 @RequestMapping(value="/login/get/self",method=RequestMethod.GET,produces={"application/json"})
 @ResponseStatus(HttpStatus.OK)
 public String getLoginStatus(HttpSession session) {
@@ -54,6 +63,7 @@ public String getLoginStatus(HttpSession session) {
 	
 }
 
+/*post login data*/
 @RequestMapping(value="/login/post/self",method=RequestMethod.POST,produces={"application/json"})
 @ResponseStatus(HttpStatus.OK)
 public String doLogin(@Valid @ModelAttribute("login")LoginModel login,Errors errors,HttpServletRequest request) throws Exception{
