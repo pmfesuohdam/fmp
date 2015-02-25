@@ -9,9 +9,9 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 public class HttpUtil {
     /**
-     * 模拟一个get请求
+     * 模拟一个get请求,返回头和body的数组
      */
-	public String doGet(String http_url, boolean isProxy) {
+	public String[] doGet(String http_url, boolean isProxy) {
 	    HttpMethod method = null;
 	    try {
 	        URI uri = new URI(http_url, true);
@@ -29,7 +29,10 @@ public class HttpUtil {
 	        System.out.println("state:" + method.getStatusLine());
 	        //System.out.println("Qs:" + method.getQueryString());
 	        //System.out.println("response body:" + method.getResponseBodyAsString());
-	        return method.getResponseBodyAsString();
+	        String ar[] = new String[2];
+	        ar[0]=method.getRequestHeaders().toString();
+	        ar[1]=method.getResponseBodyAsString();
+	        return ar; 
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

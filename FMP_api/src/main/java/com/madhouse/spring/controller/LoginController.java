@@ -49,13 +49,20 @@ public class LoginController {
 @RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
 public String saveLoginInfo(@RequestParam(value="ac", required=false, defaultValue="") String ac) throws JsonProcessingException {
+	boolean hasErr=false; 
 	FbAccount fbaccount=new FbAccount();
 	fbaccount.setAccess_token(ac);
 	// Ïògraph apiÇëÇó/me/businesses
-	String retBody=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+ac, false);
-	System.out.println(retBody);
+	String ret[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+ac, false);
+	System.out.println(ret[0]);
+	System.out.println(ret[1]);
+	//¼ì²é×´Ì¬
+	
 	fbaccountDAO.saveOrUpdate(fbaccount,0);
-	return "{\"status\":\"true\"}";
+	if (hasErr==false) {
+		return "{\"status\":\"true\"}";
+	}
+	return  "{\"status\":\"false\"}";
 }
 
 /*logout system*/
