@@ -20,13 +20,18 @@
       // Logged into your app and Facebook.
       testAPI();
       //发起保存的请求
-      alert(response.authResponse.accessToken)
-      /*$.ajax({
+      //alert(response.authResponse.accessToken)
+      $.ajax({
         url: baseConf.api_prefix+"/login/save/self", 
         context: document.body, 
         type: "POST",
-        data:response.accessToken
-      })*/
+        data:｛ac:response.authResponse.accessToken,
+        success: function(data){
+          if(data.status=="ok") {
+            //加载提示说明操作成功
+          }
+        } 
+      })
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       //document.getElementById('status').innerHTML = 'Please log ' +
