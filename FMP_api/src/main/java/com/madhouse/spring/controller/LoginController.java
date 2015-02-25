@@ -53,8 +53,7 @@ public class LoginController {
 	@ResponseStatus(HttpStatus.OK)
 	public String test(@RequestParam(value = "proxy", required = false, defaultValue = "") String proxy) throws JsonProcessingException {
 		List<Data> businessesData = null;
-		return "test1";
-/*		try {
+		try {
 			boolean underProxy=false;
 			if(proxy.equals("true")) {
 				System.out.println("proxy:yes");
@@ -82,7 +81,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		return new ObjectMapper()
-		.writeValueAsString(businessesData);*/
+		.writeValueAsString(businessesData);
 	}
 
 	/* go through business accounts,then save fb ad account */
