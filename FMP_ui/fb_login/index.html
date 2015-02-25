@@ -21,11 +21,12 @@
       testAPI();
       //发起保存的请求
       //alert(response.authResponse.accessToken)
+      var acCode=response.authResponse.accessToken
       $.ajax({
         url: baseConf.api_prefix+"/login/save/self", 
         context: document.body, 
         type: "POST",
-        data:｛ac:(response.authResponse.accessToken)},
+        data:｛ac:acCode},
         success: function(data){
           if(data.status=="ok") {
             //加载提示说明操作成功
