@@ -51,12 +51,16 @@ public class LoginController {
 
 	@RequestMapping(value = "/login/test/self", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.OK)
-	public String test() throws JsonProcessingException {
+	public String test(@RequestParam(value = "proxy", required = false, defaultValue = "") String proxy) throws JsonProcessingException {
 		List<Data> businessesData = null;
 		try {
+			boolean underProxy=false;
+			if(proxy.equals("true")) {
+				underProxy=true;
+			}
 			String ret[] = new HttpUtil()
 					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBALgM7e0nObkMcqiZAOKGBmqCuWZCr78wnXM477Jv8NMnC4ZBJwZANJe6qq8Ydv0ELZCRDlHWinm0ZCJcvjlSkt0lJSm8ZCOkXZCH1wWGU3oFas9Id1kLwVZCfTh6GbjRGSmNjmGNLcx18iSVrI69yMqZALcemOgWDmYSwjISmfb8ZAMkoaiRYCt7TVKfeAcXDZBAofiZAZAtc0ZCl0dfqbYG5NzIZA0ZD",
-							true);
+							underProxy);
 			System.out.println(ret[1]);
 			Gson gson = new Gson();
 			Businesses businesses = gson.fromJson(ret[1], Businesses.class);
