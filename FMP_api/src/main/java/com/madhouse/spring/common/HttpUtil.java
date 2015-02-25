@@ -19,10 +19,11 @@ public class HttpUtil {
 	        HostConfiguration hcfg = new HostConfiguration();
 	        hcfg.setHost(uri);
 	        client.setHostConfiguration(hcfg);
-	        if (isProxy)
+	        if (isProxy) {
 	            setProxy(client);
 	        // 参数验证
 	        client.getParams().setAuthenticationPreemptive(true);
+	        }
 	        // GET请求方式
 	        method = new GetMethod(http_url);
 	        client.executeMethod(method);
