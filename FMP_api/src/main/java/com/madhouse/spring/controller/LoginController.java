@@ -56,7 +56,7 @@ public String test() {
 		String ret[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBAF8e8q9xG7vtzAxQE9qvCnTgtTkj5VteMpSJZChrZCfLz7SA3m9iu6ZAW2PmOPexRnnFLLQUU3GNzDHPXVXd9lZB1GZCgSaSkSDX9zpdqNJt05wnKQ8IxN1ZAjObIEJiGWkxLsizrE601G1cOWxdT9dCUfEZAiYTzdoMtPGtgZAPTKCMtaqS22nM5a6bsXRRyvjZC4TiGQaYNeOSCIETMkVUZD", false);
 		//convert JSON string to Map
 		map = mapper.readValue(ret[1], 
-		    new TypeReference<HashMap<String,String>>(){});
+		    new TypeReference<HashMap<HashMap,String>>(){});
 		System.out.println(map);
  
 	} catch (Exception e) {
