@@ -41,6 +41,8 @@ public class LoginController {
             .getBean("fmpuserDAO");
 	private FbAccountDAO fbaccountDAO = (FbAccountDAO) JdbcSpringUtil
 			.getBean("fbaccountDAO");
+
+	
 	
 /*save fb account*/
 @RequestMapping(value="/login/save/self",method=RequestMethod.GET,produces={"application/json"})	
@@ -51,10 +53,10 @@ public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValu
 	System.out.println(ac);
 	fbaccount.setAccess_token(ac);
 	System.out.println(new ObjectMapper().writeValueAsString(fbaccount));
-	System.out.println(fbaccount);
+	System.out.println(fbaccount.getAccess_token());
 	fbaccountDAO.saveOrUpdate(fbaccount);
-	return new ObjectMapper().writeValueAsString(fbaccount);
-	//return "{\"status\":\"true\"}";
+	//return new ObjectMapper().writeValueAsString(fbaccount);
+	return "{\"status\":\"true\"}";
 }
 
 /*logout system*/
