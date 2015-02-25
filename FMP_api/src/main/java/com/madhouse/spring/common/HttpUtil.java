@@ -19,8 +19,8 @@ public class HttpUtil {
 	        HostConfiguration hcfg = new HostConfiguration();
 	        hcfg.setHost(uri);
 	        client.setHostConfiguration(hcfg);
-	        //if (isProxy)
-	        //    setProxy(client);
+	        if (isProxy)
+	            setProxy(client);
 	        // 参数验证
 	        client.getParams().setAuthenticationPreemptive(true);
 	        // GET请求方式
@@ -42,13 +42,13 @@ public class HttpUtil {
     /**
      * 设置代理
      */
-    //private void setProxy(HttpClient client) {
+    private void setProxy(HttpClient client) {
         // 设置代理
-        //client.getHostConfiguration().setProxy("172.16.30.222", 8119);
+        client.getHostConfiguration().setProxy("192.168.13.1", 8119);
         //client.getHostConfiguration().setProxy(HTTP_HOST, HTTP_PORT);
         //client.getState().setProxyCredentials(AuthScope.ANY,
         //new UsernamePasswordCredentials(HTTP_USER, HTTP_PWD));
-    //}
+    }
 
 }
 
