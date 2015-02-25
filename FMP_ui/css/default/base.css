@@ -1,0 +1,63 @@
+@import url("../bootstrap.css");
+@import url("../bootstrap-theme.css");
+body{
+	margin:0;
+}
+
+h3.fmp_tit{
+	margin-top:120px;
+	font-size:3em;
+	font-family: 'Freight Sans Bold', 'lucida grande',tahoma,verdana,arial,sans-serif !important;
+
+}
+h3.fmp_tit > small{
+    padding-left:12px;
+}
+table{
+	line-height: 3em;
+}
+form[name=frmlogin] > table{
+    margin-left: 10%;
+}
+code{
+	padding:0;
+	margin-left: 10px;
+}
+.n-inputbox{
+	width:450px;
+}
+
+#email,#passwd{
+	width:170px !important;
+	line-height: 18px !important;
+}
+.login_btn{
+	margin-right:20%;
+}
+tr:nth-child(1) > td:nth-child(2){
+	text-align: left;
+}
+tr:nth-child(2) > td:nth-child(2){
+	text-align: left;
+}
+tr:nth-child(3) > td{
+	text-align: center;
+}
+
+
+#json_data{
+    display:none;
+}
+#debug_window{
+    padding:20px;
+    /*height:200px;*/
+    background-color:gray;
+    border:1px solid white;
+    color:white;
+    /*display:none;*/
+}
+#camp_select_div{
+    padding-top:4px;
+    margin-right: 10px;
+    float:right;
+}

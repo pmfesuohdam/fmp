@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/default/base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default/menu.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default/dashboard.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default/fbaccount.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default/table.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../js/dashboard_base.js"></script>
+	<script type="text/javascript" src="../js/account.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<!--start header-->
+		<div class="header">
+			<a href="/dashboard.php?module=camps"><h1 class="mainlogo">FMP</h1></a><span class="beta">beta</span><div class="userarea"></div><span class="description">a facebook  partner</span>
+		</div>
+		<!--end header-->
+		<!--start navibar-->
+		<div class="navibar">
+			<div class="navi">
+				<ul>
+					<li><a href="../camps/">YOUR CAMPAIGNS</a></li>
+					<li><a href="../newcamp/">NEW CAMPAIGN</a></li>
+					<li><a href="../report/">REPORT</a></li>
+					<li><a href="../settings/">SETTINGS</a></li>
+				</ul>
+				<div id="camp_select_div">
+					select camp:
+					<select>
+						<option>please select</option>
+						<option>xxxxx</option>
+						<option>xxxxx</option>
+						<option>xxxxx</option>
+						<option>xxxxx</option>
+						<option>xxxxx</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<!--end navibar-->
+		<div class="main-content-single">
+			<h2>Facebook Accounts</h2><hr />
+			<h2 class="info_left_from_add_fb">Here you can manage your Facebook accounts and add new ones. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. 
+				Facebook Ads will be billed directly by Facebook.</h2>
+				<p class="add_fb"><a id="add_fb_a" class="abtn abtn-large abtn-facebook" href="">Add New Facebook Accounts</a></p>
+				<div class="accounts-list">
+					<p class="total">ACCOUNTS ADDED</p>
+					<p class="info">Can't find your account?Contact us </p>
+					<form id="do_account_form" name="do_account_form" action="do_account.php" method="get">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Ad Account ID</th>
+									<th>FB User Status</th>
+									<th>Sync From FB Campaign</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>Dragonsmeet Inc.-Madhouse</td><td>712344008863677</td><td>OK</td><td><input type="button" value="sync" /></td><td><input type="button" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount(712344008863677);" /></td></tr></tbody>
+								<input type="hidden" name="hid_del_act" id="hid_del_act" />
+							</table>
+						</form>
+					</div>
+				</h2>
+			</div>
+		</div>
+		<!--start footer-->
+		<div class="footer">
+			<h2 class="logo">madhouse</h2>
+			<h3 class="credits">Developed by Madhouse Inc</h3>
+		</div>
+		<!--end footer-->
+	</div>
+</body>
+</html>

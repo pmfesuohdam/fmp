@@ -1,0 +1,139 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: verdana,'Amarante', cursive;
+  /*background: url(../img/bg_body.png) repeat;*/
+  text-align: center; /*IE6下让元素居中*/
+}
+
+/*===================================================*\
+ *                                                   *
+ *   Layout                                          *
+ *  .wrapper宽度=.sidebar宽度+间距+.main-content宽度 *
+ *                                                   *
+\*===================================================*/
+.wrapper {
+  width: 100%; /*页面总宽度*/
+  margin: 0 auto; /*水平居中*/
+  text-align: left; /*重置文本对齐方式*/
+}
+
+.header {
+  margin-bottom: 5px; /*顶部与主内容垂直间距，可自行修改*/
+  padding-left:70px;
+}
+.header>a>h1.mainlogo {
+    float:left;
+    color:white;
+    text-decoration:none;    
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-size: 33px;
+}
+.header .description{
+    clear:both;
+    display:block;
+    font-size:13px;
+    /*color:#60db60;*/
+}
+.header .beta{
+    float:left;
+    font-size:13px;
+    /*margin:0 0 30 5px;*/
+    padding-left: 6px;
+}
+.header > .userarea{
+	float:right;
+	padding-top: 12px;
+	padding-right: 10px;
+}
+
+.header > .userarea a:link{
+	color: white;
+}
+.header > .userarea a:visited{
+	color:white;
+}
+.header > .userarea a:hover{
+	color:#f3e0a4;
+	text-decoration: none;
+}
+
+.sidebar {
+clear:both;
+  width: 220px; /*左边栏宽度，可自行修改*/
+  margin-right: 20px; /*边栏间距，可自行修改*/
+  display: inline; /*防止IE6双边距*/
+  float: left;
+  margin-bottom: 5px; /*边栏与footer之间的垂直间距，可自行修改*/
+}
+
+.footer {
+  clear: both; /*清除浮动，非常重要，不可缺少*/
+}
+
+/*===================================================*\
+ *                                                   *
+ *   装饰样式，可自行修改                            *
+ *                                                   *
+\*===================================================*/
+.header {
+  height: 75px;
+  background-color: #22407f;
+  margin-bottom: 5px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+  color:white;
+}
+
+.sidebar {
+  min-height: 475px;
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.main-content-single {
+  width: 100%; /*主内容宽度*/
+  display: inline; /*防止IE6又边距*/
+  float: left;
+  margin-bottom: 5px; /*主内容与footer之间的垂直间距，可自行修改*/
+  padding-left: 10px;
+  padding-right:10px;
+  background-color: #F2F2E6;
+  min-height: 475px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+  width: 720px; /*主内容宽度*/
+  display: inline; /*防止IE6又边距*/
+  float: left;
+  margin-bottom: 5px; /*主内容与footer之间的垂直间距，可自行修改*/
+  background-color: #F2F2E6;
+  min-height: 475px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  background-color: #22407f;
+  margin-bottom: 5px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size:14px;
+  color:#99a9c8;
+  height:180px;
+}
+
+.footer > .logo{
+  float:left;
+  padding-top:6px;
+  padding-left:12px;
+}
+
+.footer .credits {
+    float:right;
+    font-size:12px;
+    padding-top:12px;
+    padding-right:10px;
+    font-family:Arial,Helvetica,sans-serif;
+}
