@@ -38,7 +38,7 @@ public class LoginController {
             .getBean("fmpuserDAO");
 
 /*save fb account*/
-@RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
+@RequestMapping(value="/login/save/self",method=RequestMethod.GET,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
 public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac) {
 	return "{\"status\":\"true\"}";
