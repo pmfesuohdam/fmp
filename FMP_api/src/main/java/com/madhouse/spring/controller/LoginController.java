@@ -46,11 +46,12 @@ public class LoginController {
 @RequestMapping(value="/login/save/self",method=RequestMethod.GET,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
 public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac,
-		@ModelAttribute FbAccount fbaccount) {
+		@ModelAttribute FbAccount fbaccount) throws JsonProcessingException {
 	System.out.println("------test----");
 	System.out.println(fbaccount);
 	fbaccountDAO.saveOrUpdate(fbaccount);
-	return "{\"status\":\"true\"}";
+	return new ObjectMapper().writeValueAsString(fbaccount);
+	//return "{\"status\":\"true\"}";
 }
 
 /*logout system*/
