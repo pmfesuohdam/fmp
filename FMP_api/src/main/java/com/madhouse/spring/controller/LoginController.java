@@ -53,7 +53,7 @@ public class LoginController {
 	@ResponseStatus(HttpStatus.OK)
 	public String test(@RequestParam(value = "proxy", required = false, defaultValue = "") String proxy) throws JsonProcessingException {
 		List<Data> businessesData = null;
-		return "test";
+		return "test1";
 /*		try {
 			boolean underProxy=false;
 			if(proxy.equals("true")) {
