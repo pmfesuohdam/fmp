@@ -47,6 +47,8 @@ public class LoginController {
 @ResponseStatus(HttpStatus.OK)
 public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac,
 		@ModelAttribute FbAccount fbaccount) {
+	System.out.println("------test----");
+	System.out.println(fbaccount);
 	fbaccountDAO.saveOrUpdate(fbaccount);
 	return "{\"status\":\"true\"}";
 }
