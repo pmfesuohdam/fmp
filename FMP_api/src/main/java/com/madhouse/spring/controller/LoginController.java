@@ -45,9 +45,9 @@ public class LoginController {
 	
 	
 /*save fb account*/
-@RequestMapping(value="/login/save/self",method=RequestMethod.GET,produces={"application/json"})	
+@RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
-public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac) throws JsonProcessingException {
+public String saveLoginInfo(@RequestParam(value="ac", required=false, defaultValue="") String ac) throws JsonProcessingException {
 	System.out.println("------test----");
 	FbAccount fbaccount=new FbAccount();
 	System.out.println(ac);
