@@ -3,7 +3,9 @@ package com.madhouse.spring.controller;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +27,7 @@ import com.madhouse.spring.model.FbAccount;
 import com.madhouse.spring.model.FmpUser;
 import com.madhouse.spring.model.LoginModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.madhouse.spring.common.HttpUtil;
 import com.madhouse.spring.common.JdbcSpringUtil;
@@ -36,6 +39,7 @@ import com.madhouse.spring.dao.impl.JdbcFmpUserDAO;
 import com.madhouse.spring.dao.FbAccountDAO;
 import com.madhouse.spring.dao.impl.JdbcFbAccountDAO;
 
+
 @RestController
 public class LoginController {
 	private FmpUserDAO fmpuserDAO = (FmpUserDAO) JdbcSpringUtil
@@ -43,7 +47,23 @@ public class LoginController {
 	private FbAccountDAO fbaccountDAO = (FbAccountDAO) JdbcSpringUtil
 			.getBean("fbaccountDAO");
 
-	
+@RequestMapping(value="/login/test/self",method=RequestMethod.GET,produces={"application/json"})	
+@ResponseStatus(HttpStatus.OK)	
+public String test() {
+	Map<String,String> map = new HashMap<String,String>();
+	ObjectMapper mapper = new ObjectMapper();
+	try {
+		String ret[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBAF8e8q9xG7vtzAxQE9qvCnTgtTkj5VteMpSJZChrZCfLz7SA3m9iu6ZAW2PmOPexRnnFLLQUU3GNzDHPXVXd9lZB1GZCgSaSkSDX9zpdqNJt05wnKQ8IxN1ZAjObIEJiGWkxLsizrE601G1cOWxdT9dCUfEZAiYTzdoMtPGtgZAPTKCMtaqS22nM5a6bsXRRyvjZC4TiGQaYNeOSCIETMkVUZD", false);
+		//convert JSON string to Map
+		map = mapper.readValue(ret[1], 
+		    new TypeReference<HashMap<String,String>>(){});
+		System.out.println(map);
+ 
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return "";
+}
 	
 /*go through business accounts,then save fb ad account*/
 @RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
@@ -54,10 +74,13 @@ public String saveLoginInfo(@RequestParam(value="ac", required=false, defaultVal
 	fbaccount.setAccess_token(ac);
 	// Ïògraph apiÇëÇó/me/businesses
 	String ret[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+ac, false);
-	System.out.println(ret[0]);
 	System.out.println(ret[1]);
 	//¼ì²é×´Ì¬
-	
+	if (ret[0].equals("200")) {
+		
+	} else {
+		hasErr=true;
+	}
 	fbaccountDAO.saveOrUpdate(fbaccount,0);
 	if (hasErr==false) {
 		return "{\"status\":\"true\"}";
