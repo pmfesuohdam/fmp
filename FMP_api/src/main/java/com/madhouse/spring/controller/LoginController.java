@@ -17,6 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,8 +40,8 @@ public class LoginController {
 /*save fb account*/
 @RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
-public String saveLoginInfo() {
-	return "";
+public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac) {
+	return "{\"status\":\"true\"}";
 }
 
 /*logout system*/
