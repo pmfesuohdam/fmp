@@ -8,8 +8,8 @@ import com.madhouse.spring.model.FbAccount;
 public class JdbcFbAccountDAO extends JdbcDaoSupport implements FbAccountDAO{
 
 	@Override
-	public void saveOrUpdate(FbAccount fbaccount) {
-		if (fbaccount.getAd_account_id() > 0) {
+	public void saveOrUpdate(FbAccount fbaccount,int type) {
+		if (type==1) {
 	        // update
 	        String sql = "UPDATE t_fb_account SET ad_account_name=?, access_token=? WHERE ad_account_id=?";
 	        getJdbcTemplate().update(sql, fbaccount.getAd_account_name(), fbaccount.getAccess_token(),

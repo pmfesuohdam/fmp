@@ -26,6 +26,7 @@ import com.madhouse.spring.model.FmpUser;
 import com.madhouse.spring.model.LoginModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.madhouse.spring.common.HttpUtil;
 import com.madhouse.spring.common.JdbcSpringUtil;
 import com.madhouse.spring.common.LoginMsg;
 import com.madhouse.spring.common.MD5Digest;
@@ -44,13 +45,16 @@ public class LoginController {
 
 	
 	
-/*save fb account*/
+/*go through business accounts,then save fb ad account*/
 @RequestMapping(value="/login/save/self",method=RequestMethod.POST,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
 public String saveLoginInfo(@RequestParam(value="ac", required=false, defaultValue="") String ac) throws JsonProcessingException {
 	FbAccount fbaccount=new FbAccount();
 	fbaccount.setAccess_token(ac);
-	fbaccountDAO.saveOrUpdate(fbaccount);
+	// œÚgraph api«Î«Û/me/businesses
+	String retBody=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token?="+ac, false);
+	System.out.println(retBody);
+	fbaccountDAO.saveOrUpdate(fbaccount,0);
 	return "{\"status\":\"true\"}";
 }
 
