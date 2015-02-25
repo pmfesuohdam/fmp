@@ -56,8 +56,9 @@ public class LoginController {
 		try {
 			boolean underProxy=false;
 			if(proxy.equals("true")) {
+				System.out.println("proxy:yes");
 				underProxy=true;
-			}
+			} else System.out.println("proxy:no");
 			String ret[] = new HttpUtil()
 					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBALgM7e0nObkMcqiZAOKGBmqCuWZCr78wnXM477Jv8NMnC4ZBJwZANJe6qq8Ydv0ELZCRDlHWinm0ZCJcvjlSkt0lJSm8ZCOkXZCH1wWGU3oFas9Id1kLwVZCfTh6GbjRGSmNjmGNLcx18iSVrI69yMqZALcemOgWDmYSwjISmfb8ZAMkoaiRYCt7TVKfeAcXDZBAofiZAZAtc0ZCl0dfqbYG5NzIZA0ZD",
 							underProxy);
