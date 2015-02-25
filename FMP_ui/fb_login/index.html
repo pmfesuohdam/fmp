@@ -25,7 +25,7 @@
       $.ajax({
         url: baseConf.api_prefix+"/login/save/self", 
         context: document.body, 
-        type: "GET",
+        type: "POST",
         data: {ac:acCode},
         success: function(data){
           if(data.status=="true") {
