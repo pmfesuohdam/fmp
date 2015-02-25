@@ -26,7 +26,7 @@
         url: baseConf.api_prefix+"/login/save/self", 
         context: document.body, 
         type: "POST",
-        data: {ac:"12"},
+        data: {ac:acCode},
         success: function(data){
           if(data.status=="ok") {
             //加载提示说明操作成功
