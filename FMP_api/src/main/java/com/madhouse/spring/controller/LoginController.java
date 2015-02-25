@@ -52,7 +52,7 @@ public String saveLoginInfo(@RequestParam(value="ac", required=false, defaultVal
 	FbAccount fbaccount=new FbAccount();
 	fbaccount.setAccess_token(ac);
 	// œÚgraph api«Î«Û/me/businesses
-	String retBody=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token?="+ac, false);
+	String retBody=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+ac, false);
 	System.out.println(retBody);
 	fbaccountDAO.saveOrUpdate(fbaccount,0);
 	return "{\"status\":\"true\"}";
