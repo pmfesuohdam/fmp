@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.madhouse.spring.model.FbAccount;
 import com.madhouse.spring.model.FmpUser;
 import com.madhouse.spring.model.LoginModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -31,16 +32,22 @@ import com.madhouse.spring.common.MD5Digest;
 import com.madhouse.spring.common.SimpleValidateMsg;
 import com.madhouse.spring.dao.FmpUserDAO;
 import com.madhouse.spring.dao.impl.JdbcFmpUserDAO;
+import com.madhouse.spring.dao.FbAccountDAO;
+import com.madhouse.spring.dao.impl.JdbcFbAccountDAO;
 
 @RestController
 public class LoginController {
 	private FmpUserDAO fmpuserDAO = (FmpUserDAO) JdbcSpringUtil
             .getBean("fmpuserDAO");
-
+	private FbAccountDAO fbaccountDAO = (FbAccountDAO) JdbcSpringUtil
+			.getBean("fbaccountDAO");
+	
 /*save fb account*/
 @RequestMapping(value="/login/save/self",method=RequestMethod.GET,produces={"application/json"})	
 @ResponseStatus(HttpStatus.OK)
-public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac) {
+public String saveLoginInfo(@RequestParam(value="ac", required=true, defaultValue="") String ac,
+		@ModelAttribute FbAccount fbaccount) {
+	fbaccountDAO.saveOrUpdate(fbaccount);
 	return "{\"status\":\"true\"}";
 }
 
