@@ -30,7 +30,7 @@ public class HttpUtil {
 	        //System.out.println("Qs:" + method.getQueryString());
 	        //System.out.println("response body:" + method.getResponseBodyAsString());
 	        String ar[] = new String[2];
-	        ar[0]=method.getStatusText();
+	        ar[0]=String.valueOf(method.getStatusCode());
 	        ar[1]=method.getResponseBodyAsString();
 	        return ar; 
 	    } catch (Exception e) {
