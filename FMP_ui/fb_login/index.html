@@ -26,12 +26,12 @@
         url: baseConf.api_prefix+"/login/save/self", 
         context: document.body, 
         type: "POST",
-        data:｛ac:acCode},
+        data: {ac:"12"},
         success: function(data){
           if(data.status=="ok") {
             //加载提示说明操作成功
           }
-        } 
+        }
       })
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
