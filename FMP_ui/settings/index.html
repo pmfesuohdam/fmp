@@ -33,9 +33,9 @@
                     $.tmpl(template).appendTo('.wrapper')
                     $.get('../templates/accountlist.htm', function(template) {
                         $.tmpl(template).appendTo('.wrapper')
+                        $(".wrapper").css("display","inline")
                         $.get('../templates/footer.htm', function(template) {
                             $.tmpl(template).appendTo('.wrapper')
-                            $(".wrapper").css("display","inline")
                         })
                     })
                 })
