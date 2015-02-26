@@ -27,25 +27,22 @@
             	url:baseConf.api_prefix+"/user/get/self",
             	method:"GET",
             	success: function(data){
-            		if (data.status=="false") { //没有登录退出
-            			location.href="../"
-            		}
             		var user = [
             		{ UserName: data.username }
             		]
-            		$.get('../templates/header.htm', function(template) {
+            		$.get('../templates/header_out.htm', function(template) {
             			$.tmpl(template, user).appendTo('.wrapper')
             			bind_logout_btn()
-            			$.get('../templates/navibar.htm', function(template) {
-            				$.tmpl(template).appendTo('.wrapper')
-            				$.get('../templates/accountlist.htm', function(template) {
+            			//$.get('../templates/navibar.htm', function(template) {//
+            			//	$.tmpl(template).appendTo('.wrapper')
+            				$.get('../templates/join.htm', function(template) {
             					$.tmpl(template).appendTo('.wrapper')
             					$.get('../templates/footer.htm', function(template) {
             						$.tmpl(template).appendTo('.wrapper')
             						$(".wrapper").css("display","inline")
             					})
             				})
-            			})
+            			//})
             		})
             	}
             })//end $.ajax

@@ -16,12 +16,12 @@ public class UserController {
 		try{
 		String user_name = (String) session.getAttribute("user_name");
 		if (user_name.isEmpty()) {
-			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";	
+			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\",\"status\":\"true\"}";	
 		} else {
-			return "{\"username\":\""+user_name+"\"}";
+			return "{\"username\":\""+user_name+"\",\"status\":\"true\"}";
 		}
 		} catch (Exception e) {
-			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";
+			return "{\"username\":\"null\",\"status\":\"false\"}";
 		}
 		
 	}

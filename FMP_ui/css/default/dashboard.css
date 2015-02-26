@@ -44,19 +44,19 @@ body {
     /*margin:0 0 30 5px;*/
     padding-left: 6px;
 }
-.header > .userarea{
+.header > .userarea,.sign_login_area{
 	float:right;
 	padding-top: 12px;
 	padding-right: 10px;
 }
 
-.header > .userarea a:link{
+.header > .userarea a:link,.sign_login_area a:link{
 	color: white;
 }
-.header > .userarea a:visited{
+.header > .userarea a:visited,.sign_login_area a:visited{
 	color:white;
 }
-.header > .userarea a:hover{
+.header > .userarea a:hover,.sign_login_area a:hover{
 	color:#f3e0a4;
 	text-decoration: none;
 }

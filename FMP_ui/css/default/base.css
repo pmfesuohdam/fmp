@@ -61,3 +61,32 @@ tr:nth-child(3) > td{
     margin-right: 10px;
     float:right;
 }
+
+
+.btn-primary {
+/*padding: 10px 16px;
+font-size: 20px;
+line-height: 1.33;
+border-radius: 6px;
+color: #fff;
+background-color: #5cb85c;
+border-color: #4cae4c;
+text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+background-image: -webkit-linear-gradient(top,#5cb85c 0,#4cae4c 100%);
+background-image: linear-gradient(to bottom,#5cb85c 0,#4cae4c 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c',endColorstr='#ff4cae4c',GradientType=0);
+-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 3px 0 #357935;
+box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 3px 0 #357935;
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+background-repeat: repeat-x;
+border-color: #3e8f3e;
+white-space: normal;*/
+font-size: 22px;
+padding: 10px 20px;
+}
+
+.btn-primary:hover {
+/*background-color: #47a447;
+border-color: #398439;
+text-decoration: none;
+}
