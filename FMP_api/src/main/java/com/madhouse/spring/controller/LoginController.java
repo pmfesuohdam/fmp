@@ -41,6 +41,7 @@ import com.madhouse.spring.dao.FbAccountDAO;
 import com.madhouse.spring.dao.impl.JdbcFbAccountDAO;
 import com.madhouse.spring.ds.Businesses.Businesses;
 import com.madhouse.spring.ds.Businesses.Data;
+import com.madhouse.spring.ds.Adaccounts.AdAccounts;
 
 @RestController
 public class LoginController {
@@ -57,8 +58,9 @@ public class LoginController {
 			@RequestParam(value = "port", required = false, defaultValue = "") int port)
 	throws JsonProcessingException {
 		List<Data> businessesData = null;
+		List<com.madhouse.spring.ds.Adaccounts.Data> adaccountsData = null;
 		try {
-			String access_tok="CAALFqlUZB2acBAK3cmNZCpj2YHXyQ5m7ayXkuBETQkjWqhoLvM3BZB1j6yJZBGidGrhKlRzKfHZAxENYBELyB6tBgO6juhuczNdKXLIBKlcEJL5grKgm9unzZBZAVGuVk2nJntgjQ88uU0VQNw8DbKguFRdGiifLZBwa8IIfx7VPv7zbnXLY33QGstZBx7wOszMNV7LA2Y9OQZCandMu3HIN7gnikSK9yXv9IZD";
+			String access_tok="CAALFqlUZB2acBABgrdEVAJaMZCuE3g9HSZCbvMfBr3wXZBGVOqnjZCzbyfGYZA3vDRnsm2Cc52gK4NIZBnXxQnyZCFxECKVTjXWrzZACCwipdbca3aGP4zuvejfZBJwS60eq3ZB0NNVSn2VlE6yFcTMEVp6PKdN1ZBO5j0Uh3WT2nfYWOV13iLCz8ZCnMewWK2uR9oKowCxloDvnYXYMKVnJiBdo2xL20O7JqV0AZD";
 			String ret[] = new HttpUtil()
 					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+access_tok,
 							proxy,host,port);
@@ -74,8 +76,18 @@ public class LoginController {
 				//±éÀúbusiness
 			    String business_id=null;
 			    business_id=businessesData.get(i).getId();
-			    String ret2[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/"+business_id+"/adaccounts?access_token="+access_tok,proxy,host,port);
-			   System.out.println(ret2);
+			    System.out.println("business_id:"+business_id);
+			    String qActUrl="https://graph.facebook.com/v2.2/"+business_id+"/adaccounts?access_token="+access_tok;
+			    System.out.println(qActUrl);
+			    String ret2[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/"+business_id+"/adaccounts?access_token="+access_tok,proxy,host,port);
+			   System.out.println(ret2[1]);
+			   //½âÎöadaccounts api
+			   Gson gson_act = new Gson();
+			   AdAccounts adaccounts = gson_act.fromJson(ret2[1],AdAccounts.class);
+			   adaccountsData = adaccounts.getData();
+				for (int i1 = 0; i1 < adaccountsData.size(); i1++) {
+					System.out.println("adaccount:"+adaccountsData.get(i1).getAccount_id());
+				}
 			}
 			System.out.println(businesses.getPaging().getNext());
 			System.out.println(new ObjectMapper()
