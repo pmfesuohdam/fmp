@@ -52,6 +52,7 @@ public class LoginController {
 	@RequestMapping(value = "/login/test/self", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.OK)
 	public String test(
+			@RequestParam(value = "proxy", required = false, defaultValue = "false") boolean proxy,
 			@RequestParam(value = "host", required = false, defaultValue = "") String host,
 			@RequestParam(value = "port", required = false, defaultValue = "") int port)
 	throws JsonProcessingException {
@@ -59,8 +60,8 @@ public class LoginController {
 		try {
 			String access_tok="CAALFqlUZB2acBAK3cmNZCpj2YHXyQ5m7ayXkuBETQkjWqhoLvM3BZB1j6yJZBGidGrhKlRzKfHZAxENYBELyB6tBgO6juhuczNdKXLIBKlcEJL5grKgm9unzZBZAVGuVk2nJntgjQ88uU0VQNw8DbKguFRdGiifLZBwa8IIfx7VPv7zbnXLY33QGstZBx7wOszMNV7LA2Y9OQZCandMu3HIN7gnikSK9yXv9IZD";
 			String ret[] = new HttpUtil()
-					.doGetByProxy("https://graph.facebook.com/v2.2/me/businesses?access_token="+access_tok,
-							host,port);
+					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token="+access_tok,
+							proxy,host,port);
 			System.out.println(ret[1]);
 			Gson gson = new Gson();
 			Businesses businesses = gson.fromJson(ret[1], Businesses.class);
@@ -73,7 +74,7 @@ public class LoginController {
 				//遍历business
 			    String business_id=null;
 			    business_id=businessesData.get(i).getId();
-			    String ret2[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/"+business_id+"/adaccounts?access_token="+access_tok);
+			    String ret2[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/"+business_id+"/adaccounts?access_token="+access_tok,proxy,host,port);
 			   System.out.println(ret2);
 			}
 			System.out.println(businesses.getPaging().getNext());
@@ -100,7 +101,7 @@ public class LoginController {
 		// 向graph api请求/me/businesses
 		String ret[] = new HttpUtil().doGet(
 				"https://graph.facebook.com/v2.2/me/businesses?access_token="
-						+ ac);
+						+ ac,false,"",0);
 		System.out.println(ret[1]);
 		// 检查状态
 		if (ret[0].equals("200")) {
