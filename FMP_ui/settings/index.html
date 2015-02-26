@@ -22,7 +22,7 @@
         })
 
         function createPageHeader(){
-            $(".wrapper").css("display","none") //全加载完成再显示
+            $(".wrapper").css("display","none") //防止闪瞎~
             var user = [
             { UserName: "fmpuser01@126.com" }
             ]
@@ -33,9 +33,9 @@
                     $.tmpl(template).appendTo('.wrapper')
                     $.get('../templates/accountlist.htm', function(template) {
                         $.tmpl(template).appendTo('.wrapper')
-                        $(".wrapper").css("display","inline")
                         $.get('../templates/footer.htm', function(template) {
                             $.tmpl(template).appendTo('.wrapper')
+                            $(".wrapper").css("display","inline")
                         })
                     })
                 })
