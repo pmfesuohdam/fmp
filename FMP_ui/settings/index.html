@@ -13,46 +13,52 @@
 	<script type="text/javascript" src="../js/base.js"></script>
 <!--	<script type="text/javascript" src="../js/dashboard_base.js"></script>
 	<script type="text/javascript" src="../js/account.js"></script>-->
-    <script type="text/javascript" src="../js/jquery.tmpl.js"></script>
+	<script type="text/javascript" src="../js/jquery.tmpl.js"></script>
 </head>
 <body>
-    <script>
-        $(document).ready(function(){
-            createPageHeader()
-        })
+	<script>
+		$(document).ready(function(){
+			createPageHeader()
+		})
 
-        function createPageHeader(){
+		function createPageHeader(){
             $(".wrapper").css("display","none") //防止闪瞎~
-            var user = [
-            { UserName: "fmpuser01@126.com" }
-            ]
-            $.get('../templates/header.htm', function(template) {
-                $.tmpl(template, user).appendTo('.wrapper')
-                bind_logout_btn()
-                $.get('../templates/navibar.htm', function(template) {
-                    $.tmpl(template).appendTo('.wrapper')
-                    $.get('../templates/accountlist.htm', function(template) {
-                        $.tmpl(template).appendTo('.wrapper')
-                        $.get('../templates/footer.htm', function(template) {
-                            $.tmpl(template).appendTo('.wrapper')
-                            $(".wrapper").css("display","inline")
-                        })
-                    })
-                })
-            })
+            $.ajax({
+            	url:baseConf.api_prefix+"/user/get/self",
+            	method:"GET",
+            	success: function(data){
+            		var user = [
+            		{ UserName: data.username }
+            		]
+            		$.get('../templates/header.htm', function(template) {
+            			$.tmpl(template, user).appendTo('.wrapper')
+            			bind_logout_btn()
+            			$.get('../templates/navibar.htm', function(template) {
+            				$.tmpl(template).appendTo('.wrapper')
+            				$.get('../templates/accountlist.htm', function(template) {
+            					$.tmpl(template).appendTo('.wrapper')
+            					$.get('../templates/footer.htm', function(template) {
+            						$.tmpl(template).appendTo('.wrapper')
+            						$(".wrapper").css("display","inline")
+            					})
+            				})
+            			})
+            		})
+            	}
+            })//end $.ajax
         }
         function bind_logout_btn(){
-            $("#logout_btn").bind("click",function(){
-                $.ajax({
-                    url: baseConf.api_prefix+"/login/delete/self",
-                    type: "GET",
-                    success: function(data){
-                        if (data.status=="false") {
-                            location.href="http://"+document.domain;
-                        }
-                    }
-                })
-            })
+        	$("#logout_btn").bind("click",function(){
+        		$.ajax({
+        			url: baseConf.api_prefix+"/login/delete/self",
+        			type: "GET",
+        			success: function(data){
+        				if (data.status=="false") {
+        					location.href="http://"+document.domain;
+        				}
+        			}
+        		})
+        	})
         }
     </script>
     <div class="wrapper"></div>
