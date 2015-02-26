@@ -16,14 +16,11 @@ public class UserController {
 		try{
 		String user_name = (String) session.getAttribute("user_name");
 		if (user_name.isEmpty()) {
-			System.out.println("1");
 			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";	
 		} else {
-			System.out.println("2");
 			return "{\"username\":\""+user_name+"\"}";
 		}
 		} catch (Exception e) {
-			System.out.println("3");
 			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";
 		}
 		
