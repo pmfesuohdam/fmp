@@ -177,6 +177,7 @@ public class LoginController {
 			msgs.add(new SimpleValidateMsg("", ""));
 			state = "true";
 			(request.getSession()).setAttribute("user_online", "true");
+			(request.getSession()).setAttribute("user_email", fu.getEmail());
 			(request.getSession()).setAttribute("user_name", fu.getName());
 		}
 		// System.out.println(new jdbcFmpUserDao().findAllUsers());
