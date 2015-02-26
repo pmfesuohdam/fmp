@@ -13,11 +13,19 @@ public class UserController {
 	@RequestMapping(value="/user/get/self",method=RequestMethod.GET,produces={"application/json"})
 	@ResponseStatus(HttpStatus.OK)
 	public String getUser(HttpSession session){
+		try{
 		String user_name = (String) session.getAttribute("user_name");
-
 		if (user_name.isEmpty()) {
+			System.out.println("1");
 			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";	
+		} else {
+			System.out.println("2");
+			return "{\"username\":\""+user_name+"\"}";
 		}
-		return "{\"username\":\""+user_name+"\"}";
+		} catch (Exception e) {
+			System.out.println("3");
+			return "{\"username\":\""+(String) session.getAttribute("user_email")+"\"}";
+		}
+		
 	}
 }
