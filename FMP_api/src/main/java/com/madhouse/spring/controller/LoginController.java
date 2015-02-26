@@ -51,17 +51,16 @@ public class LoginController {
 
 	@RequestMapping(value = "/login/test/self", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.OK)
-	public String test(@RequestParam(value = "proxy", required = false, defaultValue = "") String proxy) throws JsonProcessingException {
+	public String test(
+			@RequestParam(value = "host", required = false, defaultValue = "") String host,
+			@RequestParam(value = "port", required = false, defaultValue = "") int port)
+	throws JsonProcessingException {
 		List<Data> businessesData = null;
 		try {
-			boolean underProxy=false;
-			if(proxy.equals("true")) {
-				System.out.println("proxy:yes");
-				underProxy=true;
-			} else System.out.println("proxy:no");
+			String access_tok="CAALFqlUZB2acBAK3cmNZCpj2YHXyQ5m7ayXkuBETQkjWqhoLvM3BZB1j6yJZBGidGrhKlRzKfHZAxENYBELyB6tBgO6juhuczNdKXLIBKlcEJL5grKgm9unzZBZAVGuVk2nJntgjQ88uU0VQNw8DbKguFRdGiifLZBwa8IIfx7VPv7zbnXLY33QGstZBx7wOszMNV7LA2Y9OQZCandMu3HIN7gnikSK9yXv9IZD";
 			String ret[] = new HttpUtil()
-					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBAK3cmNZCpj2YHXyQ5m7ayXkuBETQkjWqhoLvM3BZB1j6yJZBGidGrhKlRzKfHZAxENYBELyB6tBgO6juhuczNdKXLIBKlcEJL5grKgm9unzZBZAVGuVk2nJntgjQ88uU0VQNw8DbKguFRdGiifLZBwa8IIfx7VPv7zbnXLY33QGstZBx7wOszMNV7LA2Y9OQZCandMu3HIN7gnikSK9yXv9IZD",
-							underProxy);
+					.doGetByProxy("https://graph.facebook.com/v2.2/me/businesses?access_token="+access_tok,
+							host,port);
 			System.out.println(ret[1]);
 			Gson gson = new Gson();
 			Businesses businesses = gson.fromJson(ret[1], Businesses.class);
@@ -71,6 +70,11 @@ public class LoginController {
 			}
 			for (int i = 0; i < businessesData.size(); i++) {
 				System.out.println(businessesData.get(i).getId());
+				//遍历business
+			    String business_id=null;
+			    business_id=businessesData.get(i).getId();
+			    String ret2[]=new HttpUtil().doGet("https://graph.facebook.com/v2.2/me/"+business_id+"/adaccounts?access_token="+access_tok);
+			   System.out.println(ret2);
 			}
 			System.out.println(businesses.getPaging().getNext());
 			System.out.println(new ObjectMapper()
@@ -96,7 +100,7 @@ public class LoginController {
 		// 向graph api请求/me/businesses
 		String ret[] = new HttpUtil().doGet(
 				"https://graph.facebook.com/v2.2/me/businesses?access_token="
-						+ ac, false);
+						+ ac);
 		System.out.println(ret[1]);
 		// 检查状态
 		if (ret[0].equals("200")) {
