@@ -28,7 +28,8 @@
             	method:"GET",
             	success: function(data){
             		if (data.status=="false") { //没有登录退出
-            			location.href="../"
+            			console.log(data)
+            			//location.href="../"
             		}
             		var user = [
             		{ UserName: data.username }
