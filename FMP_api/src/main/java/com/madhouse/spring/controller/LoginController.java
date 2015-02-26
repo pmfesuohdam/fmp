@@ -60,7 +60,7 @@ public class LoginController {
 				underProxy=true;
 			} else System.out.println("proxy:no");
 			String ret[] = new HttpUtil()
-					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBAHKgkT7CGrnQWeCCxIWZAJH5mkuP4l4d15uKz3Sassz835Y7VH4IzCZClOPrK1BRuMPuCdl87Evti9KyNxUJZBwffPEui0V3RClGh6PAx5jjepr8hBxPFPsrjWCePOGYt1rYMVT9okAMO5KM4uzUZBObJJ6dSfsppex35ZComiK3ncip9PlXwUdlbXd3Y4XGDsrNEgZA4DNEpz8jtt7c0ZD",
+					.doGet("https://graph.facebook.com/v2.2/me/businesses?access_token=CAALFqlUZB2acBAK3cmNZCpj2YHXyQ5m7ayXkuBETQkjWqhoLvM3BZB1j6yJZBGidGrhKlRzKfHZAxENYBELyB6tBgO6juhuczNdKXLIBKlcEJL5grKgm9unzZBZAVGuVk2nJntgjQ88uU0VQNw8DbKguFRdGiifLZBwa8IIfx7VPv7zbnXLY33QGstZBx7wOszMNV7LA2Y9OQZCandMu3HIN7gnikSK9yXv9IZD",
 							underProxy);
 			System.out.println(ret[1]);
 			Gson gson = new Gson();
