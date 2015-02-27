@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Email;
 
 public class LoginModel {
 	@NotNull(message="email must not be empty")
-	@Size(min=2,max=80,message="email length must between 2-80")
+	@Size(min=5,max=80,message="email length must between 5-80")
 	@Email(message="please enter a valid email address")
 	private String email;
 	
