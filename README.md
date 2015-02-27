@@ -20,3 +20,30 @@ cd /path/to/projectDir/FMP_api
 mv /path/to/projectDir/FMP_api/target/FMP.war /var/lib/tomcat7/webapps/
 /etc/init.d/tomcat7 start
 ```
+
+nginx反向代理tomcat的设置
+```
+#
+# A virtual host using mix of IP-, name-, and port-based configuration
+#
+
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+    #    root   /path/to/projectDir/FMP_ui;
+    #    index  index.html index.htm;
+    #}
+    #location  /FMP {
+        proxy_pass http://localhost:8080;
+        proxy_set_header 'Access-Control-Allow-Origin' 'http://localhost';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
+        add_header 'Access-Control-Allow-Headers' 'X-Requested-With,Accept,Content-Type, Origin';
+        proxy_redirect     off;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    }
+}
+```
