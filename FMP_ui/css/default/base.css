@@ -2,6 +2,7 @@
 @import url("../bootstrap-theme.css");
 body{
 	margin:0;
+    background: #eaeaea url("../../img/bg.png");
 }
 
 h3.fmp_tit{
@@ -28,7 +29,7 @@ code{
 }
 
 #email,#passwd{
-	width:170px !important;
+	width:240px !important;
 	line-height: 18px !important;
 }
 .login_btn{

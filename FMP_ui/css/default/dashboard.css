@@ -81,7 +81,7 @@ clear:both;
 \*===================================================*/
 .header {
   height: 75px;
-  background-color: #22407f;
+  background-color:#3b5998;
   margin-bottom: 5px;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
   color:white;
@@ -116,7 +116,7 @@ clear:both;
 }
 
 .footer {
-  background-color: #22407f;
+  background-color: #3b5998;
   margin-bottom: 5px;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
   font-size:14px;
