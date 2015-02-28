@@ -57,7 +57,6 @@ define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_RRDGRAPH',          'rrdgraph');
 define('__SERVICE_DETAIL_SETTING',    'detailsetting');
 define('__SERVICE_IP_SETTING',        'ipsetting');
-define('__SERVICE_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
 
@@ -88,7 +87,6 @@ define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_RRDGRAPH',          'rrdGraph');
 define('__PREFIX_DETAIL_SETTING',    'detailSetting');
 define('__PREFIX_IP_SETTING',        'ipsetting');
-define('__PREFIX_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
 

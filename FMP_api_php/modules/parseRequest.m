@@ -135,9 +135,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_IP_SETTING:
         $GLOBALS['prefix']=__PREFIX_IP_SETTING;
         break;
-    case __SERVICE_MDNDELIVER_SETTING:
-        $GLOBALS['prefix']=__PREFIX_MDNDELIVER_SETTING;
-        break;
     case __SERVICE_DISTRICT:
         $GLOBALS['prefix']=__PREFIX_DISTRICT;
         break;
