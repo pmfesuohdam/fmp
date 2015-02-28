@@ -72,12 +72,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_GRAPH:
         $GLOBALS['prefix']=__PREFIX_GRAPH;
         break;
-    case __SERVICE_DETAIL_SETTING:
-        $GLOBALS['prefix']=__PREFIX_DETAIL_SETTING;
-        break;
-    case __SERVICE_IP_SETTING:
-        $GLOBALS['prefix']=__PREFIX_IP_SETTING;
-        break;
     case __SERVICE_DISTRICT:
         $GLOBALS['prefix']=__PREFIX_DISTRICT;
         break;

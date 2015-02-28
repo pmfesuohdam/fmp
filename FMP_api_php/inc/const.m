@@ -36,8 +36,6 @@ define('__SERVICE_LOGIN',             'login');
 
 define('__SERVICE_USER',              'user');
 define('__SERVICE_GRAPH',             'graph');
-define('__SERVICE_DETAIL_SETTING',    'detailsetting');
-define('__SERVICE_IP_SETTING',        'ipsetting');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
 
@@ -47,8 +45,6 @@ define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');
 define('__PREFIX_GRAPH',             'graph');
-define('__PREFIX_DETAIL_SETTING',    'detailSetting');
-define('__PREFIX_IP_SETTING',        'ipsetting');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
 
