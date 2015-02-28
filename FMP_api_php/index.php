@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:41:44                                      
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-02-28 13:00:57
+  | Last-Modified: 2015-02-28 13:15:47
   +----------------------------------------------------------------------+
  */
 define(__API_ROOT,    dirname(__FILE__).'/');
@@ -26,6 +26,7 @@ include_once(__API_ROOT.'inc/const.m');
 /* {{{ 基础函数
  */
 include_once(__API_ROOT.'fun/common.m');
+include_once(__API_ROOT.'fun/db.m');
 include_once(__API_ROOT.'fun/base.m');
 include_once(__API_ROOT.'lib/Predis.php');
 include_once(__API_ROOT.'fun/mq.m');
@@ -53,7 +54,7 @@ include_once(__API_ROOT.'modules/initApi.m');
  */
 ob_start();
 include_once(__API_ROOT.'modules/parseRequest.m');
-die;
+//die;
 /* }}} */
 
 /* {{{ api运行

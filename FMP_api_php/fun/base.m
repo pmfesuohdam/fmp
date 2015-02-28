@@ -61,13 +61,6 @@ function apiRun() {
      */
     $MTD=isset($_POST['snapshotid']) ?'snapshot' :$GLOBALS['serviceName']; 
     switch ($MTD) {
-    case('snapshot'):
-        if ($_POST['snapshotid']=='de437') { // 模拟快照的认证模式 
-            break;
-        }
-    case(__SERVICE_EDGESERVER_STATUS):
-    case(__SERVICE_PROCESS_DELETE_SERVER):
-        break;
     default:
         if(empty($_COOKIE[__CO_MMSUID]) || empty($_COOKIE[__CO_MMSUNAME])) { //XXX 这里sid需要验证 
             if ($GLOBALS['prefix']==__PREFIX_LOGIN && $GLOBALS['selector']==__SELECTOR_SINGLE && $GLOBALS['operation']==__OPERATION_UPDATE) { // 不要阻断首页登录 
@@ -81,15 +74,6 @@ function apiRun() {
         break;
     }
     /* }}} */
-    /* 
-     * FIXME 基本没用，除非??Fun.m全部写成函数的方式
-     *if (!empty($funcName) && function_exists($funcName)) {
-     *    //$funcName();
-     *    @$errCode=call_user_func($funcName);  // 比$funcName()稍慢,但是可读性高
-     *} else {
-     *    DebugInfo("[fun.apiRun] [funcName:$funcName][function_not_exists]",2);
-     *}
-     */
     //输出结果
     outputResults($errCode);
 }

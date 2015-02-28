@@ -1,66 +1,69 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../css/default/base.css" />
-	<link rel="stylesheet" type="text/css" href="../css/default/menu.css" />
-	<link rel="stylesheet" type="text/css" href="../css/default/dashboard.css" />
-	<link rel="stylesheet" type="text/css" href="../css/default/fbaccount.css" />
-	<link rel="stylesheet" type="text/css" href="../css/default/table.css" />
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="../js/base.js"></script>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/default/base.css" />
+  <link rel="stylesheet" type="text/css" href="../css/default/menu.css" />
+  <link rel="stylesheet" type="text/css" href="../css/default/dashboard.css" />
+  <link rel="stylesheet" type="text/css" href="../css/default/fbaccount.css" />
+  <link rel="stylesheet" type="text/css" href="../css/default/table.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+  <script type="text/javascript" src="../js/base.js"></script>
 <!--	<script type="text/javascript" src="../js/dashboard_base.js"></script>
-	<script type="text/javascript" src="../js/account.js"></script>-->
-	<script type="text/javascript" src="../js/jquery.tmpl.js"></script>
+  <script type="text/javascript" src="../js/account.js"></script>-->
+  <script type="text/javascript" src="../js/jquery.tmpl.js"></script>
 </head>
 <body>
-	<script>
-		$(document).ready(function(){
-			createPageHeader()
-		})
+  <script>
+    $(document).ready(function(){
+      createPageHeader()
+    })
 
-		function createPageHeader(){
+    function createPageHeader(){
             $(".wrapper").css("display","none") //防止闪瞎~
             $.ajax({
               url:baseConf.api_prefix+"/get/fmpuser/@self",
-            	method:"GET",
-            	success: function(data){
-            		var user = [
-            		{ UserName: data.username }
-            		]
-            		$.get('../templates/header_out.htm', function(template) {
-            			$.tmpl(template, user).appendTo('.wrapper')
-            			bind_logout_btn()
-            			//$.get('../templates/navibar.htm', function(template) {//
-            			//	$.tmpl(template).appendTo('.wrapper')
-            				$.get('../templates/join.htm', function(template) {
-            					$.tmpl(template).appendTo('.wrapper')
-            					$.get('../templates/footer.htm', function(template) {
-            						$.tmpl(template).appendTo('.wrapper')
-            						$(".wrapper").css("display","inline")
-            					})
-            				})
-            			//})
-            		})
-            	}
+              method:"GET",
+              success: function(data){
+              getPg(data)
+              },
+              error: function(data){
+              getPg(data)
+              },
             })//end $.ajax
-        }
-        function bind_logout_btn(){
-        	$("#logout_btn").bind("click",function(){
-        		$.ajax({
-        			url: baseConf.api_prefix+"/login/delete/self",
-        			type: "GET",
-        			success: function(data){
-        				if (data.status=="false") {
-        					location.href="http://"+document.domain;
-        				}
-        			}
-        		})
-        	})
-        }
-    </script>
-    <div class="wrapper"></div>
+    }
+    function getPg(data){
+        var user = [
+        { UserName: data.username }
+        ]
+        $.get('../templates/header_out.htm', function(template) {
+          $.tmpl(template, user).appendTo('.wrapper')
+          bind_logout_btn()
+            $.get('../templates/join.htm', function(template) {
+              $.tmpl(template).appendTo('.wrapper')
+              $.get('../templates/footer.htm', function(template) {
+                $.tmpl(template).appendTo('.wrapper')
+                $(".wrapper").css("display","inline")
+              })
+            })
+        })
+    }
+    function bind_logout_btn(){
+        $("#logout_btn").bind("click",function(){
+        $.ajax({
+          url: baseConf.api_prefix+"/login/delete/self",
+          type: "GET",
+          success: function(data){
+            if (data.status=="false") {
+              location.href="http://"+document.domain;
+            }
+          }
+        })
+      })
+   }
+</script>
+<div class="wrapper"></div>
 </body>
 </html>
