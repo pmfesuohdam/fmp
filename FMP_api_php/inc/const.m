@@ -35,7 +35,6 @@ define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 
 define('__SERVICE_USER',              'user');
-define('__SERVICE_GENERIC_SETTING',   'generic_setting');
 define('__SERVICE_CLOUDVIEW',         'cloudview');
 define('__SERVICE_MONENGINE',         'monengine');
 define('__SERVICE_SCAN_SETTING',      'scan_setting');
@@ -51,7 +50,6 @@ define('__SERVICE_DISTRICT',          'district');
 define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');
-define('__PREFIX_GENERIC_SETTING',   'generic_setting');
 define('__PREFIX_CLOUDVIEW',         'cloudview');
 define('__PREFIX_MONENGINE',         'monengine');
 define('__PREFIX_SCAN_SETTING',      'scan_setting');
