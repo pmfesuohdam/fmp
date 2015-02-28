@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 
 	$.ajax({
-		url: baseConf. api_prefix+"/user/get/self",
+		url: baseConf. api_prefix+"/get/login/@self",
 		type: "GET",
 		success: function(data){
 			$(".header > .userarea").html("<a href=\"../profiles\" id=\"user_profile_a\">"+data.username+"</a> | <a href=\"../\" onclick=\"return false;\" id=\"logout_btn\">logout</a>")

@@ -24,7 +24,7 @@
 		function createPageHeader(){
             $(".wrapper").css("display","none") //防止闪瞎~
             $.ajax({
-            	url:baseConf.api_prefix+"/user/get/self",
+            	url:baseConf.api_prefix+"/get/login/@self",
             	method:"GET",
             	success: function(data){
             		if (data.status=="false") { //没有登录退出
@@ -53,10 +53,10 @@
         function bind_logout_btn(){
         	$("#logout_btn").bind("click",function(){
         		$.ajax({
-        			url: baseConf.api_prefix+"/login/delete/self",
+        			url: baseConf.api_prefix+"/delete/login/@self",
         			type: "GET",
         			success: function(data){
-        				if (data.status=="false") {
+        				if (data.status=="true") {
         					location.href="http://"+document.domain;
         				}
         			}

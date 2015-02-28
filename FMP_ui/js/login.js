@@ -38,7 +38,7 @@ $(document).ready(function(){
 })
     //检查登陆状态，如果已经登陆，强制定位到操作面板页
     $.ajax({
-    	url: baseConf.api_prefix+"/login/get/self",
+    	url: baseConf.api_prefix+"/get/login/@self",
     	type: "GET",
     	success: function(data){
     		if(data.status=="true") {
