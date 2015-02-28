@@ -34,6 +34,7 @@ case(__OPERATION_READ): //查询操作
     }
     elseif ($GLOBALS['selector'] == __SELECTOR_SINGLE && $_SERVER['REQUEST_METHOD'] == 'GET') {  //查询单个 
         if (!$err) {
+            $str=array("username"=>"test","status"=>"true");
             echo json_encode($str); //返回json 
             $GLOBALS['httpStatus'] = __HTTPSTATUS_OK; //查询成功返回200
         }

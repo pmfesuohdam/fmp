@@ -53,6 +53,7 @@ include_once(__API_ROOT.'modules/initApi.m');
  */
 ob_start();
 include_once(__API_ROOT.'modules/parseRequest.m');
+die;
 /* }}} */
 
 /* {{{ api运行
