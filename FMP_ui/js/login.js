@@ -11,6 +11,7 @@ $(document).ready(function(){
 			success: function(data){
 				$("code").css("display","inline")
 				$(".n-tip").text("")
+        console.log(data)
 				if ((data.err_msg).length>0) {
           console.log(data)
                     $(function(){

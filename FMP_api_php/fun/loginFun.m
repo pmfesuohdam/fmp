@@ -18,14 +18,20 @@ header("Content-type: application/json; charset=utf-8");
 if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ):
+        /* {{{ 获取登录状态 */
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (!empty($_SESSION['username'])) {
                 $msgs['username']=$_SESSION['username'];
                 $msgs['status']='true';
                 $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
                 echo json_encode($msgs);
+            } else {
+                $msgs['status']='true';
+                $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+                echo json_encode($msgs);
             }
         }
+        /* }}} */
         break;
     case(__OPERATION_UPDATE):
         /* {{{ 登录处理
