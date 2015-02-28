@@ -25,12 +25,20 @@ body {
   padding-left:70px;
 }
 .header>a>h1.mainlogo {
+    background: url(../../img/fmp_logo.png) no-repeat left top;
     float:left;
     color:white;
     text-decoration:none;    
     margin-bottom: 0px;
     margin-top: 10px;
     font-size: 33px;
+    width: 76px;
+    height: 33px;
+}
+
+.header > a > h1.mainlogo > u {
+    left: -999999px;
+    position: absolute;
 }
 .header .description{
     clear:both;
@@ -50,6 +58,9 @@ body {
 	padding-right: 10px;
 }
 
+.header > .userarea a:link,.sign_login_area a{
+    margin:6px;
+}
 .header > .userarea a:link,.sign_login_area a:link{
 	color: white;
 }
