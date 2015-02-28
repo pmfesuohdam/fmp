@@ -59,34 +59,4 @@ function saveMq($content) {
     }
 }
 
-/**
- *@brief 保存ProvideIp变化的消息
- *@param @server 服务器
- *@param @pip    未修改前的ip
- *@param @cip    当前设置的provideIP 
- *@param @location 地区
- *@param @carrier 运营商
- */
-function saveProviceIpChangeMessage($server,$pip,$cip,$location,$carrier) {
-     try {
-         DebugInfo("[saveProviceIpChangeMessage][server:{$server}][prevIp:{$pip}][currentIp:{$cip}][location:{$location}][carrier:$carrier]", 3);
-         if ($pip!=$cip) {
-             // 获取服务器状态
-             $arr = $GLOBALS['mdb_client']->get(__MDB_TAB_HOST,$server,'info:status');
-             $serveralive = $arr[0]->value>0?1:0;
-             DebugInfo("[saveProviceIpChangeMessage][server status:$serveralive]",3);
-             // 获取load信息
-             $arr = $GLOBALS['mdb_client']->getRowWithColumns(__MDB_TAB_SERVER,$server,array('info:'));
-             $res = $arr[0]->columns;
-             $serverload = $res['info:generic_summary_load']->value;
-             openMq();
-             //{opt}|edgesserver|provide_ip|serveralive|serverload|new_ip|carrier|location|timestamp
-             saveMq("SC|{$server}|{$pip}|{$serveralive}|{$serverload}|{$cip}|{$carrier}|{$location}|".time());
-             closeMq();
-         }
-     } catch (Exception $e) {
-         DebugInfo("[saveProviceIpChangeMessage][err:".$e->getMessage()."]", 3);
-         closeMq();
-     }
-} 
 ?>

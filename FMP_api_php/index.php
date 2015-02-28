@@ -3,21 +3,20 @@
   +----------------------------------------------------------------------+
   | Name:index            
   +----------------------------------------------------------------------+
-  | Comment:mms入口PHP脚本      
+  | Comment:mmsapi入口PHP脚本      
   +----------------------------------------------------------------------+
   | Author:evoup evoex@126.com   
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:41:44                                      
   +----------------------------------------------------------------------+
-  | Last-Modified: 2013-03-28 18:31:32
+  | Last-Modified: 2015-02-28 11:45:32
   +----------------------------------------------------------------------+
  */
 define(__API_ROOT,    dirname(__FILE__).'/');
-define(__THRIFT_ROOT, dirname(__FILE__).'/thrift');
+//define(__THRIFT_ROOT, dirname(__FILE__).'/thrift');
 //error_reporting(E_ALL | E_STRICT);
 error_reporting(0);
 $conf = parse_ini_file(dirname(__FILE__).'/conf/api.conf'); //配置文件 
-$hadoopConf = parse_ini_file(dirname(__FILE__).'/conf/hadoop.conf',true); //hbase有关信息配置 
 
 /* {{{ 载入常数
  */
@@ -28,7 +27,6 @@ include_once(__API_ROOT.'inc/const.m');
  */
 include_once(__API_ROOT.'fun/common.m');
 include_once(__API_ROOT.'fun/base.m');
-include_once(__API_ROOT.'fun/mdbFun.m');
 include_once(__API_ROOT.'lib/Predis.php');
 include_once(__API_ROOT.'fun/mq.m');
 /* }}} */
