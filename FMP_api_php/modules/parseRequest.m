@@ -144,12 +144,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_CARRIER:
         $GLOBALS['prefix']=__PREFIX_CARRIER;
         break;
-    case __SERVICE_TESTSPEED_SITE:
-        $GLOBALS['prefix']=__PREFIX_TESTSPEED_SITE;
-        break;
-    case __SERVICE_TESTSPEED:
-        $GLOBALS['prefix']=__PREFIX_TESTSPEED;
-        break;
     case __SERVICE_METRIC:
         $GLOBALS['prefix']=__PREFIX_METRIC;
         break;
