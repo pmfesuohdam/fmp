@@ -23,6 +23,9 @@ define('__DB_MYSQL_USER', 'madcore');
 define('__DB_MYSQL_PASS', 'madcore');
 define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
+/* {{{ mysql tables */
+define('__TB_FMP_USER', 't_fmp_user');
+/* }}} */
 /* {{{ mdb setting
  */
 define('__MDB_HOST',        '127.0.0.1'); // TODO 这里也改成用ini配置的方式 

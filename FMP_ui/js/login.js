@@ -4,7 +4,7 @@ $(document).ready(function(){
 		var btn=$(this)
 		btn.val("logining...")
 		$.ajax({
-			url: baseConf.api_prefix+"/login/post/self", 
+			url: baseConf.api_prefix+"/update/login/@self", 
 			context: document.body, 
 			type: "POST",
 			data:{ email: $("#email").val(), passwd: $("#passwd").val() },
@@ -12,6 +12,7 @@ $(document).ready(function(){
 				$("code").css("display","inline")
 				$(".n-tip").text("")
 				if ((data.err_msg).length>0) {
+          console.log(data)
                     $(function(){
                         function show(){
                             btn.val("login")
