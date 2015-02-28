@@ -34,10 +34,8 @@ define('__REDIS_PORT',      '6379');
 define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 
-define('__SERVICE_MONITOR',           'monitor');
 define('__SERVICE_USER',              'user');
 define('__SERVICE_MONITORITEM',       'monitoritem');
-define('__SERVICE_LOG',               'log');
 define('__SERVICE_EVENT_SETTING',     'event_setting');
 define('__SERVICE_GENERIC_SETTING',   'generic_setting');
 define('__SERVICE_CLOUDVIEW',         'cloudview');
@@ -53,11 +51,9 @@ define('__SERVICE_DISTRICT',          'district');
 /* {{{ services
  */
 define('__PREFIX_FMPUSER',           'fmpuser');
-define('__PREFIX_MONITOR',           'monitor');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');
 define('__PREFIX_MONITORITEM',       'monitoritem');
-define('__PREFIX_LOG',               'log');
 define('__PREFIX_EVENT_SETTING',     'event_setting');
 define('__PREFIX_GENERIC_SETTING',   'generic_setting');
 define('__PREFIX_CLOUDVIEW',         'cloudview');
