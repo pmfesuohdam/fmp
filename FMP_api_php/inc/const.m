@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2013-05-16 14:20:25
+  | Last-Modified: 2015-02-28 12:55:04
   +----------------------------------------------------------------------+
  */
 
@@ -31,6 +31,7 @@ define('__REDIS_PORT',      '6379');
 /* }}} */
 /* {{{ services
  */
+define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_SERVER',            'server');   
 define('__SERVICE_STATUS',            'status');
 define('__SERVICE_SERVER_GROUP',      'servergroup');
@@ -71,6 +72,7 @@ define('__SERVICE_GET_DOWNLOAD_FILE', 'get_download_file');
 
 /* {{{ services
  */
+define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_SERVER',            'server');
 define('__PREFIX_SERVER_GROUP',      'serverGroup');
 define('__PREFIX_STATUS',            'status');

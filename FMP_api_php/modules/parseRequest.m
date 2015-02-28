@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created: 2011-02-23 10:19:45                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2014-05-26 10:59:52
+  | Last-Modified: 2015-02-28 13:01:34
   +----------------------------------------------------------------------+
 */
 $moduleName=basename(__FILE__);
@@ -60,6 +60,9 @@ $GLOBALS['postData']=file_get_contents("php://input");
 //加载相关函数
 if (!empty($GLOBALS['serviceName'])) {
     switch($GLOBALS['serviceName']) {
+    case __SERVICE_FMPUSER:
+        $GLOBALS['prefix']=__PREFIX_FMPUSER;
+        break;
     case __SERVICE_LOGIN:
         $GLOBALS['prefix']=__PREFIX_LOGIN;
         break; 
@@ -175,38 +178,6 @@ if (!empty($GLOBALS['serviceName'])) {
     $funcFile=__API_ROOT.'fun/'.$GLOBALS['prefix'].'Fun.m';    //这里要求各个service的命名需要规范
     if (file_exists($funcFile)) {
         DebugInfo("[$moduleName] [$funcFile][include]",2);
-        /*{{{ (mssapi)监控配置的读入
-         */
-        if (in_array($GLOBALS['prefix'],array(__SERVICE_STATUS)) && $GLOBALS['selector']==__SELECTOR_MDB) {
-            DebugInfo("[$moduleName][get mdb status][funcFile:$funcFile]",2);
-        } else {
-            $mdb_host=explode('|',$conf['mdb_host']); // 获取thrift服务器组
-            //载入mdn
-            openMdb($mdb_host);
-            //设置一些常数
-            $GLOBALS['timeNow']=time();
-            try{
-                $row_key=__KEY_INIDATA; //完整配置文件的rowkey 
-                $res=$GLOBALS['mdb_client']->getRowWithColumns(__MDB_TAB_SERVER,$row_key,array(__MDB_COL_CONFIG_INI));
-                $res=$res[0]->columns;
-                $res=$res[__MDB_COL_CONFIG_INI]->value; //获取value
-                if(!$res) {
-                    DebugInfo("[$moduleName][getRowWithColumns mdbconf error]",3);
-                    $GLOBALS['httpStatus'] = __HTTPSTATUS_INTERNAL_SERVER_ERROR;
-                    exit(); //此为异常，建表的时候输入了默认数据，这里采取直接退出 
-                } else {
-                    DebugInfo("[$moduleName][got mdb configure file]", 3);
-                    //配置文件读取
-                    $_CONFIG=@parse_ini_string($res,true);
-                    unset($res);
-                }
-            } catch(Exception $e) {
-                DebugInfo("[$moduleName][getRowWithColumns mdbconf error][$e]",2);
-                $GLOBALS['httpStatus'] = __HTTPSTATUS_INTERNAL_SERVER_ERROR;
-                exit(); //此为异常，建表的时候输入了默认数据，这里采取直接退出 
-            }
-        }
-        /* }}} */
         include_once($funcFile);
     } else {
         DebugInfo("[$moduleName] [$funcFile][file_not_exists]",2);

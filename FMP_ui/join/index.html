@@ -24,7 +24,7 @@
 		function createPageHeader(){
             $(".wrapper").css("display","none") //防止闪瞎~
             $.ajax({
-            	url:baseConf.api_prefix+"/user/get/self",
+              url:baseConf.api_prefix+"/get/fmpuser/@self",
             	method:"GET",
             	success: function(data){
             		var user = [
