@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/default/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="../../css/default/fbaccount.css" />
     <link rel="stylesheet" type="text/css" href="../../css/default/table.css" />
+    <script type="text/javascript" src="../../js/base.js"></script>
     <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.tmpl.js"></script>
 </head>
@@ -15,12 +16,12 @@
     <article class="sec-intro">
         <script id="messageTemplate" type="text/x-jquery-tmpl">
             <div class="message">
-                <p>Hi, <strong>${UserName}</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
+                <p>Hi, <strong>${username}</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
             </div>
-        </script>
         <p class="calltoact">
           <button class="btn btn-large btn-link-account" type="submit">Add Facebook accounts <em class="count">(3)</em></button>
       </p>
+        </script>
   </article>
   <article id="tableAccountsImport" class="accounts-list">
     <header>
@@ -88,13 +89,15 @@
     <script>
         $(document).ready(function(){
             $.ajax({
-              url: baseConf.api_prefix+"/get/login/@self",
+              url: baseConf.api_prefix+"/get/login/@self1",
               type: "GET",
-              success: function(data){
-                
+              success: function(user){
+              if (user.status=="false") {
+              location.href="../../"
+              }
+                  $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
               }
           })
-            $.template( "messageTemplate", markup );
         })
     </script>
 </body>
