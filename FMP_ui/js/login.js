@@ -11,21 +11,23 @@ $(document).ready(function(){
 			success: function(data){
 				$("code").css("display","inline")
 				$(".n-tip").text("")
-				if ((data.err_msg).length>0) {
+        $("#email+code").text("")
+        $("#passwd+code").text("")
           err_msg=data.err_msg
           for (i=0;i<err_msg.length;i++) {
-            console.log(err_msg[i])
-            }
+              console.log(err_msg[i])
+              for ( var id in err_msg[i] ){
+                    alert_dom_id="#"+id+"+code"
+                    $(alert_dom_id).text(err_msg[i][id])
+              }
+          }
                     $(function(){
                         function show(){
                             btn.val("login")
                         }
                         setTimeout(show,1000);
                     })
-                    alert_dom_id="#"+data.err_name+"+code"
-                    $(alert_dom_id).text(data.err_msg)
-                }
-                if (data.state==="true")
+                if (data.status==="true")
                    location.href=baseConf.redirect_url
            },
            error:function (XMLHttpRequest, textStatus, errorThrown){

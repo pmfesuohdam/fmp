@@ -36,7 +36,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     case(__OPERATION_UPDATE):
         /* {{{ 登录处理
          */
-        $msgs=array(); //返回的消息
+        $msgs['err_msg']=array(); //返回的消息
         $err_item=array();
         //已经登录的
         //{"status":"true"};
