@@ -150,9 +150,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_TIME:
         $GLOBALS['prefix']=__PREFIX_TIME;
         break;
-    case __SERVICE_DOCS:
-        $GLOBALS['prefix']=__PREFIX_DOCS;
-        break;
     default:
         break;
     }
