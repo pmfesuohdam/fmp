@@ -73,6 +73,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         /* }}} */
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
+            $_SESSION['username']=$row['name'];
         } else $msgs['status']="false";
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         echo json_encode($msgs);
@@ -80,6 +81,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     case(__OPERATION_DELETE):
         /* {{{ 退出登录
          */
+        session_destroy();
         /* }}} */
         break;
     }

@@ -12,6 +12,7 @@
   | Last-Modified: 2015-02-28 13:15:47
   +----------------------------------------------------------------------+
  */
+session_start();
 define(__API_ROOT,    dirname(__FILE__).'/');
 //define(__THRIFT_ROOT, dirname(__FILE__).'/thrift');
 //error_reporting(E_ALL | E_STRICT);
