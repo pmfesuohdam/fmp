@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+</head>
+</html>
+<article id="tableAccountsImport" class="accounts-list">
+
+    <header>
+        <p class="total">Accounts selected: <strong>(3)</strong></p>
+        <p class="info">Use the checkboxes on the left to select which advertising accounts you wanto to manage in FMP</p>
+    </header>
+
+    <div class="accounts-table flip-scroll">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="check">
+                        <!-- <input type="checkbox" checked=""> -->
+                    </th>
+                    <th class="name" scope="col">Name
+                        <a title="" data-placement="top" rel="tooltip" href="#_" class="help-tip" data-original-title="-[ Tooltip on top ]-"></a>
+                    </th>
+                    <th class="spent" scope="col">Daily spend limit
+                        <a title="" data-placement="top" rel="tooltip" href="#_" class="help-tip" data-original-title="Maximum amount this account can spend daily in advertising"></a>
+                    </th>
+                    <th class="id-account" scope="col">ID</th>
+                    <th class="status st-fb-account" scope="col">Status
+                        <a title="" data-placement="top" rel="tooltip" href="#_" class="help-tip" data-original-title="Facebook reported status for this account"></a>
+                    </th>
+                    <th class="import-camp" scope="col">Import active campaigns
+                        <a title="" data-placement="top" rel="tooltip" href="#_" class="help-tip" data-original-title="Set to on On import your active Facebook ads campaigns into AdEspresso"></a>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="success selected">
+                    <td class="check">    <input type="checkbox" id="import_accounts_0_selected" name="import[accounts][0][selected]" value="1" checked="checked"></td>
+                    <td class="name">
+                        <input type="text" id="import_accounts_0_account_name" name="import[accounts][0][account][name]" class="field not-removable" value="Sam Xu">
+                    </td>
+                    <td class="spent">50.00 USD</td>
+                    <td class="id-account">1392684824354843</td>
+                    <td class="status st-fb-account">
+                        <span class="st-info">
+                            <i class="icon ae-ico-ok" title="" data-placement="top" rel="tooltip" data-original-title="Ok to add"></i>
+                        </span>
+                    </td>
+                    <td class="import-camp">
+                        <div class="btn-group btn-toggle activated">
+                            <button type="button" class="btn btn-ok" data-value="1">Yes</button>
+                            <button type="button" class="btn btn-no active" data-value="0">No</button>
+                        </div>
+                        <input type="hidden" id="import_accounts_0_account_import_enabled" name="import[accounts][0][account][import_enabled]" class=" not-removable" value="0">
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    <!--/.accounts-table -->
+
+    <footer>
+        <span class="actions"><a href="#_" id="unselectall">Unselect all</a></span>
+        <span class="info">Can't find your account? <a href="#_" onclick="UserVoice.showPopupWidget(); return false;">Contact Us</a></span>
+    </footer>
+</article>
