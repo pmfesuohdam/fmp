@@ -147,9 +147,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_PROCESS_DELETE_SERVER:
         $GLOBALS['prefix']=__PREFIX_PROCESS_DELETE_SERVER;
         break;
-    case __SERVICE_TIME:
-        $GLOBALS['prefix']=__PREFIX_TIME;
-        break;
     default:
         break;
     }

@@ -61,7 +61,6 @@ define('__SERVICE_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__SERVICE_DISTRICT',          'district');
 define('__SERVICE_CARRIER',           'carrier');
 define('__SERVICE_PROCESS_DELETE_SERVER', 'process_delete_server');
-define('__SERVICE_TIME',              'time');
 /* }}} */
 
 /* {{{ services
@@ -95,7 +94,6 @@ define('__PREFIX_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__PREFIX_DISTRICT',          'district');
 define('__PREFIX_CARRIER',           'carrier');
 define('__PREFIX_PROCESS_DELETE_SERVER', 'process_delete_server');
-define('__PREFIX_TIME',              'time');
 /* }}} */
 
 /* {{{ operations
