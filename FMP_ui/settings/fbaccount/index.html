@@ -15,10 +15,10 @@
     <article class="sec-intro">
         <script id="messageTemplate" type="text/x-jquery-tmpl">
             <div class="message">
-            <p>Hi, <strong>${UserName}</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
-          </div>
-      </script>
-      <p class="calltoact">
+                <p>Hi, <strong>${UserName}</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
+            </div>
+        </script>
+        <p class="calltoact">
           <button class="btn btn-large btn-link-account" type="submit">Add Facebook accounts <em class="count">(3)</em></button>
       </p>
   </article>
@@ -86,14 +86,16 @@
         </footer>
     </article>
     <script>
-    $(document).ready(function(){
-        $.ajax({
+        $(document).ready(function(){
+            $.ajax({
               url: baseConf.api_prefix+"/get/login/@self",
-                    context: document.body, 
-                          type: "GET",
-                                      success: function(data){}})
-    $.template( "adaccountTemplate", markup );
-    })
+              type: "GET",
+              success: function(data){
+                
+              }
+          })
+            $.template( "messageTemplate", markup );
+        })
     </script>
 </body>
 </html>
