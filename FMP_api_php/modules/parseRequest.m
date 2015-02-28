@@ -66,15 +66,6 @@ if (!empty($GLOBALS['serviceName'])) {
     //case __SERVICE_LOGIN:
         //$GLOBALS['prefix']=__PREFIX_LOGIN;
         //break; 
-    case __SERVICE_SERVER:
-        $GLOBALS['prefix']=__PREFIX_SERVER;
-        break;
-    case __SERVICE_SERVER_GROUP:
-        $GLOBALS['prefix']=__PREFIX_SERVER_GROUP;
-        break;
-    case __SERVICE_STATUS:
-        $GLOBALS['prefix']=__PREFIX_STATUS;
-        break;
     case __SERVICE_EVENT:
         $GLOBALS['prefix']=__PREFIX_EVENT;
         break;
