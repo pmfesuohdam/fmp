@@ -34,7 +34,6 @@ define('__REDIS_PORT',      '6379');
 define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 
-define('__SERVICE_EVENT_CAUTION',     'eventcaution');
 define('__SERVICE_EVENT_WARNING',     'eventwarning');
 define('__SERVICE_EVENT_OK',          'eventok');
 define('__SERVICE_MAILSETTING',       'mailsetting');
@@ -59,7 +58,6 @@ define('__SERVICE_DISTRICT',          'district');
 /* {{{ services
  */
 define('__PREFIX_FMPUSER',           'fmpuser');
-define('__PREFIX_EVENT_CAUTION',     'eventcaution');
 define('__PREFIX_EVENT_WARNING',     'eventwarning');
 define('__PREFIX_EVENT_OK',          'eventok');
 define('__PREFIX_MAILSETTING',       'mailSetting');
