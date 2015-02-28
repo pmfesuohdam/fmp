@@ -3,14 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/default/base.css" />
-    <link rel="stylesheet" type="text/css" href="../css/default/menu.css" />
-    <link rel="stylesheet" type="text/css" href="../css/default/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="../css/default/fbaccount.css" />
-    <link rel="stylesheet" type="text/css" href="../css/default/table.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/default/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/default/menu.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/default/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/default/fbaccount.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/default/table.css" />
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
+<article class="sec-intro">
+                <div class="message">
+                  <p>Hi, <strong>getter</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
+                </div>
+                <p class="calltoact">
+                  <button class="btn btn-large btn-link-account" type="submit">Add Facebook accounts <em class="count">(3)</em></button>
+                </p>
+</article>
     <article id="tableAccountsImport" class="accounts-list">
         <header>
             <p class="total">Accounts selected: <strong>(3)</strong></p>
@@ -22,7 +30,6 @@
                 <thead>
                     <tr>
                         <th class="check">
-                            <!-- <input type="checkbox" checked=""> -->
                         </th>
                         <th class="name" scope="col">Name
                             <a title="" data-placement="top" rel="tooltip" href="#_" class="help-tip" data-original-title="-[ Tooltip on top ]-"></a>
@@ -69,7 +76,6 @@
 
         <footer>
             <span class="actions"><a href="#_" id="unselectall">Unselect all</a></span>
-            <span class="info">Can't find your account? <a href="#_" onclick="UserVoice.showPopupWidget(); return false;">Contact Us</a></span>
         </footer>
     </article>
 
