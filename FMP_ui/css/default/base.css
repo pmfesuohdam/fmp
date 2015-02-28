@@ -35,13 +35,13 @@ code{
 .login_btn{
 	margin-right:20%;
 }
-tr:nth-child(1) > td:nth-child(2){
+form[name=frmlogin] > table > tbody > tr:nth-child(1) > td:nth-child(2){
 	text-align: left;
 }
-tr:nth-child(2) > td:nth-child(2){
+form[name=frmlogin] > table > tbody > tr:nth-child(2) > td:nth-child(2){
 	text-align: left;
 }
-tr:nth-child(3) > td{
+form[name=frmlogin] > table > tbody > tr:nth-child(3) > td{
 	text-align: center;
 }
 

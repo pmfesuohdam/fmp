@@ -54,51 +54,56 @@
             <tbody>
                 <!--adaccount section start-->
                 <script id="adaccountTemplate" type="text/x-jquery-tmpl">  
+                    {{each(i,adaccount) adaccounts}}
                     <tr class="success selected">
                         <td class="check">
-                            <input type="checkbox" id="import_accounts_0_selected" name="import[accounts][0][selected]" value="1" checked="checked"></td>
-                            <td class="name">
-                                <input type="text" id="import_accounts_0_account_name" name="import[accounts][0][account][name]" class="field not-removable" value="Sam Xu">
-                            </td>
-                            <td class="spent">50.00 USD</td>
-                            <td class="id-account">1392684824354843</td>
-                            <td class="status st-fb-account">
-                                <span class="st-info">
-                                    <i class="icon ae-ico-ok" title="" data-placement="top" rel="tooltip" data-original-title="Ok to add"></i>
-                                </span>
-                            </td>
-                            <td class="import-camp">
-                                <div class="btn-group btn-toggle activated">
-                                    <button type="button" class="btn btn-ok" data-value="1">Yes</button>
-                                    <button type="button" class="btn btn-no active" data-value="0">No</button>
-                                </div>
-                                <input type="hidden" id="import_accounts_0_account_import_enabled" name="import[accounts][0][account][import_enabled]" class=" not-removable" value="0">
-                            </td>
-                        </tr>
-                    </script>
-                    <!--adaccount section end-->
-                </tbody>
-            </table>
-        </div>
-        <!--/.accounts-table -->
+                            <input type="checkbox" id="import_accounts_${i}_selected" name="import[accounts][0][selected]" value="1" checked="checked">
+                        </td>
+                        <td class="name">
+                            <input type="text" id="import_accounts_${i}_account_name" name="import[accounts][0][account][name]" class="field not-removable" value="{{= adaccount.name}}">
+                        </td>
+                        <td class="spent">{{= adaccount.spent_sum}} USD</td>
+                        <td class="id-account">1392684824354843</td>
+                        <td class="status st-fb-account">
+                            <span class="st-info">
+                                <i class="icon ae-ico-ok" title="" data-placement="top" rel="tooltip" data-original-title="Ok to add"></i>
+                            </span>
+                        </td>
+                        <td class="import-camp">
+                            <div class="btn-group btn-toggle activated">
+                                <button type="button" class="btn btn-ok" data-value="1">Yes</button>
+                                <button type="button" class="btn btn-no active" data-value="0">No</button>
+                            </div>
+                            <input type="hidden" id="import_accounts_${i}_account_import_enabled" name="import[accounts][0][account][import_enabled]" class=" not-removable" value="0">
+                        </td>
+                    </tr>
+                    {{/each}}
+                </script>
+                <!--adaccount section end-->
+            </tbody>
+        </table>
+    </div>
+    <!--/.accounts-table -->
 
-        <footer>
-            <span class="actions"><a href="#_" id="unselectall">Unselect all</a></span>
-        </footer>
-    </article>
-    <script>
-        $(document).ready(function(){
-            $.ajax({
-              url: baseConf.api_prefix+"/get/login/@self1",
-              type: "GET",
-              success: function(user){
-                  if (user.status=="false") {
-                      location.href="../../"
-                  }
-                  $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
+    <footer>
+        <span class="actions"><a href="#_" id="unselectall">Unselect all</a></span>
+    </footer>
+</article>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+          url: baseConf.api_prefix+"/get/login/@self",
+          type: "GET",
+          success: function(user){
+              if (user.status=="false") {
+                  location.href="../../"
               }
-          })
-        })
-    </script>
+              $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
+              adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
+              $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
+          }
+      })
+    })
+</script>
 </body>
 </html>
