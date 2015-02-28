@@ -85,6 +85,15 @@
             <span class="actions"><a href="#_" id="unselectall">Unselect all</a></span>
         </footer>
     </article>
-
+    <script>
+    $(document).ready(function(){
+        $.ajax({
+              url: baseConf.api_prefix+"/get/login/@self",
+                    context: document.body, 
+                          type: "GET",
+                                      success: function(data){}})
+    $.template( "adaccountTemplate", markup );
+    })
+    </script>
 </body>
 </html>
