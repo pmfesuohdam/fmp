@@ -34,7 +34,6 @@ define('__REDIS_PORT',      '6379');
 define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 
-define('__SERVICE_ALARMSETTING',      'alarmsetting');
 define('__SERVICE_MONITOR',           'monitor');
 define('__SERVICE_USERGROUP',         'usergroup');
 define('__SERVICE_USER',              'user');
@@ -55,7 +54,6 @@ define('__SERVICE_DISTRICT',          'district');
 /* {{{ services
  */
 define('__PREFIX_FMPUSER',           'fmpuser');
-define('__PREFIX_ALARMSETTING',      'alarmSetting');
 define('__PREFIX_MONITOR',           'monitor');
 define('__PREFIX_USERGROUP',         'usergroup');
 define('__PREFIX_USER',              'user');
