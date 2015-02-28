@@ -64,7 +64,6 @@ define('__SERVICE_PROCESS_DELETE_SERVER', 'process_delete_server');
 define('__SERVICE_TIME',              'time');
 define('__SERVICE_DOCS',              'docs');
 define('__SERVICE_DOWNLOADS',         'downloads');
-define('__SERVICE_GET_DOWNLOAD_FILE', 'get_download_file');
 /* }}} */
 
 /* {{{ services
@@ -101,7 +100,6 @@ define('__PREFIX_PROCESS_DELETE_SERVER', 'process_delete_server');
 define('__PREFIX_TIME',              'time');
 define('__PREFIX_DOCS',              'docs');
 define('__PREFIX_DOWNLOADS',         'downloads');
-define('__PREFIX_GET_DOWNLOAD_FILE', 'get_download_file');
 /* }}} */
 
 /* {{{ operations
