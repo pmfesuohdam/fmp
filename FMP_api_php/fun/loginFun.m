@@ -26,7 +26,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
                 echo json_encode($msgs);
             } else {
-                $msgs['status']='true';
+                $msgs['status']='false';
                 $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
                 echo json_encode($msgs);
             }
