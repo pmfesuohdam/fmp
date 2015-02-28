@@ -59,16 +59,19 @@ function apiRun() {
     $funcName=$GLOBALS['prefix'].ucfirst($GLOBALS['operation']);
     /* {{{ 登录状态判断和
      */
-    $MTD=isset($_POST['snapshotid']) ?'snapshot' :$GLOBALS['serviceName']; 
-    switch ($MTD) {
+    //$MTD=isset($_POST['snapshotid']) ?'snapshot' :$GLOBALS['serviceName']; 
+    switch ($GLOBALS['serviceName']) {
     default:
-        if(empty($_COOKIE[__CO_MMSUID]) || empty($_COOKIE[__CO_MMSUNAME])) { //XXX 这里sid需要验证 
-            if ($GLOBALS['prefix']==__PREFIX_LOGIN && $GLOBALS['selector']==__SELECTOR_SINGLE && $GLOBALS['operation']==__OPERATION_UPDATE) { // 不要阻断首页登录 
-            } else {
-                $GLOBALS['httpStatus'] = __HTTPSTATUS_UNAUTHORIZED; // 出错误状态码 
-                ob_clean(); // 未认证删除任何要输出的内容后退出 
-                mmsHeader();
-                exit(0);
+        //TODO认证改为保存一个$GLOBALS['status']标记,每个api都出这个status
+        if (0) {
+            if(empty($_COOKIE[__CO_MMSUID]) || empty($_COOKIE[__CO_MMSUNAME])) { //XXX 这里sid需要验证 
+                if ($GLOBALS['prefix']==__PREFIX_LOGIN && $GLOBALS['selector']==__SELECTOR_SINGLE && $GLOBALS['operation']==__OPERATION_UPDATE) { // 不要阻断首页登录 
+                } else {
+                    $GLOBALS['httpStatus'] = __HTTPSTATUS_UNAUTHORIZED; // 出错误状态码 
+                    ob_clean(); // 未认证删除任何要输出的内容后退出 
+                    mmsHeader();
+                    exit(0);
+                }
             }
         }
         break;

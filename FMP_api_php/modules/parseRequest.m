@@ -63,9 +63,9 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_FMPUSER:
         $GLOBALS['prefix']=__PREFIX_FMPUSER;
         break;
-    case __SERVICE_LOGIN:
-        $GLOBALS['prefix']=__PREFIX_LOGIN;
-        break; 
+    //case __SERVICE_LOGIN:
+        //$GLOBALS['prefix']=__PREFIX_LOGIN;
+        //break; 
     case __SERVICE_SERVER:
         $GLOBALS['prefix']=__PREFIX_SERVER;
         break;

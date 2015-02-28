@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-02-28 12:55:04
+  | Last-Modified: 2015-02-28 13:34:48
   +----------------------------------------------------------------------+
  */
 
@@ -32,6 +32,8 @@ define('__REDIS_PORT',      '6379');
 /* {{{ services
  */
 define('__SERVICE_FMPUSER',           'fmpuser');
+define('__SERVICE_LOGIN',             'login');
+
 define('__SERVICE_SERVER',            'server');   
 define('__SERVICE_STATUS',            'status');
 define('__SERVICE_SERVER_GROUP',      'servergroup');
@@ -44,7 +46,6 @@ define('__SERVICE_ALARMSETTING',      'alarmsetting');
 define('__SERVICE_MONITOR',           'monitor');
 define('__SERVICE_USERGROUP',         'usergroup');
 define('__SERVICE_USER',              'user');
-define('__SERVICE_LOGIN',             'login');
 define('__SERVICE_MONITORITEM',       'monitoritem');
 define('__SERVICE_LOG',               'log');
 define('__SERVICE_EVENT_SETTING',     'event_setting');
