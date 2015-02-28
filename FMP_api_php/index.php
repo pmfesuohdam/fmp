@@ -26,7 +26,6 @@ include_once(__API_ROOT.'inc/const.m');
 /* {{{ 基础函数
  */
 include_once(__API_ROOT.'fun/common.m');
-include_once(__API_ROOT.'fun/db.m');
 include_once(__API_ROOT.'fun/base.m');
 include_once(__API_ROOT.'lib/Predis.php');
 include_once(__API_ROOT.'fun/mq.m');

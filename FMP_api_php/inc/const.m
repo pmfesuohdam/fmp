@@ -9,14 +9,20 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-02-28 13:34:48
+  | Last-Modified: 2015-02-28 14:18:30
   +----------------------------------------------------------------------+
  */
 
 /* 版本号 */
 define('__VERSION','1.0');        //主版本号',代表主要功能分支
 define('__SUBVERSION','r1590');   //小版本号',即subversion版本号
-
+/* {{{ db mysql setting*/
+define('__DB_MYSQL_HOST', '127.0.0.1');
+define('__DB_MYSQL_PORT', '3306');
+define('__DB_MYSQL_USER', 'madcore');
+define('__DB_MYSQL_PASS', 'madcore');
+define('__DB_MYSQL_DB',   'fmp');
+/* }}} */
 /* {{{ mdb setting
  */
 define('__MDB_HOST',        '127.0.0.1'); // TODO 这里也改成用ini配置的方式 
