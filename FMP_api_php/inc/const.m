@@ -59,8 +59,6 @@ define('__SERVICE_DETAIL_SETTING',    'detailsetting');
 define('__SERVICE_IP_SETTING',        'ipsetting');
 define('__SERVICE_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__SERVICE_DISTRICT',          'district');
-define('__SERVICE_CARRIER',           'carrier');
-define('__SERVICE_PROCESS_DELETE_SERVER', 'process_delete_server');
 /* }}} */
 
 /* {{{ services
@@ -92,8 +90,6 @@ define('__PREFIX_DETAIL_SETTING',    'detailSetting');
 define('__PREFIX_IP_SETTING',        'ipsetting');
 define('__PREFIX_MDNDELIVER_SETTING','mdndeliver_setting');
 define('__PREFIX_DISTRICT',          'district');
-define('__PREFIX_CARRIER',           'carrier');
-define('__PREFIX_PROCESS_DELETE_SERVER', 'process_delete_server');
 /* }}} */
 
 /* {{{ operations
