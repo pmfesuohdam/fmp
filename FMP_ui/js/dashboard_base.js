@@ -9,10 +9,10 @@ $(document).ready(function(){
 			$(".header > .userarea").html("<a href=\"../profiles\" id=\"user_profile_a\">"+data.username+"</a> | <a href=\"../\" onclick=\"return false;\" id=\"logout_btn\">logout</a>")
 			$("#logout_btn").bind("click",function(){
 				$.ajax({
-					url: baseConf.api_prefix+"/login/delete/self",
+					url: baseConf.api_prefix+"/delete/login/@self",
 					type: "GET",
 					success: function(data){
-						if (data.status=="false") {
+						if (data.status=="true") {
 							location.href="http://"+document.domain;
 						}
 					}

@@ -81,7 +81,12 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     case(__OPERATION_DELETE):
         /* {{{ 退出登录
          */
-        session_destroy();
+        if ($_SERVER['REQUEST_METHOD']=='GET') {
+            session_destroy();
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            $msgs['status']='true';
+            echo json_encode($msgs);
+        }
         /* }}} */
         break;
     }
