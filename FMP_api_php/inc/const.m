@@ -35,7 +35,6 @@ define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 
 define('__SERVICE_MONITOR',           'monitor');
-define('__SERVICE_USERGROUP',         'usergroup');
 define('__SERVICE_USER',              'user');
 define('__SERVICE_MONITORITEM',       'monitoritem');
 define('__SERVICE_LOG',               'log');
@@ -55,7 +54,6 @@ define('__SERVICE_DISTRICT',          'district');
  */
 define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_MONITOR',           'monitor');
-define('__PREFIX_USERGROUP',         'usergroup');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');
 define('__PREFIX_MONITORITEM',       'monitoritem');
