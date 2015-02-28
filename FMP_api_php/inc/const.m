@@ -63,7 +63,6 @@ define('__SERVICE_CARRIER',           'carrier');
 define('__SERVICE_PROCESS_DELETE_SERVER', 'process_delete_server');
 define('__SERVICE_TIME',              'time');
 define('__SERVICE_DOCS',              'docs');
-define('__SERVICE_DOWNLOADS',         'downloads');
 /* }}} */
 
 /* {{{ services
@@ -99,7 +98,6 @@ define('__PREFIX_CARRIER',           'carrier');
 define('__PREFIX_PROCESS_DELETE_SERVER', 'process_delete_server');
 define('__PREFIX_TIME',              'time');
 define('__PREFIX_DOCS',              'docs');
-define('__PREFIX_DOWNLOADS',         'downloads');
 /* }}} */
 
 /* {{{ operations

@@ -153,9 +153,6 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_DOCS:
         $GLOBALS['prefix']=__PREFIX_DOCS;
         break;
-    case __SERVICE_DOWNLOADS:
-        $GLOBALS['prefix']=__PREFIX_DOWNLOADS;
-        break;
     default:
         break;
     }
