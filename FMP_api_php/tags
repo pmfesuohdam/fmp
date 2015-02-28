@@ -1,0 +1,288 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+__CLOUDVIEW_NUM_HOST	./inc/const.m	/^define('__CLOUDVIEW_NUM_HOST', 50);$/;"	d
+__CO_MMSUID	./inc/const.m	/^    define('__CO_MMSUID', '__CO_MMSUID');$/;"	d
+__CO_MMSUID	./inc/const.m	/^    define('__CO_MMSUID', '__CO_MMSUID_BETA');$/;"	d
+__CO_MMSUNAME	./inc/const.m	/^    define('__CO_MMSUNAME', '__CO_MMSUNAME');$/;"	d
+__CO_MMSUNAME	./inc/const.m	/^    define('__CO_MMSUNAME', '__CO_MMSUNAME_BETA');$/;"	d
+__ENV_SINGLE_HOST_DOWN	./inc/const.m	/^define('__ENV_SINGLE_HOST_DOWN',        '997'); \/\/997---【单台主机宕机】$/;"	d
+__EVENTCODE_DOWN	./inc/const.m	/^define('__EVENTCODE_DOWN', '997w'); \/\/宕机事件代码$/;"	d
+__EVENT_ACTIVE	./inc/const.m	/^define('__EVENT_ACTIVE', 1); \/\/事件激活状态$/;"	d
+__EVENT_CLASS_CAUTION	./inc/const.m	/^define('__EVENT_CLASS_CAUTION', '2'); \/\/注意事件 $/;"	d
+__EVENT_CLASS_NORMAL	./inc/const.m	/^define('__EVENT_CLASS_NORMAL',  '1'); \/\/普通事件 $/;"	d
+__EVENT_CLASS_WARNING	./inc/const.m	/^define('__EVENT_CLASS_WARNING', '3'); \/\/严重事件 $/;"	d
+__EVENT_FIXED	./inc/const.m	/^define('__EVENT_FIXED', 0); \/\/事件已解决$/;"	d
+__EVENT_LANG_CHS	./inc/const.m	/^define('__EVENT_LANG_CHS',  0);$/;"	d
+__EVENT_LANG_ENG	./inc/const.m	/^define('__EVENT_LANG_ENG', 1);$/;"	d
+__EVENT_LEV_CAUTION	./inc/const.m	/^define('__EVENT_LEV_CAUTION', 'c'); \/\/注意的事件 $/;"	d
+__EVENT_LEV_CAUTION_NUM	./inc/const.m	/^define('__EVENT_LEV_CAUTION_NUM', '2'); \/\/注意的事件[前端使用的数字]$/;"	d
+__EVENT_LEV_CAUTION_WARNING_NUM	./inc/const.m	/^define('__EVENT_LEV_CAUTION_WARNING_NUM', '4'); \/\/既有注意事件又有严重的事件[前端使用的数字]$/;"	d
+__EVENT_LEV_DOWN_NUM	./inc/const.m	/^define('__EVENT_LEV_DOWN_NUM',    '0'); \/\/宕机的事件[前端使用的数字]$/;"	d
+__EVENT_LEV_NORMAL	./inc/const.m	/^define('__EVENT_LEV_NORMAL',  'n'); \/\/正常的事件 $/;"	d
+__EVENT_LEV_NORMAL_NUM	./inc/const.m	/^define('__EVENT_LEV_NORMAL_NUM',  '1'); \/\/正常的事件[前端使用的数字]$/;"	d
+__EVENT_LEV_UNMONITORED_NUM	./inc/const.m	/^define('__EVENT_LEV_UNMONITORED_NUM', '5'); \/\/未监控任何事件$/;"	d
+__EVENT_LEV_WARNING	./inc/const.m	/^define('__EVENT_LEV_WARNING', 'w'); \/\/严重的事件 $/;"	d
+__EVENT_LEV_WARNING_NUM	./inc/const.m	/^define('__EVENT_LEV_WARNING_NUM', '3'); \/\/严重的事件[前端使用的数字]$/;"	d
+__EVENT_TEXT_ACTIVE	./inc/const.m	/^define('__EVENT_TEXT_ACTIVE', 'ACTIVE'); \/\/事件激活 $/;"	d
+__EVENT_TEXT_FIXED	./inc/const.m	/^define('__EVENT_TEXT_FIXED',  'FIXED'); \/\/事件已经解决 $/;"	d
+__EVENT_TOTAL_STATUS	./inc/const.m	/^define('__EVENT_TOTAL_STATUS', 3);$/;"	d
+__EVN_ALL_DOWN	./inc/const.m	/^define('__EVN_ALL_DOWN',                '999'); \/\/999---【全部宕机】$/;"	d
+__EVN_CPU_USAGE	./inc/const.m	/^define('__EVN_CPU_USAGE',               '005'); \/\/005---【CPU占用率】$/;"	d
+__EVN_DAEMON_ADVT_DELIVER	./inc/const.m	/^define('__EVN_DAEMON_ADVT_DELIVER',     '015'); \/\/015---【Daemon的广告投放】$/;"	d
+__EVN_DAEMON_BACKEND_DAEMON	./inc/const.m	/^define('__EVN_DAEMON_BACKEND_DAEMON',   '013'); \/\/013---【Daemon后台守护进程】$/;"	d
+__EVN_DAEMON_ERRORLOG	./inc/const.m	/^define('__EVN_DAEMON_ERRORLOG',         '016'); \/\/016---【Daemon的errorlog】$/;"	d
+__EVN_DAEMON_LOGIN	./inc/const.m	/^define('__EVN_DAEMON_LOGIN',            '014'); \/\/014---【Daemon的LOGIN】$/;"	d
+__EVN_DAEMON_WEB_SERVER	./inc/const.m	/^define('__EVN_DAEMON_WEB_SERVER',       '012'); \/\/012---【Daemon互联网服务器】$/;"	d
+__EVN_DISK_CAPACITY	./inc/const.m	/^define('__EVN_DISK_CAPACITY',           '000'); \/\/000---【磁盘占用率】$/;"	d
+__EVN_DISK_INODE_CAPACITY	./inc/const.m	/^define('__EVN_DISK_INODE_CAPACITY',     '001'); \/\/001---【磁盘INODE占用率】$/;"	d
+__EVN_GROUP_DOWN	./inc/const.m	/^define('__EVN_GROUP_DOWN',              '998'); \/\/998---【整组宕机】$/;"	d
+__EVN_LOAD_AVERAGE	./inc/const.m	/^define('__EVN_LOAD_AVERAGE',            '002'); \/\/002---【平均LOAD数】$/;"	d
+__EVN_MDN_DNS_ARECORD	./inc/const.m	/^define('__EVN_MDN_DNS_ARECORD',         '026'); \/\/025---【Mdn的dns之A记录】$/;"	d
+__EVN_MEMORY_USAGE	./inc/const.m	/^define('__EVN_MEMORY_USAGE',            '003'); \/\/003---【内存占用率】$/;"	d
+__EVN_MYSQL_CONNECTION	./inc/const.m	/^define('__EVN_MYSQL_CONNECTION',        '017'); \/\/017---【Mysql的连接数】$/;"	d
+__EVN_MYSQL_CRUCIAL_TABLE	./inc/const.m	/^define('__EVN_MYSQL_CRUCIAL_TABLE',     '021'); \/\/021---【Mysql关键表控制】$/;"	d
+__EVN_MYSQL_MSTSLV	./inc/const.m	/^define('__EVN_MYSQL_MSTSLV',            '020'); \/\/020---【Mysql的Master和Slave】$/;"	d
+__EVN_MYSQL_TABLE_SIZE	./inc/const.m	/^define('__EVN_MYSQL_TABLE_SIZE',        '018'); \/\/018---【Mysql的单表最大尺寸】$/;"	d
+__EVN_MYSQL_THREADS	./inc/const.m	/^define('__EVN_MYSQL_THREADS',           '019'); \/\/019---【Mysql的创建线程数】$/;"	d
+__EVN_NETWORK_FLOW	./inc/const.m	/^define('__EVN_NETWORK_FLOW',            '008'); \/\/008---【网卡流量】$/;"	d
+__EVN_REPORT_WAIT_PROCESS_LOG	./inc/const.m	/^define('__EVN_REPORT_WAIT_PROCESS_LOG', '022'); \/\/022---【Report待处理日志数】$/;"	d
+__EVN_SERVING_ADVT_FILLRATE	./inc/const.m	/^define('__EVN_SERVING_ADVT_FILLRATE',   '024'); \/\/024---【Serving的广告填充率】$/;"	d
+__EVN_SERVING_ADVT_PUBLISH	./inc/const.m	/^define('__EVN_SERVING_ADVT_PUBLISH',    '011'); \/\/011---【Serving广告发布】$/;"	d
+__EVN_SERVING_LOG_CREATION	./inc/const.m	/^define('__EVN_SERVING_LOG_CREATION',    '023'); \/\/023---【Serving的日志生成】$/;"	d
+__EVN_SERVING_REQUEST_NUM	./inc/const.m	/^define('__EVN_SERVING_REQUEST_NUM',     '009'); \/\/009---【Serving请求数】$/;"	d
+__EVN_SERVING_WORK_NODES	./inc/const.m	/^define('__EVN_SERVING_WORK_NODES',      '010'); \/\/010---【Serving工作节点数】$/;"	d
+__EVN_TCP_CONNECTION	./inc/const.m	/^define('__EVN_TCP_CONNECTION',          '007'); \/\/007---【TCP连接数】$/;"	d
+__EVN_TCP_PORT	./inc/const.m	/^define('__EVN_TCP_PORT',                '006'); \/\/006---【TCP端口】$/;"	d
+__EVN_TOTAL_PROCESS	./inc/const.m	/^define('__EVN_TOTAL_PROCESS',           '004'); \/\/004---【运行进程数】$/;"	d
+__EV_MONITORED	./inc/const.m	/^define('__EV_MONITORED',   '1'); \/\/监控该事件 $/;"	d
+__EV_UNMONITORED	./inc/const.m	/^define('__EV_UNMONITORED', '0'); \/\/不监控该事件 $/;"	d
+__GENERIAL_SETTING_SENDDAILYMAIL_NO	./inc/const.m	/^define('__GENERIAL_SETTING_SENDDAILYMAIL_NO', "0");$/;"	d
+__GENERIAL_SETTING_SENDDAILYMAIL_YES	./inc/const.m	/^define('__GENERIAL_SETTING_SENDDAILYMAIL_YES', "1");$/;"	d
+__HAS_THIS_PAGE	./inc/const.m	/^define('__HAS_THIS_PAGE', 1); \/\/分页时候标记存在此页,而不获取数据，仅仅作为一个计数器 $/;"	d
+__HOST_STATUS_DOWN	./inc/const.m	/^define('__HOST_STATUS_DOWN', '0'); \/\/主机宕机$/;"	d
+__HOST_STATUS_UNKNOWN	./inc/const.m	/^define('__HOST_STATUS_UNKNOWN', '5'); \/\/未监控的主机$/;"	d
+__HOST_STATUS_UNSCALING	./inc/const.m	/^define('__HOST_STATUS_UNSCALING', '6'); \/\/auto scaling未服务的主机$/;"	d
+__HOST_STATUS_UP	./inc/const.m	/^define('__HOST_STATUS_UP',  '1'); \/\/主机在线$/;"	d
+__HTTPSTATUS_BAD_REQUEST	./inc/const.m	/^define('__HTTPSTATUS_BAD_REQUEST',           400);$/;"	d
+__HTTPSTATUS_CREATED	./inc/const.m	/^define('__HTTPSTATUS_CREATED',               201);$/;"	d
+__HTTPSTATUS_FORBIDDEN	./inc/const.m	/^define('__HTTPSTATUS_FORBIDDEN',             403);$/;"	d
+__HTTPSTATUS_INTERNAL_SERVER_ERROR	./inc/const.m	/^define('__HTTPSTATUS_INTERNAL_SERVER_ERROR', 500);$/;"	d
+__HTTPSTATUS_METHOD_CONFILICT	./inc/const.m	/^define('__HTTPSTATUS_METHOD_CONFILICT',      409);$/;"	d
+__HTTPSTATUS_METHOD_NOT_ALLOWED	./inc/const.m	/^define('__HTTPSTATUS_METHOD_NOT_ALLOWED',    405);$/;"	d
+__HTTPSTATUS_NOT_FOUND	./inc/const.m	/^define('__HTTPSTATUS_NOT_FOUND',             404);$/;"	d
+__HTTPSTATUS_NO_CONTENT	./inc/const.m	/^define('__HTTPSTATUS_NO_CONTENT',            204);$/;"	d
+__HTTPSTATUS_OK	./inc/const.m	/^define('__HTTPSTATUS_OK',                    200);$/;"	d
+__HTTPSTATUS_RESET_CONTENT	./inc/const.m	/^define('__HTTPSTATUS_RESET_CONTENT',         205);$/;"	d
+__HTTPSTATUS_UNAUTHORIZED	./inc/const.m	/^define('__HTTPSTATUS_UNAUTHORIZED',          401);$/;"	d
+__JSONKEY_SERVER_GROUP	./inc/const.m	/^define('__JSONKEY_SERVER_GROUP', 'server_group');$/;"	d
+__JSONKEY_USER	./inc/const.m	/^define('__JSONKEY_USER', 'user');$/;"	d
+__JSONKEY_USER_GROUP	./inc/const.m	/^define('__JSONKEY_USER_GROUP', 'user_group');$/;"	d
+__KEY_HBASEMASTER	./inc/const.m	/^define('__KEY_HBASEMASTER', 'hbasemaster'); \/\/取monitor_server保存的hbasemaster的信息 $/;"	d
+__KEY_HOST_DETAIL_ITEM_SETTING	./inc/const.m	/^define('__KEY_HOST_DETAIL_ITEM_SETTING', 'detail_item_setting|%s'); \/\/存服务器明细设置(各项的具体报警设置)$/;"	d
+__KEY_HOST_DETAIL_SETTING	./inc/const.m	/^define('__KEY_HOST_DETAIL_SETTING', 'detail_setting|%s'); \/\/存服务器的明细设置(监控哪些项目)$/;"	d
+__KEY_INIDATA	./inc/const.m	/^define('__KEY_INIDATA', 'inidata'); \/\/存最终生成后的INI配置文件(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_ALARMSETTING	./inc/const.m	/^define('__KEY_INI_ALARMSETTING', 'alarm_setting'); \/\/存报警设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_EVENTSETTING	./inc/const.m	/^define('__KEY_INI_EVENTSETTING', 'event_setting'); \/\/存事件设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_GENERALSETTING	./inc/const.m	/^define('__KEY_INI_GENERALSETTING', 'generial_setting'); \/\/存引擎基础设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_GROUP_CUST	./inc/const.m	/^define('__KEY_INI_GROUP_CUST', 'group_cust'); \/\/存自定义服务器组的组名描述的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_MAILSETTING	./inc/const.m	/^define('__KEY_INI_MAILSETTING', 'mail_setting'); \/\/存邮件设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_SCANSETTING	./inc/const.m	/^define('__KEY_INI_SCANSETTING', 'scan_setting'); \/\/存扫描设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_SERVLIST	./inc/const.m	/^define('__KEY_INI_SERVLIST', 'servlist_setting'); \/\/存服务器默认组列表的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI) $/;"	d
+__KEY_INI_SERVLIST_CUST	./inc/const.m	/^define('__KEY_INI_SERVLIST_CUST', 'servlist_cust_setting'); \/\/存服务器自定义组列表的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI) $/;"	d
+__KEY_INI_UNMONITORED	./inc/const.m	/^define('__KEY_INI_UNMONITORED', 'unmonitored'); \/\/存未监控列表的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI) $/;"	d
+__KEY_INI_USERGROUPSETTING	./inc/const.m	/^define('__KEY_INI_USERGROUPSETTING', 'usergroup_setting'); \/\/存用户组设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_INI_USERSETTING	./inc/const.m	/^define('__KEY_INI_USERSETTING', 'user_setting'); \/\/存用户设置的json(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI)$/;"	d
+__KEY_SCAN_DURATION	./inc/const.m	/^define('__KEY_SCAN_DURATION',      'durationtime'); \/\/扫描持续时间的key$/;"	d
+__KEY_SERVGROUP	./inc/const.m	/^define('__KEY_SERVGROUP',          'servgroup%s');$/;"	d
+__KEY_TODELETE_SERVERS	./inc/const.m	/^define('__KEY_TODELETE_SERVERS', 'todelete_servers'); \/\/待删除服务器的key $/;"	d
+__KEY_TO_DELETE_SERVERS	./inc/const.m	/^define('__KEY_TO_DELETE_SERVERS', 'todelete_servers'); \/\/存待删除的服务器(table:__MDB_TAB_SERVER,column:__MDB_COL_CONFIG_INI) $/;"	d
+__MAILTYPE_ALL	./inc/const.m	/^define('__MAILTYPE_ALL',     4); \/\/所有报警 $/;"	d
+__MAILTYPE_CAUTION	./inc/const.m	/^define('__MAILTYPE_CAUTION', 2); \/\/普通报警 $/;"	d
+__MAILTYPE_NOSEND	./inc/const.m	/^define('__MAILTYPE_NOSEND',  1); \/\/不接收报警 $/;"	d
+__MAILTYPE_WARNING	./inc/const.m	/^define('__MAILTYPE_WARNING', 3); \/\/严重报警 $/;"	d
+__MAX_DEFAULT_GROUP_NUM	./inc/const.m	/^define('__MAX_DEFAULT_GROUP_NUM',  11); \/\/默认组最大数 $/;"	d
+__MAX_MONITOR_TYPES	./inc/const.m	/^define('__MAX_MONITOR_TYPES',        7 ); \/\/总计的监控种类$/;"	d
+__MDB_COL_CONFIG_INI	./inc/const.m	/^define('__MDB_COL_CONFIG_INI',     'config:ini'); \/\/配置文件的列 $/;"	d
+__MDB_COL_DELETED	./inc/const.m	/^define('__MDB_COL_DELETED',        'info:deleted'); \/\/删除标记（monitor_host表）$/;"	d
+__MDB_COL_EVENT	./inc/const.m	/^define('__MDB_COL_EVENT',          'event:item'); \/\/事件的column$/;"	d
+__MDB_COL_SCAN_DURATION	./inc/const.m	/^define(__MDB_COL_SCAN_DURATION,  'scan:duration'); \/\/扫描间隔时间的column， table为__MDB_TAB_ENGINE$/;"	d
+__MDB_COL_SERVERNAME_ALL	./inc/const.m	/^define('__MDB_COL_SERVERNAME_ALL', 'servername:all'); \/\/全局服务器列表的column ,table为__MDB_TAB_SERVERNAME$/;"	d
+__MDB_HOST	./inc/const.m	/^define('__MDB_HOST',        '127.0.0.1'); \/\/ TODO 这里也改成用ini配置的方式 $/;"	d
+__MDB_PORT	./inc/const.m	/^define('__MDB_PORT',        '9090');$/;"	d
+__MDB_RECVTIMEOUT	./inc/const.m	/^define('__MDB_RECVTIMEOUT', '20000');  \/\/20 seconds$/;"	d
+__MDB_SENDTIMEOUT	./inc/const.m	/^define('__MDB_SENDTIMEOUT', '20000');  \/\/20 seconds$/;"	d
+__MDB_TAB_ENGINE	./inc/const.m	/^    define('__MDB_TAB_ENGINE', 'monitor_engine'); \/\/MDB的engine表 $/;"	d
+__MDB_TAB_ENGINE	./inc/const.m	/^    define('__MDB_TAB_ENGINE', 'monitor_engine_beta'); \/\/MDB的engine表 $/;"	d
+__MDB_TAB_HOST	./inc/const.m	/^    define('__MDB_TAB_HOST', 'monitor_host'); \/\/MDB的host表 $/;"	d
+__MDB_TAB_HOST	./inc/const.m	/^    define('__MDB_TAB_HOST', 'monitor_host_beta'); \/\/MDB的host表 $/;"	d
+__MDB_TAB_MDNDELIVER_BUCKET	./inc/const.m	/^define('__MDB_TAB_MDNDELIVER_BUCKET', 'MWS_MSS_BUCKET'); \/\/ MDB的mdn bucket表 $/;"	d
+__MDB_TAB_MWS_USER	./inc/const.m	/^define('__MDB_TAB_MWS_USER', 'MWS_USER'); \/\/ MWS的USER表 $/;"	d
+__MDB_TAB_SERVER	./inc/const.m	/^    define('__MDB_TAB_SERVER', 'monitor_server'); \/\/MDB的server即时信息表 $/;"	d
+__MDB_TAB_SERVER	./inc/const.m	/^    define('__MDB_TAB_SERVER', 'monitor_server_beta'); \/\/MDB的server即时信息表 $/;"	d
+__MDB_TAB_SERVERNAME	./inc/const.m	/^    define('__MDB_TAB_SERVERNAME', 'monitor_servername'); \/\/MDB的servername表 $/;"	d
+__MDB_TAB_SERVERNAME	./inc/const.m	/^    define('__MDB_TAB_SERVERNAME', 'monitor_servername_beta'); \/\/MDB的servername表 $/;"	d
+__MDB_TAB_SERVER_HISTORY	./inc/const.m	/^    define('__MDB_TAB_SERVER_HISTORY', 'monitor_server_history'); \/\/MDB的server历史信息表 $/;"	d
+__MDB_TAB_SERVER_HISTORY	./inc/const.m	/^    define('__MDB_TAB_SERVER_HISTORY', 'monitor_server_history_beta'); \/\/MDB的server历史信息表 $/;"	d
+__MDB_TAB_USER	./inc/const.m	/^    define('__MDB_TAB_USER', 'monitor_user'); \/\/MDB的user表 $/;"	d
+__MDB_TAB_USER	./inc/const.m	/^    define('__MDB_TAB_USER', 'monitor_user_beta'); \/\/MDB的user表 $/;"	d
+__MDB_TAB_USERGROUP	./inc/const.m	/^    define('__MDB_TAB_USERGROUP', 'monitor_usergroup'); \/\/MDB的usergroup表 $/;"	d
+__MDB_TAB_USERGROUP	./inc/const.m	/^    define('__MDB_TAB_USERGROUP', 'monitor_usergroup_beta'); \/\/MDB的usergroup表 $/;"	d
+__MONITOR_DEFAULT_USER	./inc/const.m	/^define('__MONITOR_DEFAULT_USER', 'monitoradmin'); \/\/默认用户 $/;"	d
+__MONITOR_DEFAULT_USERGROUP	./inc/const.m	/^define('__MONITOR_DEFAULT_USERGROUP', 'monitoradmin'); \/\/默认用户组的名字$/;"	d
+__MONITOR_IS_MEMBER	./inc/const.m	/^define('__MONITOR_IS_MEMBER', 'member'); \/\/对于用户组表的成员用户member:{userid}，给予其一个值member代表为这个用户为用户组的成员,对于用户组groupid:{groupid}亦然$/;"	d
+__MONITOR_PRIVILEGE_CR	./inc/const.m	/^define('__MONITOR_PRIVILEGE_CR',   3); \/\/创建读取权限 $/;"	d
+__MONITOR_PRIVILEGE_CRU	./inc/const.m	/^define('__MONITOR_PRIVILEGE_CRU',  5); \/\/创建读取修改权限 $/;"	d
+__MONITOR_PRIVILEGE_CRUD	./inc/const.m	/^define('__MONITOR_PRIVILEGE_CRUD', 6); \/\/创建读取修改删除权限 $/;"	d
+__MONITOR_PRIVILEGE_CU	./inc/const.m	/^define('__MONITOR_PRIVILEGE_CU',   4); \/\/创建修改权限 $/;"	d
+__MONITOR_PRIVILEGE_NONE	./inc/const.m	/^define('__MONITOR_PRIVILEGE_NONE', 1); \/\/无权限 $/;"	d
+__MONITOR_PRIVILEGE_OPERATION_MAXNUM	./inc/const.m	/^define('__MONITOR_PRIVILEGE_OPERATION_MAXNUM', 6); \/\/对应的权限最大值$/;"	d
+__MONITOR_PRIVILEGE_OPERATION_MINNUM	./inc/const.m	/^define('__MONITOR_PRIVILEGE_OPERATION_MINNUM', 1); \/\/对应的权限最小值 $/;"	d
+__MONITOR_PRIVILEGE_R	./inc/const.m	/^define('__MONITOR_PRIVILEGE_R',    2); \/\/读取权限 $/;"	d
+__MONITOR_TYPE_DAEMON	./inc/const.m	/^define('__MONITOR_TYPE_DAEMON',  4 ); \/\/监控管理界面类信息$/;"	d
+__MONITOR_TYPE_DELIVERING	./inc/const.m	/^define('__MONITOR_TYPE_DELIVERING',  3 ); \/\/监控投放类信息$/;"	d
+__MONITOR_TYPE_GENERIC	./inc/const.m	/^define('__MONITOR_TYPE_GENERIC',      1 ); \/\/监控服务器基础类信息$/;"	d
+__MONITOR_TYPE_HADOOP	./inc/const.m	/^define('__MONITOR_TYPE_HADOOP',      7 ); \/\/监控HADOOP类信息$/;"	d
+__MONITOR_TYPE_MADN	./inc/const.m	/^define('__MONITOR_TYPE_MADN',      6 ); \/\/监控MADN类信息$/;"	d
+__MONITOR_TYPE_MYSQL	./inc/const.m	/^define('__MONITOR_TYPE_MYSQL',          2 ); \/\/监控数据库类信息$/;"	d
+__MONITOR_TYPE_REPORT	./inc/const.m	/^define('__MONITOR_TYPE_REPORT',      5 ); \/\/监控报表类信息$/;"	d
+__MONITOR_TYPE_SERVING	./inc/const.m	/^define('__MONITOR_TYPE_SERVING',     3 ); \/\/监控SERVING类信息$/;"	d
+__MQ_KEY	./inc/const.m	/^define(__MQ_KEY,   'edgeServerList');   \/\/ for智能路由控制中心的队列$/;"	d
+__MQ_TABLE	./inc/const.m	/^define(__MQ_TABLE, 'edgeServerStatus'); \/\/ 存消息队列的表名$/;"	d
+__NO_ALIAS	./inc/const.m	/^define('__NO_ALIAS', 'no alias'); \/\/服务器没有别名 $/;"	d
+__NUM_EVENTCODE	./inc/const.m	/^define('__NUM_EVENTCODE', 3); \/\/事件代码的前三位代表一个监控事件项 $/;"	d
+__NUM_EVENT_VALUE	./inc/const.m	/^define('__NUM_EVENT_VALUE', 2); \/\/event:{eventCode}存的值，其中以|连接，分为为多少个部分，这里为2个部分，如1|disk \/usr partition 99%,前面为事件$/;"	d
+__OPERATION_CREATE	./inc/const.m	/^define('__OPERATION_CREATE', 'create');$/;"	d
+__OPERATION_DELETE	./inc/const.m	/^define('__OPERATION_DELETE', 'delete');$/;"	d
+__OPERATION_READ	./inc/const.m	/^define('__OPERATION_READ',   'get');$/;"	d
+__OPERATION_UPDATE	./inc/const.m	/^define('__OPERATION_UPDATE', 'update');$/;"	d
+__PAGE_NEXT_NO	./inc/const.m	/^define('__PAGE_NEXT_NO',  '0'); \/\/没有下一页 $/;"	d
+__PAGE_NEXT_YES	./inc/const.m	/^define('__PAGE_NEXT_YES', '1'); \/\/有下一页 $/;"	d
+__PAGE_PREV_NO	./inc/const.m	/^define('__PAGE_PREV_NO',  '0'); \/\/没有上一页 $/;"	d
+__PAGE_PREV_YES	./inc/const.m	/^define('__PAGE_PREV_YES', '1'); \/\/有上一页 $/;"	d
+__PREFIX_ALARMSETTING	./inc/const.m	/^define('__PREFIX_ALARMSETTING',      'alarmSetting');$/;"	d
+__PREFIX_CARRIER	./inc/const.m	/^define('__PREFIX_CARRIER',           'carrier');$/;"	d
+__PREFIX_CLOUDVIEW	./inc/const.m	/^define('__PREFIX_CLOUDVIEW',         'cloudview');$/;"	d
+__PREFIX_DETAIL_SETTING	./inc/const.m	/^define('__PREFIX_DETAIL_SETTING',    'detailSetting');$/;"	d
+__PREFIX_DISTRICT	./inc/const.m	/^define('__PREFIX_DISTRICT',          'district');$/;"	d
+__PREFIX_DOCS	./inc/const.m	/^define('__PREFIX_DOCS',              'docs');$/;"	d
+__PREFIX_DOWNLOADS	./inc/const.m	/^define('__PREFIX_DOWNLOADS',         'downloads');$/;"	d
+__PREFIX_EDGESERVER_STATUS	./inc/const.m	/^define('__PREFIX_EDGESERVER_STATUS', 'edgeserverstatus');$/;"	d
+__PREFIX_EVENT	./inc/const.m	/^define('__PREFIX_EVENT',             'event');$/;"	d
+__PREFIX_EVENT_CAUTION	./inc/const.m	/^define('__PREFIX_EVENT_CAUTION',     'eventcaution');$/;"	d
+__PREFIX_EVENT_OK	./inc/const.m	/^define('__PREFIX_EVENT_OK',          'eventok');$/;"	d
+__PREFIX_EVENT_SETTING	./inc/const.m	/^define('__PREFIX_EVENT_SETTING',     'event_setting');$/;"	d
+__PREFIX_EVENT_WARNING	./inc/const.m	/^define('__PREFIX_EVENT_WARNING',     'eventwarning');$/;"	d
+__PREFIX_GENERIC_SETTING	./inc/const.m	/^define('__PREFIX_GENERIC_SETTING',   'generic_setting');$/;"	d
+__PREFIX_GRAPH	./inc/const.m	/^define('__PREFIX_GRAPH',             'graph');$/;"	d
+__PREFIX_INI_SERVGROUP	./inc/const.m	/^define('__PREFIX_INI_SERVGROUP', 'type_'); \/\/配置文件中组的前缀 $/;"	d
+__PREFIX_IP_SETTING	./inc/const.m	/^define('__PREFIX_IP_SETTING',        'ipsetting');$/;"	d
+__PREFIX_LOG	./inc/const.m	/^define('__PREFIX_LOG',               'log');$/;"	d
+__PREFIX_LOGIN	./inc/const.m	/^define('__PREFIX_LOGIN',             'login');$/;"	d
+__PREFIX_MAILSETTING	./inc/const.m	/^define('__PREFIX_MAILSETTING',       'mailSetting');$/;"	d
+__PREFIX_MDNDELIVER_SETTING	./inc/const.m	/^define('__PREFIX_MDNDELIVER_SETTING','mdndeliver_setting');$/;"	d
+__PREFIX_METRIC	./inc/const.m	/^define('__PREFIX_METRIC',            'metric');$/;"	d
+__PREFIX_MONENGINE	./inc/const.m	/^define('__PREFIX_MONENGINE',         'monengine');$/;"	d
+__PREFIX_MONITOR	./inc/const.m	/^define('__PREFIX_MONITOR',           'monitor');$/;"	d
+__PREFIX_MONITORITEM	./inc/const.m	/^define('__PREFIX_MONITORITEM',       'monitoritem');$/;"	d
+__PREFIX_PROCESS_DELETE_SERVER	./inc/const.m	/^define('__PREFIX_PROCESS_DELETE_SERVER', 'process_delete_server');$/;"	d
+__PREFIX_SCAN_SETTING	./inc/const.m	/^define('__PREFIX_SCAN_SETTING',      'scan_setting');$/;"	d
+__PREFIX_SERVER	./inc/const.m	/^define('__PREFIX_SERVER',            'server');$/;"	d
+__PREFIX_SERVER_GROUP	./inc/const.m	/^define('__PREFIX_SERVER_GROUP',      'serverGroup');$/;"	d
+__PREFIX_STATUS	./inc/const.m	/^define('__PREFIX_STATUS',            'status');$/;"	d
+__PREFIX_TESTSPEED	./inc/const.m	/^define('__PREFIX_TESTSPEED',         'speed');$/;"	d
+__PREFIX_TESTSPEED_SITE	./inc/const.m	/^define('__PREFIX_TESTSPEED_SITE',    'testspeed_site');$/;"	d
+__PREFIX_TIME	./inc/const.m	/^define('__PREFIX_TIME',              'time');$/;"	d
+__PREFIX_USER	./inc/const.m	/^define('__PREFIX_USER',              'user');$/;"	d
+__PREFIX_USERGROUP	./inc/const.m	/^define('__PREFIX_USERGROUP',         'usergroup');$/;"	d
+__REDIS_HOST	./inc/const.m	/^define('__REDIS_HOST',      '127.0.0.1');$/;"	d
+__REDIS_PORT	./inc/const.m	/^define('__REDIS_PORT',      '6379');$/;"	d
+__SELECTOR_ALLSITE	./inc/const.m	/^define('__SELECTOR_ALLSITE', '@all'); \/\/ 全部站点 $/;"	d
+__SELECTOR_DAEMON	./inc/const.m	/^define('__SELECTOR_DAEMON',  '@daemon');$/;"	d
+__SELECTOR_GENERIC	./inc/const.m	/^define('__SELECTOR_GENERIC', '@generic');$/;"	d
+__SELECTOR_GROUP	./inc/const.m	/^define('__SELECTOR_GROUP',    '@group');$/;"	d
+__SELECTOR_HOSTIP	./inc/const.m	/^define('__SELECTOR_HOSTIP',  '@hostip');$/;"	d
+__SELECTOR_KEEPALIVE	./inc/const.m	/^define('__SELECTOR_KEEPALIVE',      '@keepalive'); \/\/ 检查心跳请求超时秒数$/;"	d
+__SELECTOR_LOGININFO	./inc/const.m	/^define('__SELECTOR_LOGININFO',       '@logininfo');$/;"	d
+__SELECTOR_MASS	./inc/const.m	/^define('__SELECTOR_MASS',     '@all');$/;"	d
+__SELECTOR_MASSCAUTION	./inc/const.m	/^define('__SELECTOR_MASSCAUTION', '@allcaution'); \/\/ 全部注意的事件$/;"	d
+__SELECTOR_MASSDOWN	./inc/const.m	/^define('__SELECTOR_MASSDOWN',       '@alldown'); \/\/ 全部宕机的服务器$/;"	d
+__SELECTOR_MASSMEMBER	./inc/const.m	/^define('__SELECTOR_MASSMEMBER',     '@allmember'); \/\/ 全部成员(用户组使用)$/;"	d
+__SELECTOR_MASSUNMON	./inc/const.m	/^define('__SELECTOR_MASSUNMON',      '@allunmonitored'); \/\/ 全部未监控的服务器$/;"	d
+__SELECTOR_MASSUNSCALING	./inc/const.m	/^define('__SELECTOR_MASSUNSCALING', '@allunscaling'); \/\/ 全部auto scaling未服务 $/;"	d
+__SELECTOR_MASSUP	./inc/const.m	/^define('__SELECTOR_MASSUP',         '@allup'); \/\/ 全部在线的服务器 $/;"	d
+__SELECTOR_MASSWARNING	./inc/const.m	/^define('__SELECTOR_MASSWARNING', '@allwarning'); \/\/ 全部严重的事件$/;"	d
+__SELECTOR_MDB	./inc/const.m	/^define('__SELECTOR_MDB',             '@mdb');$/;"	d
+__SELECTOR_MDN	./inc/const.m	/^define('__SELECTOR_MDN',     '@mdn');$/;"	d
+__SELECTOR_MOBCLIENT	./inc/const.m	/^define('__SELECTOR_MOBCLIENT',       '@mobclient'); \/\/ 智能手机客户端的接口 $/;"	d
+__SELECTOR_MOBCLIENT_ALLDOWN	./inc/const.m	/^define('__SELECTOR_MOBCLIENT_ALLDOWN', '@mobclient_alldown'); \/\/ 全部宕机的服务器for智能手机客户端 $/;"	d
+__SELECTOR_MOBCLIENT_ALLUNSCALING	./inc/const.m	/^define('__SELECTOR_MOBCLIENT_ALLUNSCALING', '@mobclient_allunscaling'); \/\/ 全部auto scaling未服务for智能手机客户端 $/;"	d
+__SELECTOR_MOBCLIENT_ALLUP	./inc/const.m	/^define('__SELECTOR_MOBCLIENT_ALLUP', '@mobclient_allup'); \/\/ 全部在线的服务器for智能手机客户端 $/;"	d
+__SELECTOR_MONENGINE	./inc/const.m	/^define('__SELECTOR_MONENGINE',       '@monengine');$/;"	d
+__SELECTOR_MONEVENTSUMMARY	./inc/const.m	/^define('__SELECTOR_MONEVENTSUMMARY', '@eventsummary'); $/;"	d
+__SELECTOR_MONHEALTH	./inc/const.m	/^define('__SELECTOR_MONHEALTH',       '@health'); $/;"	d
+__SELECTOR_MYSQL	./inc/const.m	/^define('__SELECTOR_MYSQL',   '@mysql');$/;"	d
+__SELECTOR_REPORT	./inc/const.m	/^define('__SELECTOR_REPORT',  '@report');$/;"	d
+__SELECTOR_SERVING	./inc/const.m	/^define('__SELECTOR_SERVING', '@serving');$/;"	d
+__SELECTOR_SINGLE	./inc/const.m	/^define('__SELECTOR_SINGLE',   '@self');$/;"	d
+__SELECTOR_SINGLE_DETAIL	./inc/const.m	/^define('__SELECTOR_SINGLE_DETAIL',  '@self_detail'); \/\/ 服务器的明细信息 $/;"	d
+__SELECTOR_SINGLE_GROUP	./inc/const.m	/^define('__SELECTOR_SINGLE_GROUP',   '@self_group'); \/\/ 服务器的所属的组$/;"	d
+__SELECTOR_SINGLE_SETTING	./inc/const.m	/^define('__SELECTOR_SINGLE_SETTING', '@self_setting'); \/\/ 服务器的设置(不含组信息以为的全部设置)$/;"	d
+__SELECTOR_SINGLE_SITE	./inc/const.m	/^define('__SELECTOR_SINGLE_SITE', '@self'); \/\/ 单个站点 $/;"	d
+__SELECTOR_UNHANDLED	./inc/const.m	/^define('__SELECTOR_UNHANDLED', '@unhandled'); \/\/ 未处理问题事件列表 $/;"	d
+__SERVER_IS_MEMBER_OF_THIS_GROUP	./inc/const.m	/^define('__SERVER_IS_MEMBER_OF_THIS_GROUP', 'member'); \/\/代表服务器为该组成员$/;"	d
+__SERVER_SETTING_AUTHTYPE_NONE	./inc/const.m	/^define('__SERVER_SETTING_AUTHTYPE_NONE',  0);$/;"	d
+__SERVER_SETTING_AUTHTYPE_TOKEN	./inc/const.m	/^define('__SERVER_SETTING_AUTHTYPE_TOKEN', 1);$/;"	d
+__SERVER_SETTING_MONITORED_NO	./inc/const.m	/^define('__SERVER_SETTING_MONITORED_NO',   0);$/;"	d
+__SERVER_SETTING_MONITORED_YES	./inc/const.m	/^define('__SERVER_SETTING_MONITORED_YES',  1);$/;"	d
+__SERVICE_ALARMSETTING	./inc/const.m	/^define('__SERVICE_ALARMSETTING',      'alarmsetting');$/;"	d
+__SERVICE_CARRIER	./inc/const.m	/^define('__SERVICE_CARRIER',           'carrier');$/;"	d
+__SERVICE_CLOUDVIEW	./inc/const.m	/^define('__SERVICE_CLOUDVIEW',         'cloudview');$/;"	d
+__SERVICE_DETAIL_SETTING	./inc/const.m	/^define('__SERVICE_DETAIL_SETTING',    'detailsetting');$/;"	d
+__SERVICE_DISTRICT	./inc/const.m	/^define('__SERVICE_DISTRICT',          'district');$/;"	d
+__SERVICE_DOCS	./inc/const.m	/^define('__SERVICE_DOCS',              'docs');$/;"	d
+__SERVICE_DOWNLOADS	./inc/const.m	/^define('__SERVICE_DOWNLOADS',         'downloads');$/;"	d
+__SERVICE_EDGESERVER_STATUS	./inc/const.m	/^define('__SERVICE_EDGESERVER_STATUS', 'edgeserverstatus');$/;"	d
+__SERVICE_EVENT	./inc/const.m	/^define('__SERVICE_EVENT',             'event');$/;"	d
+__SERVICE_EVENT_CAUTION	./inc/const.m	/^define('__SERVICE_EVENT_CAUTION',     'eventcaution');$/;"	d
+__SERVICE_EVENT_OK	./inc/const.m	/^define('__SERVICE_EVENT_OK',          'eventok');$/;"	d
+__SERVICE_EVENT_SETTING	./inc/const.m	/^define('__SERVICE_EVENT_SETTING',     'event_setting');$/;"	d
+__SERVICE_EVENT_WARNING	./inc/const.m	/^define('__SERVICE_EVENT_WARNING',     'eventwarning');$/;"	d
+__SERVICE_GENERIC_SETTING	./inc/const.m	/^define('__SERVICE_GENERIC_SETTING',   'generic_setting');$/;"	d
+__SERVICE_GRAPH	./inc/const.m	/^define('__SERVICE_GRAPH',             'graph');$/;"	d
+__SERVICE_IP_SETTING	./inc/const.m	/^define('__SERVICE_IP_SETTING',        'ipsetting');$/;"	d
+__SERVICE_LOG	./inc/const.m	/^define('__SERVICE_LOG',               'log');$/;"	d
+__SERVICE_LOGIN	./inc/const.m	/^define('__SERVICE_LOGIN',             'login');$/;"	d
+__SERVICE_MAILSETTING	./inc/const.m	/^define('__SERVICE_MAILSETTING',       'mailsetting');$/;"	d
+__SERVICE_MDNDELIVER_SETTING	./inc/const.m	/^define('__SERVICE_MDNDELIVER_SETTING','mdndeliver_setting');$/;"	d
+__SERVICE_METRIC	./inc/const.m	/^define('__SERVICE_METRIC',            'metric');$/;"	d
+__SERVICE_MONENGINE	./inc/const.m	/^define('__SERVICE_MONENGINE',         'monengine');$/;"	d
+__SERVICE_MONITOR	./inc/const.m	/^define('__SERVICE_MONITOR',           'monitor');$/;"	d
+__SERVICE_MONITORITEM	./inc/const.m	/^define('__SERVICE_MONITORITEM',       'monitoritem');$/;"	d
+__SERVICE_PROCESS_DELETE_SERVER	./inc/const.m	/^define('__SERVICE_PROCESS_DELETE_SERVER', 'process_delete_server');$/;"	d
+__SERVICE_SCAN_SETTING	./inc/const.m	/^define('__SERVICE_SCAN_SETTING',      'scan_setting');$/;"	d
+__SERVICE_SERVER	./inc/const.m	/^define('__SERVICE_SERVER',            'server');   $/;"	d
+__SERVICE_SERVER_GROUP	./inc/const.m	/^define('__SERVICE_SERVER_GROUP',      'servergroup');$/;"	d
+__SERVICE_STATUS	./inc/const.m	/^define('__SERVICE_STATUS',            'status');$/;"	d
+__SERVICE_TESTSPEED	./inc/const.m	/^define('__SERVICE_TESTSPEED',         'speed');$/;"	d
+__SERVICE_TESTSPEED_SITE	./inc/const.m	/^define('__SERVICE_TESTSPEED_SITE',    'testspeed_site');$/;"	d
+__SERVICE_TIME	./inc/const.m	/^define('__SERVICE_TIME',              'time');$/;"	d
+__SERVICE_USER	./inc/const.m	/^define('__SERVICE_USER',              'user');$/;"	d
+__SERVICE_USERGROUP	./inc/const.m	/^define('__SERVICE_USERGROUP',         'usergroup');$/;"	d
+__SUBVERSION	./inc/const.m	/^define('__SUBVERSION','r1590');   \/\/小版本号',即subversion版本号$/;"	d
+__SUFFIX_EVENT_CAUTION	./inc/const.m	/^define('__SUFFIX_EVENT_CAUTION', 'c'); \/\/注意事件的后缀 $/;"	d
+__SUFFIX_EVENT_NORMAL	./inc/const.m	/^define('__SUFFIX_EVENT_NORMAL',  'n'); \/\/普通事件的后缀 $/;"	d
+__SUFFIX_EVENT_WARNING	./inc/const.m	/^define('__SUFFIX_EVENT_WARNING', 'w'); \/\/严重事件的后缀 $/;"	d
+__SYSLOG_FACILITY_API	./inc/const.m	/^    define('__SYSLOG_FACILITY_API', 'LOG_LOCAL4');$/;"	d
+__SYSLOG_FACILITY_API	./inc/const.m	/^    define('__SYSLOG_FACILITY_API', 'LOG_LOCAL5');$/;"	d
+__SYSLOG_LV_DEBUG	./inc/const.m	/^define('__SYSLOG_LV_DEBUG',     'LOG_ERR');$/;"	d
+__TEMPLATE_VAR_CUSTGROUPS	./inc/const.m	/^define('__TEMPLATE_VAR_CUSTGROUPS', 'type_cust'); \/\/自定义组的模版变量 $/;"	d
+__UI_IS_SERVGRP_MEMBER	./inc/const.m	/^define('__UI_IS_SERVGRP_MEMBER',  1); \/\/前端的常量，为该组成员$/;"	d
+__UI_NOT_SERVGRP_MEMBER	./inc/const.m	/^define('__UI_NOT_SERVGRP_MEMBER', 0); \/\/前端的常量，不是该组成员$/;"	d
+__UI_UNMONITORED	./inc/const.m	/^define('__UI_UNMONITORED', '未监控');$/;"	d
+__UNMONITORED_ADD	./inc/const.m	/^define('__UNMONITORED_ADD', 1);$/;"	d
+__UNMONITORED_DELETE	./inc/const.m	/^define('__UNMONITORED_DELETE', 2);$/;"	d
+__VERSION	./inc/const.m	/^define('__VERSION','1.0');        \/\/主版本号',代表主要功能分支$/;"	d
