@@ -45,6 +45,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $row=null;
             //email需要满足格式，长度最少6，最大50,不为空，数据库中有
+            $err_item=null;
             if (empty($_POST['email'])) {
                 $err_item['email']='email must be not empty';
                 $msgs['err_msg'][]=$err_item;
@@ -68,6 +69,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             }
 
             //password需要满足长度最少6，最大20,不为空,如果用户民存在要检查密码匹配
+            $err_item=null;
             if (empty($_POST['passwd'])) {
                 $err_item['passwd']='password must be not empty';
                 $msgs['err_msg'][]=$err_item;

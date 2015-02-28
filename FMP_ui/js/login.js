@@ -11,9 +11,11 @@ $(document).ready(function(){
 			success: function(data){
 				$("code").css("display","inline")
 				$(".n-tip").text("")
-        console.log(data)
 				if ((data.err_msg).length>0) {
-          console.log(data)
+          err_msg=data.err_msg
+          for (i=0;i<err_msg.length;i++) {
+            console.log(err_msg[i])
+            }
                     $(function(){
                         function show(){
                             btn.val("login")
