@@ -1,25 +1,40 @@
 <?xml version="1.0"?>
 
 <project name="release" default="add-version-nu" basedir=".">
-    
+
     <property file="build.properties"/>
     
     <!-- add version for js/css reference in html -->
-    <target name="add-version-nu" depends="init">
+    <target name="add-version-nu" depends="add_page_header">
         <replaceregexp byline="true" encoding="utf-8" flags="igm">
             <regexp pattern="${jsCssRefRegexp}"/>
             <substitution expression="\2\?t=${timestamp}"/>
             <fileset dir=".">
                 <include name="**/*.html"/>
-				<exclude name="**/*.js" />
+                <exclude name="**/*.js" />
             </fileset>
         </replaceregexp>
     </target>
-    
+
+    <!-- replace html header and footer section -->
+    <target name="add_page_header" depends="init">
+        <property name="fmp.header"><![CDATA[[<]!--fmp_header--[>](.*?)[<]!--/fmp_header--[>]]]></property>
+        <loadfile property="header.htm" srcFile="templates/header.htm"/>
+        <!--<replaceregexp byline="true" encoding="utf-8" flags="gs">-->
+        <replaceregexp flags="gs">
+            <regexp pattern="${fmp.header}"/>
+            <substitution expression="${header.htm}"/>
+            <fileset dir=".">
+                <include name="**/*.html"/>
+                <exclude name="**/*.js" />
+            </fileset>
+        </replaceregexp>
+    </target>
+
     <target name="init">
         <tstamp>
             <format property="timestamp" pattern="yyyyMMddHHmmss"/>
         </tstamp>
     </target>
-    
+
 </project>
