@@ -17,12 +17,26 @@
     </target>
 
     <!-- replace html footer section -->
-    <target name="add_page_footer" depends="add_page_header_out">
+    <target name="add_page_footer" depends="add_page_navibar">
         <property name="fmp.footer"><![CDATA[[<]!--fmp_footer--[>](.*?)[<]!--/fmp_footer--[>]]]></property>
         <loadfile property="footer.htm" srcFile="templates/footer.htm"/>
         <replaceregexp flags="gs">
             <regexp pattern="${fmp.footer}"/>
             <substitution expression="${footer.htm}"/>
+            <fileset dir=".">
+                <include name="**/*.html"/>
+                <exclude name="**/*.js" />
+            </fileset>
+        </replaceregexp>
+    </target>
+
+    <!-- replace html navibar section -->
+    <target name="add_page_navibar" depends="add_page_header_out">
+        <property name="fmp.navibar"><![CDATA[[<]!--fmp_navibar--[>](.*?)[<]!--/fmp_navibar--[>]]]></property>
+        <loadfile property="navibar.htm" srcFile="templates/navibar.htm"/>
+        <replaceregexp flags="gs">
+            <regexp pattern="${fmp.navibar}"/>
+            <substitution expression="${navibar.htm}"/>
             <fileset dir=".">
                 <include name="**/*.html"/>
                 <exclude name="**/*.js" />
