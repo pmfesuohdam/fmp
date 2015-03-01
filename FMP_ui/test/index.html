@@ -11,60 +11,67 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js"></script>
-	<script type="text/javascript" src="../assets/js/base.js"></script>
-<!--<script type="text/javascript" src="../js/dashboard_base.js"></script>-->
-	<script type="text/javascript" src="../assets/js/account.js"></script>
-	
+    <script type="text/javascript" src="../assets/js/base.js"></script>
+    <!--<script type="text/javascript" src="../js/dashboard_base.js"></script>-->
+    <script type="text/javascript" src="../assets/js/account.js"></script>
+
 </head>
 <body>
-	<script>
-		$(document).ready(function(){
-			createPageHeader()
-		})
+    <!--fmp_header-->
+    <!--/fmp_header-->
+    <!--main-->
+    <div class="main-content-single">
+        <h2>Facebook Accounts</h2><hr />
+        <h2 class="info_left_from_add_fb">Here you can manage your Facebook accounts and add new ones. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. 
+            Facebook Ads will be billed directly by Facebook.</h2>
+            <p class="add_fb"><a id="add_fb_a" class="abtn abtn-large abtn-facebook" href="{{ =add_fb_url}}">Add New Facebook Accounts</a></p>
+            <div class="accounts-list">
+                <p class="total">ACCOUNTS ADDED</p>
+                <p class="info">Can't find your account?Contact us </p>
+                <form id="do_account_form" name="do_account_form" action="do_account.php" method="get">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Ad Account ID</th>
+                                <th>FB User Status</th>
+                                <th>Sync From FB Campaign</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Dragonsmeet Inc.-Madhouse</td><td>712344008863677</td><td>OK</td><td><input type="button" value="sync" /></td><td><input type="button" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount(712344008863677);" /></td></tr></tbody>
+                            <input type="hidden" name="hid_del_act" id="hid_del_act" />
+                        </table>
+                    </form>
+                </div>
+            </h2>
+        </div>
+    </div>
+    <!--/main-->
+    <!--fmp_footer-->
+    <!--/fmp_footer-->
+    <script>
+      $(document).ready(function(){
+         createPageHeader()
+     })
 
-		function createPageHeader(){
-            $(".wrapper").css("display","none") //防止闪瞎~
-            $.ajax({
-            	url:baseConf.api_prefix+"/get/login/@self",
-            	method:"GET",
-            	success: function(data){
-            		if (data.status=="false") { //没有登录退出
-            			location.href="../"
-            		}
-            		var user = [
-            		{ UserName: data.username }
-            		]
-            		$.get('../templates/header.htm', function(template) {
-            			$.tmpl(template, user).appendTo('.wrapper')
-            			bind_logout_btn()
-            			$.get('../templates/navibar.htm', function(template) {
-            				$.tmpl(template).appendTo('.wrapper')
-            				$.get('../templates/accountlist.htm', function(template) {
-            					$.tmpl(template).appendTo('.wrapper')
-            					$.get('../templates/footer.htm', function(template) {
-            						$.tmpl(template).appendTo('.wrapper')
-            						$(".wrapper").css("display","inline")
-            					})
-            				})
-            			})
-            		})
-            	}
-            })//end $.ajax
-        }
-        function bind_logout_btn(){
-        	$("#logout_btn").bind("click",function(){
-        		$.ajax({
-        			url: baseConf.api_prefix+"/delete/login/@self",
-        			type: "GET",
-        			success: function(data){
-        				if (data.status=="true") {
-        					location.href="http://"+document.domain;
-        				}
-        			}
-        		})
-        	})
-        }
-    </script>
-    <div class="wrapper"></div>
+      function createPageHeader(){
+        bind_logout_btn()
+    }
+    function bind_logout_btn(){
+       $("#logout_btn").bind("click",function(){
+          $.ajax({
+             url: baseConf.api_prefix+"/delete/login/@self",
+             type: "GET",
+             success: function(data){
+                if (data.status=="true") {
+                   location.href="http://"+document.domain;
+               }
+           }
+       })
+      })
+   }
+</script>
 </body>
 </html>
