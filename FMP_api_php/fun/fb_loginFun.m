@@ -30,6 +30,16 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         }
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
+            //格式正确,再检查是否拥有广告账号
+            $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses');
+            $ret=json_decode($ret,true);
+            print_r($ret);
+            //$link= mysqli_init();
+            //$link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 8);
+            //$link->real_connect(__DB_MYSQL_HOST, __DB_MYSQL_USER, __DB_MYSQL_PASS, __DB_MYSQL_DB);
+            //$link->query("SET NAMES utf8");
+            //$query="";
+
         } else $msgs['status']="false";
         echo json_encode($msgs);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
