@@ -25,7 +25,7 @@
                     //alert(response.authResponse.accessToken)
                     var acCode = response.authResponse.accessToken
                     $.ajax({
-                        url: baseConf.api_prefix + "/save/login/@self",
+                        url: baseConf.api_prefix + "/update/fb_login/@self", 
                         context: document.body,
                         type: "POST",
                         data: {
