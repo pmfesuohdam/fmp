@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-01 22:17:27
+  | Last-Modified: 2015-03-02 01:42:14
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -23,7 +23,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         $msgs['err_msg']=array(); //返回的消息
         $err_item=null;
         $token=$_POST['ac'];
-        //if ( base64_encode(base64_decode($token, true)) === $token ){
         if ( preg_match_all("/[a-zA-Z0-9]$/",$token,$match) ) {
         } else {
             $err_item['ac']='wrong format facebook access token';
@@ -34,26 +33,20 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             //格式正确,再检查是否拥有广告账号
             $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses?access_token='.$token);
             $ret=json_decode($ret,true);
-            //print_r($ret);
             //存所有获取adaccount的数组
             $getAdAccuntsArr=$getAdAccuntsNameArr=null;
             if ( isset($ret['data']) && !empty($ret['data']) ) {
                 foreach ($ret['data'] as $businessDetail) {
-                    //echo "[business][name:{$businessDetail['name']}][id:{$businessDetail['id']}]";
                     //捞到business的id之后，方可获取广告账号信息
                     $try4getadaccount=0;
                     $adaccounts_url='https://graph.facebook.com/v2.2/'.$businessDetail['id'].'?fields=adaccounts,name&access_token='.$token;
                     while ( $try4getadaccount<3 && !(isset($ret1['adaccounts']) && !empty($ret1['adaccounts'])) ) {
                         $ret1=json_decode(strval(file_get_contents($adaccounts_url)),true);
-                        //print_r($ret1);
                         usleep(2000);
-                        //echo "try:$try4getadaccount";
                         $try4getadaccount++;
                     }
                     if ( isset($ret1['adaccounts']) && !empty($ret1['adaccounts']) ) {
                         foreach ($ret1['adaccounts']['data'] as $adaccountDetail) {
-                            echo "<pre>";
-                            //print_r($adaccountDetail);
                             $getAdAccuntsArr[$adaccountDetail['account_id']]=$adaccountDetail;
                             $getAdAccuntsNameArr[$adaccountDetail['account_id']]=$ret1['name'];
                         }
@@ -65,8 +58,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             } else {
                 $msgs['business']='no business found under your facebook account!';
             }
-            //print_r($getAdAccuntsArr);
-            $now=time();
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
                 $insert_detail=addslashes(json_encode($adaccountDetail2));
                 $query=<<<EOT
@@ -76,7 +67,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                   ad_account_name="{$getAdAccuntsNameArr[$adaccountDetail2['account_id']]}",access_token="{$token}",ad_account_detail="{$insert_detail}",
                   update_time=now();
 EOT;
-                //echo $query;
                 include(dirname(__FILE__).'/../inc/conn.php');
                 if (!$link->query($query)) {
                     $msgs['err_msg']='Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_ADACCOUNT.')';
@@ -96,7 +86,6 @@ EOT;
                     }
                 }
             } //end foreach
-
         } else $msgs['status']='false';
         echo json_encode($msgs);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
