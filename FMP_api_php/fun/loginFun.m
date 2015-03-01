@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-02-28 13:37:28
+  | Last-Modified: 2015-03-02 01:45:04
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -60,7 +60,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 $link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 8);
                 $link->real_connect(__DB_MYSQL_HOST, __DB_MYSQL_USER, __DB_MYSQL_PASS, __DB_MYSQL_DB);
                 $link->query("SET NAMES utf8");
-                $query="select name,passwd from `".__TB_FMP_USER."` where email='".$_POST['email']."';";
+                $query="select id,name,passwd from `".__TB_FMP_USER."` where email='".$_POST['email']."';";
                 $result=$link->query($query);
                 if ( !($row = mysqli_fetch_assoc($result)) ) {
                     $err_item['email']='user not exists';
@@ -89,6 +89,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
             $_SESSION['username']=$row['name'];
+            $_SESSION['fmp_uid']=$row['id'];
         } else $msgs['status']="false";
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         echo json_encode($msgs);

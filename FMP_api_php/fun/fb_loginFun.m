@@ -75,7 +75,7 @@ EOT;
                 } else { //保存账号所属fmp用户关系 
                     $query=<<<EOT
 INSERT INTO `t_relationship_fmp_fb` (fmp_user_id,fb_adaccount_id)
-    VALUES ("10001","{$adaccountDetail2['account_id']}") 
+    VALUES ("{$_SESSION['fmp_uid']}","{$adaccountDetail2['account_id']}") 
     ON DUPLICATE KEY UPDATE 
       update_time=now();
 EOT;
