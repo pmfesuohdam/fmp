@@ -42,7 +42,7 @@ define('__REDIS_PORT',      '6379');
  */
 define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
-
+define('__SERVICE_FBLOGIN',           'fb_login');
 define('__SERVICE_USER',              'user');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
@@ -53,6 +53,7 @@ define('__SERVICE_DISTRICT',          'district');
 define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');
+define('__PREFIX_FBLOGIN',           'fb_login');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
