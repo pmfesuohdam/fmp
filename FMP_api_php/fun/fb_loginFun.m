@@ -58,6 +58,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                     unset($try4getadaccount,$ret1);
                 }
             } else {
+                print_r(json_encode($ret));
                 $msgs['err_msg'][]=Array('business'=>'no business found under your facebook account!');
             }
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
