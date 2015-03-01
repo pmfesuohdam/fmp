@@ -20,6 +20,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     case(__OPERATION_UPDATE):
         /* {{{ facebook登录后的处理，主要是保存令牌下来
          */
+        print_r($_POST);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         break;
         /* }}} */

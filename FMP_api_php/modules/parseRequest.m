@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created: 2011-02-23 10:19:45                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-02-28 14:22:41
+  | Last-Modified: 2015-03-01 22:28:07
   +----------------------------------------------------------------------+
 */
 $moduleName=basename(__FILE__);
@@ -66,6 +66,9 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_LOGIN:
         $GLOBALS['prefix']=__PREFIX_LOGIN;
         break; 
+    case __SERVICE_FBLOGIN:
+        $GLOBALS['prefix']=__PREFIX_FBLOGIN;
+        break;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
         break;
