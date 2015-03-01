@@ -115,6 +115,7 @@ clear:both;
   background-color: #F2F2E6;
   min-height: 475px;
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
 .main-content {
