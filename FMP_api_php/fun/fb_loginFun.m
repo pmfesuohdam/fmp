@@ -43,6 +43,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                     $adaccounts_url='https://graph.facebook.com/v2.2/'.$businessDetail['id'].'?fields=adaccounts,name&access_token='.$token;
                     while ( $try4getadaccount<3 && !(isset($ret1['adaccounts']) && !empty($ret1['adaccounts'])) ) {
                         $ret1=json_decode(strval(file_get_contents($adaccounts_url)),true);
+                        print_r(json_encode($ret1));
                         usleep(2000);
                         $try4getadaccount++;
                     }
@@ -57,7 +58,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                     unset($try4getadaccount,$ret1);
                 }
             } else {
-                $msgs['business'][]=Array('business'=>'no business found under your facebook account!');
+                $msgs['err_msg'][]=Array('business'=>'no business found under your facebook account!');
             }
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
                 $insert_detail=addslashes(json_encode($adaccountDetail2));
