@@ -328,12 +328,9 @@
     </div>
     <script>
         $(document).ready(function(){
-          createPageHeader()
+          bind_logout_btn()
       })
 
-        function createPageHeader(){
-            bind_logout_btn()
-        }
         function bind_logout_btn(){
             $("#logout_btn").bind("click",function(){
                 $.ajax({
