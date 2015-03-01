@@ -35,33 +35,61 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses?access_token='.$token);
             $ret=json_decode($ret,true);
             print_r($ret);
+            //存所有获取adaccount的数组
+            $getAdAccuntsArr=null;
             if ( isset($ret['data']) && !empty($ret['data']) ) {
                 foreach ($ret['data'] as $businessDetail) {
                     echo "[business][name:{$businessDetail['name']}][id:{$businessDetail['id']}]";
                     //捞到business的id之后，方可获取广告账号信息
+                    $try4getadaccount=0;
                     $adaccounts_url='https://graph.facebook.com/v2.2/'.$businessDetail['id'].'?fields=adaccounts&access_token='.$token;
-                    //echo $adaccounts_url;
-                    $ret1=file_get_contents($adaccounts_url);
-                    print_r($ret1);
+                    while ( $try4getadaccount<3 && !(isset($ret1['adaccounts']) && !empty($ret1['adaccounts'])) ) {
+                        $ret1=json_decode(strval(file_get_contents($adaccounts_url)),true);
+                        //print_r($ret1);
+                        usleep(2000);
+                        //echo "try:$try4getadaccount";
+                        $try4getadaccount++;
+                    }
                     if ( isset($ret1['adaccounts']) && !empty($ret1['adaccounts']) ) {
                         foreach ($ret1['adaccounts']['data'] as $adaccountDetail) {
                             echo "<pre>";
-                            print_r($adaccountDetail);
+                            //print_r($adaccountDetail);
+                            $getAdAccuntsArr[$adaccountDetail['account_id']]=json_encode($adaccountDetail);
                         }
                     } else {
                         $msgs['business']='no ad account found under your facebook account!';
                     }
+                    unset($try4getadaccount,$ret1);
                 }
             } else {
                 $msgs['business']='no business found under your facebook account!';
             }
+            print_r($getAdAccuntsArr);
+            $now=time();
+            $insert_detail=addslashes($getAdAccuntsArr[$adaccountDetail['account_id']]);
+            $query=<<<EOT
+            INSERT INTO `t_fb_account` (ad_account_name,ad_account_id,access_token,ad_account_detail) 
+                VALUES ("734152.979166667","{$adaccountDetail['account_id']}","{$token}","{$insert_detail}")
+                ON DUPLICATE KEY UPDATE 
+                  ad_account_name="734152.979166668",access_token="{$token}",ad_account_detail="{$insert_detail}",
+                  update_time=now();
+EOT;
+            echo $query;
+            include(dirname(__FILE__).'/../inc/conn.php');
+            if (!$link->query($query)) {
+                $msgs['err_msg']='Sorry, something we are disturbed.';
+                $msgs['status']='false';
+                break;
+            }
+
+            //保存广告账号
             //$link= mysqli_init();
             //$link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 8);
             //$link->real_connect(__DB_MYSQL_HOST, __DB_MYSQL_USER, __DB_MYSQL_PASS, __DB_MYSQL_DB);
             //$link->query("SET NAMES utf8");
             //$query="";
 
-        } else $msgs['status']="false";
+        } else $msgs['status']='false';
         echo json_encode($msgs);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         break;
