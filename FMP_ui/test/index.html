@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/base.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/menu.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/dashboard.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/fbaccount.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/table.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js"></script>
+	<script type="text/javascript" src="../assets/js/base.js"></script>
+<!--<script type="text/javascript" src="../js/dashboard_base.js"></script>-->
+	<script type="text/javascript" src="../assets/js/account.js"></script>
+	
+</head>
+<body>
+	<script>
+		$(document).ready(function(){
+			createPageHeader()
+		})
+
+		function createPageHeader(){
+            $(".wrapper").css("display","none") //防止闪瞎~
+            $.ajax({
+            	url:baseConf.api_prefix+"/get/login/@self",
+            	method:"GET",
+            	success: function(data){
+            		if (data.status=="false") { //没有登录退出
+            			location.href="../"
+            		}
+            		var user = [
+            		{ UserName: data.username }
+            		]
+            		$.get('../templates/header.htm', function(template) {
+            			$.tmpl(template, user).appendTo('.wrapper')
+            			bind_logout_btn()
+            			$.get('../templates/navibar.htm', function(template) {
+            				$.tmpl(template).appendTo('.wrapper')
+            				$.get('../templates/accountlist.htm', function(template) {
+            					$.tmpl(template).appendTo('.wrapper')
+            					$.get('../templates/footer.htm', function(template) {
+            						$.tmpl(template).appendTo('.wrapper')
+            						$(".wrapper").css("display","inline")
+            					})
+            				})
+            			})
+            		})
+            	}
+            })//end $.ajax
+        }
+        function bind_logout_btn(){
+        	$("#logout_btn").bind("click",function(){
+        		$.ajax({
+        			url: baseConf.api_prefix+"/delete/login/@self",
+        			type: "GET",
+        			success: function(data){
+        				if (data.status=="true") {
+        					location.href="http://"+document.domain;
+        				}
+        			}
+        		})
+        	})
+        }
+    </script>
+    <div class="wrapper"></div>
+</body>
+</html>
