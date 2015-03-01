@@ -17,12 +17,27 @@
     </target>
 
     <!-- replace html footer section -->
-    <target name="add_page_footer" depends="add_page_header">
+    <target name="add_page_footer" depends="add_page_header_out">
         <property name="fmp.footer"><![CDATA[[<]!--fmp_footer--[>](.*?)[<]!--/fmp_footer--[>]]]></property>
         <loadfile property="footer.htm" srcFile="templates/footer.htm"/>
         <replaceregexp flags="gs">
             <regexp pattern="${fmp.footer}"/>
             <substitution expression="${footer.htm}"/>
+            <fileset dir=".">
+                <include name="**/*.html"/>
+                <exclude name="**/*.js" />
+            </fileset>
+        </replaceregexp>
+    </target>
+
+    <!-- replace html header_out section -->
+    <target name="add_page_header_out" depends="add_page_header">
+        <property name="fmp.header_out"><![CDATA[[<]!--fmp_header_out--[>](.*?)[<]!--/fmp_header_out--[>]]]></property>
+        <loadfile property="header_out.htm" srcFile="templates/header_out.htm"/>
+        <!--<replaceregexp byline="true" encoding="utf-8" flags="gs">-->
+        <replaceregexp flags="gs">
+            <regexp pattern="${fmp.header_out}"/>
+            <substitution expression="${header_out.htm}"/>
             <fileset dir=".">
                 <include name="**/*.html"/>
                 <exclude name="**/*.js" />
