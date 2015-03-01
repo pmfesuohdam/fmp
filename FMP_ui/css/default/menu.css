@@ -1,8 +1,0 @@
-.navibar{height:31px;background:#dfe6f3;}
-.navi {height:30px;background:#dfe6f3;}
-.navi ul{list-style:none;}
-.navi li{float:left; width:180px; margin-left:3px; line-height:30px;}
-.navi a:link   {color:#dfe6f3; font-weight:bold; text-decoration:none; background:#23355b;}
-.navi a:visited{color:#dfe6f3; font-weight:bold; text-decoration:none; background:#23355b;}
-.navi a:hover  {color:#cce6f3; font-weight:bold; text-decoration:none; background:#223358;}
-.navi a  {display:block; text-align:center; height:30px;}
