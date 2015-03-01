@@ -1,48 +1,40 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../assets/css/default/base.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/default/menu.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/default/dashboard.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/default/fbaccount.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/default/table.css" />
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="../assets/js/jquery-1.11.2.min.js"></script>
+    <meta charset="utf-8">
+    <title>welcome!</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/default/base.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/default/menu.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/default/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/default/fbaccount.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/default/table.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../assets/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../assets/js/jquery.tmpl.js"></script>
-	<script type="text/javascript" src="../assets/js/base.js"></script>
-<!--<script type="text/javascript" src="../js/dashboard_base.js"></script>
-	<script type="text/javascript" src="../js/account.js"></script>-->
-	<style type="text/css">
-	.jumbotron {
-text-align: center;
-}
-</style>
+    <script type="text/javascript" src="../assets/js/base.js"></script>
+    <style type="text/css">
+        .jumbotron {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-	<script>
-		$(document).ready(function(){
-			createPageHeader()
-		})
-
-		function createPageHeader(){
-            $(".wrapper").css("display","none") //防止闪瞎~
-            $.get('/templates/header_out.htm', function(template) {
-            	$.tmpl(template).appendTo('.wrapper')
-
-            		$.get('/templates/intro.htm', function(template) {
-            			$.tmpl(template).appendTo('.wrapper')
-            			$.get('/templates/footer.htm', function(template) {
-            				$.tmpl(template).appendTo('.wrapper')
-            				$(".wrapper").css("display","inline")
-            			})
-            		})
-            	
-            })
-
-        }
-    </script>
-    <div class="wrapper"></div>
+    <div class="wrapper">
+        <!--fmp_header_out-->
+        <!--/fmp_header_out-->
+        <!--main-->
+        <div class="jumbotron">
+            <h2>Optimize your Facebook Ads Easily</h2>
+            <p class="lead">You want to Facebook ads into custom categories? Wish to provide personalized filtering?</p>
+            <p><a class="btn btn-primary" href="/join/" role="button">Get started for now!<small>No Credit Card Required!</small></a></p>
+        </div>
+        <!--/main-->
+        <!--fmp_footer-->
+        <!--/fmp_footer-->
+    </div>
+    <script>
+        $(document).ready(function(){
+        })
+    </script>   
 </body>
 </html>
