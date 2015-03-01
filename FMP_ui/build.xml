@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<project name="release" default="add-version-nu" basedir=".">
+    
+    <property file="build.properties"/>
+    
+    <!-- add version for js/css reference in html -->
+    <target name="add-version-nu" depends="init">
+        <replaceregexp byline="true" encoding="utf-8" flags="igm">
+            <regexp pattern="${jsCssRefRegexp}"/>
+            <substitution expression="\2\?t=${timestamp}"/>
+            <fileset dir=".">
+                <include name="**/*.html"/>
+				<exclude name="**/*.js" />
+            </fileset>
+        </replaceregexp>
+    </target>
+    
+    <target name="init">
+        <tstamp>
+            <format property="timestamp" pattern="yyyyMMddHHmmss"/>
+        </tstamp>
+    </target>
+    
+</project>
