@@ -16,7 +16,21 @@
         </replaceregexp>
     </target>
 
-    <!-- replace html header and footer section -->
+    <!-- replace html footer section -->
+    <target name="add_page_footer" depends="add_page_header">
+        <property name="fmp.footer"><![CDATA[[<]!--fmp_footer--[>](.*?)[<]!--/fmp_footer--[>]]]></property>
+        <loadfile property="footer.htm" srcFile="templates/footer.htm"/>
+        <replaceregexp flags="gs">
+            <regexp pattern="${fmp.footer}"/>
+            <substitution expression="${footer.htm}"/>
+            <fileset dir=".">
+                <include name="**/*.html"/>
+                <exclude name="**/*.js" />
+            </fileset>
+        </replaceregexp>
+    </target>
+
+    <!-- replace html header section -->
     <target name="add_page_header" depends="init">
         <property name="fmp.header"><![CDATA[[<]!--fmp_header--[>](.*?)[<]!--/fmp_header--[>]]]></property>
         <loadfile property="header.htm" srcFile="templates/header.htm"/>
