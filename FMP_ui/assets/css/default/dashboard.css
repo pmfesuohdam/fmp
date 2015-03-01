@@ -24,7 +24,7 @@ body {
   margin-bottom: 5px; /*顶部与主内容垂直间距，可自行修改*/
   padding-left:70px;
 }
-.header>a>h1.mainlogo {
+.header>script>a>h1.mainlogo {
     background: url(../../img/fmp_logo.png) no-repeat left top;
     float:left;
     color:white;
@@ -36,7 +36,7 @@ body {
     height: 33px;
 }
 
-.header > a > h1.mainlogo > u {
+.header > script > a > h1.mainlogo > u {
     left: -999999px;
     position: absolute;
 }
@@ -52,22 +52,22 @@ body {
     /*margin:0 0 30 5px;*/
     padding-left: 6px;
 }
-.header > .userarea,.sign_login_area{
+.header .userarea,.sign_login_area{
 	float:right;
 	padding-top: 12px;
 	padding-right: 10px;
 }
 
-.header > .userarea a:link,.sign_login_area a{
+.header .userarea a:link,.sign_login_area a{
     margin:6px;
 }
-.header > .userarea a:link,.sign_login_area a:link{
+.header .userarea a:link,.sign_login_area a:link{
 	color: white;
 }
-.header > .userarea a:visited,.sign_login_area a:visited{
+.header .userarea a:visited,.sign_login_area a:visited{
 	color:white;
 }
-.header > .userarea a:hover,.sign_login_area a:hover{
+.header .userarea a:hover,.sign_login_area a:hover{
 	color:#f3e0a4;
 	text-decoration: none;
 }
