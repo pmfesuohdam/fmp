@@ -23,7 +23,8 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         $msgs['err_msg']=array(); //返回的消息
         $err_item=null;
         $token=$_POST['ac'];
-        if ( base64_encode(base64_decode($token, true)) === $token ){
+        //if ( base64_encode(base64_decode($token, true)) === $token ){
+        if (preg_match_all("/[a-zA-Z0-9]$/",$token,$match) {
         } else {
             $err_item['ac']='wrong format facebook access token';
             $msgs['err_msg'][]=$err_item;
