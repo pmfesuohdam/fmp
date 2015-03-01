@@ -32,9 +32,29 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
             //格式正确,再检查是否拥有广告账号
-            $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses');
+            $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses?access_token='.$token);
             $ret=json_decode($ret,true);
             print_r($ret);
+            if ( isset($ret['data']) && !empty($ret['data']) ) {
+                foreach ($ret['data'] as $businessDetail) {
+                    echo "[business][name:{$businessDetail['name']}][id:{$businessDetail['id']}]";
+                    //捞到business的id之后，方可获取广告账号信息
+                    $adaccounts_url='https://graph.facebook.com/v2.2/'.$businessDetail['id'].'?fields=adaccounts&access_token='.$token;
+                    //echo $adaccounts_url;
+                    $ret1=file_get_contents($adaccounts_url);
+                    print_r($ret1);
+                    if ( isset($ret1['adaccounts']) && !empty($ret1['adaccounts']) ) {
+                        foreach ($ret1['adaccounts']['data'] as $adaccountDetail) {
+                            echo "<pre>";
+                            print_r($adaccountDetail);
+                        }
+                    } else {
+                        $msgs['business']='no ad account found under your facebook account!';
+                    }
+                }
+            } else {
+                $msgs['business']='no business found under your facebook account!';
+            }
             //$link= mysqli_init();
             //$link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 8);
             //$link->real_connect(__DB_MYSQL_HOST, __DB_MYSQL_USER, __DB_MYSQL_PASS, __DB_MYSQL_DB);
