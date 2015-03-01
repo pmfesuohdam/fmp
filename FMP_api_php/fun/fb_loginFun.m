@@ -22,7 +22,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
          */
         $msgs['err_msg']=array(); //返回的消息
         $err_item=null;
-        print_r($_POST);
         $token=$_POST['ac'];
         if ( base64_encode(base64_decode($token, true)) === $token ){
         } else {
@@ -32,6 +31,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
         } else $msgs['status']="false";
+        echo json_encode($msgs);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         break;
         /* }}} */
