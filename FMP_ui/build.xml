@@ -5,7 +5,7 @@
     <property file="build.properties"/>
     
     <!-- add version for js/css reference in html -->
-    <target name="add-version-nu" depends="add_page_header">
+    <target name="add-version-nu" depends="add_page_footer">
         <replaceregexp byline="true" encoding="utf-8" flags="igm">
             <regexp pattern="${jsCssRefRegexp}"/>
             <substitution expression="\2\?t=${timestamp}"/>
