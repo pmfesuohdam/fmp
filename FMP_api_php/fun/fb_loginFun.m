@@ -27,6 +27,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         } else {
             $err_item['ac']='wrong format facebook access token';
             $msgs['err_msg'][]=$err_item;
+            unset($err_item);
         }
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
@@ -51,12 +52,12 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                             $getAdAccuntsNameArr[$adaccountDetail['account_id']]=$ret1['name'];
                         }
                     } else {
-                        $msgs['business']='no ad account found under your facebook account!';
+                        $msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
                     }
                     unset($try4getadaccount,$ret1);
                 }
             } else {
-                $msgs['business']='no business found under your facebook account!';
+                $msgs['business'][]=Array('business'=>'no business found under your facebook account!');
             }
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
                 $insert_detail=addslashes(json_encode($adaccountDetail2));
@@ -69,7 +70,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 EOT;
                 include(dirname(__FILE__).'/../inc/conn.php');
                 if (!$link->query($query)) {
-                    $msgs['err_msg']='Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_ADACCOUNT.')';
+                    $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_ADACCOUNT.')');
                     $msgs['status']='false';
                     break;
                 } else { //保存账号所属fmp用户关系 
@@ -80,7 +81,7 @@ INSERT INTO `t_relationship_fmp_fb` (fmp_user_id,fb_adaccount_id)
       update_time=now();
 EOT;
                     if (!$link->query($query)) {
-                        $msgs['err_msg']='Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_FMP_FB_REL.')';
+                        $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_FMP_FB_REL.')');
                         $msgs['status']='false';
                         break;
                     }
