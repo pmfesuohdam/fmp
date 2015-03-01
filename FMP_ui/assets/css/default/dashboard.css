@@ -42,7 +42,7 @@ body {
 }
 .header .description{
     clear:both;
-    float: left;
+    float:left;
     display:block;
     font-size:13px;
     /*color:#60db60;*/
