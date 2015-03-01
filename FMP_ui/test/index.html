@@ -53,12 +53,22 @@
     <!--/fmp_footer-->
     <script>
       $(document).ready(function(){
-         createPageHeader()
-     })
-
-      function createPageHeader(){
+        $.ajax({
+                url:baseConf.api_prefix+"/get/login/@self",
+                method:"GET",
+                success: function(data){
+                    if (data.status=="false") { //没有登录退出
+                        location.href="../"
+                    }
+                    var user = [
+                    { UserName: data.username }
+                    ]
+                    $("#headerTemplate").tmpl(user).appendTo('.header');
+                }
+            })
         bind_logout_btn()
-    }
+    })
+
     function bind_logout_btn(){
        $("#logout_btn").bind("click",function(){
           $.ajax({
