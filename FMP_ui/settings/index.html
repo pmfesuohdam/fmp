@@ -81,8 +81,10 @@
               url:baseConf.api_prefix+"/get/fbaccount/@self",
               type:"GET",
               success: function(adaccounts) {
-                  console.log(adaccounts)
               //adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
+              if (adaccounts['adaccounts']==null) {
+              $("tbody").append("<tr><td colspan=\"5\" style=\"text-align:center\">no data now</td></tr>");
+              }
               $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
               }
               })
