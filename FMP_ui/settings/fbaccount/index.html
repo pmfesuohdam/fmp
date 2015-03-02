@@ -62,11 +62,11 @@
                         <td class="name">
                             <input type="text" id="import_accounts_${i}_account_name" name="import[accounts][0][account][name]" class="field not-removable" value="{{= adaccount.name}}">
                         </td>
-                        <td class="spent">{{= adaccount.spent_sum}} USD</td>
-                        <td class="id-account">1392684824354843</td>
+                        <td class="spent">{{= adaccount.spent_sum}} {{= adaccount.currency}}</td>
+                        <td class="id-account">{{= adaccount.id}}</td>
                         <td class="status st-fb-account">
                             <span class="st-info">
-                                <i class="icon ae-ico-ok" title="" data-placement="top" rel="tooltip" data-original-title="Ok to add"></i>
+                                <i class="icon ae-ico-ok" title="" data-placement="top" rel="tooltip" data-original-title="Ok to add">{{if adaccount.status==1}}ok{{else}}expired{{/if}}</i>
                             </span>
                         </td>
                         <td class="import-camp">
