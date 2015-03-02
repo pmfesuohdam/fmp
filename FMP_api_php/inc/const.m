@@ -114,8 +114,10 @@ if (!$conf['debug']) {
 /* }}} */
 
 // 业务错误代码
-define('__FMP_ERR_UPDATE_ADACCOUNT', 10553);
+define('__FMP_ERR_UPDATE_ADACCOUNT',  10553);
 define('__FMP_ERR_UPDATE_FMP_FB_REL', 10554);
+define('__FMP_ERR_SELECT_ADACCOUNT',  10555);
+define('__FMP_ERR_SELECT_ACCTOK',     10556);
 
 
 // 默认用户常量
