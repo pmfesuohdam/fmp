@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-02 01:42:14
+  | Last-Modified: 2015-03-02 15:58:09
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -33,9 +33,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             $msgs['status']="true";
             //格式正确,再检查是否拥有广告账号
             $business_url='https://graph.facebook.com/v2.2/me/businesses?access_token='.$token;
-            //echo $business_url;
             $ret=file_get_contents($business_url);
-            //print_r($ret);
             $ret=json_decode($ret,true);
             //存所有获取adaccount的数组
             $getAdAccuntsArr=$getAdAccuntsNameArr=null;
@@ -47,7 +45,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                     $adaccounts_url='https://graph.facebook.com/v2.2/'.$businessDetail['id'].'?fields=adaccounts,name&access_token='.$token;
                     while ( $try4getadaccount<3 && !(isset($ret1['adaccounts']) && !empty($ret1['adaccounts'])) ) {
                         $ret1=json_decode(strval(file_get_contents($adaccounts_url)),true);
-                        print_r(json_encode($ret1));
                         usleep(2000);
                         $try4getadaccount++;
                     }
@@ -57,8 +54,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                             $getAdAccuntsNameArr[$adaccountDetail['account_id']]=$ret1['name'];
                             $GLOBALS['got_ad_account']=true;
                         }
-                    //} else {
-                        //$msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
                     }
                     unset($try4getadaccount,$ret1);
                 }
@@ -66,7 +61,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                     $msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
                 }
             } else {
-                print_r(json_encode($ret));
                 $msgs['err_msg'][]=Array('business'=>'no business found under your facebook account!');
             }
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
@@ -98,6 +92,7 @@ EOT;
                 }
             } //end foreach
         } else $msgs['status']='false';
+        @mysqli_close($link);
         echo json_encode($msgs);
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         break;
@@ -124,16 +119,14 @@ EOT;
                 $err_item['email']='email size must between 6 and 50';
                 $msgs['err_msg'][]=$err_item;
             } else {
-                $link= mysqli_init();
-                $link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 8);
-                $link->real_connect(__DB_MYSQL_HOST, __DB_MYSQL_USER, __DB_MYSQL_PASS, __DB_MYSQL_DB);
-                $link->query("SET NAMES utf8");
+                include(dirname(__FILE__).'/../inc/conn.php');
                 $query="select name,passwd from `".__TB_FMP_USER."` where email='".$_POST['email']."';";
                 $result=$link->query($query);
                 if ( !($row = mysqli_fetch_assoc($result)) ) {
                     $err_item['email']='user not exists';
                     $msgs['err_msg'][]=$err_item;
                 }
+                @mysqli_close($link);
             }
 
             //password需要满足长度最少6，最大20,不为空,如果用户民存在要检查密码匹配
