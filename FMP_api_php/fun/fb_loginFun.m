@@ -32,10 +32,14 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
             //格式正确,再检查是否拥有广告账号
-            $ret=file_get_contents('https://graph.facebook.com/v2.2/me/businesses?access_token='.$token);
+            $business_url='https://graph.facebook.com/v2.2/me/businesses?access_token='.$token;
+            //echo $business_url;
+            $ret=file_get_contents($business_url);
+            //print_r($ret);
             $ret=json_decode($ret,true);
             //存所有获取adaccount的数组
             $getAdAccuntsArr=$getAdAccuntsNameArr=null;
+            $GLOBALS['got_ad_account']=false;
             if ( isset($ret['data']) && !empty($ret['data']) ) {
                 foreach ($ret['data'] as $businessDetail) {
                     //捞到business的id之后，方可获取广告账号信息
@@ -51,11 +55,15 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                         foreach ($ret1['adaccounts']['data'] as $adaccountDetail) {
                             $getAdAccuntsArr[$adaccountDetail['account_id']]=$adaccountDetail;
                             $getAdAccuntsNameArr[$adaccountDetail['account_id']]=$ret1['name'];
+                            $GLOBALS['got_ad_account']=true;
                         }
-                    } else {
-                        $msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
+                    //} else {
+                        //$msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
                     }
                     unset($try4getadaccount,$ret1);
+                }
+                if (!$GLOBALS['got_ad_account']) { //一个也没有 
+                    $msgs['err_msg'][]=Array('business'=>'no ad account found under your facebook account!');
                 }
             } else {
                 print_r(json_encode($ret));
