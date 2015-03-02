@@ -69,6 +69,9 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_FBLOGIN:
         $GLOBALS['prefix']=__PREFIX_FBLOGIN;
         break;
+    case __SERVICE_FBACCOUNT:
+        $GLOBALS['prefix']=__PREFIX_FBACCOUNT;
+        break;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
         break;

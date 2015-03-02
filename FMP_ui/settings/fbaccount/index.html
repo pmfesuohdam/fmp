@@ -98,9 +98,16 @@
               if (user.status=="false") {
                   location.href="../../"
               }
-              $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
-              adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
+              $.ajax({
+              url:baseConf.api_prefix+"/get/fbaccount/@self",
+              type:"GET",
+              success: function(adaccounts) {
+                  console.log(adaccounts)
+              //adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
               $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
+              }
+              })
+              $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
           }
       })
     })
