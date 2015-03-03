@@ -15,7 +15,7 @@ $(document).ready(function(){
                 $("#passwd+code").text("")
                 err_msg=data.err_msg
                 for (i=0;i<err_msg.length;i++) {
-                  console.log(err_msg[i])
+                  //console.log(err_msg[i])
                   for ( var id in err_msg[i] ){
                     alert_dom_id="#"+id+"+code"
                     $(alert_dom_id).text(err_msg[i][id])
