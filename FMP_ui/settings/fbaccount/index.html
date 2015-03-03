@@ -19,13 +19,13 @@
                 <p>Hi, <strong>${username}</strong>. Here you can manage your Facebook accounts and add new one. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</p>
             </div>
             <p class="calltoact">
-              <button class="btn btn-large btn-link-account" type="submit">Add Facebook accounts <em class="count">(3)</em></button>
+              <button class="btn btn-large btn-link-account" type="submit">Add Facebook accounts <em class="count">(0)</em></button>
           </p>
       </script>
   </article>
   <article id="tableAccountsImport" class="accounts-list">
     <header>
-        <p class="total">Accounts selected: <strong>(3)</strong></p>
+        <p class="total">Accounts selected: <strong>(0)</strong></p>
         <p class="info">Use the checkboxes on the left to select which advertising accounts you wanto to manage in FMP</p>
     </header>
 
@@ -108,9 +108,26 @@
               }
               })
               $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
+              //var len = $("input:checkbox:checked").length;
+              //alert(len)
+              //$("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">("+len+")</em>")
           }
       })
+      $("#unselectall").on({
+          "click":function(){
+              $("input[type=\"checkbox\"]").attr("checked",false)
+              $("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">(0)</em>")
+          }
+      })
+    $(":checkbox").on('click',
+    function(){
+      alert($(this).val());
+      })
     })
+      function refreshCounter(){
+      var len = $("input:checkbox:checked").length;
+      $("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">("+len+")</em>")
+      }
 </script>
 </body>
 </html>
