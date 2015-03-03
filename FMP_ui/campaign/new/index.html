@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9" id="ad _edit_area">
+            <div class="col-sm-9" id="ad_edit_area">
             <!--step1-->
             <!--/step1-->
         </div>
@@ -82,10 +82,12 @@
 </div>
 <script>
   $(document).ready(function(){
+  loading()
     $.ajax({
         url:baseConf.api_prefix+"/get/login/@self",
         method:"GET",
         success: function(data){
+        $("#ad_edit_area").html("")
                     if (data.status=="false") { //没有登录退出
                         location.href="../"
                     }
@@ -99,10 +101,13 @@
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     $.get('../../templates/camp_step1.htm', function(template) {
         person={"key":"value"}
-        $.tmpl(template, person).appendTo('body');
+        $.tmpl(template, person).appendTo('#ad_edit_area');
     });
 })
 
+function loading(){
+$('#ad_edit_area').html("loading...")
+}
   function bind_logout_btn(){
      $("#logout_btn").bind("click",function(){
       $.ajax({
