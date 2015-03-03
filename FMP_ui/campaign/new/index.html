@@ -97,6 +97,10 @@
             })
     bind_logout_btn()
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
+    $.get('../../templates/camp_step1.htm', function(template) {
+        person={"key":"value"}
+        $.tmpl(template, person).appendTo('body');
+    });
 })
 
   function bind_logout_btn(){
