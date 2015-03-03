@@ -125,6 +125,7 @@
           }
       })
       $('body').on('click',':checkbox',function(){refreshCounter()});
+      $('body').on('click','article.sec-intro > p > button',function(){location.href="../"});
     })
 function refreshCounter(){
   var len = $("input:checkbox:checked").length;
