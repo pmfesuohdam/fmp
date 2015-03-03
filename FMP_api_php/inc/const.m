@@ -119,6 +119,13 @@ define('__FMP_ERR_UPDATE_FMP_FB_REL', 10554);
 define('__FMP_ERR_SELECT_ADACCOUNT',  10555);
 define('__FMP_ERR_SELECT_ACCTOK',     10556);
 
+//graph url前缀
+define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');
+
+//session
+define('__SESSION_FMP_UID', 'fmp_uid');
+define('__SESSION_FMP_USERNAME', 'username');
+define('__SESSION_FB_UID', 'fb_uid');
 
 // 默认用户常量
 
