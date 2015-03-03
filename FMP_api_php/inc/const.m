@@ -40,6 +40,7 @@ define('__REDIS_PORT',      '6379');
 /* }}} */
 /* {{{ services
  */
+define('__SERVICE_JOIN',              'join');
 define('__SERVICE_FMPUSER',           'fmpuser');
 define('__SERVICE_LOGIN',             'login');
 define('__SERVICE_FBLOGIN',           'fb_login');
@@ -52,6 +53,7 @@ define('__SERVICE_DISTRICT',          'district');
 
 /* {{{ services
  */
+define('__PREFIX_JOIN',              'join');
 define('__PREFIX_FMPUSER',           'fmpuser');
 define('__PREFIX_USER',              'user');
 define('__PREFIX_LOGIN',             'login');

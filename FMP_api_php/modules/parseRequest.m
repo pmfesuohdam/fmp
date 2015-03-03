@@ -60,6 +60,9 @@ $GLOBALS['postData']=file_get_contents("php://input");
 //加载相关函数
 if (!empty($GLOBALS['serviceName'])) {
     switch($GLOBALS['serviceName']) {
+    case __SERVICE_JOIN:
+        $GLOBALS['prefix']=__PREFIX_JOIN;
+        break;
     case __SERVICE_FMPUSER:
         $GLOBALS['prefix']=__PREFIX_FMPUSER;
         break;
