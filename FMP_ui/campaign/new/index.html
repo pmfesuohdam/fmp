@@ -12,6 +12,8 @@
 	<script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js"></script>
     <script type="text/javascript" src="../../assets/js/base.js"></script>
+    <!--<script type="text/javascript" src="../js/dashboard_base.js"></script>-->
+    <script type="text/javascript" src="../../assets/js/account.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -43,9 +45,8 @@
             }
         }
     </style>
-    <div class="main-content">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
@@ -59,41 +60,31 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Campaign</a></li>
-                            <li><a href="#">Tracking</a></li>
+                            <li class="active"><a href="#">Menu Item 1</a></li>
+                            <li><a href="#">Menu Item 2</a></li>
                             <li class="dropdown">
-                            <li><a href="#">Audience</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Publish</a></li>
-                            <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Menu Item 4</a></li>
+                            <li><a href="#">Reviews <span class="badge">1,118</span></a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
         </div>
         <div class="col-sm-9">
-            <!--step1-->
-<form>
-  <div class="form-group">
-    <label for="campaignName">Name</label>
-    <input type="text" class="form-control" id="campaignName" placeholder="Enter name">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Buying Type</label>
-<select class="form-control">
-    <option value="one">One</option>
-    <option value="two">Two</option>
-    <option value="three">Three</option>
-    <option value="four">Four</option>
-    <option value="five">Five</option>
-</select>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-            <!--/step1-->
+            Main content goes here
         </div>
     </div>
-</div>
     <!--/main-->
     <!--fmp_footer-->
     <!--/fmp_footer-->
@@ -114,6 +105,17 @@
                 }
             })
     bind_logout_btn()
+    $.ajax({
+      url:baseConf.api_prefix+"/get/fbaccount/@self",
+      type:"GET",
+      success: function(adaccounts) {
+              //adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
+              if (adaccounts['adaccounts']==null) {
+                  $("tbody").append("<tr><td colspan=\"5\" style=\"text-align:center\">no data now</td></tr>");
+              }
+              $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
+          }
+      })
 })
 
 function bind_logout_btn(){
