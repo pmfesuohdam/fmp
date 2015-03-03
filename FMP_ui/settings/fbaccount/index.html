@@ -99,13 +99,12 @@
                   location.href="../../"
               }
               $.ajax({
-              url:baseConf.api_prefix+"/get/fbaccount/@self",
-              type:"GET",
-              success: function(adaccounts) {
-                  console.log(adaccounts)
-              //adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
-              $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
-              }
+                  url:baseConf.api_prefix+"/get/fbaccount/@self",
+                  type:"GET",
+                  success: function(adaccounts) {
+                      console.log(adaccounts)
+                      $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
+                  }
               })
               $("#messageTemplate").tmpl(user).appendTo('.sec-intro');
               //var len = $("input:checkbox:checked").length;
@@ -113,21 +112,21 @@
               //$("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">("+len+")</em>")
           }
       })
-      $("#unselectall").on({
+        $("#unselectall").on({
           "click":function(){
               $("input[type=\"checkbox\"]").attr("checked",false)
               $("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">(0)</em>")
           }
       })
-    $(":checkbox").on('click',
-    function(){
-      alert($(this).val());
-      })
+        $(":checkbox").on('click',
+            function(){
+              alert($(this).val());
+          })
     })
-      function refreshCounter(){
-      var len = $("input:checkbox:checked").length;
-      $("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">("+len+")</em>")
-      }
+function refreshCounter(){
+  var len = $("input:checkbox:checked").length;
+  $("article.sec-intro > p > button").html("Add Facebook accounts "+"<em class=\"count\">("+len+")</em>")
+}
 </script>
 </body>
 </html>
