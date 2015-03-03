@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-03 10:10:46
+  | Last-Modified: 2015-03-03 10:40:04
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -81,17 +81,19 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             }
             foreach ($getAdAccuntsArr as $adaccountDetail_id=>$adaccountDetail2) {
                 $insert_detail=addslashes(json_encode($adaccountDetail2));
+                $adaccountDetail2['id']=str_replace('act_','',$adaccountDetail2['id']);
                 $query=<<<EOT
             INSERT INTO `t_fb_account` (ad_account_name,ad_account_id,access_token,ad_account_detail) 
-                VALUES ("{$getAdAccuntsNameArr[$adaccountDetail2['account_id']]}","{$adaccountDetail2['account_id']}","{$token}","{$insert_detail}")
+                VALUES ("{$getAdAccuntsNameArr['act_'.$adaccountDetail2['id']]}","{$adaccountDetail2['id']}","{$token}","{$insert_detail}")
                 ON DUPLICATE KEY UPDATE 
-                  ad_account_name="{$getAdAccuntsNameArr[$adaccountDetail2['account_id']]}",access_token="{$token}",ad_account_detail="{$insert_detail}",
+                  ad_account_name="{$getAdAccuntsNameArr['act_'.$adaccountDetail2['id']]}",access_token="{$token}",ad_account_detail="{$insert_detail}",
                   update_time=now();
 EOT;
                 include(dirname(__FILE__).'/../inc/conn.php');
                 if (!$link->query($query)) {
                     $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_ADACCOUNT.')');
                     $msgs['status']='false';
+                    @mysqli_close($link);
                     break;
                 } else { //保存账号所属fmp用户关系 
                     //print_r($adaccountDetail2);
@@ -102,7 +104,7 @@ INSERT INTO `t_relationship_fmp_fb` (fmp_user_id,fb_adaccount_id)
     ON DUPLICATE KEY UPDATE 
       update_time=now();
 EOT;
-                    echo $query;
+                    //echo $query;
                     if (!$link->query($query)) {
                         $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_FMP_FB_REL.')');
                         $msgs['status']='false';
@@ -175,5 +177,4 @@ EOT;
         break;
     }
 }
-
 ?>
