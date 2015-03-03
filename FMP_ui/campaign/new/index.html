@@ -70,30 +70,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
-                <!--step1-->
-                <form>
-                  <div class="form-group">
-                    <label for="campaignName">Name</label>
-                    <input type="text" class="form-control" id="campaignName" placeholder="Enter name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Buying Type</label>
-                    <select class="form-control">
-                        <option value="one">CPC</option>
-                        <option value="one">CPM</option>
-                        <option value="one">OCPM</option>
-                        <option value="one">CPA</option>
-                    </select>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Objective</label>
-                        <select class="form-control">
-                            <option value="one">Web Click</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-default btn-info">Next</button>
-            </form>
+            <div class="col-sm-9" id="ad _edit_area">
+            <!--step1-->
             <!--/step1-->
         </div>
     </div>
@@ -118,6 +96,7 @@
                 }
             })
     bind_logout_btn()
+    //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
 })
 
   function bind_logout_btn(){
