@@ -77,8 +77,8 @@
     </div>
 </div>
 <!--/main-->
-<!--fmp_footer-->
-<!--/fmp_footer-->
+        <!--fmp_footer-->
+        <!--/fmp_footer-->
 </div>
 <script>
   $(document).ready(function(){
@@ -87,7 +87,6 @@
         url:baseConf.api_prefix+"/get/login/@self",
         method:"GET",
         success: function(data){
-        $("#ad_edit_area").html("")
                     if (data.status=="false") { //没有登录退出
                         location.href="../"
                     }
@@ -101,12 +100,13 @@
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     $.get('../../templates/camp_step1.htm', function(template) {
         person={"key":"value"}
+        $("#main-loading").remove()
         $.tmpl(template, person).appendTo('#ad_edit_area');
     });
 })
 
 function loading(){
-$('#ad_edit_area').html("loading...")
+$('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
 }
   function bind_logout_btn(){
      $("#logout_btn").bind("click",function(){
