@@ -88,6 +88,7 @@ define('__HTTPSTATUS_INTERNAL_SERVER_ERROR', 500);
 /* {{{ selector
  */
 define('__SELECTOR_SINGLE',   '@self');
+define('__SELECTOR_NEW',      '@new'); //是否为新用户，就是没有任何广告活动的 
 define('__SELECTOR_MASS',     '@all');
 define('__SELECTOR_GROUP',    '@group');
 
