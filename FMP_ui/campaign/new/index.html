@@ -57,15 +57,27 @@
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     var allTmpl={navibar:"",camp_step1:""};
-    $.get('../../templates/camp.sidebar.htm',function(template) {//一次性下载完所有的模板
-        allTmpl.navibar=template;
-        $.get('../../templates/camp_step1.htm',function(template) {
-            allTmpl.camp_step1=template;
-            $("#main-loading").remove()
-            $.tmpl(allTmpl.navibar,null).appendTo('#sidebar-area');
-            $.tmpl(allTmpl.camp_step1, null).appendTo('#ad_edit_area');
-        })
-    })
+    //新的方法一次性下载全部模板<!--{{{-->
+    //gced:global campaign edit data
+    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:""};
+$.when(
+  // Get the all available ad accounts
+  $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
+      gced.adaccounts=data
+      console.log(data)
+  }),
+  $.get(baseConf.domain+"/templates/camp.sidebar.htm", function(data) {
+     gced.tpl_sidebar=data
+  }),
+  $.get(baseConf.domain+"/templates/camp_step1.htm", function(data) {
+     gced.tpl_step1=data
+  })
+).then(function() {
+    $("#main-loading").remove()
+    $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
+    $.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
+});
+<!--}}}-->
 
       function loading(){
         $('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
