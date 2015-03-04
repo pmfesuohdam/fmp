@@ -33,7 +33,25 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ): //发送当前保存的数据 
         if ($_SERVER['REQUEST_METHOD']=='GET'){
+            $adaccounts=null;
+            $adaccounts[]=array('id'=>12,'name'=>'','selected'=>'');
+            $adaccounts[]=array('id'=>13,'name'=>'','selected'=>'');
+            $buyingType=null;
+            $buyingType[]=array('value'=>'cpc','text'=>'CPC(Pay for Clicks)','selected'=>'');
+            $buyingType[]=array('value'=>'cpm','text'=>'CPM(Pay for impressions)','selected'=>'');
+            $buyingType[]=array('value'=>'ocpm','text'=>'OCPM(Optimize for clicks)','selected'=>'');
+            $objective=null;
+            $objective[]=array('value'=>'1','text'=>'Multi-Product Ads(Website Clicks)','selected'=>'');
+            $objective[]=array('value'=>'2','text'=>'News feed(Website Clicks)','selected'=>'');
+            $objective[]=array('value'=>'3','text'=>'Right-Hand Column(Website Clicks)','selected'=>'');
+            $ret=array(
+                'billingAccount'=>$adaccounts,
+                'campaignName'=>'12',
+                'buyingType'=>$buyingType,
+                'objective'=>$buyingType
+            );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            echo json_encode($ret);
         }
         break;
     case(__OPERATION_UPDATE): //接受提交数据 
