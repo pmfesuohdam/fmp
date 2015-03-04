@@ -14,6 +14,10 @@
 */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
 header("Content-type: application/json; charset=utf-8");
-if ($GLOBALS['selected'] == __SELECTOR_MASS) {
+if ($GLOBALS['selector'] == __SELECTOR_SINGLE) {
+    $ret=null;
+    $ret['status']="true";
+    $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+    echo json_encode($ret);
 }
 ?>
