@@ -85,6 +85,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                             $row=mysqli_fetch_assoc($result3);
                             $adaccounts['adaccounts'][$i]['name']=$row['ad_account_name'];
                         }
+                        @mysqli_close($link);
                     }
                 }
             }
