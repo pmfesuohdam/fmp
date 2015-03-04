@@ -34,21 +34,21 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
     case(__OPERATION_READ): //发送当前保存的数据 
         if ($_SERVER['REQUEST_METHOD']=='GET'){
             $adaccounts=null;
-            $adaccounts[]=array('id'=>12,'name'=>'','selected'=>'');
-            $adaccounts[]=array('id'=>13,'name'=>'','selected'=>'');
+            $adaccounts[]=array('id'=>12,'name'=>'duang','selected'=>'');
+            $adaccounts[]=array('id'=>13,'name'=>'wakaka','selected'=>'true');
             $buyingType=null;
             $buyingType[]=array('value'=>'cpc','text'=>'CPC(Pay for Clicks)','selected'=>'');
-            $buyingType[]=array('value'=>'cpm','text'=>'CPM(Pay for impressions)','selected'=>'');
+            $buyingType[]=array('value'=>'cpm','text'=>'CPM(Pay for impressions)','selected'=>'true');
             $buyingType[]=array('value'=>'ocpm','text'=>'OCPM(Optimize for clicks)','selected'=>'');
             $objective=null;
             $objective[]=array('value'=>'1','text'=>'Multi-Product Ads(Website Clicks)','selected'=>'');
-            $objective[]=array('value'=>'2','text'=>'News feed(Website Clicks)','selected'=>'');
+            $objective[]=array('value'=>'2','text'=>'News feed(Website Clicks)','selected'=>'true');
             $objective[]=array('value'=>'3','text'=>'Right-Hand Column(Website Clicks)','selected'=>'');
             $ret=array(
                 'billingAccount'=>$adaccounts,
-                'campaignName'=>'12',
+                'campaignName'=>'test camp',
                 'buyingType'=>$buyingType,
-                'objective'=>$buyingType
+                'objective'=>$objective
             );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
             echo json_encode($ret);
