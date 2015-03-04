@@ -94,6 +94,14 @@ define('__SELECTOR_NEW',      '@new'); //是否为新用户，就是没有任何
 define('__SELECTOR_MASS',     '@all');
 define('__SELECTOR_GROUP',    '@group');
 
+
+define('__SELECTOR_STEP1',    '@step1'); //广告第1步 
+define('__SELECTOR_STEP2',    '@step2'); //广告第2步
+define('__SELECTOR_STEP3',    '@step3'); //广告第3步
+define('__SELECTOR_STEP4',    '@step4'); //广告第4步
+define('__SELECTOR_STEP5',    '@step5'); //广告第5步
+
+
 define('__SELECTOR_REPORT',  '@report');
 define('__SELECTOR_ALLSITE', '@all'); // 全部站点 
 define('__SELECTOR_SINGLE_SITE', '@self'); // 单个站点 
