@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-02 16:20:55
+  | Last-Modified: 2015-03-04 10:26:15
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -34,6 +34,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 if ( !($result1=$link->query($query1)) ) {
                     $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
                     echo json_encode(array('status'=>'false','system'=>__FMP_ERR_SELECT_ACCTOK));
+                    @mysqli_close($link);
                     break;
                 }
 
