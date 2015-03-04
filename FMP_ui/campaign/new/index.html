@@ -57,11 +57,16 @@
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     var allTmpl={navibar:"",camp_step1:""};
-    $.get('../../templates/camp.sidebar.htm',function(template) {
+    $.get('../../templates/camp.sidebar.htm',function(template) {//一次性下载完所有的模板
         allTmpl.navibar=template;
         $.get('../../templates/camp_step1.htm',function(template) {
             allTmpl.camp_step1=template;
             $("#main-loading").remove()
+            $("#jsProceed").on({
+                "click":function(){
+                alert("")
+                }
+            })
             $.tmpl(allTmpl.navibar,null).appendTo('#sidebar-area');
             $.tmpl(allTmpl.camp_step1, null).appendTo('#ad_edit_area');
         })
