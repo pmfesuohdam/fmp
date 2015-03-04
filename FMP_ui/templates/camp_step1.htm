@@ -34,6 +34,19 @@
                 </form>
                 <!--TODO 此段js先写在这里，以后转为文件，远端调用-->
                 <script>
-                function postStep2(){
+                function postStep1(){
+                    $.ajax({			
+                        url: baseConf.api_prefix+"/update/campaign/@step1",
+                        context: document.body, 
+                        type: "POST",
+                        data:{ 
+                            billingAccount: $("#billingAccount").val(),
+                            campaignName: $("#campaignName").val(),
+                            buyingType: $("#buyingType").val(),
+                            objective: $("#buyingType").val()
+                            },
+                        success: function(data) {
+                        } 
+                    })
                 }
                 </script>
