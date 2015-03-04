@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -20,51 +21,53 @@
         <!--fmp_navibar-->
         <!--/fmp_navibar-->
         <!--main-->
-    <div class="main-content">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="sidebar-nav">
-                    <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <span class="visible-xs navbar-brand">Sidebar menu</span>
+        <div class="main-content">
+            <div class="row" id="main-area">
+                <div class="col-sm-2" id="sidebar-area">
+                    <!--sidebar-->
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <span class="visible-xs navbar-brand">Sidebar menu</span>
+                            </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Campaign</a></li>
+                                    <li><a href="#">Tracking</a></li>
+                                    <li class="dropdown">
+                                    </li><li><a href="#">Audience</a></li>
+                                    <li><a href="#">Design</a></li>
+                                    <li><a href="#">Publish</a></li>
+                                    <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
+                                </ul>
+                            </div><!--/.nav-collapse -->
                         </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Campaign</a></li>
-                                <li><a href="#">Tracking</a></li>
-                                <li class="dropdown">
-                                </li><li><a href="#">Audience</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Publish</a></li>
-                                <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
-                            </ul>
-                        </div><!--/.nav-collapse -->
                     </div>
+                    <!--/sidebar-->
+                </div>
+                <div class="col-sm-9" id="ad_edit_area">
+                    <!--step1-->
+                    <!--/step1-->
                 </div>
             </div>
-            <div class="col-sm-9" id="ad_edit_area">
-            <!--step1-->
-            <!--/step1-->
         </div>
-    </div>
-</div>
-<!--/main-->
+        <!--/main-->
         <!--fmp_footer-->
         <!--/fmp_footer-->
-</div>
-<script>
-  $(document).ready(function(){
-  loading()
-    $.ajax({
-        url:baseConf.api_prefix+"/get/login/@self",
-        method:"GET",
-        success: function(data){
+    </div>
+    <script>
+      $(document).ready(function(){
+          loading()
+          $.ajax({
+            url:baseConf.api_prefix+"/get/login/@self",
+            method:"GET",
+            success: function(data){
                     if (data.status=="false") { //没有登录退出
                         location.href="../"
                     }
@@ -74,7 +77,7 @@
                     $("#headerTemplate").tmpl(user).appendTo('.header #user_profile_a');
                 }
             })
-    bind_logout_btn()
+          bind_logout_btn()
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     $.get('../../templates/camp_step1.htm', function(template) {
         person={"key":"value"}
@@ -83,22 +86,22 @@
     });
 })
 
-function loading(){
-$('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
-}
-  function bind_logout_btn(){
-     $("#logout_btn").bind("click",function(){
-      $.ajax({
-       url: baseConf.api_prefix+"/delete/login/@self",
-       type: "GET",
-       success: function(data){
-        if (data.status=="true") {
-         location.href="http://"+document.domain;
-     }
- }
-})
-  })
- }
+      function loading(){
+        $('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
+    }
+    function bind_logout_btn(){
+       $("#logout_btn").bind("click",function(){
+          $.ajax({
+             url: baseConf.api_prefix+"/delete/login/@self",
+             type: "GET",
+             success: function(data){
+                if (data.status=="true") {
+                   location.href="http://"+document.domain;
+               }
+           }
+       })
+      })
+   }
 </script>
 </body>
 </html>
