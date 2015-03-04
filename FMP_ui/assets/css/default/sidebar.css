@@ -1,4 +1,4 @@
-//注：样式继承自bootstrap
+/* 注：样式继承自bootstrap */
 /* make sidebar nav vertical */ 
 @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
