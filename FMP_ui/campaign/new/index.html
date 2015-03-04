@@ -60,7 +60,7 @@
     $.get('../../templates/camp.sidebar.htm',function(template) {
         allTmpl.navibar=template;
         $.get('../../templates/camp_step1.htm',function(template) {
-            allTmpl.navibar=template;
+            allTmpl.camp_step1=template;
             $("#main-loading").remove()
             $.tmpl(allTmpl.navibar,null).appendTo('#sidebar-area');
             $.tmpl(allTmpl.camp_step1, null).appendTo('#ad_edit_area');
