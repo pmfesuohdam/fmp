@@ -118,6 +118,11 @@ if (!$conf['debug']) {
 }
 /* }}} */
 
+// 选择的广告类型Objective
+define('__FMP_ADTYPE_MUTIPRO',  1); //Multi-Product Ads(Website Clicks) 
+define('__FMP_ADTYPE_NEWSFEED', 2); //News feed(Website Clicks) 
+define('__FMP_ADTYPE_RIGHTCOL', 3); //Right-Hand Column(Website Clicks) 
+
 // 业务错误代码
 define('__FMP_ERR_UPDATE_ADACCOUNT',  10553);
 define('__FMP_ERR_UPDATE_FMP_FB_REL', 10554);
