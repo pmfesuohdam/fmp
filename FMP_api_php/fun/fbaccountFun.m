@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-04 10:26:15
+  | Last-Modified: 2015-03-04 11:11:49
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -76,6 +76,16 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             for ($i=0;$i<sizeof($tempArr);$i++) {
                 if (in_array($tempArr[$i]['id'],$notImportAccounts)) {
                     $adaccounts['adaccounts'][$i]['imported']=1;
+                    //如果已经导入了，但是accesstoken过期，上面无法获取的话，前端要尽量显示，因为已经保存在数据库里了
+                    if (empty($adaccounts['adaccounts'][$i]['name'])) {
+                        include(dirname(__FILE__).'/../inc/conn.php');
+                        $qid=intval($adaccounts['adaccounts'][$i]['id']);
+                        $query3="select ad_account_name from t_fb_account where ad_account_id=\"{$qid}\" limit 1;";
+                        if ($result3=$link->query($query3)) {
+                            $row=mysqli_fetch_assoc($result3);
+                            $adaccounts['adaccounts'][$i]['name']=$row['ad_account_name'];
+                        }
+                    }
                 }
             }
 
