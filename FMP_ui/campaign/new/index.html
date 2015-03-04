@@ -3,52 +3,54 @@
 <head>
   <meta charset="utf-8">
   <title>new campaign</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150304113634">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150304113634">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150304113634">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150304113634">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150304113634">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css">
-  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js"></script>
-  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js"></script>
-  <script type="text/javascript" src="../../assets/js/base.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150304113634">
+  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150304113634"></script>
+  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150304113634"></script>
+  <script type="text/javascript" src="../../assets/js/base.js?t=20150304113634"></script>
 </head>
 <body youdao="bind">
     <div class="wrapper">
         <!--fmp_header-->
+        <div class="header">
+            <a href="/" title="visit fmp"><h1 class="mainlogo"><u style="display:none;">FMP</u></h1></a>
+            <span class="beta">beta</span>
+            <div class="userarea"><a href="/profiles/" id="user_profile_a"></a> | <a class="btn btn-sm btn-info" href="../" id="logout_btn" onclick="javascript:return false;">logout</a></div>
+            <span class="description">a facebook  partner</span>
+        </div>
+        <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
+
         <!--fmp_navibar-->
+        <div class="navibar">
+            <div class="navi">
+                <ul>
+                    <li><a href="../../../camps/">YOUR CAMPAIGNS</a></li>
+                    <li><a href="../../../campaign/new/">NEW CAMPAIGN</a></li>
+                    <li><a href="../../../report/">REPORT</a></li>
+                    <li><a href="../../../settings/">SETTINGS</a></li>
+                </ul>
+                <div id="camp_select_div">
+                    select camp:
+                    <select>
+                        <option>please select</option>
+                        <option>xxxxx</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <!--/fmp_navibar-->
+
         <!--main-->
         <div class="main-content">
             <div class="row" id="main-area">
                 <div class="col-sm-2" id="sidebar-area">
                     <!--sidebar-->
-                    <div class="sidebar-nav">
-                        <div class="navbar navbar-default" role="navigation">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <span class="visible-xs navbar-brand">Sidebar menu</span>
-                            </div>
-                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#">Campaign</a></li>
-                                    <li><a href="#">Tracking</a></li>
-                                    <li class="dropdown">
-                                    </li><li><a href="#">Audience</a></li>
-                                    <li><a href="#">Design</a></li>
-                                    <li><a href="#">Publish</a></li>
-                                    <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
-                                </ul>
-                            </div><!--/.nav-collapse -->
-                        </div>
-                    </div>
                     <!--/sidebar-->
                 </div>
                 <div class="col-sm-9" id="ad_edit_area">
@@ -59,6 +61,10 @@
         </div>
         <!--/main-->
         <!--fmp_footer-->
+        <div class="footer">
+            <h2 class="logo">madhouse</h2>
+            <h3 class="credits">Developed by Madhouse Inc</h3>
+        </div>
         <!--/fmp_footer-->
     </div>
     <script>
@@ -78,12 +84,18 @@
                 }
             })
           bind_logout_btn()
+    })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
-    $.get('../../templates/camp_step1.htm', function(template) {
-        person={"key":"value"}
-        $("#main-loading").remove()
-        $.tmpl(template, person).appendTo('#ad_edit_area');
-    });
+    var allTmpl={navibar:"",camp_step1:""};
+    $.get('../../templates/camp.sidebar.htm',function(template) {
+        allTmpl.navibar=template;
+        $.get('../../templates/camp_step1.htm',function(template) {
+            allTmpl.navibar=template;
+            $("#main-loading").remove()
+            $.tmpl(allTmpl.navibar,null).appendTo('#sidebar-area');
+            $.tmpl(allTmpl.camp_step1, null).appendTo('#ad_edit_area');
+        })
+    })
 })
 
       function loading(){
