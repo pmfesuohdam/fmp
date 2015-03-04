@@ -54,6 +54,7 @@
                 }
             })
           bind_logout_btn()
+          bind_proceed()
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     var allTmpl={navibar:"",camp_step1:""};
@@ -62,11 +63,6 @@
         $.get('../../templates/camp_step1.htm',function(template) {
             allTmpl.camp_step1=template;
             $("#main-loading").remove()
-            $("#jsProceed").on({
-                "click":function(){
-                alert("")
-                }
-            })
             $.tmpl(allTmpl.navibar,null).appendTo('#sidebar-area');
             $.tmpl(allTmpl.camp_step1, null).appendTo('#ad_edit_area');
         })
@@ -87,6 +83,13 @@
            }
        })
       })
+   }
+   function bind_proceed(){
+       $("#jsProceed").on({
+           "click":function(){
+           alert("")
+           }
+       })
    }
 </script>
 </body>
