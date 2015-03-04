@@ -54,7 +54,6 @@
                 }
             })
           bind_logout_btn()
-          bind_proceed()
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     var allTmpl={navibar:"",camp_step1:""};
@@ -83,13 +82,6 @@
            }
        })
       })
-   }
-   function bind_proceed(){
-       $("#jsProceed").on({
-           "click":function(){
-           alert("")
-           }
-       })
    }
 </script>
 </body>
