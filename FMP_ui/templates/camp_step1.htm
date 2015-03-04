@@ -32,31 +32,3 @@
                     <a id="jsProceed" class="btn btn-lg btn-success" href="#step/2">Proceed</a>
                   </footer>
                 </form>
-                <!--TODO 此段js先写在这里，以后转为文件，远端调用-->
-                <script>
-                $(document).ready(function(){
-               //     bind_proceed()
-                })
-                function postStep1(){
-                    $.ajax({			
-                        url: baseConf.api_prefix+"/update/campaign/@step1",
-                        context: document.body, 
-                        type: "POST",
-                        data:{ 
-                            billingAccount: $("#billingAccount").val(),
-                            campaignName: $("#campaignName").val(),
-                            buyingType: $("#buyingType").val(),
-                            objective: $("#buyingType").val()
-                            },
-                        success: function(data) {
-                        } 
-                    })
-                }
-               function bind_proceed(){
-                   $("#jsProceed").on({
-                       "click":function(){
-                       alert("")
-                       }
-                   })
-               }
-                </script>
