@@ -34,13 +34,13 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
     case(__OPERATION_READ): //发送当前保存的数据 
         if ($_SERVER['REQUEST_METHOD']=='GET'){
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            break;
         }
+        break;
     case(__OPERATION_UPDATE): //接受提交数据 
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            break;
         }
+        break;
     }
 }
 
