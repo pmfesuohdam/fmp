@@ -103,8 +103,7 @@ $.when(
   })
 ).then(function() {
     $("#main-loading").remove()
-    console.log(gced)
-    $.tmpl(gced.tpl_sidebar,adaccounts.adaccounts).appendTo('#sidebar-area');
+    $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
     $.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
 });
 <!--}}}-->
