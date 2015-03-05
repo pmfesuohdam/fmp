@@ -1,0 +1,62 @@
+<h2>Spending</h2>
+<form>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6" style="padding-right:30px;border-right:1px solid rgb(207, 207, 207);">
+          <!--左侧编辑-->
+          <div class="form-group">
+                    <label for="budget">Budget</label>
+                    <div class="input-append">
+                      <input type="text" name="budget">
+                        <span class="add-on jsCurrency">$</span>
+                    </div>
+        </div>
+        <div class="form-group">
+                    <label for="location">Schedule Start</label>
+                    <div class="input-group date" id="dp0">
+                      <input type="text" class="form-control"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                    </div>
+                    <script>$('#dp0').datepicker({});</script>
+        </div>
+        <div class="form-group">
+                    <label for="location">Schedule End</label>
+                    <div class="input-group date" id="dp1">
+                      <input type="text" class="form-control"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                    </div>
+                    <script>$('#dp1').datepicker({});</script>
+        </div>
+        <div class="form-group">
+                    <label for="location">Ad Scheduling</label>
+                    <div class="input-group date" id="dp2">
+                      <input type="text" class="form-control"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                    </div>
+                    <script>$('#dp2').datepicker({});</script>
+        </div>
+        <!--/左侧编辑-->
+    </div>
+    <div class="col-md-6">
+      <!--右侧预览-->
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">At least</h3>
+          </div>
+          <div class="panel-body">
+          xxx{{= num}} ads 
+          </div>
+     </div>
+      <div class="panel panel-default" id="step3_panel_detail" style="min-height:500px">
+          <div class="panel-heading">
+              <h3 class="panel-title">Details</h3>
+          </div>
+          <div class="panel-body">
+          detailxxx{{= detail}}
+          </div>
+     </div>
+     <!--/右侧预览-->
+  </div>
+</div>
+</div>
+<footer style="text-align:center">
+    <a id="jsProceed" class="btn btn-lg btn-success" href="#step/4" onclick="goStep5()">Proceed</a>
+</footer>
+</form>
