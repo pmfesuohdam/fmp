@@ -92,7 +92,6 @@ $.when(
   // Get the all available ad accounts
   $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
       gced.adaccounts=data
-      console.log(data)
   }),
   $.get(baseConf.domain+"/templates/camp.sidebar.htm", function(data) {
      gced.tpl_sidebar=data
@@ -158,7 +157,6 @@ $.when(
       n=url.indexOf("#step")
       if (n>=0){ //执行指定的路由
       url_sub=url.substr(n)
-      alert(url_sub)
       sp_arr=url_sub.split("#step/")
       //会调用第"+sp_arr[1]+"页的方法
       return parseInt(sp_arr[1])
