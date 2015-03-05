@@ -5,34 +5,38 @@
                   <label>
                     <input type="checkbox"> Tracking with Google Analytics
                     </label>
-                </div>
+                  </div>
                     <label for="">Source</label>
                     <input type="text" class="form-control" id="source" placeholder="Enter Source" value="{{= ga_source}}">
                     <label for="">Medium</label>
                     <input type="text" class="form-control" id="medium" placeholder="Enter Medium" value="{{= ga_medium}}">
                     <label for="">Name</label>
                     <input type="text" class="form-control" id="name" placeholder="Enter Name" value="{{= ga_name}}">
-                  </div>
+                </div>
                 <div class="form-group">
-                  <label for="campaignName">Name</label>
-                  <input type="text" class="form-control" id="campaignName" placeholder="Enter name" value="{{= campaignName}}">
+                  <hr>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox">
+                  <label>
+                    <input type="checkbox">Track with SigMad tracking code
+                  </label>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Buying Type</label>
-                    <select class="form-control" id="buyingType">
-                      {{each(i,buytype) buyingType}}
-                      <option value="{{= buytype.value}}" {{if buytype.selected}}selected="selected"{{/if}}>{{= buytype.text}}</option>
-                      {{/each}}
-                    </select>
+                    <label for="">CVID</label>
+                    <input type="text" class="form-control" id="source" placeholder="Enter CVID" value="{{= sm_cvid}}">
+                </div>
+                <div class="form-group">
+                  <hr>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                    <input type="checkbox">Facebook conversion Pixel
+                    </label>
                   </div>
-                  <div class="form-group">
-                    <label for="Objective">Objective</label>
-                    <select class="form-control" id="objective">
-                      {{each(i,obj) objective}}
-                      <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
+                    <label for="">Conversion pixel</label>
+                    <input type="text" class="form-control" id="source" placeholder="Enter Conversion pixel" value="{{= fb_cvpx}}">
+                </div>
                   <footer style="text-align:center">
                     <a id="jsProceed" class="btn btn-lg btn-success" href="#step/3" onclick="goStep3()">Proceed</a>
                   </footer>
