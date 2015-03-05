@@ -12,69 +12,7 @@
                     </div>
         </div>
         <div class="form-group">
-                    <label for="location">Locations</label>
-                    <select class="form-control" id="location">
-                      {{each(i,obj) objective}}
-                      <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>
-                      {{/each}}
-                    </select>
-        </div>
-        <div class="form-group">
-          <label for="split">split</label>
-          <div class="radio">
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
-              yes
-            </label>
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
-              no
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="intval">intval</label>
-              <select class="form-control" id="intval">
-                {{each(i,itv) intval}}
-                <option value="{{= itv.value}}" {{if itv.selected}}selected="selected"{{/if}}>{{= itv.text}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-          <label for="age">age</label>
-              <select class="form-control" id="age">
-                {{each(i,ag) age}}
-                <option value="{{= ag.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= ag.text}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-          <label for="split">split</label>
-          <div class="radio">
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
-              yes
-            </label>
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
-              no
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="gender">gender</label>
-              <select class="form-control" id="gender">
-                {{each(i,gd) gender}}
-                <option value="{{= gd.value}}" {{if gd.selected}}selected="selected"{{/if}}>{{= gd.text}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-            <input type="checkbox"> Saved as tempalates
-            </label>
-          </div>
+                    <label for="location">Schedule Start</label>
         </div>
         <!--/左侧编辑-->
     </div>
