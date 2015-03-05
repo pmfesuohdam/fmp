@@ -14,20 +14,44 @@
   <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js"></script>
   <script type="text/javascript" src="../../assets/js/base.js"></script>
 </head>
-<body youdao="bind">
+<body>
     <div class="wrapper">
         <!--fmp_header-->
+        <div class="header">
+            <a href="/" title="visit fmp"><h1 class="mainlogo"><u style="display:none;">FMP</u></h1></a>
+            <span class="beta">beta</span>
+            <div class="userarea"><a href="/profiles/" id="user_profile_a"></a> | <a class="btn btn-sm btn-info" href="../" id="logout_btn" onclick="javascript:return false;">logout</a></div>
+            <span class="description">a facebook  partner</span>
+        </div>
+        <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
         <!--fmp_navibar-->
+        <div class="navibar">
+            <div class="navi">
+                <ul>
+                    <li><a href="../../../camps/">YOUR CAMPAIGNS</a></li>
+                    <li><a href="../../../campaign/new/">NEW CAMPAIGN</a></li>
+                    <li><a href="../../../report/">REPORT</a></li>
+                    <li><a href="../../../settings/">SETTINGS</a></li>
+                </ul>
+                <div id="camp_select_div">
+                    select camp:
+                    <select>
+                        <option>please select</option>
+                        <option>xxxxx</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <!--/fmp_navibar-->
         <!--main-->
         <div class="main-content">
-            <div class="row" id="main-area">
-                <div class="col-sm-2" id="sidebar-area">
+            <div class="row" id="main-area" style="text-align:center">
+                <div class="col-sm-2" id="sidebar-area" style="text-align:left">
                     <!--sidebar-->
                     <!--/sidebar-->
                 </div>
-                <div class="col-sm-9" id="ad_edit_area">
+                <div class="col-sm-9" id="ad_edit_area" style="text-align:left">
                     <!--step1-->
                     <!--/step1-->
                 </div>
@@ -35,6 +59,10 @@
         </div>
         <!--/main-->
         <!--fmp_footer-->
+        <div class="footer">
+            <h2 class="logo">madhouse</h2>
+            <h3 class="credits">Developed by Madhouse Inc</h3>
+        </div>
         <!--/fmp_footer-->
     </div>
     <script>
@@ -56,10 +84,9 @@
           bind_logout_btn()
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
-    var allTmpl={navibar:"",camp_step1:""};
     //新的方法一次性下载全部模板<!--{{{-->
     //gced:global campaign edit data
-    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:""};
+    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:""};
 $.when(
   // Get the all available ad accounts
   $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
@@ -71,6 +98,9 @@ $.when(
   }),
   $.get(baseConf.domain+"/templates/camp_step1.htm", function(data) {
      gced.tpl_step1=data
+  }),
+  $.get(baseConf.domain+"/templates/camp_step2.htm", function(data) {
+     gced.tpl_step2=data
   })
 ).then(function() {
     $("#main-loading").remove()
@@ -80,7 +110,7 @@ $.when(
 <!--}}}-->
 
       function loading(){
-        $('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
+        $('#main-area').append("<div id=\"main-loading\" style=\"margin-left:auto;margin-right:auto;padding-top:200px;color:#bbb;font-size:30px\">loading...</div>")
     }
     function bind_logout_btn(){
        $("#logout_btn").bind("click",function(){
@@ -95,6 +125,10 @@ $.when(
        })
       })
    }
+  function goStep2(){
+      $("#ad_edit_area").html("");
+    $.tmpl(gced.tpl_step2,null).appendTo('#ad_edit_area');
+  }
 </script>
 </body>
 </html>
