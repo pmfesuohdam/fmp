@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css">
   <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js"></script>
   <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js"></script>
   <script type="text/javascript" src="../../assets/js/base.js"></script>
@@ -107,7 +108,9 @@ $.when(
   }),
   $.get(baseConf.domain+"/templates/camp_step4.htm", function(data) {
      gced.tpl_step4=data
-  })
+  }),
+  $.getScript( "/assets/js/libs/prettify.min.js" ),
+  $.getScript( "/assets/js/libs/bootstrap-datepicker.js" )
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
@@ -133,15 +136,15 @@ $.when(
    }
   function goStep2(){
       $("#ad_edit_area").html("");
-    $.tmpl(gced.tpl_step2,null).appendTo('#ad_edit_area');
+      $.tmpl(gced.tpl_step2,null).appendTo('#ad_edit_area');
   }
   function goStep3(){
       $("#ad_edit_area").html("");
-    $.tmpl(gced.tpl_step3,null).appendTo('#ad_edit_area');
+      $.tmpl(gced.tpl_step3,null).appendTo('#ad_edit_area');
   }
   function goStep4(){
       $("#ad_edit_area").html("");
-    $.tmpl(gced.tpl_step4,null).appendTo('#ad_edit_area');
+      $.tmpl(gced.tpl_step4,null).appendTo('#ad_edit_area');
   }
 </script>
 </body>
