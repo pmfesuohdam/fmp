@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <title>new campaign</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150305160121">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150305160121">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150305160121">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150305160121">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150305160121">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css">
-  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js"></script>
-  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js"></script>
-  <script type="text/javascript" src="../../assets/js/base.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150305160121">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150305160121">
+  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150305160121"></script>
+  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150305160121"></script>
+  <script type="text/javascript" src="../../assets/js/base.js?t=20150305160121"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -26,6 +26,7 @@
         </div>
         <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
+
         <!--fmp_navibar-->
         <div class="navibar">
             <div class="navi">
@@ -45,6 +46,7 @@
             </div>
         </div>
         <!--/fmp_navibar-->
+
         <!--main-->
         <div class="main-content">
             <div class="row" id="main-area" style="text-align:center">
@@ -112,8 +114,8 @@ $.when(
   $.get(baseConf.domain+"/templates/camp_step5.htm", function(data) {
      gced.tpl_step5=data
   }),
-  $.getScript( "/assets/js/libs/prettify.min.js" ),
-  $.getScript( "/assets/js/libs/bootstrap-datepicker.js" )
+  $.getScript( "/assets/js/libs/prettify.min.js?t=20150305160121" ),
+  $.getScript( "/assets/js/libs/bootstrap-datepicker.js?t=20150305160121" )
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
@@ -152,6 +154,17 @@ $.when(
   function goStep5(){
       $("#ad_edit_area").html("");
       $.tmpl(gced.tpl_step5,null).appendTo('#ad_edit_area');
+  }
+  function routeCampUrlAct(){
+      url=window.location.href
+      n=url.indexOf("#step")
+      if (n>=0){ //执行指定的路由
+      url_sub=url.substr(n)
+      alert(url_sub)
+      sp_arr=url_sub.split("#step/")
+      alert("会调用第"+sp_arr[1]+"页的方法" )
+      } else { //不然就是第一页
+      }
   }
 </script>
 </body>
