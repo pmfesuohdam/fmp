@@ -142,22 +142,6 @@ $.when(
       $("#ad_edit_area").html("");
       $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
    }
-  function goStep2(){
-      $("#ad_edit_area").html("");
-      $.tmpl(gced.tpl_step2,null).appendTo('#ad_edit_area');
-  }
-  function goStep3(){
-      $("#ad_edit_area").html("");
-      $.tmpl(gced.tpl_step3,null).appendTo('#ad_edit_area');
-  }
-  function goStep4(){
-      $("#ad_edit_area").html("");
-      $.tmpl(gced.tpl_step4,null).appendTo('#ad_edit_area');
-  }
-  function goStep5(){
-      $("#ad_edit_area").html("");
-      $.tmpl(gced.tpl_step5,null).appendTo('#ad_edit_area');
-  }
   function routeCampUrlAct(){
       url=window.location.href
       n=url.indexOf("#step")
