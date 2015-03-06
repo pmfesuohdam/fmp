@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 
-<project name="release" default="add-version-nu" basedir=".">
+<project name="release" default="add-version-tmpl" basedir=".">
 
     <property file="build.properties"/>
+    <!-- add version for htm template reference in html -->
+    <target name="add-version-tmpl" depends="add-version-nu">
+        <replaceregexp byline="true" encoding="utf-8" flags="igm">
+            <regexp pattern="${HtmTemplateRefRegexp}"/>
+            <substitution expression="\2\?t=${timestamp}"/>
+            <fileset dir=".">
+                <include name="**/*.htm"/>
+            </fileset>
+        </replaceregexp>
+    </target>
     
     <!-- add version for js/css reference in html -->
     <target name="add-version-nu" depends="add_page_footer">
