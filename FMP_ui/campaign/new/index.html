@@ -141,7 +141,14 @@ $.when(
        })
       })
    }
+   function changeNav(step){
+       for(i=0;i<6;i++){
+           $("#sidebar-area   .sidebar-navbar-collapse > ul > li:nth-child("+i+")").attr('class','')
+       }
+       $("#sidebar-area   .sidebar-navbar-collapse > ul > li:nth-child("+step+")").attr('class','active')
+   }
    function goStep(step){
+       changeNav(step)
        switch(step){
            case(2):
            d={
@@ -180,6 +187,7 @@ $.when(
    function goStepPram(obj){
       step=obj.step
       pram=obj.pram
+      changeNav(step)
       $("#ad_edit_area").html("");
       $.tmpl(gced["tpl_step"+step],pram).appendTo('#ad_edit_area');
    }
