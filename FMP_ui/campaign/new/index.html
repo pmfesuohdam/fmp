@@ -155,6 +155,7 @@ $.when(
                type: "POST",
                data:d,
                success: function(data){
+                   $("code").html("")
                    if (data.status=="true") {
                        $("#ad_edit_area").html("");
                        $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
