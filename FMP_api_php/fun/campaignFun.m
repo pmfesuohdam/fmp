@@ -53,13 +53,14 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
                 $buyingType[]=array('value'=>$buytype_name,'text'=>$buytype_desc,'selected'=>$selected);
             }
             $objective=null;
-            $objective[]=array('value'=>'1','text'=>'Multi-Product Ads(Website Clicks)','selected'=>'');
-            $objective[]=array('value'=>'2','text'=>'News feed(Website Clicks)','selected'=>'true');
-            $objective[]=array('value'=>'3','text'=>'Right-Hand Column(Website Clicks)','selected'=>'');
+            foreach($AD_TYPES as $adtype=>$adtype_desc){
+                $selected=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective']==$adtype?true:false;
+                $objective[]=array('value'=>$adtype,'text'=>$adtype_desc,'selected'=>$selected);
+            }
             $ret=array(
                 'billingAccount'=>$adaccounts,
                 'campaignName'=>!empty($_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'])?
-                $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName']:'test camp',
+                $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName']:'',
                 'buyingType'=>$buyingType,
                 'objective'=>$objective
             );

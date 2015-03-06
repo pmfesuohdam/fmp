@@ -130,6 +130,11 @@ if (!$conf['debug']) {
 define('__FMP_ADTYPE_MUTIPRO',  1); //Multi-Product Ads(Website Clicks) 
 define('__FMP_ADTYPE_NEWSFEED', 2); //News feed(Website Clicks) 
 define('__FMP_ADTYPE_RIGHTCOL', 3); //Right-Hand Column(Website Clicks) 
+$AD_TYPES=array(
+    __FMP_ADTYPE_MUTIPRO=>"Multi-Product Ads(Website Clicks)",
+    __FMP_ADTYPE_NEWSFEED=>"News feed(Website Clicks)",
+    __FMP_ERR_SELECT_ACCTOK=>"Right-Hand Column(Website Clicks)"
+);
 
 // 业务错误代码
 define('__FMP_ERR_UPDATE_ADACCOUNT',  10553);
