@@ -28,7 +28,7 @@ if ($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 } 
 
 //TODO 做完第一步就可以分一分文件了
-//发布广告第一步
+/*{{{发布广告第一步*/
 if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ): //发送当前保存的数据 
@@ -133,5 +133,16 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
         break;
     }
 }
+/*}}}*/
 
+/*{{{发布广告第二步*/
+if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
+    switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if ($_SERVER['REQUEST_METHOD']=='GET'){
+        }
+        break;
+    }
+}
+/*}}}*/
 ?>

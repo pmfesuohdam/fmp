@@ -146,9 +146,9 @@ $.when(
            $("#sidebar-area   .sidebar-navbar-collapse > ul > li:nth-child("+i+")").attr('class','')
        }
        $("#sidebar-area   .sidebar-navbar-collapse > ul > li:nth-child("+step+")").attr('class','active')
+       location.href=baseConf.domain+"/campaign/new/#step/"+step
    }
    function goStep(step){
-       changeNav(step)
        switch(step){
            case(2):
            d={
@@ -166,6 +166,7 @@ $.when(
                    if (data.status=="true") {
                        $("#ad_edit_area").html("");
                        $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+                       changeNav(step)
                    } else {
                    err_msg=data.err_msg
                    for (i=0;i<err_msg.length;i++) {
@@ -179,6 +180,7 @@ $.when(
            })
            break;
            default:
+               changeNav(step)
                $("#ad_edit_area").html("");
                $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
            break;
