@@ -44,7 +44,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
             @mysqli_close($link);
             $adaccounts=null;
             foreach($rows as $adaccountInfo) {
-                $adaccounts[]=array('id'=>$adaccountInfo['id'],'name'=>$adaccountInfo['name'],'selected'=>'');
+                $selected=($_SESSION[__SESSION_CAMP_EDIT]['step1']['billingAccount']==$adaccountInfo['id'])?true:false;
+                $adaccounts[]=array('id'=>$adaccountInfo['id'],'name'=>$adaccountInfo['name'],'selected'=>"$selected");
             }
             $buyingType=null;
             $buyingType[]=array('value'=>'cpc','text'=>'CPC(Pay for Clicks)','selected'=>'');
@@ -56,7 +57,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
             $objective[]=array('value'=>'3','text'=>'Right-Hand Column(Website Clicks)','selected'=>'');
             $ret=array(
                 'billingAccount'=>$adaccounts,
-                'campaignName'=>'test camp',
+                'campaignName'=>!empty($_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'])?
+                $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName']:'test camp',
                 'buyingType'=>$buyingType,
                 'objective'=>$objective
             );

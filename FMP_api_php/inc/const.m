@@ -144,6 +144,7 @@ define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');
 define('__SESSION_FMP_UID', 'fmp_uid');
 define('__SESSION_FMP_USERNAME', 'username');
 define('__SESSION_FB_UID', 'fb_uid');
+define('__SESSION_CAMP_EDIT', 'camp_edit');
 
 //buyingType的种类
 define('__BYT_CPC', 'cpc');
