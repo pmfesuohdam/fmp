@@ -90,8 +90,35 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
                 }
             }
             @mysqli_close($link);
+            //campaignName要满足长度正常(70内),不为空,数据库中没有重复
             $err_item=null;
+            if (empty($_POST['campaignName'])) {
+                $err_item['campaignName']='campaign name must be not empty';
+                $msgs['err_msg'][]=$err_item;
+            } elseif(strlen($_POST['campaignName'])>70) {
+                $err_item['campaignName']='campaign name is too long';
+                $msgs['err_msg'][]=$err_item;
+            }
+            //buyingType要满足必须是合法的
+            $err_item=null;
+            if (!in_array($_POST['buyingType'],array(__BYT_CPC,__BYT_CPM,__BYT_OCPM,__BYT_CPA))) {
+                $err_item['buyingType']='buying type is not valid';
+                $msgs['err_msg'][]=$err_item;
+            }
+            //objective必须合法
+            $err_item=null;
+            if (!in_array($_POST['objective'],array(__OBJT_MULTI_PRODUCT,__OBJT_NEWSFEED,__OBJT_RIGHTCOL))) {
+                $err_item['objective']='objective is not valid';
+                $msgs['err_msg'][]=$err_item;
+            }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                //没有问题就保存
+                $_SESSION['camp_edit']['step1']=array(
+                    'billingAccount'=>$_POST['billingAccount'],
+                    'campaignName'=>$_POST['campaignName'],
+                    'buyingType'=>$_POST['buyingType'],
+                    'objective'=>$_POST['objective']
+                );
                 $msgs['status']="true";
             } else {
                 $msgs['status']="false";

@@ -145,6 +145,18 @@ define('__SESSION_FMP_UID', 'fmp_uid');
 define('__SESSION_FMP_USERNAME', 'username');
 define('__SESSION_FB_UID', 'fb_uid');
 
+//buyingType的种类
+define('__BYT_CPC', 'cpc');
+define('__BYT_CPM', 'cpm');
+define('__BYT_OCPM','ocpm');
+define('__BYT_CPA', 'cpa');
+
+//objective的种类
+define('__OBJT_MULTI_PRODUCT', 1);
+define('__OBJT_NEWSFEED',      2);
+define('__OBJT_RIGHTCOL',      3);
+
+
 // 默认用户常量
 
 // 权限常量
