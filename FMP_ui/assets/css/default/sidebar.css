@@ -1,23 +1,40 @@
-/* 注：样式继承自bootstrap */
-/* make sidebar nav vertical */ 
-@media (min-width: 768px) {
-    .sidebar-nav .navbar .navbar-collapse {
-        padding: 0;
-        max-height: none;
-        min-height:450px;
-    }
-    .sidebar-nav .navbar ul {
-        float: none;
-    }
-    .sidebar-nav .navbar ul:not {
-        display: block;
-    }
-    .sidebar-nav .navbar li {
-        float: none;
-        display: block;
-    }
-    .sidebar-nav .navbar li a {
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
+#fmp_leftmenu {
+    width: 200px;
+    border-style: solid solid none solid;
+    border-color: #94AA74;
+    border-size: 1px;
+    border-width: 1px;
+    margin: 10px;
+}
+    
+#fmp_leftmenu li a {
+    height: 32px;
+    voice-family: "\"}\""; 
+    voice-family: inherit;
+    height: 24px;
+    text-decoration: none;
+}   
+    
+#fmp_leftmenu li a:link, #fmp_leftmenu li a:visited {
+    color: #5E7830;
+    display: block;
+    background: url(images/fmp_leftmenu1.gif);
+    padding: 8px 0 0 10px;
+}
+    
+#fmp_leftmenu li a:hover {
+    color: #26370A;
+    background: url(images/fmp_leftmenu1.gif) 0 -32px;
+    padding: 8px 0 0 10px;
+}
+    
+#fmp_leftmenu li a:active {
+    color: #26370A;
+    background: url(images/fmp_leftmenu1.gif) 0 -64px;
+    padding: 8px 0 0 10px;
+}
+#fmp_leftmenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
