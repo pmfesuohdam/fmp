@@ -66,6 +66,37 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
         break;
     case(__OPERATION_UPDATE): //接受提交数据 
         if ($_SERVER['REQUEST_METHOD']=='POST'){
+            //billing account需要满足格式，是数字，不为空，长度正常(70内)，数据库中有
+            //TODO 还要检查billing是否属于本帐号!注意安全，稍后加上
+            $err_item=null;
+            $msgs=null;
+            if (empty($_POST['billingAccount'])) {
+                $err_item['billingAccount']='billing account must be not empty';
+                $msgs['err_msg'][]=$err_item;
+            } elseif(!filter_var(intval($_POST['billingAccount']),FILTER_VALIDATE_INT)) {
+                $err_item['billingAccount']='billing account must be integer';
+                $msgs['err_msg'][]=$err_item;
+            } elseif(strlen($_POST['billingAccount'])>20) {
+                $err_item['billingAccount']='billing account is too long';
+                $msgs['err_msg'][]=$err_item;
+            } else {
+                include(dirname(__FILE__).'/../inc/conn.php');
+                $query="select * from t_fb_account where ad_account_id={$_POST['billingAccount']};";
+                $result=$link->query($query);
+                if ( !($row = mysqli_fetch_assoc($result)) ) {
+                    $err_item['billingAccount']='billingAccount not exists';
+                    $msgs['err_msg'][]=$err_item;
+                    @mysqli_close($link);
+                }
+            }
+            @mysqli_close($link);
+            $err_item=null;
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']="true";
+            } else {
+                $msgs['status']="false";
+            }
+            echo json_encode($msgs);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
         break;
