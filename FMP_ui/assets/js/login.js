@@ -1,8 +1,16 @@
 $(document).ready(function(){
 	$("code").css("display","none")
+  $("#email").keydown(function(e){
+    var curKey = e.which;
+    if(curKey == 13){$("#passwd").focus()}
+    })
+  $("#passwd").keydown(function(e){ 
+    var curKey = e.which; 
+    if(curKey == 13){$(".login_btn").click()}})
 	$(".login_btn").bind("click",function(){
 		var btn=$(this)
 		btn.val("logining...")
+    $(this).attr("disabled",'disabled')
 		$.ajax({
 			url: baseConf.api_prefix+"/update/login/@self", 
 			context: document.body, 
@@ -15,7 +23,6 @@ $(document).ready(function(){
                 $("#passwd+code").text("")
                 err_msg=data.err_msg
                 for (i=0;i<err_msg.length;i++) {
-                  //console.log(err_msg[i])
                   for ( var id in err_msg[i] ){
                     alert_dom_id="#"+id+"+code"
                     $(alert_dom_id).text(err_msg[i][id])
@@ -24,6 +31,7 @@ $(document).ready(function(){
             $(function(){
                 function show(){
                     btn.val("login")
+                    $(".login_btn").attr("disabled",false)
                 }
                 setTimeout(show,1000);
             })
