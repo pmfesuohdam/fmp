@@ -151,6 +151,12 @@ define('__BYT_CPC', 'cpc');
 define('__BYT_CPM', 'cpm');
 define('__BYT_OCPM','ocpm');
 define('__BYT_CPA', 'cpa');
+$BYT_ARR=array(
+    __BYT_CPC=>'CPC(Pay for Clicks)',
+    __BYT_CPM=>'CPM(Pay for impressions)',
+    __BYT_OCPM=>'OCPM(Optimize for clicks)',
+    __BYT_CPA=>'CPA(Pay for Action)'
+);
 
 //objective的种类
 define('__OBJT_MULTI_PRODUCT', 1);

@@ -48,9 +48,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
                 $adaccounts[]=array('id'=>$adaccountInfo['id'],'name'=>$adaccountInfo['name'],'selected'=>"$selected");
             }
             $buyingType=null;
-            $buyingType[]=array('value'=>'cpc','text'=>'CPC(Pay for Clicks)','selected'=>'');
-            $buyingType[]=array('value'=>'cpm','text'=>'CPM(Pay for impressions)','selected'=>'true');
-            $buyingType[]=array('value'=>'ocpm','text'=>'OCPM(Optimize for clicks)','selected'=>'');
+            foreach ($BYT_ARR as $buytype_name=>$buytype_desc){
+                $selected=$_SESSION[__SESSION_CAMP_EDIT]['step1']['buyingType']==$buytype_name?"true":"false";
+                $buyingType[]=array('value'=>$buytype_name,'text'=>$buytype_desc,'selected'=>$selected);
+            }
             $objective=null;
             $objective[]=array('value'=>'1','text'=>'Multi-Product Ads(Website Clicks)','selected'=>'');
             $objective[]=array('value'=>'2','text'=>'News feed(Website Clicks)','selected'=>'true');
