@@ -1,7 +1,7 @@
 <h2>Create Campaign</h2>
               <form>
                 <div class="form-group">
-                  <label for="adAccount">Billing Account</label>
+                  <label for="billingAccount">Billing Account<code></code></label>
                     <select class="form-control" id="billingAccount">
                       {{each(i,adaccount) billingAccount}}
                       <option value="{{= adaccount.id}}" {{if adaccount.selected}}selected="selected"{{/if}}>{{= adaccount.id}} {{= adaccount.name}}</option>
@@ -9,11 +9,11 @@
                     </select>
                   </div>
                 <div class="form-group">
-                  <label for="campaignName">Name</label>
+                  <label for="campaignName">Name<code></code></label>
                   <input type="text" class="form-control" id="campaignName" placeholder="Enter name" value="{{= campaignName}}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Buying Type</label>
+                    <label for="buyingType">Buying Type<code></code></label>
                     <select class="form-control" id="buyingType">
                       {{each(i,buytype) buyingType}}
                       <option value="{{= buytype.value}}" {{if buytype.selected}}selected="selected"{{/if}}>{{= buytype.text}}</option>
@@ -21,7 +21,7 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="Objective">Objective</label>
+                    <label for="objective">Objective<code></code></label>
                     <select class="form-control" id="objective">
                       {{each(i,obj) objective}}
                       <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>

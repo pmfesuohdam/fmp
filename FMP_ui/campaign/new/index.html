@@ -142,8 +142,39 @@ $.when(
       })
    }
    function goStep(step){
-      $("#ad_edit_area").html("");
-      $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+       switch(step){
+           case(2):
+           d={
+               billingAccount:$("#billingAccount").val(),
+               campaignName:$("#campaignName").val(),
+               buyingType:$("#buyingType").val(),
+               objective:$("#objective").val()
+           }
+           $.ajax({
+               url: baseConf.api_prefix+"/update/campaign/@step1", 
+               type: "POST",
+               data:d,
+               success: function(data){
+                   if (data.status=="true") {
+                       $("#ad_edit_area").html("");
+                       $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+                   } else {
+                   err_msg=data.err_msg
+                   for (i=0;i<err_msg.length;i++) {
+                       for ( var id in err_msg[i] ){
+                           alert_dom_id="label[for="+id+"] code"
+                           $(alert_dom_id).text(err_msg[i][id])
+                       }
+                  }
+               }
+               }
+           })
+           break;
+           default:
+               $("#ad_edit_area").html("");
+               $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+           break;
+       }
    }
    function goStepPram(obj){
       step=obj.step
