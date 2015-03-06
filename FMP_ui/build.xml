@@ -9,7 +9,7 @@
             <regexp pattern="${HtmTemplateRefRegexp}"/>
             <substitution expression="\2\?t=${timestamp}"/>
             <fileset dir=".">
-                <include name="**/*.htm"/>
+                <include name="**/*.html"/>
             </fileset>
         </replaceregexp>
     </target>
