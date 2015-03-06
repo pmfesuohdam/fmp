@@ -148,39 +148,35 @@ $.when(
    }
    function goStep(step){
        switch(step){
-           case(2):
-           d={
-               billingAccount:$("#billingAccount").val(),
-               campaignName:$("#campaignName").val(),
-               buyingType:$("#buyingType").val(),
-               objective:$("#objective").val()
-           }
+           case(step):
+           d=$("form").serialize()
+           save_step=step-1
            $.ajax({
-               url: baseConf.api_prefix+"/update/campaign/@step1", 
+               url: baseConf.api_prefix+"/update/campaign/@step"+save_step, 
                type: "POST",
                data:d,
                success: function(data){
                    $("code").html("")
                    if (data.status=="true") {
                        $("#ad_edit_area").html("");
-                       $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+                       $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area')
                        changeNav(step)
                    } else {
-                   err_msg=data.err_msg
-                   for (i=0;i<err_msg.length;i++) {
-                       for ( var id in err_msg[i] ){
-                           alert_dom_id="label[for="+id+"] code"
-                           $(alert_dom_id).text(err_msg[i][id])
-                       }
-                  }
-               }
+                       err_msg=data.err_msg
+                       for (i=0;i<err_msg.length;i++) {
+                           for ( var id in err_msg[i] ){
+                               alert_dom_id="label[for="+id+"] code"
+                               $(alert_dom_id).text(err_msg[i][id])
+                           }
+                      }
+                   }
                }
            })
            break;
            default:
                changeNav(step)
-               $("#ad_edit_area").html("");
-               $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area');
+               $("#ad_edit_area").html("")
+               $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area')
            break;
        }
    }
