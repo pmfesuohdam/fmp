@@ -10,11 +10,12 @@
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150306222125">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150306222125">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150306222125">
   <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/base.js?t=20150306222125"></script>
 </head>
-<body youdao="bind">
+<body>
     <div class="wrapper">
         <!--fmp_header-->
         <div class="header">
@@ -25,9 +26,6 @@
         </div>
         <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
-
-
-
 
         <!--fmp_navibar-->
         <div class="navibar">
@@ -49,17 +47,14 @@
         </div>
         <!--/fmp_navibar-->
 
-
-
-
         <!--main-->
         <div class="main-content">
-            <div class="row" id="main-area">
-                <div class="col-sm-2" id="sidebar-area">
+            <div class="row" id="main-area" style="text-align:center">
+                <div class="col-sm-2" id="sidebar-area" style="text-align:left">
                     <!--sidebar-->
                     <!--/sidebar-->
                 </div>
-                <div class="col-sm-9" id="ad_edit_area">
+                <div class="col-sm-9" id="ad_edit_area" style="text-align:left;float:left">
                     <!--step1-->
                     <!--/step1-->
                 </div>
@@ -92,13 +87,12 @@
           bind_logout_btn()
     })
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
-    var allTmpl={navibar:"",camp_step1:""};
     //新的方法一次性下载全部模板<!--{{{-->
     //gced:global campaign edit data
-    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:""};
+    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
 $.when(
   // Get the all available ad accounts
-  $.get(baseConf.api_prefix+"/get/fbaccount/@self", function(data) {
+  $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
       gced.adaccounts=data
   }),
   $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150306222125", function(data) {
@@ -106,16 +100,31 @@ $.when(
   }),
   $.get(baseConf.domain+"/templates/camp_step1.htm?t=20150306222125", function(data) {
      gced.tpl_step1=data
-  })
+  }),
+  $.get(baseConf.domain+"/templates/camp_step2.htm?t=20150306222125", function(data) {
+     gced.tpl_step2=data
+  }),
+  $.get(baseConf.domain+"/templates/camp_step3.htm?t=20150306222125", function(data) {
+     gced.tpl_step3=data
+  }),
+  $.get(baseConf.domain+"/templates/camp_step4.htm?t=20150306222125", function(data) {
+     gced.tpl_step4=data
+  }),
+  $.get(baseConf.domain+"/templates/camp_step5.htm?t=20150306222125", function(data) {
+     gced.tpl_step5=data
+  }),
+  $.getScript( "/assets/js/libs/prettify.min.js?t=20150306222125" ),
+  $.getScript( "/assets/js/libs/bootstrap-datepicker.js?t=20150306222125" )
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
-    $.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
+    //$.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
+    goStepPram({step:routeCampUrlAct(),pram:gced.adaccounts})
 });
 <!--}}}-->
 
       function loading(){
-        $('#ad_edit_area').append("<span id=\"main-loading\">loading...</a>")
+        $('#main-area').append("<div id=\"main-loading\" style=\"margin-left:auto;margin-right:auto;padding-top:200px;color:#bbb;font-size:30px\"><i class=\"fa fa-cog fa-spin fa-3x fa-fw margin-bottom\"></i>loading...</div>")
     }
     function bind_logout_btn(){
        $("#logout_btn").bind("click",function(){
@@ -130,6 +139,66 @@ $.when(
        })
       })
    }
+   function changeNav(step){
+       for(i=0;i<6;i++){
+           $("#fmp_leftmenu > ul > li:nth-child("+i+")").attr('class','')
+       }
+       $("#fmp_leftmenu > ul > li:nth-child("+step+")").attr('class','active')
+       location.href=baseConf.domain+"/campaign/new/#step/"+step
+   }
+   function goStep(step){
+       switch(step){
+           case(step):
+           d=$("form").serialize()
+           save_step=step-1
+           $.ajax({
+               url: baseConf.api_prefix+"/update/campaign/@step"+save_step, 
+               type: "POST",
+               data:d,
+               success: function(data){
+                   $("code").html("")
+                   if (data.status=="true") {
+                       $("#ad_edit_area").html("");
+                       $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area')
+                       changeNav(step)
+                   } else {
+                       err_msg=data.err_msg
+                       for (i=0;i<err_msg.length;i++) {
+                           for ( var id in err_msg[i] ){
+                               alert_dom_id="label[for="+id+"] code"
+                               $(alert_dom_id).text(err_msg[i][id])
+                           }
+                      }
+                   }
+               }
+           })
+           break;
+           default:
+               changeNav(step)
+               $("#ad_edit_area").html("")
+               $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area')
+           break;
+       }
+   }
+   function goStepPram(obj){
+      step=obj.step
+      pram=obj.pram
+      changeNav(step)
+      $("#ad_edit_area").html("");
+      $.tmpl(gced["tpl_step"+step],pram).appendTo('#ad_edit_area');
+   }
+  function routeCampUrlAct(){
+      url=window.location.href
+      n=url.indexOf("#step")
+      if (n>=0){ //执行指定的路由
+      url_sub=url.substr(n)
+      sp_arr=url_sub.split("#step/")
+      //会调用第"+sp_arr[1]+"页的方法
+      return parseInt(sp_arr[1])
+  } else { //不然就是第一页
+      return 1
+  }
+  }
 </script>
 </body>
 </html>
