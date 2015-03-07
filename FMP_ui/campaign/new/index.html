@@ -13,6 +13,8 @@
   <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150306222125">
   <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150306222125"></script>
+  <script type="text/javascript" src="../../assets/js/libs/bbq_init.js"></script>
+  <script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js"></script>
   <script type="text/javascript" src="../../assets/js/base.js?t=20150306222125"></script>
 </head>
 <body>
@@ -118,7 +120,6 @@ $.when(
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
-    //$.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
     goStepPram({step:routeCampUrlAct(),pram:gced.adaccounts})
 });
 <!--}}}-->
