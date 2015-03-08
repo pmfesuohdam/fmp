@@ -131,6 +131,10 @@ $.when(
         } else {
             arr=url.split("/")
             cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+            if (arr[1]==2){ //step2 btn auto collapse 
+                trackingInit()
+                bindTrackingBtn()
+            }
         }
     })
     $(window).trigger( 'hashchange' );
