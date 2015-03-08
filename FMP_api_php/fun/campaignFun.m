@@ -142,6 +142,67 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
         if ($_SERVER['REQUEST_METHOD']=='GET'){
         }
         break;
+    case(__OPERATION_UPDATE): //接受提交数据 
+        if ($_SERVER['REQUEST_METHOD']=='POST'){
+            $msgs=null;
+            //google analytics选择，则必须ga_source，ga_medium，ga_name不为空，长度正常(100内)
+            if (isset($_POST['ga_enable']) && $_POST['ga_enable']=='on') {
+                $err_item=null;
+                if (empty($_POST['ga_source'])) {
+                    $err_item['ga_source']='google analytics source must be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif(strlen($_POST['ga_source'])>100) {
+                    $err_item['ga_source']='google analytics source is too long';
+                    $msgs['err_msg'][]=$err_item;
+                }
+                $err_item=null;
+                if(empty($_POST['ga_medium'])) {
+                    $err_item['ga_medium']='google analytics medium musr be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif(strlen($_POST['ga_medium'])>100) {
+                    $err_item['ga_medium']='google analytics medium is too long';
+                    $msgs['err_msg'][]=$err_item;
+                }
+                $err_item=null;
+                if(empty($_POST['ga_name'])) {
+                    $err_item['ga_name']='google analytics name musr be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif(strlen($_POST['ga_name'])>100) {
+                    $err_item['ga_name']='google analytics name is too long';
+                    $msgs['err_msg'][]=$err_item;
+                }
+            }
+            //sigmad tracking code选择，则必须sm_cvid不为空,长度正常(100内)
+            if (isset($_POST['sm_enable']) && $_POST['sm_enable']=='on') {
+                $err_item=null;
+                if (empty($_POST['sm_cvid'])) {
+                    $err_item['sm_cvid']='sigmad tracking code must be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif(strlen($_POST['sm_cvid'])>100) {
+                    $err_item['sm_cvid']='sigmad tracking code is too long';
+                    $msgs['err_msg'][]=$err_item;
+                }
+            }
+            //facebook convert pixel选择，则必须fb_cvpx不为空，长度正常(100内)
+            if (isset($_POST['fb_enable']) && $_POST['fb_enable']=='on') {
+                $err_item=null;
+                if (empty($_POST['fb_cvpx'])) {
+                    $err_item['fb_cvpx']='facebook convert pixel must be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif(strlen($_POST['fb_cvpx'])>100) {
+                    $err_item['fb_cvpx']='facebook convert pixel is too long';
+                    $msgs['err_msg'][]=$err_item;
+                }
+            }
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']="true";
+            } else {
+                $msgs['status']="false";
+            }
+            echo json_encode($msgs);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+        break;
     }
 }
 /*}}}*/
