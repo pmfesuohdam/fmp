@@ -168,7 +168,8 @@ $.when(
    function goStep(step){
        switch(step){
            case(step):
-           d=$("form").serialize()
+           current_step=step-1
+           d=$("#form_camp_step"+current_step).serialize()
            save_step=step-1
            $.ajax({
                url: baseConf.api_prefix+"/update/campaign/@step"+save_step, 
