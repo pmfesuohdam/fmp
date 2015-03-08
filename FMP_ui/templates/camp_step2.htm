@@ -1,43 +1,53 @@
 <h2>Tracking</h2>
-              <form id="form_camp_step2">
-                <div class="form-group">
-                  <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="ga_enable"> Tracking with Google Analytics
-                    </label>
-                  </div>
-                    <label for="">Source</label>
-                    <input type="text" class="form-control" id="source" name="ga_source" placeholder="Enter Source" value="{{= ga_source}}">
-                    <label for="">Medium</label>
-                    <input type="text" class="form-control" id="medium" name="ga_medium" placeholder="Enter Medium" value="{{= ga_medium}}">
-                    <label for="">Name</label>
-                    <input type="text" class="form-control" id="name" name="ga_name" placeholder="Enter Name" value="{{= ga_name}}">
-                </div>
-                <div class="form-group">
-                  <hr>
-                </div>
-                <div class="form-group">
-                  <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="sm_enable">Track with SigMad tracking code
-                  </label>
-                  </div>
-                    <label for="">CVID</label>
-                    <input type="text" class="form-control" id="source" name="sm_cvid" placeholder="Enter CVID" value="{{= sm_cvid}}">
-                </div>
-                <div class="form-group">
-                  <hr>
-                </div>
-                <div class="form-group">
-                  <div class="checkbox">
-                    <label>
-                    <input type="checkbox" name="fb_enable">Facebook conversion Pixel
-                    </label>
-                  </div>
-                    <label for="">Conversion pixel</label>
-                    <input type="text" class="form-control" id="source" name="fb_cvpx" placeholder="Enter Conversion pixel" value="{{= fb_cvpx}}">
-                </div>
-                  <footer style="text-align:center">
-                    <a id="jsProceed" class="btn btn-lg btn-success" href="#step/3" onclick="goStep(3)">Proceed</a>
-                  </footer>
-                </form>
+<form id="form_camp_step2">
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="ga_enable"> Tracking with Google Analytics
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Source</label>
+        <input type="text" class="form-control" id="source" name="ga_source" placeholder="Enter Source" value="{{= ga_source}}">
+    </div>
+    <div class="form-group">
+        <label for="">Medium</label>
+        <input type="text" class="form-control" id="medium" name="ga_medium" placeholder="Enter Medium" value="{{= ga_medium}}">
+    </div>
+    <div class="form-group">
+        <label for="">Name</label>
+        <input type="text" class="form-control" id="name" name="ga_name" placeholder="Enter Name" value="{{= ga_name}}">
+    </div>
+    <div class="form-group">
+        <hr>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="sm_enable">Track with SigMad tracking code
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">CVID</label>
+        <input type="text" class="form-control" id="source" name="sm_cvid" placeholder="Enter CVID" value="{{= sm_cvid}}">
+    </div>
+    <div class="form-group">
+        <hr>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="fb_enable">Facebook conversion Pixel
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Conversion pixel</label>
+        <input type="text" class="form-control" id="source" name="fb_cvpx" placeholder="Enter Conversion pixel" value="{{= fb_cvpx}}">
+    </div>
+    <footer style="text-align:center">
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/3" onclick="goStep(3)">Proceed</a>
+    </footer>
+</form>
