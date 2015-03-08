@@ -210,13 +210,13 @@ $.when(
       url=window.location.href
       n=url.indexOf("#step")
       if (n>=0){ //执行指定的路由
-      url_sub=url.substr(n)
-      sp_arr=url_sub.split("#step/")
-      //会调用第"+sp_arr[1]+"页的方法
-      return parseInt(sp_arr[1])
-  } else { //不然就是第一页
-      return 1
-  }
+          url_sub=url.substr(n)
+          sp_arr=url_sub.split("#step/")
+          //会调用第"+sp_arr[1]+"页的方法
+          return parseInt(sp_arr[1])
+      } else { //不然就是第一页
+          return 1
+      }
   }
 </script>
 </body>
