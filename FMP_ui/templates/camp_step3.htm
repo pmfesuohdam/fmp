@@ -7,16 +7,16 @@
           <div class="form-group">
                     <label for="fmptemplate">Use existed templates</label>
                     <select class="form-control" id="fmptemplate">
-                      {{each(i,obj) objective}}
-                      <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>
+                      {{each(i,tpl) fmptemplate}}
+                      <option value="{{= tpl.value}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.text}}</option>
                       {{/each}}
                     </select>
         </div>
         <div class="form-group">
-                    <label for="location">Locations</label>
-                    <select class="form-control" id="location">
-                      {{each(i,obj) objective}}
-                      <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>
+                    <label for="fmplocation">Locations</label>
+                    <select class="form-control" id="fmplocation">
+                      {{each(i,loc) fmplocation}}
+                      <option value="{{= loc.value}}" {{if loc.selected}}selected="selected"{{/if}}>{{= loc.text}}</option>
                       {{/each}}
                     </select>
         </div>
