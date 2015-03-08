@@ -218,6 +218,33 @@ $.when(
           return 1
       }
   }
+  function trackingInit(){
+      //google analytics
+      if ($("input[name='ga_enable']").is(":checked")) {
+          for(i=2;i<5;i++){
+             $("#form_camp_step2 > div:nth-child("+i+")").css("display","block")
+          }
+      } else {
+          for(i=2;i<5;i++){
+             $("#form_camp_step2 > div:nth-child("+i+")").css("display","none")
+          }
+      }
+      //sigmad tracking code
+      if ($("input[name='sm_enable']").is(":checked")) {
+          $("#form_camp_step2 > div:nth-child(7)").css("display","block")
+      } else {
+          $("#form_camp_step2 > div:nth-child(7)").css("display","none")
+      }
+      //facebook convert pixel
+      if ($("input[name='fb_enable']").is(":checked")) {
+          $("#form_camp_step2 > div:nth-child(10)").css("display","block")
+      } else {
+          $("#form_camp_step2 > div:nth-child(10)").css("display","none")
+      }
+  }
+  function bindTrackingBtn(){
+      $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
+  }
 </script>
 </body>
 </html>
