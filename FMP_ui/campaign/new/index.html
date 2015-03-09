@@ -133,27 +133,28 @@ $.when(
     $(window).bind( 'hashchange', function(e) {
         var url = $.param.fragment();
         $( '.bbq-content' ).children( ':visible' ).hide();
+        arr=url.split("/")
+        stp=arr[1]
         if ( cache[ url ] ) {
             cache[url].show()
         } else {
-            arr=url.split("/")
-            switch(arr[1]){
+            switch(stp){
                 case("1"):
-                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
                 break;
                 case("2"):
-                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
                 trackingInit()
                 bindTrackingCheckBox()
                 break;
                 case("3"):
-                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.audience).appendTo('#ad_edit_area');
+                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.audience).appendTo('#ad_edit_area');
                 bindLocAutoComplete()
                 audienceInit()
                 bindAudienceCheckBox()
                 break;
                 default:
-                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
                 break;
             }
         }
