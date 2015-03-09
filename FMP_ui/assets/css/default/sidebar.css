@@ -9,7 +9,9 @@
 }
 
 #fmp_leftmenu .active{
-    color:black;
+    color:rgb(228, 142, 44);
+    border-left:3px solid orange;
+    background-color:rgb(236, 234, 228);
 }
     
 #fmp_leftmenu li {
