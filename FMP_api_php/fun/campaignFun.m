@@ -231,6 +231,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $ret['age_from'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']]['selected']=1;
                 $ret['age_to'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']]['selected']=1;
             }
+            for ($i=1;$i<=50;$i++) {
+                $ret['age_intval'][]=array('id'=>$i,"name"=>$i);
+                $ret['age_intval'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval']]['selected']=1;
+            }
             $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
             $ret['gender'][]=array('id'=>0,'name'=>'all');
             $ret['gender'][]=array('id'=>1,'name'=>'male');
