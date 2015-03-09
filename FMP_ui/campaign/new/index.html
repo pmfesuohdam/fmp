@@ -258,9 +258,13 @@ $.when(
   function bindLocAutoComplete(){
   $("#fmplocation_autocomplete").on('click',function(){
       $("#fmplocation_autocomplete").autocomplete({
-      source: ["china","usa"],
-      multiselect: true
+          source: ["china","usa"],
+           multiselect: true
       });
+  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
+  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
+  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
+  $("#fmplocation_autocomplete").focus()
   })
   }
 </script>
