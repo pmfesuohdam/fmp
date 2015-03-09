@@ -137,7 +137,7 @@ $.when(
             cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
             if (arr[1]==2){ //step2 btn auto collapse 
                 trackingInit()
-                bindTrackingBtn()
+                bindTrackingCheckBox()
                 } else if(arr[1]==3){
                     bindLocAutoComplete()
                 }
@@ -252,7 +252,7 @@ $.when(
           $("#form_camp_step2 > div:nth-child(10)").css("display","none")
       }
   }
-  function bindTrackingBtn(){
+  function bindTrackingCheckBox(){
       $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
   }
   function bindLocAutoComplete(){
@@ -263,10 +263,10 @@ $.when(
           source: contrys,
            multiselect: true
       });
-  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
-  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
-  $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
-  $("#fmplocation_autocomplete").focus()
+      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
+      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
+      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
+      $("#fmplocation_autocomplete").focus()
   })
   }
 </script>
