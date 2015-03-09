@@ -134,7 +134,8 @@ $.when(
         var url = $.param.fragment();
         $( '.bbq-content' ).children( ':visible' ).hide();
         arr=url.split("/")
-        stp=arr[1]
+        stp=(arr.length<2)?1:arr[1]
+        changeNav(stp)
         if ( cache[ url ] ) {
             cache[url].show()
         } else {
@@ -160,8 +161,6 @@ $.when(
         }
     })
     $(window).trigger( 'hashchange' );
-    //$.tmpl(gced.tpl_step1,gced.adaccounts).appendTo('#ad_edit_area');
-    //goStepPram({step:routeCampUrlAct(),pram:gced.adaccounts})
     if ( (($.param.fragment()).split("/")).length<2 ) {
        cache[""]=$.tmpl(gced["tpl_step1"],gced.adaccounts).appendTo('#ad_edit_area');
     }
