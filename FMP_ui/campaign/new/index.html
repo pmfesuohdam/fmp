@@ -20,6 +20,7 @@
   <script type="text/javascript" src="../../assets/js/libs/prettify.min.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/libs/bootstrap-datepicker.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/location_map.js?t=20150306222125"></script>
+  <script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150306222125"></script>
   <script type="text/javascript" src="../../assets/js/libs/jquery.autocomplete.multiselect.js?t=20150306222125"></script>
 </head>
 <body>
@@ -137,7 +138,9 @@ $.when(
             if (arr[1]==2){ //step2 btn auto collapse 
                 trackingInit()
                 bindTrackingBtn()
-            }
+                } else if(arr[1]==3){
+                    bindLocAutoComplete()
+                }
         }
     })
     $(window).trigger( 'hashchange' );
@@ -251,6 +254,14 @@ $.when(
   }
   function bindTrackingBtn(){
       $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
+  }
+  function bindLocAutoComplete(){
+  $("#fmplocation_autocomplete").on('click',function(){
+      $("#fmplocation_autocomplete").autocomplete({
+      source: ["china","usa"],
+      multiselect: true
+      });
+  })
   }
 </script>
 </body>
