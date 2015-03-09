@@ -71,7 +71,7 @@
             <label for="fmptemplate">Use existed templates<code></code></label>
                     <select class="form-control" id="fmptemplate">
                       {{each(i,tpl) fmptemplate}}
-                      <option value="{{= tpl.value}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.text}}</option>
+                      <option value="{{= tpl.id}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.name}}</option>
                       {{/each}}
                     </select>
         </div>
@@ -84,22 +84,22 @@
         </div>
         <div class="form-group">
           <label for="age_from">Age from<code></code></label>
-              <select class="form-control" id="age">
-                {{each(i,ag) age}}
-                <option value="{{= ag.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= ag.text}}</option>
+              <select class="form-control" id="age_from">
+                {{each(i,ag) age_from}}
+                <option value="{{= ag.id}}" {{if ag.selected}}selected="selected"{{/if}}>{{= ag.name}}</option>
                 {{/each}}
               </select>
               <label for="age_to">Age to<code></code></label>
-              <select class="form-control" id="age">
-                {{each(i,ag) age}}
-                <option value="{{= ag.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= ag.text}}</option>
+              <select class="form-control" id="age_to">
+                {{each(i,ag) age_to}}
+                <option value="{{= ag.id}}" {{if ag.selected}}selected="selected"{{/if}}>{{= ag.name}}</option>
                 {{/each}}
               </select>
         </div>
         <div class="form-group">
           <div class="checkbox">
             <label>
-            <input type="checkbox" name="age_split">split with age
+            <input type="checkbox" name="age_split" {{if age_split==1}}checked="checked"{{/if}}>split with age
             </label>
           </div>
         </div>
@@ -118,14 +118,14 @@
           <label for="gender">Gender<code></code></label>
               <select class="form-control" id="gender">
                 {{each(i,gd) gender}}
-                <option value="{{= gd.value}}" {{if gd.selected}}selected="selected"{{/if}}>{{= gd.text}}</option>
+                <option value="{{= gd.id}}" {{if gd.selected}}selected="selected"{{/if}}>{{= gd.name}}</option>
                 {{/each}}
               </select>
         </div>
         <div class="form-group">
           <div class="checkbox">
             <label>
-            <input type="checkbox" name="gender_split">split with gender
+              <input type="checkbox" name="gender_split" {{if gender_split==1}}checked="checked"{{/if}}>split with gender
             </label>
           </div>
         </div>

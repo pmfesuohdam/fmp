@@ -96,11 +96,14 @@
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     //新的方法一次性下载全部模板<!--{{{-->
     //gced:global campaign edit data
-    var gced={adaccounts:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
+    var gced={adaccounts:"",audience:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
 $.when(
   // Get the all available ad accounts
   $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
       gced.adaccounts=data
+  }),
+  $.get(baseConf.api_prefix+"/get/campaign/@step3", function(data) {
+      gced.audience=data
   }),
   $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150306222125", function(data) {
      gced.tpl_sidebar=data
@@ -134,14 +137,24 @@ $.when(
             cache[url].show()
         } else {
             arr=url.split("/")
-            cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
-            if (arr[1]==2){ //step2 btn auto collapse 
+            switch(arr[1]){
+                case("1"):
+                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+                break;
+                case("2"):
+                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
                 trackingInit()
                 bindTrackingCheckBox()
-            } else if(arr[1]==3){
+                break;
+                case("3"):
+                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.audience).appendTo('#ad_edit_area');
                 bindLocAutoComplete()
                 audienceInit()
                 bindAudienceCheckBox()
+                break;
+                default:
+                cache[url]=$.tmpl(gced["tpl_step"+arr[1]],gced.adaccounts).appendTo('#ad_edit_area');
+                break;
             }
         }
     })
