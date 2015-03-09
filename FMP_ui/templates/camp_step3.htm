@@ -105,9 +105,9 @@
         </div>
         <div class="form-group">
           <label for="age_intval">intval<code></code></label>
-              <select class="form-control" id="intval">
-                {{each(i,itv) intval}}
-                <option value="{{= itv.value}}" {{if itv.selected}}selected="selected"{{/if}}>{{= itv.text}}</option>
+              <select class="form-control" id="age_intval">
+                {{each(i,itv) age_intval}}
+                <option value="{{= itv.id}}" {{if itv.selected}}selected="selected"{{/if}}>{{= itv.name}}</option>
                 {{/each}}
               </select>
         </div>
