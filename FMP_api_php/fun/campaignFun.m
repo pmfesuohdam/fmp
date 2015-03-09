@@ -206,4 +206,46 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
     }
 }
 /*}}}*/
+
+/*{{{发布广告第三步*/
+if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
+    switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if ($_SERVER['REQUEST_METHOD']=='GET'){
+            include(dirname(__FILE__).'/../inc/conn.php');
+            $query="select * from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}';";
+            $rows_template=null;
+            if ($result=$link->query($query)) {
+                while ($row=mysqli_fetch_assoc($result)) {
+                    $theTemplate=$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']==$row['id']?
+                        array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                    $rows_template[]=$theTemplate;
+                }
+            }
+            @mysqli_close($link);
+            $ret['fmptemplate']=$rows_template;
+            $ret['fmplocation']=array();
+            for ($i=0;$i<=100;$i++){
+                $ret['age_from'][]=array("id"=>$i,"name"=>$i);
+                $ret['age_to'][]=array("id"=>$i,"name"=>$i);
+                $ret['age_from'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']]['selected']=1;
+                $ret['age_to'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']]['selected']=1;
+            }
+            $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
+            $ret['gender'][]=array('id'=>0,'name'=>'all');
+            $ret['gender'][]=array('id'=>1,'name'=>'male');
+            $ret['gender'][]=array('id'=>2,'name'=>'female');
+            if (empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'])) {
+                $ret['gender'][0]['selected']=1;
+            } else {
+                $ret['gender'][$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']]['selected']=1;
+            }
+            $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
+            echo json_encode($ret);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+        break;
+    }
+}
+/*}}}*/
 ?>
