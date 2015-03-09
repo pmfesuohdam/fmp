@@ -138,9 +138,11 @@ $.when(
             if (arr[1]==2){ //step2 btn auto collapse 
                 trackingInit()
                 bindTrackingCheckBox()
-                } else if(arr[1]==3){
-                    bindLocAutoComplete()
-                }
+            } else if(arr[1]==3){
+                bindLocAutoComplete()
+                audienceInit()
+                bindAudienceCheckBox()
+            }
         }
     })
     $(window).trigger( 'hashchange' );
@@ -256,18 +258,31 @@ $.when(
       $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
   }
   function bindLocAutoComplete(){
-  var contrys=[];
-  $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
-  $("#fmplocation_autocomplete").on('click',function(){
-      $("#fmplocation_autocomplete").autocomplete({
-          source: contrys,
-           multiselect: true
-      });
-      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
-      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
-      $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
-      $("#fmplocation_autocomplete").focus()
-  })
+      var contrys=[];
+      $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
+      $("#fmplocation_autocomplete").on('click',function(){
+          $("#fmplocation_autocomplete").autocomplete({
+              source: contrys,
+               multiselect: true
+          });
+          $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
+          $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
+          $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
+          $("#fmplocation_autocomplete").focus()
+      })
+  }
+  function audienceInit(){
+      $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(6)").css(
+      "display",
+      $("input[name='age_split']").is(":checked")?"block":"none"
+      )
+      $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(12)").css(
+          "display",
+          $("input[name='save_template']").is(":checked")?"block":"none"
+      )
+  }
+  function bindAudienceCheckBox(){
+      $("input[name='age_split'],input[name='save_template']").on('click',function(){audienceInit()})
   }
 </script>
 </body>
