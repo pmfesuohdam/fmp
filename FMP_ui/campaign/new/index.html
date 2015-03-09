@@ -256,9 +256,11 @@ $.when(
       $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
   }
   function bindLocAutoComplete(){
+  var contrys=[];
+  $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
   $("#fmplocation_autocomplete").on('click',function(){
       $("#fmplocation_autocomplete").autocomplete({
-          source: ["china","usa"],
+          source: contrys,
            multiselect: true
       });
   $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
