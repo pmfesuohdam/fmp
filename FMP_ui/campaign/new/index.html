@@ -284,6 +284,14 @@ $.when(
           $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
           $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
           $("#fmplocation_autocomplete").focus()
+          $("#form_camp_step3 input").on('blur',function(event) {
+              arr=[];
+              event.stopPropagation();
+              $.each($(".ui-autocomplete-multiselect-item"),function(k,v){
+                  arr.push($(this).text())
+              })
+              $("input[name=fmplocation]").val(($.unique(arr)).join('|'))
+          })
       })
   }
   function audienceInit(){
