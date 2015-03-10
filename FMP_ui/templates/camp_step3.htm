@@ -70,6 +70,7 @@
           <div class="form-group">
             <label for="fmptemplate">Use existed templates<code></code></label>
                     <select class="form-control" id="fmptemplate">
+                      <option value="">-------------- Please Select --------------</option>
                       {{each(i,tpl) fmptemplate}}
                       <option value="{{= tpl.id}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.name}}</option>
                       {{/each}}
