@@ -226,10 +226,16 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             $ret['fmptemplate']=$rows_template;
             $ret['fmplocation']=array();
             for ($i=0;$i<=100;$i++){
-                $ret['age_from'][]=array("id"=>$i,"name"=>$i);
-                $ret['age_to'][]=array("id"=>$i,"name"=>$i);
-                $ret['age_from'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']]['selected']=1;
-                $ret['age_to'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']]['selected']=1;
+                if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']==$i) {
+                    $ret['age_to'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");
+                } else {
+                    $ret['age_to'][]=array("id"=>$i,"name"=>$i);
+                }
+                if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']==$i) {
+                    $ret['age_from'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");
+                } else {
+                    $ret['age_from'][]=array("id"=>$i,"name"=>$i);
+                }
             }
             $age_intval_range=array(1,2,4,6,8,16);
             foreach($age_intval_range as $itv) {
