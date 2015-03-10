@@ -169,6 +169,10 @@ define('__OBJT_NEWSFEED',      2);
 define('__OBJT_RIGHTCOL',      3);
 
 
+//用户能创建最大的模板数目
+define(__FMP_MAX_USER_TMPL, 20);
+
+
 // 默认用户常量
 
 // 权限常量

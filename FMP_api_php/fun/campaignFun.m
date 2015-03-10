@@ -253,6 +253,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
     case(__OPERATION_UPDATE):
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $msgs=null;
+            $STEP3_SAVE_DATA['location']=null;
             //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
                 $err_item=null;
@@ -262,10 +263,20 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 } elseif (strlen($_POST['template_name'])>30) {
                     $err_item['template_name']='template name is too long(<30)';
                     $msgs['err_msg'][]=$err_item;
+                } else {
+                    include(dirname(__FILE__).'/../inc/conn.php');
+                    $query="select count(*) from t_fmp_template where fmp_user_id={$_SESSION[__SESSION_FMP_UID]} limit 1;";
+                    if ($result=$link->query($query)) {
+                        $row=mysqli_fetch_assoc($result); 
+                        if ($rows['count(*)']>__FMP_MAX_USER_TMPL) {
+                            $msgs['err_msg'][]=array('template_name'=>'reach owned max '.__FMP_MAX_USER_TMPL.' templates' );
+                        }
+                    }
+                    @mysqli_close($link);
                 }
             }
             //country如果输入了，必须属于已经定义的国家
-            if (isset($_POST['fmplocation'])) {
+            if (isset($_POST['fmplocation']) && !empty($_POST['fmplocation']) ) {
                 $upload_country=explode('|',$_POST['fmplocation']);
                 if (!empty($upload_country)) {
                     $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
@@ -273,9 +284,12 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                         if (!in_array($country,array_values($fmp_loc_dic))) {
                             $msgs['err_msg'][]=array('fmplocation'=>"location({$country}) not exist");
                             break;
+                        } else {
+                            $STEP3_SAVE_DATA['location'][]=array_search($country,$fmp_loc_dic);
                         }
                     }
                 }
+                $STEP3_SAVE_DATA['location']=join('|', $STEP3_SAVE_DATA['location']);
             }
             //age_from必须为0-100的数字,且必须不大于age_to,如果设置了age_to，必须设置age_from
             if (isset($_POST['age_to']) && !isset($_POST['age_from'])) {
@@ -304,6 +318,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $msgs['err_msg'][]=array('gender'=>'gender must be type of all,male,female');
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                //没有错误保存数据
+
                 $msgs['status']="true";
             } else {
                 $msgs['status']="false";
