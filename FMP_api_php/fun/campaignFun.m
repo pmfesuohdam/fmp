@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-04 23:36:11
+  | Last-Modified: 2015-03-10 18:28:15
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -270,8 +270,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     $query="select count(*) from t_fmp_template where fmp_user_id={$_SESSION[__SESSION_FMP_UID]} limit 1;";
                     if ($result=$link->query($query)) {
                         $row=mysqli_fetch_assoc($result); 
-                        if ($rows['count(*)']>__FMP_MAX_USER_TMPL) {
-                            $msgs['err_msg'][]=array('template_name'=>'reach owned max '.__FMP_MAX_USER_TMPL.' templates' );
+                        if ($row['count(*)']>__FMP_MAX_USER_TMPL) {
+                            $msgs['err_msg'][]=array('template_name'=>'reaching  max owned '.__FMP_MAX_USER_TMPL.' templates' );
                         } else {
                             $STEP3_SAVE_DATA['name']=$_POST['template_name'];
                         }
