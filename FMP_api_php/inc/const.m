@@ -141,6 +141,7 @@ define('__FMP_ERR_UPDATE_ADACCOUNT',  10553);
 define('__FMP_ERR_UPDATE_FMP_FB_REL', 10554);
 define('__FMP_ERR_SELECT_ADACCOUNT',  10555);
 define('__FMP_ERR_SELECT_ACCTOK',     10556);
+define('__FMP_ERR_UPDATE_TEMPLATE',   10557);
 
 //graph url前缀
 define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');

@@ -253,7 +253,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
     case(__OPERATION_UPDATE):
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $msgs=null;
-            $STEP3_SAVE_DATA['location']=null;
+            $STEP3_SAVE_DATA=array(
+                'name'=>'','age_from'=>0,'age_to'=>0,'sp_age'=>0,'sp_age_intval'=>0,'gender'=>0,'sp_gender'=>0,'location'=>''
+            );
             //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
                 $err_item=null;
@@ -270,6 +272,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                         $row=mysqli_fetch_assoc($result); 
                         if ($rows['count(*)']>__FMP_MAX_USER_TMPL) {
                             $msgs['err_msg'][]=array('template_name'=>'reach owned max '.__FMP_MAX_USER_TMPL.' templates' );
+                        } else {
+                            $STEP3_SAVE_DATA['name']=$_POST['template_name'];
                         }
                     }
                     @mysqli_close($link);
@@ -298,6 +302,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $msgs['err_msg'][]=array('age_from'=>'age from must from 0 to 100');
             } elseif ($_POST['age_from']>$_POST['age_to']) {
                 $msgs['err_msg'][]=array('age_from'=>'age from must less than age to');
+            } else {
+                $STEP3_SAVE_DATA['age_from']=intval($_POST['age_from']);
             }
             //age_to必须为0-100的数字，且必须大于age_from,如果设置了age_from,必须设置age_to
             if (isset($_POST['age_from']) && !isset($_POST['age_to'])) {
@@ -306,21 +312,40 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $msgs['err_msg'][]=array('age_to'=>'age to must from 0 to 100');
             } elseif ($_POST['age_to']<$_POST['age_from']) {
                 $msgs['err_msg'][]=array('age_to'=>'age to must large than age from');
+            } else {
+                $STEP3_SAVE_DATA['age_to']=intval($_POST['age_to']);
             }
             //age_split选择，则必须age_intval不为空，且要在age_intval的范围里
             if (isset($_POST['age_split']) && $_POST['age_split']=='on') {
                 if (!in_array($_POST['age_intval'],array(1,2,4,6,8,16))) {
                     $msgs['err_msg'][]=array('age_intval'=>'age intval must in 1,2,4,6,8,16');
+                } else {
+                    $STEP3_SAVE_DATA['sp_age']=1;
+                    $STEP3_SAVE_DATA['sp_age_intval']=intval($_POST['age_intval']);
                 }
             }
             //gender必须为0,1,2，也就是all、male、female
             if (!isset($_POST['gender']) || !in_array($_POST['gender'],array(0,1,2))) {
                 $msgs['err_msg'][]=array('gender'=>'gender must be type of all,male,female');
             }
+            $STEP3_SAVE_DATA['gender']=intval($_POST['gender']);
+            
+            //gender_spli选择，直接过
+            if (isset($_POST['gender_split']) && $_POST['gender_split']=='on') {
+                $STEP3_SAVE_DATA['sp_gender']=1;
+            }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
-                //没有错误保存数据
-
                 $msgs['status']="true";
+                //没有错误保存数据
+                if (!empty($STEP3_SAVE_DATA['name'])) {
+                    include(dirname(__FILE__).'/../inc/conn.php');
+                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,sp_age,sp_age_intval,gender,sp_gender,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['sp_age']},{$STEP3_SAVE_DATA['sp_age_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['sp_gender']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},sp_age={$STEP3_SAVE_DATA['sp_age']},sp_age_intval={$STEP3_SAVE_DATA['sp_age_intval']},gender={$STEP3_SAVE_DATA['gender']},sp_gender={$STEP3_SAVE_DATA['sp_gender']},location='{$STEP3_SAVE_DATA['location']}';";
+                    if (!$link->query($query)) {
+                        $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_TEMPLATE.')');
+                        $msgs['status']='false';
+                    }
+                    @mysqli_close($link);
+                }
             } else {
                 $msgs['status']="false";
             }
