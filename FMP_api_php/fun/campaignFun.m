@@ -190,7 +190,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
                     $err_item['fb_cvpx']='facebook convert pixel must be not empty';
                     $msgs['err_msg'][]=$err_item;
                 } elseif(strlen($_POST['fb_cvpx'])>100) {
-                    $err_item['fb_cvpx']='facebook convert pixel is too long';
+                    $err_item['fb_cvpx']='facebook convert pixel is too long(<100)';
                     $msgs['err_msg'][]=$err_item;
                 }
             }
@@ -231,9 +231,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $ret['age_from'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']]['selected']=1;
                 $ret['age_to'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']]['selected']=1;
             }
-            for ($i=1;$i<=50;$i++) {
-                $ret['age_intval'][]=array('id'=>$i,"name"=>$i);
-                $ret['age_intval'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'])?0:$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval']]['selected']=1;
+            $age_intval_range=array(1,2,4,6,8,16);
+            foreach($age_intval_range as $itv) {
+                $ret['age_intval'][]=array('id'=>$itv,"name"=>$itv);
+                $ret['age_intval'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'])?0:array_search($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'],$age_intval_range)]['selected']=1;
             }
             $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
             $ret['gender'][]=array('id'=>0,'name'=>'all');
@@ -246,6 +247,55 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             }
             $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
             echo json_encode($ret);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+        break;
+    case(__OPERATION_UPDATE):
+        if ($_SERVER['REQUEST_METHOD']=='POST'){
+            $msgs=null;
+            //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
+            if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
+                $err_item=null;
+                if (empty($_POST['template_name'])) {
+                    $err_item['template_name']='template name must be not empty';
+                    $msgs['err_msg'][]=$err_item;
+                } elseif (strlen($_POST['template_name'])>30) {
+                    $err_item['template_name']='template name is too long(<30)';
+                    $msgs['err_msg'][]=$err_item;
+                }
+            }
+            //age_from必须为0-100的数字,且必须不大于age_to,如果设置了age_to，必须设置age_from
+            if (isset($_POST['age_to']) && !isset($_POST['age_from'])) {
+                $msgs['err_msg'][]=array('age_from'=>'must set age from if set age to');
+            } elseif (!in_array($age_from,range(0,100))) {
+                $msgs['err_msg'][]=array('age_from'=>'age from must from 0 to 100');
+            } elseif ($_POST['age_from']>$_POST['age_to']) {
+                $msgs['err_msg'][]=array('age_from'=>'age from must less than age to');
+            }
+            //age_to必须为0-100的数字，且必须大于age_from,如果设置了age_from,必须设置age_to
+            if (isset($_POST['age_from']) && !isset($_POST['age_to'])) {
+                $msgs['err_msg'][]=array('age_to'=>'must set age to if set age from');
+            } elseif(!in_array($age_to,range(0,100))) {
+                $msgs['err_msg'][]=array('age_to'=>'age to must from 0 to 100');
+            } elseif ($_POST['age_to']<$_POST['age_from']) {
+                $msgs['err_msg'][]=array('age_to'=>'age to must large than age from');
+            }
+            //age_split选择，则必须age_intval不为空，且要在age_intval的范围里
+            if (isset($_POST['age_split']) && $_POST['age_split']=='on') {
+                if (!in_array($_POST['age_intval'],array(1,2,4,6,8,16))) {
+                    $msgs['err_msg'][]=array('age_intval'=>'age intval must in 1,2,4,6,8,16');
+                }
+            }
+            //gender必须为0,1,2，也就是all、male、female
+            if (!isset($_POST['gender']) || !in_array($_POST['gender'],array(0,1,2))) {
+                $msgs['err_msg'][]=array('gender'=>'gender must be type of all,male,female');
+            }
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']="true";
+            } else {
+                $msgs['status']="false";
+            }
+            echo json_encode($msgs);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
         break;
