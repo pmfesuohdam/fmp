@@ -343,9 +343,13 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     if (!$link->query($query)) {
                         $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_TEMPLATE.')');
                         $msgs['status']='false';
+                    } else {
+                        $_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']=mysqli_insert_id($link);
                     }
                     @mysqli_close($link);
                 }
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']=$STEP3_SAVE_DATA['age_from'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']=$STEP3_SAVE_DATA['age_to'];
             } else {
                 $msgs['status']="false";
             }
