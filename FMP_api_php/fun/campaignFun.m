@@ -264,6 +264,19 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     $msgs['err_msg'][]=$err_item;
                 }
             }
+            //country如果输入了，必须属于已经定义的国家
+            if (isset($_POST['fmplocation'])) {
+                $upload_country=explode('|',$_POST['fmplocation']);
+                if (!empty($upload_country)) {
+                    $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
+                    foreach($upload_country as $country) {
+                        if (!in_array($country,array_values($fmp_loc_dic))) {
+                            $msgs['err_msg'][]=array('fmplocation'=>"location({$country}) not exist");
+                            break;
+                        }
+                    }
+                }
+            }
             //age_from必须为0-100的数字,且必须不大于age_to,如果设置了age_to，必须设置age_from
             if (isset($_POST['age_to']) && !isset($_POST['age_from'])) {
                 $msgs['err_msg'][]=array('age_from'=>'must set age from if set age to');
