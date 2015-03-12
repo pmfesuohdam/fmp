@@ -75,21 +75,17 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
             $err_item=null;
             $msgs=null;
             if (empty($_POST['billingAccount'])) {
-                $err_item['billingAccount']='billing account must be not empty';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('billingAccount'=>'billing account must be not empty');
             } elseif(!filter_var(intval($_POST['billingAccount']),FILTER_VALIDATE_INT)) {
-                $err_item['billingAccount']='billing account must be integer';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('billingAccount'=>'billing account must be integer');
             } elseif(strlen($_POST['billingAccount'])>20) {
-                $err_item['billingAccount']='billing account is too long';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('billingAccount'=>'billing account is too long');
             } else {
                 include(dirname(__FILE__).'/../inc/conn.php');
                 $query="select * from t_fb_account where ad_account_id={$_POST['billingAccount']};";
                 $result=$link->query($query);
                 if ( !($row = mysqli_fetch_assoc($result)) ) {
-                    $err_item['billingAccount']='billingAccount not exists';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('billingAccount'=>'billingAccount not exists');
                     @mysqli_close($link);
                 }
             }
@@ -97,23 +93,19 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
             //campaignName要满足长度正常(70内),不为空,数据库中没有重复
             $err_item=null;
             if (empty($_POST['campaignName'])) {
-                $err_item['campaignName']='campaign name must be not empty';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('campaignName'=>'campaign name must be not empty');
             } elseif(strlen($_POST['campaignName'])>70) {
-                $err_item['campaignName']='campaign name is too long';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('campaignName'=>'campaign name is too long');
             }
             //buyingType要满足必须是合法的
             $err_item=null;
             if (!in_array($_POST['buyingType'],array(__BYT_CPC,__BYT_CPM,__BYT_OCPM,__BYT_CPA))) {
-                $err_item['buyingType']='buying type is not valid';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('buyingType'=>'buying type is not valid');
             }
             //objective必须合法
             $err_item=null;
             if (!in_array($_POST['objective'],array(__OBJT_MULTI_PRODUCT,__OBJT_NEWSFEED,__OBJT_RIGHTCOL))) {
-                $err_item['objective']='objective is not valid';
-                $msgs['err_msg'][]=$err_item;
+                $msgs['err_msg'][]=array('objective'=>'objective is not valid');
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 //没有问题就保存
@@ -149,49 +141,39 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
             if (isset($_POST['ga_enable']) && $_POST['ga_enable']=='on') {
                 $err_item=null;
                 if (empty($_POST['ga_source'])) {
-                    $err_item['ga_source']='google analytics source must be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_source'=>'google analytics source must be not empty');
                 } elseif(strlen($_POST['ga_source'])>100) {
-                    $err_item['ga_source']='google analytics source is too long';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_source'=>'google analytics source is too long');
                 }
                 $err_item=null;
                 if(empty($_POST['ga_medium'])) {
-                    $err_item['ga_medium']='google analytics medium musr be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_medium'=>'google analytics medium musr be not empty');
                 } elseif(strlen($_POST['ga_medium'])>100) {
-                    $err_item['ga_medium']='google analytics medium is too long';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_medium'=>'google analytics medium is too long');
                 }
                 $err_item=null;
                 if(empty($_POST['ga_name'])) {
-                    $err_item['ga_name']='google analytics name musr be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_name'=>'google analytics name musr be not empty');
                 } elseif(strlen($_POST['ga_name'])>100) {
-                    $err_item['ga_name']='google analytics name is too long';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('ga_name'=>'google analytics name is too long');
                 }
             }
             //sigmad tracking code选择，则必须sm_cvid不为空,长度正常(100内)
             if (isset($_POST['sm_enable']) && $_POST['sm_enable']=='on') {
                 $err_item=null;
                 if (empty($_POST['sm_cvid'])) {
-                    $err_item['sm_cvid']='sigmad tracking code must be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('sm_cvid'=>'sigmad tracking code must be not empty');
                 } elseif(strlen($_POST['sm_cvid'])>100) {
-                    $err_item['sm_cvid']='sigmad tracking code is too long';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('sm_cvid'=>'sigmad tracking code is too long');
                 }
             }
             //facebook convert pixel选择，则必须fb_cvpx不为空，长度正常(100内)
             if (isset($_POST['fb_enable']) && $_POST['fb_enable']=='on') {
                 $err_item=null;
                 if (empty($_POST['fb_cvpx'])) {
-                    $err_item['fb_cvpx']='facebook convert pixel must be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('fb_cvpx'=>'facebook convert pixel must be not empty');
                 } elseif(strlen($_POST['fb_cvpx'])>100) {
-                    $err_item['fb_cvpx']='facebook convert pixel is too long(<100)';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('fb_cvpx'=>'facebook convert pixel is too long(<100)');
                 }
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
@@ -278,11 +260,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
                 $err_item=null;
                 if (empty($_POST['template_name'])) {
-                    $err_item['template_name']='template name must be not empty';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('template_name'=>'template name must be not empty');
                 } elseif (strlen($_POST['template_name'])>30) {
-                    $err_item['template_name']='template name is too long(<30)';
-                    $msgs['err_msg'][]=$err_item;
+                    $msgs['err_msg'][]=array('template_name'=>'template name is too long(<30)');
                 } else {
                     include(dirname(__FILE__).'/../inc/conn.php');
                     $query="select count(*) from t_fmp_template where fmp_user_id={$_SESSION[__SESSION_FMP_UID]} limit 1;";
