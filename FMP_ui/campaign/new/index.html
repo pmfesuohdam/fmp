@@ -297,7 +297,7 @@ $.when(
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
           $("#fmplocation_autocomplete").on('click',function(){
               if ($("#fmplocation_autocomplete").parent().attr("id")=="fmp_loc_autocomplete_dummy"){
-                  //$("#fmplocation_autocomplete").remove(".ui-autocomplete-multiselect-item")
+                  $(".ui-autocomplete-multiselect-item").remove()
                   $("#fmplocation_autocomplete").unwrap()
               }
               $("#fmplocation_autocomplete").autocomplete({
