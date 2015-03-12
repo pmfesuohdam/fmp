@@ -143,6 +143,11 @@ define('__FMP_ERR_SELECT_ADACCOUNT',  10555);
 define('__FMP_ERR_SELECT_ACCTOK',     10556);
 define('__FMP_ERR_UPDATE_TEMPLATE',   10557);
 
+
+//日志类型
+define('__FMP_LOGTYPE_ERROR',      0); //系统错误日志 
+define('__FMP_LOGTYPE_OPERACTION', 1); //操作日志 
+
 //graph url前缀
 define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');
 
