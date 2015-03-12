@@ -246,10 +246,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     $ret['age_from'][]=array("id"=>$i,"name"=>$i);
                 }
             }
-            $age_intval_range=array(1,2,4,6,8,16);
-            foreach($age_intval_range as $itv) {
-                $ret['age_intval'][]=array('id'=>$itv,"name"=>$itv);
-                $ret['age_intval'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'])?0:array_search($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_intval'],$age_intval_range)]['selected']=1;
+            $age_split_intval_range=array(1,2,4,6,8,16);
+            foreach($age_split_intval_range as $itv) {
+                $ret['age_split_intval'][]=array('id'=>$itv,"name"=>$itv);
+                $ret['age_split_intval'][empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval'])?0:array_search($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval'],$age_split_intval_range)]['selected']=1;
             }
             $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
             $ret['gender'][]=array('id'=>0,'name'=>'all');
@@ -269,7 +269,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $msgs=null;
             $STEP3_SAVE_DATA=array(
-                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'sp_age_intval'=>0,'gender'=>0,'sp_gender'=>0,'location'=>''
+                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_intval'=>0,'gender'=>0,'sp_gender'=>0,'location'=>''
             );
             //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
@@ -330,13 +330,13 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             } else {
                 $STEP3_SAVE_DATA['age_to']=intval($_POST['age_to']);
             }
-            //age_split选择，则必须age_intval不为空，且要在age_intval的范围里
+            //age_split选择，则必须age_split_intval不为空，且要在age_split_intval的范围里
             if (isset($_POST['age_split']) && $_POST['age_split']=='on') {
-                if (!in_array($_POST['age_intval'],array(1,2,4,6,8,16))) {
-                    $msgs['err_msg'][]=array('age_intval'=>'age intval must in 1,2,4,6,8,16');
+                if (!in_array($_POST['age_split_intval'],array(1,2,4,6,8,16))) {
+                    $msgs['err_msg'][]=array('age_split_intval'=>'age intval must in 1,2,4,6,8,16');
                 } else {
                     $STEP3_SAVE_DATA['age_split']=1;
-                    $STEP3_SAVE_DATA['sp_age_intval']=intval($_POST['age_intval']);
+                    $STEP3_SAVE_DATA['age_split_intval']=intval($_POST['age_split_intval']);
                 }
             }
             //gender必须为0,1,2，也就是all、male、female
@@ -354,7 +354,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 //没有错误保存数据
                 if (!empty($STEP3_SAVE_DATA['name'])) {
                     include(dirname(__FILE__).'/../inc/conn.php');
-                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,sp_age_intval,gender,sp_gender,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['sp_age_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['sp_gender']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},sp_age_intval={$STEP3_SAVE_DATA['sp_age_intval']},gender={$STEP3_SAVE_DATA['gender']},sp_gender={$STEP3_SAVE_DATA['sp_gender']},location='{$STEP3_SAVE_DATA['location']}';";
+                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_intval,gender,sp_gender,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['sp_gender']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_intval={$STEP3_SAVE_DATA['age_split_intval']},gender={$STEP3_SAVE_DATA['gender']},sp_gender={$STEP3_SAVE_DATA['sp_gender']},location='{$STEP3_SAVE_DATA['location']}';";
                     if (!$link->query($query)) {
                         $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_TEMPLATE.')');
                         $msgs['status']='false';
@@ -366,6 +366,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']=$STEP3_SAVE_DATA['age_from'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']=$STEP3_SAVE_DATA['age_to'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']=$STEP3_SAVE_DATA['age_split'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']=$STEP3_SAVE_DATA['age_split_intval'];
             } else {
                 $msgs['status']="false";
             }
