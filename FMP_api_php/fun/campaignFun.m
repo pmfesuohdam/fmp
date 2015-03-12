@@ -329,9 +329,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             $STEP3_SAVE_DATA['gender']=intval($_POST['gender']);
             
             //gender_spli选择，直接过
-            if (isset($_POST['gender_split']) && $_POST['gender_split']=='on') {
-                $STEP3_SAVE_DATA['gender_split']=1;
-            }
+            $STEP3_SAVE_DATA['gender_split']=(isset($_POST['gender_split']) && $_POST['gender_split']=='on')?1:0;
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']="true";
                 //没有错误保存数据
