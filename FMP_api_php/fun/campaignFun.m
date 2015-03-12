@@ -222,9 +222,18 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     $rows_template[]=$theTemplate;
                 }
             }
+            $ret['fmplocation']=array();
+            $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
+            $query="select location from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and id={$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']} limit 1;";
+            if ($result=$link->query($query)) {
+                $row=mysqli_fetch_assoc($result);
+                $tmpArr=explode('|',$row['location']);
+                foreach ($tmpArr as $loc) {
+                    $ret['fmplocation'][]=$fmp_loc_dic[$loc];
+                }
+            }
             @mysqli_close($link);
             $ret['fmptemplate']=$rows_template;
-            $ret['fmplocation']=array();
             for ($i=0;$i<=100;$i++){
                 if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']==$i) {
                     $ret['age_to'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");
