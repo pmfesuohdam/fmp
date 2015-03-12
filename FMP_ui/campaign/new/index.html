@@ -293,6 +293,7 @@ $.when(
               savedCountries+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"
           })
           $("#fmplocation_autocomplete").before(savedCountries)
+          $(".ui-icon,.ui-icon-close").bind('click',function(){alert("");$(this).parent().remove()})
           var contrys=[]
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
           $("#fmplocation_autocomplete").on('click',function(){
@@ -306,6 +307,8 @@ $.when(
               });
               $("#fmplocation_autocomplete").parent().attr("id","fmp_loc_autocomplete")
               $("#fmplocation_autocomplete").before(savedCountries)
+              savedCountries=""
+              $(".ui-icon,.ui-icon-close").bind('click',function(){$(this).parent().remove()})
               $("#fmplocation_autocomplete").focus()
               $("#form_camp_step3 input").on('blur',function(event) {
                   arr=[];
