@@ -287,11 +287,12 @@ $.when(
       function bindLocAutoComplete(){
           //预先载入一个假的自动完成
           savedCountries="";
+          $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
           $.each(gced.audience.fmplocation,function(k,v){
               console.log(v)
               savedCountries+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"
           })
-          $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\">"+savedCountries+"</div>")
+          $("#fmplocation_autocomplete").before(savedCountries)
           var contrys=[]
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
           $("#fmplocation_autocomplete").on('click',function(){
