@@ -272,7 +272,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $msgs=null;
             $STEP3_SAVE_DATA=array(
-                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_intval'=>0,'gender'=>0,'sp_gender'=>0,'location'=>''
+                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_intval'=>0,'gender'=>0,''=>0,'location'=>''
             );
             //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
@@ -350,14 +350,14 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             
             //gender_spli选择，直接过
             if (isset($_POST['gender_split']) && $_POST['gender_split']=='on') {
-                $STEP3_SAVE_DATA['sp_gender']=1;
+                $STEP3_SAVE_DATA['gender_split']=1;
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']="true";
                 //没有错误保存数据
                 if (!empty($STEP3_SAVE_DATA['name'])) {
                     include(dirname(__FILE__).'/../inc/conn.php');
-                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_intval,gender,sp_gender,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['sp_gender']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_intval={$STEP3_SAVE_DATA['age_split_intval']},gender={$STEP3_SAVE_DATA['gender']},sp_gender={$STEP3_SAVE_DATA['sp_gender']},location='{$STEP3_SAVE_DATA['location']}';";
+                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_intval,gender,,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['gender_split']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_intval={$STEP3_SAVE_DATA['age_split_intval']},gender={$STEP3_SAVE_DATA['gender']},gender_split={$STEP3_SAVE_DATA['gender_split']},location='{$STEP3_SAVE_DATA['location']}';";
                     if (!$link->query($query)) {
                         $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_TEMPLATE.')');
                         $msgs['status']='false';
@@ -370,6 +370,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']=$STEP3_SAVE_DATA['age_to'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']=$STEP3_SAVE_DATA['age_split'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']=$STEP3_SAVE_DATA['age_split_intval'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']=$STEP3_SAVE_DATA['gender'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split']=$STEP3_SAVE_DATA['gender_split'];
             } else {
                 $msgs['status']="false";
             }
