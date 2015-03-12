@@ -293,7 +293,9 @@ $.when(
               savedCountries+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"
           })
           $("#fmplocation_autocomplete").before(savedCountries)
-          $(".ui-icon,.ui-icon-close").bind('click',function(){alert("");$(this).parent().remove()})
+          $(".ui-icon,.ui-icon-close").bind('click',function(){
+              $(this).parent().remove()
+          })
           var contrys=[]
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
           $("#fmplocation_autocomplete").on('click',function(){
