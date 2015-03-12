@@ -292,9 +292,7 @@ $.when(
                   source: contrys,
                    multiselect: true
               });
-              $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("width","100%")
-              $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("overflow","auto")
-              $(".ui-autocomplete-multiselect,.ui-state-default,.ui-widget,.ui-state-active").css("height","auto")
+              $("#fmplocation_autocomplete").parent().addClass("fmpAutoComplete")
               $("#fmplocation_autocomplete").focus()
               $("#form_camp_step3 input").on('blur',function(event) {
                   arr=[];
