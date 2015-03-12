@@ -305,6 +305,7 @@ $.when(
                    multiselect: true
               });
               $("#fmplocation_autocomplete").parent().attr("id","fmp_loc_autocomplete")
+              $("#fmplocation_autocomplete").before(savedCountries)
               $("#fmplocation_autocomplete").focus()
               $("#form_camp_step3 input").on('blur',function(event) {
                   arr=[];
