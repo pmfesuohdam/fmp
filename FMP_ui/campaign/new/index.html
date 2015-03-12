@@ -285,14 +285,25 @@ $.when(
           )
       }
       function bindLocAutoComplete(){
-          var contrys=[];
+          //预先载入一个假的自动完成
+          savedCountries="";
+          $.each(gced.audience.fmplocation,function(k,v){
+              console.log(v)
+              savedCountries+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"
+          })
+          $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\">"+savedCountries+"</div>")
+          var contrys=[]
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
           $("#fmplocation_autocomplete").on('click',function(){
+              if ($("#fmplocation_autocomplete").parent().attr("id")=="fmp_loc_autocomplete_dummy"){
+                  //$("#fmplocation_autocomplete").remove(".ui-autocomplete-multiselect-item")
+                  $("#fmplocation_autocomplete").unwrap()
+              }
               $("#fmplocation_autocomplete").autocomplete({
                   source: contrys,
                    multiselect: true
               });
-              $("#fmplocation_autocomplete").parent().addClass("fmpAutoComplete")
+              $("#fmplocation_autocomplete").parent().attr("id","fmp_loc_autocomplete")
               $("#fmplocation_autocomplete").focus()
               $("#form_camp_step3 input").on('blur',function(event) {
                   arr=[];
