@@ -194,6 +194,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ):
         if ($_SERVER['REQUEST_METHOD']=='GET'){
+            if (!empty($_GET['template_id'])) {
+                $select_tmplid=intval($_GET['template_id']);
+            }
             include(dirname(__FILE__).'/../inc/conn.php');
             $query="select * from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}';";
             $rows_template=null;
@@ -206,7 +209,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             }
             $ret['fmplocation']=array();
             $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
-            $query="select location from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and id={$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']} limit 1;";
+            $qTemplateId=empty($select_tmplid)?$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']:$select_tmplid;
+            $query="select location from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and id={$qTemplateId} limit 1;";
             if ($result=$link->query($query)) {
                 $row=mysqli_fetch_assoc($result);
                 $tmpArr=explode('|',$row['location']);
