@@ -287,14 +287,20 @@ $.when(
       function bindLocAutoComplete(){
           //预先载入一个假的自动完成
           savedCountries="";
+          savedCountries2=[];
           $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
           $.each(gced.audience.fmplocation,function(k,v){
-              console.log(v)
               savedCountries+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"
+              savedCountries2.push(v)
           })
-          $("#fmplocation_autocomplete").before(savedCountries)
+          before_savedCounties="";
+          $.each(savedCountries2,function(k,v){before_savedCounties+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"})
+          $("#fmplocation_autocomplete").before(before_savedCounties)
           $(".ui-icon,.ui-icon-close").bind('click',function(){
               $(this).parent().remove()
+              del_country=$(this).parent().text()
+              savedCountries2=$.grep(savedCountries2,function(n,i){return n!=del_country})
+              $("input[name=fmplocation]").val(($.unique(savedCountries2)).join('|'))
           })
           var contrys=[]
           $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
