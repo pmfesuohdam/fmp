@@ -194,9 +194,6 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ):
         if ($_SERVER['REQUEST_METHOD']=='GET'){
-            if (!empty($_GET['template_id'])) {
-                $select_tmplid=intval($_GET['template_id']);
-            }
             include(dirname(__FILE__).'/../inc/conn.php');
             $query="select * from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}';";
             $rows_template=null;
@@ -208,15 +205,24 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 }
             }
             $ret['fmplocation']=array();
-            $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
-            $qTemplateId=empty($select_tmplid)?$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']:$select_tmplid;
-            $query="select location from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and id={$qTemplateId} limit 1;";
-            if ($result=$link->query($query)) {
-                $row=mysqli_fetch_assoc($result);
-                $tmpArr=explode('|',$row['location']);
-                foreach ($tmpArr as $loc) {
-                    $ret['fmplocation'][]=$fmp_loc_dic[$loc];
+            if (!empty($_GET['template_id'])){
+                $selected_tmplid=intval($_GET['template_id']);
+                $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
+                $qTemplateId=empty($selected_tmplid)?$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']:$selected_tmplid;
+                $query="select location from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and id={$qTemplateId} limit 1;";
+                if ($result=$link->query($query)) {
+                    $row=mysqli_fetch_assoc($result);
+                    $tmpArr=explode('|',$row['location']);
+                    foreach ($tmpArr as $loc) {
+                        $ret['fmplocation'][]=$fmp_loc_dic[$loc];
+                    }
                 }
+            } else {
+                foreach((array)explode('|',$_SESSION[__SESSION_CAMP_EDIT]['step3']['location']) as $lc){
+                    $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
+                    $locArr[]=$fmp_loc_dic[$lc];
+                }
+                $ret['fmplocation']=$locArr;
             }
             @mysqli_close($link);
             $ret['fmptemplate']=$rows_template;
@@ -355,6 +361,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']=$STEP3_SAVE_DATA['age_split_intval'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']=$STEP3_SAVE_DATA['gender'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split']=$STEP3_SAVE_DATA['gender_split'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['location']=$STEP3_SAVE_DATA['location'];
             } else {
                 $msgs['status']="false";
             }
