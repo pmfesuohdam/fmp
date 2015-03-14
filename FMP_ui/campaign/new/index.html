@@ -283,6 +283,7 @@ $.when(
               "display",
               $("input[name='save_template']").is(":checked")?"block":"none"
           )
+          $("#sel_fmptemplate").change(function(){reloadAudienceByTmpl($("#sel_fmptemplate").val())})
       }
       function bindLocAutoComplete(){
           //预先载入一个假的自动完成
