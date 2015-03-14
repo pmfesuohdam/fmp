@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-10 18:28:15
+  | Last-Modified: 2015-03-14 21:34:10
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -279,7 +279,11 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             } else {
                 $ret['gender'][$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']]['selected']=1;
             }
-            $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
+            if (isset($selectedTemplateOption['gender_split'])) {
+                $ret['gender_split']=($selectedTemplateOption['gender_split'])?1:0;
+            } else {
+                $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
+            }
             echo json_encode($ret);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
