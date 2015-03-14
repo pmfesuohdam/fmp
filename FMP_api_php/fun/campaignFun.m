@@ -266,6 +266,16 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             $STEP3_SAVE_DATA=array(
                 'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_intval'=>0,'gender'=>0,''=>0,'location'=>''
             );
+            //sel_fmptemplate选择，必须id存在且属于当前用户
+            if (!empty($_POST['sel_fmptemplate'])) {
+                include(dirname(__FILE__).'/../inc/conn.php');
+                $query="select count(*) from t_fmp_template where fmp_user_id={$_SESSION[__SESSION_FMP_UID]} and id=".intval($_POST['sel_fmptemplate']).";";
+                if ($result=$link->query($query)) {
+                    $row=mysqli_fetch_assoc($result); 
+                    $row['count(*)']==0 && $msgs['err_msg'][]=array('sel_fmptemplate'=>'template id not exist');
+                }
+                @mysqli_close($link);
+            }
             //save_template选择，则必须template_name长度不超过30个，且数据库中没有超过20个模板
             if (isset($_POST['save_template']) && $_POST['save_template']=='on') {
                 $err_item=null;
