@@ -339,9 +339,10 @@ $.when(
       $.get(baseConf.api_prefix+"/get/campaign/@step3?template_id="+template_id, function(data) {
           $("#main-loading").remove()
           $("#ad_edit_area").css("display","none")
-          cache["step/3"]=$.tmpl(gced["tpl_step3"],data).appendTo('#ad_edit_area');
+          gced.audience=data
+          cache["step/3"]=$.tmpl(gced["tpl_step3"],gced.audience).appendTo('#ad_edit_area');
           AudienceProcess()
-          $("#ad_edit_area").fadeIn()
+          $("#ad_edit_area").css("display","block")
       })
   }
 </script>
