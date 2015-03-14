@@ -272,7 +272,11 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $query="select count(*) from t_fmp_template where fmp_user_id={$_SESSION[__SESSION_FMP_UID]} and id=".intval($_POST['sel_fmptemplate']).";";
                 if ($result=$link->query($query)) {
                     $row=mysqli_fetch_assoc($result); 
-                    $row['count(*)']==0 && $msgs['err_msg'][]=array('sel_fmptemplate'=>'template id not exist');
+                    if ($row['count(*)']==0) {
+                        $msgs['err_msg'][]=array('sel_fmptemplate'=>'template id not exist');
+                    } else {
+                        $STEP3_SAVE_DATA['sel_fmptemplate']=intval($_POST['sel_fmptemplate']);
+                    }
                 }
                 @mysqli_close($link);
             }
@@ -353,6 +357,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']="true";
                 //没有错误保存数据
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']=null;
                 if (!empty($STEP3_SAVE_DATA['name'])) {
                     include(dirname(__FILE__).'/../inc/conn.php');
                     $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_intval,gender,gender_split,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['gender_split']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_intval={$STEP3_SAVE_DATA['age_split_intval']},gender={$STEP3_SAVE_DATA['gender']},gender_split={$STEP3_SAVE_DATA['gender_split']},location='{$STEP3_SAVE_DATA['location']}';";
@@ -365,6 +370,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     }
                     @mysqli_close($link);
                 }
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']=empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id'])?$STEP3_SAVE_DATA['sel_fmptemplate']:$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']=$STEP3_SAVE_DATA['age_from'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']=$STEP3_SAVE_DATA['age_to'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']=$STEP3_SAVE_DATA['age_split'];
