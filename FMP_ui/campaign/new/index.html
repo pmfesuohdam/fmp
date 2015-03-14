@@ -335,6 +335,7 @@ $.when(
       $("input[name='age_split'],input[name='save_template']").on('click',function(){audienceInit()})
       $("#fmp_loc_autocomplete_dummy").trigger("click")
       $("#fmplocation_autocomplete").trigger("blur")
+      $("#fmp_loc_autocomplete").removeClass("ui-state-active")
   }
   function reloadAudienceByTmpl(template_id){
       $("#ad_edit_area").empty()
