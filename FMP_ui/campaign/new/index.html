@@ -288,6 +288,7 @@ $.when(
           //预先载入一个假的自动完成
           savedCountries=[];
           $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
+          $("#fmp_loc_autocomplete_dummy").bind('click',function(){$("#fmplocation_autocomplete").click()})
           $.each(gced.audience.fmplocation,function(k,v){
               (v!=null) && savedCountries.push(v)
           })
