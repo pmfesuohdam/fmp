@@ -289,7 +289,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             }
             //country如果输入了，必须属于已经定义的国家
             if (isset($_POST['fmplocation']) && !empty($_POST['fmplocation']) ) {
-                $upload_country=explode('|',$_POST['fmplocation']);
+                $upload_country=array_filter(array_unique((array)explode('|',$_POST['fmplocation'])));
                 if (!empty($upload_country)) {
                     $fmp_loc_dic=include(dirname(__FILE__).'/../inc/location_map.php');
                     foreach($upload_country as $country) {
