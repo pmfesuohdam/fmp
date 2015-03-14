@@ -255,13 +255,20 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             }
             $age_split_intval_range=array(1,2,4,6,8,16);
             foreach($age_split_intval_range as $itv) {
-                if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']==$itv) {
+                if (isset($selectedTemplateOption['age_split_intval'])) {
+                    $ret['age_split_intval'][]=$selectedTemplateOption['age_split_intval']==$itv?
+                        array('id'=>$itv,"name"=>$itv,'selected'=>'selected'):array('id'=>$itv,"name"=>$itv);
+                } elseif ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']==$itv) {
                     $ret['age_split_intval'][]=array('id'=>$itv,"name"=>$itv,'selected'=>'selected');
                 } else {
                     $ret['age_split_intval'][]=array('id'=>$itv,"name"=>$itv);
                 }
             }
-            $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
+            if (isset($selectedTemplateOption['age_split'])) {
+                $ret['age_split']=($selectedTemplateOption['age_split'])?1:0;
+            } else {
+                $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
+            }
             $ret['gender'][]=array('id'=>0,'name'=>'all');
             $ret['gender'][]=array('id'=>1,'name'=>'male');
             $ret['gender'][]=array('id'=>2,'name'=>'female');
