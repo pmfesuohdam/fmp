@@ -272,7 +272,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             $ret['gender'][]=array('id'=>0,'name'=>'all');
             $ret['gender'][]=array('id'=>1,'name'=>'male');
             $ret['gender'][]=array('id'=>2,'name'=>'female');
-            if (empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'])) {
+            if (isset($selectedTemplateOption['gender'])) {
+                $ret['gender'][$selectedTemplateOption['gender']]['selected']=1;
+            } elseif (empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'])) {
                 $ret['gender'][0]['selected']=1;
             } else {
                 $ret['gender'][$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']]['selected']=1;
