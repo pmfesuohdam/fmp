@@ -333,6 +333,17 @@ $.when(
       bindLocAutoComplete()
       $("input[name='age_split'],input[name='save_template']").on('click',function(){audienceInit()})
   }
+  function reloadAudienceByTmpl(template_id){
+      $("#ad_edit_area").empty()
+      loading()
+      $.get(baseConf.api_prefix+"/get/campaign/@step3?template_id="+template_id, function(data) {
+          $("#main-loading").remove()
+          $("#ad_edit_area").css("display","none")
+          cache["step/3"]=$.tmpl(gced["tpl_step3"],data).appendTo('#ad_edit_area');
+          AudienceProcess()
+          $("#ad_edit_area").fadeIn()
+      })
+  }
 </script>
 </body>
 </html>
