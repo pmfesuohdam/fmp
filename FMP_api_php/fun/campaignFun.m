@@ -196,15 +196,19 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
         if ($_SERVER['REQUEST_METHOD']=='GET'){
             include(dirname(__FILE__).'/../inc/conn.php');
             $query="select * from t_fmp_template where fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}';";
-            $rows_template=null;
+            $rows_template=$selectedTemplateOption=null;
             if ($result=$link->query($query)) {
                 while ($row=mysqli_fetch_assoc($result)) {
                     if (empty($_GET['template_id'])) {
                         $theTemplate=$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']==$row['id']?
                             array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
                     } else {
-                        $theTemplate=$_GET['template_id']===$row['id']?
-                            array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                        if($_GET['template_id']===$row['id']) {
+                            $theTemplate=array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1);
+                            $selectedTemplateOption=$row;
+                        } else {
+                            $theTemplate=array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                        }
                     }
                     $rows_template[]=$theTemplate;
                 }
@@ -232,12 +236,18 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             @mysqli_close($link);
             $ret['sel_fmptemplate']=$rows_template;
             for ($i=0;$i<=100;$i++){
-                if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']==$i) {
+                if (isset($selectedTemplateOption['age_to'])) {
+                    $ret['age_to'][]=$selectedTemplateOption['age_to']==$i?array("id"=>$i,"name"=>$i,"selected"=>"selected"):
+                        array("id"=>$i,"name"=>$i);
+                } elseif ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']==$i) {
                     $ret['age_to'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");
                 } else {
                     $ret['age_to'][]=array("id"=>$i,"name"=>$i);
                 }
-                if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']==$i) {
+                if (isset($selectedTemplateOption['age_from'])) {
+                    $ret['age_from'][]=$selectedTemplateOption['age_from']==$i?array("id"=>$i,"name"=>$i,"selected"=>"selected"):
+                        array("id"=>$i,"name"=>$i);
+                } elseif ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']==$i) {
                     $ret['age_from'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");
                 } else {
                     $ret['age_from'][]=array("id"=>$i,"name"=>$i);
