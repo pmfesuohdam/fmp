@@ -199,8 +199,13 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             $rows_template=null;
             if ($result=$link->query($query)) {
                 while ($row=mysqli_fetch_assoc($result)) {
-                    $theTemplate=$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']==$row['id']?
-                        array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                    if (empty($_GET['template_id'])) {
+                        $theTemplate=$_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']==$row['id']?
+                            array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                    } else {
+                        $theTemplate=$_GET['template_id']===$row['id']?
+                            array('id'=>$row['id'],'name'=>$row['name'],'selected'=>1):array('id'=>$row['id'],'name'=>$row['name'],'selected'=>0);
+                    }
                     $rows_template[]=$theTemplate;
                 }
             }
