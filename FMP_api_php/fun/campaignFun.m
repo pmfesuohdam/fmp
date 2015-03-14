@@ -225,7 +225,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $ret['fmplocation']=$locArr;
             }
             @mysqli_close($link);
-            $ret['fmptemplate']=$rows_template;
+            $ret['sel_fmptemplate']=$rows_template;
             for ($i=0;$i<=100;$i++){
                 if ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']==$i) {
                     $ret['age_to'][]=array("id"=>$i,"name"=>$i,"selected"=>"selected");

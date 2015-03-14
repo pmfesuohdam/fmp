@@ -68,10 +68,10 @@
         <div class="col-md-6" style="padding-right:30px;border-right:1px solid rgb(207, 207, 207);">
           <!--左侧编辑-->
           <div class="form-group">
-            <label for="fmptemplate">Use existed templates<code></code></label>
-                    <select class="form-control" id="fmptemplate">
+            <label for="sel_fmptemplate">Use existed templates<code></code></label>
+                    <select class="form-control" id="sel_fmptemplate">
                       <option value="">-------------- Not Selected --------------</option>
-                      {{each(i,tpl) fmptemplate}}
+                      {{each(i,tpl) sel_fmptemplate}}
                       <option value="{{= tpl.id}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.name}}</option>
                       {{/each}}
                     </select>
