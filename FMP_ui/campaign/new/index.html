@@ -289,7 +289,7 @@ $.when(
           savedCountries=[];
           $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
           $.each(gced.audience.fmplocation,function(k,v){
-              savedCountries.push(v)
+              (v!=null) && savedCountries.push(v)
           })
           before_savedCounties="";
           $.each(savedCountries,function(k,v){before_savedCounties+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"})
