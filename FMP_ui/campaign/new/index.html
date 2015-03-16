@@ -352,6 +352,25 @@ $.when(
           $("#ad_edit_area").css("display","block")
       })
   }
+  function generateDetail(){
+      reachestimateTs=JSON.stringify({age_min:"33",age_max:"45",genders:1,geo_locations:{countries:["US"]}})
+      targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":["US"]},"flexible_spec":{}})
+      $.ajax({
+          url:baseConf.api_prefix+"/get/fb_graph/@self",
+          method:"POST",
+          data:{batch:[
+            {method:"GET",url:"/act_"+gced.audience.billing_account+"/reachestimate?targeting_spec="+reachestimateTs},
+            {method:"GET",url:"/act_"+gced.audience.billing_account+"/targetingsentencelines?targeting_spec="+targetingsentencelinesTs}
+            ]},
+          success: function(data){
+              if (data.status=="false") { //没有登录退出
+                  location.href="../"
+              }
+              console.log(data)
+              $("#step3_panel_detail > div.panel-body").text(data)
+          }
+      })
+  }
 </script>
 </body>
 </html>
