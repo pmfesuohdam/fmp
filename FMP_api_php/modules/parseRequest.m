@@ -78,6 +78,9 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_CAMPAIGN:
         $GLOBALS['prefix']=__PREFIX_CAMPAIGN;
         break;
+    case __SERVICE_FB_GRAPH:
+        $GLOBALS['prefix']=__PREFIX_CAMPAIGN_FB_GRAPH;
+        break;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
         break;

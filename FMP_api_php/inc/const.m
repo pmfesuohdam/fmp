@@ -47,6 +47,7 @@ define('__SERVICE_FBLOGIN',           'fb_login');
 define('__SERVICE_FBACCOUNT',         'fbaccount');
 define('__SERVICE_CAMPAIGN',          'campaign');
 define('__SERVICE_USER',              'user');
+define('__SERVICE_FB_GRAPH',          'fb_graph');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
@@ -60,6 +61,7 @@ define('__PREFIX_LOGIN',             'login');
 define('__PREFIX_FBLOGIN',           'fb_login');
 define('__PREFIX_FBACCOUNT',         'fbaccount');
 define('__PREFIX_CAMPAIGN',          'campaign');
+define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
