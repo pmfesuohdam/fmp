@@ -339,6 +339,7 @@ $.when(
       $("#fmp_loc_autocomplete_dummy").trigger("click")
       $("#fmplocation_autocomplete").trigger("blur")
       $("#fmp_loc_autocomplete").removeClass("ui-state-active")
+      generateDetail()
   }
   function reloadAudienceByTmpl(template_id){
       $("#ad_edit_area").empty()
