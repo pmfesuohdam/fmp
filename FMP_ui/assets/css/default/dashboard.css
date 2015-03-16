@@ -172,3 +172,10 @@ clear:both;
     overflow: auto !important;
     height: auto !important;
 }
+
+#step3_panel_detail .tit{
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 3px;
+} 

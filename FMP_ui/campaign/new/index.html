@@ -367,8 +367,18 @@ $.when(
               if (data.status=="false") { //没有登录退出
                   location.href="../"
               }
-              console.log(data)
-              $("#step3_panel_detail > div.panel-body").text(data)
+              //console.log(data[0])
+              if (data[0][0]=="200") {
+                 estimate_audience=$.parseJSON(data[0][1]).users
+                 console.log(estimate_audience)
+              }
+              item=""
+              if (data[1][0]=="200") {
+                  arr=$.parseJSON(data[1][1]).targetingsentencelines
+                  $.each(arr,function(k,v){item+="<li>"+v.content+v.children+"</li>"})
+              }
+              detailContent="<h4 class=\"tit\">Audience</h4>"+estimate_audience+"people<ul>"+item+"</ul>";
+              $("#step3_panel_detail > div.panel-body").html(detailContent)
           }
       })
   }
