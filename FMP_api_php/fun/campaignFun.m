@@ -284,6 +284,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             } else {
                 $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
             }
+            $ret['billing_account']=$_SESSION['camp_edit']['step1']['billingAccount'];
             echo json_encode($ret);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
