@@ -354,12 +354,18 @@ $.when(
       })
   }
   function generateDetail(){
-     age_min=$(cache["step/3"][4]).find("#age_from").val()+""
-     age_max=$(cache["step/3"][4]).find("#age_to").val()+""
-     gender=$(cache["step/3"][4]).find("#gender").val()+""
+      age_min=$(cache["step/3"][4]).find("#age_from").val()+""
+      age_max=$(cache["step/3"][4]).find("#age_to").val()+""
+      gender=$(cache["step/3"][4]).find("#gender").val()+""
+      countryArr=[];
+      $(".ui-autocomplete-multiselect-item").each( function(k,v){
+          $.each(fmp_loc_dic,function(country_code,country){
+          v.innerText==country && countryArr.push(country_code)
+      })
+  })
 
-      reachestimateTs=JSON.stringify({age_min:age_min,age_max:age_max,genders:gender,geo_locations:{countries:["US"]}})
-      targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":["US"]},"flexible_spec":{}})
+      reachestimateTs=JSON.stringify({age_min:age_min,age_max:age_max,genders:gender,geo_locations:{countries:countryArr}})
+      targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":countryArr},"flexible_spec":{}})
       $.ajax({
           url:baseConf.api_prefix+"/get/fb_graph/@self",
           method:"POST",
