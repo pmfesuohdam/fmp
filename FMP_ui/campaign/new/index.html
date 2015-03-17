@@ -377,7 +377,7 @@ $.when(
                   arr=$.parseJSON(data[1][1]).targetingsentencelines
                   $.each(arr,function(k,v){item+="<li>"+v.content+v.children+"</li>"})
               }
-              detailContent="<h4 class=\"tit\">Audience</h4>"+estimate_audience+"people<ul>"+item+"</ul>";
+              detailContent="<h4 class=\"tit\">Audience</h4><strong class=\"emphasize\">"+estimate_audience+"</strong>people<div class=\"summary\"><strong class=\"subtit\">Your ad targets people</strong><ul>"+item+"</ul></div>";
               $("#step3_panel_detail > div.panel-body").html(detailContent)
           }
       })
