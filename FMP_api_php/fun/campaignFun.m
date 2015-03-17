@@ -235,7 +235,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             }
             @mysqli_close($link);
             $ret['sel_fmptemplate']=$rows_template;
-            for ($i=0;$i<=100;$i++){
+            for ($i=13;$i<=65;$i++){
                 if (isset($selectedTemplateOption['age_to'])) {
                     $ret['age_to'][]=$selectedTemplateOption['age_to']==$i?array("id"=>$i,"name"=>$i,"selected"=>"selected"):
                         array("id"=>$i,"name"=>$i);
