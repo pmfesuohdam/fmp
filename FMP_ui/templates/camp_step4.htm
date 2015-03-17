@@ -7,21 +7,21 @@
           <div class="form-group">
             <label for="budget">Budget<code></code></label>
                     <div class="input-append">
-                      <input type="text" name="budget">
+                        <input type="text" name="budget" value="{{= budget}}">
                         <span class="add-on jsCurrency">$</span>
                     </div>
         </div>
         <div class="form-group">
           <label for="schedule_start">Schedule Start<code></code></label>
                     <div class="input-group date" id="dp0">
-                      <input type="text" class="form-control" name="schedule_start"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                      <input type="text" class="form-control" name="schedule_start" value="{{= schedule_start}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
                     </div>
                     <script>$('#dp0').datepicker({});</script>
         </div>
         <div class="form-group">
           <label for="schedule_end">Schedule End<code></code></label>
                     <div class="input-group date" id="dp1">
-                      <input type="text" class="form-control" name="schedule_end"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                      <input type="text" class="form-control" name="schedule_end" value="{{= schedule_end}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
                     </div>
                     <script>$('#dp1').datepicker({});</script>
         </div>
