@@ -347,7 +347,7 @@ $.when(
       generateDetail()
   }
   function reloadAudienceByTmpl(template_id){
-      $("#ad_edit_area").find("h2").text("Audience").remove()
+      $("#ad_edit_area").find("h2:contains('Audience')").remove()
       $("#form_camp_step3").remove()
       loading()
       $.get(baseConf.api_prefix+"/get/campaign/@step3?template_id="+template_id, function(data) {
