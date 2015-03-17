@@ -417,4 +417,66 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
     }
 }
 /*}}}*/
+/*{{{发布广告第四步*/
+if ($GLOBALS['selector'] == __SELECTOR_STEP4) {
+    switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if ($_SERVER['REQUEST_METHOD']=='GET') {
+            $ret=array(
+                'budget'=>$_SESSION[__SESSION_CAMP_EDIT]['step4']['budget'],
+                'schedule_start'=>$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start'],
+                'schedule_end'=>$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']
+            );
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            echo json_encode($ret);
+        }
+        break;
+    case(__OPERATION_UPDATE):
+        $msgs=null;
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+            //budget要满足是正数，而且不要过大
+            if (empty($_POST['budget'])) {
+                $msgs['err_msg'][]=array('budget'=>'budget must be not empty');
+            } elseif ($_POST['budget']<=0) {
+                $msgs['err_msg'][]=array('budget'=>'budget must be a number');
+            } elseif(strlen($_POST['budget'])>20) {
+                $msgs['err_msg'][]=array('budget'=>'budget size too long');
+            }
+            //schedule start要满足属于指定的日期格式，且不能大于schedule end
+            if (empty($_POST['schedule_start'])) {
+                $msgs['err_msg'][]=array('schedule_start'=>'schedule start must be not empty');
+            } elseif ( !checkDateMMDDYYYY($_POST['schedule_start']) ) {
+                $msgs['err_msg'][]=array('schedule_start'=>'schedule start date format must be MM/DD/YYYY');
+            } elseif (strtotime($_POST['schedule_start'])-strtotime($_POST['schedule_end'])>0) {
+                $msgs['err_msg'][]=array('schedule_start'=>'can`t larger than schedule end');
+            } elseif (strtotime($_POST['schedule_start'])-strtotime('-1 day')<0) {
+                $msgs['err_msg'][]=array('schedule_start'=>'can`t early than today');
+            }
+            //schedule end要满足属于指定的日期格式，且不能小于schedule start
+            if (empty($_POST['schedule_end'])) {
+                $msgs['err_msg'][]=array('schedule_end'=>'schedule end must be not empty');
+            } elseif ( !checkDateMMDDYYYY($_POST['schedule_end']) ) {
+                $msgs['err_msg'][]=array('schedule_end'=>'schedule end date format must be MM/DD/YYYY');
+            } else {
+                if (strtotime($_POST['schedule_end'])-strtotime($_POST['schedule_start'])<0) {
+                    $msgs['err_msg'][]=array('schedule_end'=>'can`t less than schedule start');
+                }
+            }
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']='true';
+                $_SESSION[__SESSION_CAMP_EDIT]['step4']=array(
+                    'budget'=>$_POST['budget'],
+                    'schedule_start'=>$_POST['schedule_start'],
+                    'schedule_end'=>$_POST['schedule_end']
+                );
+            } else {
+                $msgs['status']='false';
+            }
+            echo json_encode($msgs);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+        break;
+    }
+}
+/*}}}*/
 ?>
