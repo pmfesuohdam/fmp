@@ -345,6 +345,8 @@ $.when(
       $("#fmplocation_autocomplete").trigger("blur")
       $("#fmp_loc_autocomplete").removeClass("ui-state-active")
       generateDetail()
+      $("#form_camp_step3 select").on('change',function(){generateDetail()})
+      $("#fmp_loc_autocomplete").on('DOMSubtreeModified',function(){generateDetail()})
   }
   function reloadAudienceByTmpl(template_id){
       $("#ad_edit_area").find("h2:contains('Audience')").remove()
