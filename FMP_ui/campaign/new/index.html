@@ -354,8 +354,12 @@ $.when(
       })
   }
   function generateDetail(){
-      reachestimateTs=JSON.stringify({age_min:"33",age_max:"45",genders:1,geo_locations:{countries:["US"]}})
-      targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":["US"]},"flexible_spec":{}})
+     age_min=$(cache["step/3"][4]).find("#age_from").val()+""
+     age_max=$(cache["step/3"][4]).find("#age_to").val()+""
+     gender=$(cache["step/3"][4]).find("#gender").val()+""
+
+      reachestimateTs=JSON.stringify({age_min:age_min,age_max:age_max,genders:gender,geo_locations:{countries:["US"]}})
+      targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":["US"]},"flexible_spec":{}})
       $.ajax({
           url:baseConf.api_prefix+"/get/fb_graph/@self",
           method:"POST",
@@ -367,10 +371,8 @@ $.when(
               if (data.status=="false") { //没有登录退出
                   location.href="../"
               }
-              //console.log(data[0])
               if (data[0][0]=="200") {
                  estimate_audience=$.parseJSON(data[0][1]).users
-                 console.log(estimate_audience)
               }
               item=""
               if (data[1][0]=="200") {
