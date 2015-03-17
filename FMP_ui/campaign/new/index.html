@@ -156,6 +156,10 @@ $.when(
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.audience).appendTo('#ad_edit_area');
                 AudienceProcess()
                 break;
+                case("4"):
+                spendingProcess()
+                cache[url]=$.tmpl(gced["tpl_step"+stp],null).appendTo('#ad_edit_area');
+                break;
                 default:
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
                 break;
@@ -389,6 +393,9 @@ $.when(
               $("#step3_panel_detail > div.panel-body").html(detailContent)
           }
       })
+  }
+  function spendingProcess(){
+      generateDetail()
   }
 </script>
 </body>
