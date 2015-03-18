@@ -376,7 +376,7 @@ $.when(
       })
   })
 
-      reachestimateTs=JSON.stringify({age_min:age_min,age_max:age_max,genders:gender,geo_locations:{countries:countryArr}})
+      reachestimateTs=JSON.stringify({age_min:age_min,age_max:age_max,genders:[gender],geo_locations:{countries:countryArr}})
       targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":countryArr},"flexible_spec":{}})
       $.ajax({
           url:baseConf.api_prefix+"/get/fb_graph/@self",
