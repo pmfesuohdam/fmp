@@ -16,7 +16,6 @@ include_once('inc/inc.sync.m');
 include_once('fun/fun.common.m');
 include_once('fun/fun.fs.m');
 include_once('fun/fun.mcd.m');
-include_once('fun/fun.monitor.m');
 list($process_name,$ext_name)=explode('.',basename(__FILE__));
 include_once('modules/sync_init.m');
 
