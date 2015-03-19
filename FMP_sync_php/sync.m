@@ -36,7 +36,17 @@ while ($run) {
     //build upload string
     $upload_str='';
 
-    echo "test\n";
+    $query="select * from t_fb_account;";
+    include(dirname(__FILE__).'/inc/conn.m');
+    if ( !($result=$link->query($query)) ) {
+        $debug_data="[$process_name]::[run query fail]";
+        DebugInfo(1,$debug_level,$debug_data);
+    }
+    while ($row=mysqli_fetch_assoc($result)) {
+        print_r($row);
+    }
+    @mysqli_close($link);
+
     //update status
     $tmp_status="$now|$cur_offset|$read_inode";
     if ($fp=@fopen($status_file,"wb")) {

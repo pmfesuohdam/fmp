@@ -28,3 +28,10 @@ $array_conf=Array(
     'sleep'         => __SLEEP
 );
 
+/* {{{ db mysql setting*/
+define('__DB_MYSQL_HOST', '127.0.0.1');
+define('__DB_MYSQL_PORT', '3306');
+define('__DB_MYSQL_USER', 'madcore');
+define('__DB_MYSQL_PASS', 'madcore');
+define('__DB_MYSQL_DB',   'fmp');
+/* }}} */
