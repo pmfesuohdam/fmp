@@ -24,7 +24,6 @@ define(__SOURCE_SPLIT_TAG4,  ',');
 //define(__LOGTAG_LOG,     'access_monitor');
 
 $array_conf=Array(
-    'server_name'   => '', 
     'proc_life'     => __PROC_LIFE,
     'sleep'         => __SLEEP
 );
