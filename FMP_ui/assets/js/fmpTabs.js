@@ -90,10 +90,10 @@ tabs.bind( "keyup", function( event ) {
 
 // css
 $("#dialog label, #dialog input").css({"display":"block","font-size":"12px"})
-$("#dialog label").css("margin-top"," 0.5em")
-$("#dialog input, #dialog textarea").css("width","95%")
-$("#tabs").css("margin-top","1em")
-$("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointer"})
+$("#dialog label").css({"margin-top":"0.5em","font-size":"12px"})
+$("#dialog input, #dialog textarea").css({"width":"95%","font-size":"12px"})
+$("#tabs").css({"margin-top":"1em","font-size":"12px"})
+$("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointe","font-size":"12px"})
 $("#add_tab").css("cursor","pointer")
 /////////////////////////////////////
 opts.callback();
