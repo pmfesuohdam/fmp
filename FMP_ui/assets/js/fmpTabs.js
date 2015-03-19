@@ -17,7 +17,7 @@ myid=$(this).eq(0).attr('id');
 //$(this).css({"color":"#00C"});
 
 
-this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Title</label><input type="text" name="tab_title" id="tab_title" value="Tab Title" class="ui-widget-content ui-corner-all"><label for="tab_content">Content</label><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all">Tab content</textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
+this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Title</label><input type="text" name="tab_title" id="tab_title" value="Tab Title" class="ui-widget-content ui-corner-all"><label for="tab_content" style="display:none">Content</label><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
 //list=this.append('<ul></ul>').find('ul');
 this.append('<ul><li><a href="#'+myid+'-1">product1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
 //////////////////////////////////////
@@ -95,6 +95,7 @@ $("#dialog input, #dialog textarea").css({"width":"95%","font-size":"12px"})
 $("#tabs").css({"margin-top":"1em","font-size":"12px"})
 $("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointe","font-size":"12px"})
 $("#add_tab").css("cursor","pointer")
+$(".ui-widget-header").css({border:"none",background:"none"})
 /////////////////////////////////////
 opts.callback();
 };
