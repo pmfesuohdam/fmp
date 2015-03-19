@@ -166,6 +166,7 @@ $.when(
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.spending).appendTo('#ad_edit_area');
                 break;
                 case("5"):
+                designProcess()
                 cache[url]=$.tmpl(gced["tpl_step"+stp],null).appendTo('#ad_edit_area');
                 break;
                 default:
@@ -407,6 +408,11 @@ $.when(
       })
   }
   function spendingProcess(){
+      try {
+          generateDetail()
+      } catch(e) {}
+  }
+  function designProcess(){
       try {
           generateDetail()
       } catch(e) {}
