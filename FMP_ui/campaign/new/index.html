@@ -135,7 +135,8 @@ $.when(
   $.getScript(baseConf.domain+"/assets/js/libs/prettify.min.js?t=20150316101215"),
   $.getScript(baseConf.domain+"/assets/js/libs/bootstrap-datepicker.js?t=20150316101215"),
   $.getScript(baseConf.domain+"/assets/js/location_map.js?t=20150316101215"),
-  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150316101215")
+  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150316101215"),
+  $.getScript(baseConf.domain+"/assets/js/fmpTabs.js?t=20150316101215")
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
@@ -163,6 +164,9 @@ $.when(
                 case("4"):
                 spendingProcess()
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.spending).appendTo('#ad_edit_area');
+                break;
+                case("5"):
+                cache[url]=$.tmpl(gced["tpl_step"+stp],null).appendTo('#ad_edit_area');
                 break;
                 default:
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
