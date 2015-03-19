@@ -4,9 +4,9 @@
     // opts 里面是默认参数
     var opts={ 
         color:'red',
-        add_name:'Add Tab',
-        add_tab_name:'Tab data',
-        callback:function(){console.log(opts.color)}
+        add_name:'Add Product',
+        add_tab_name:'Product data',
+        callback:function(){}
     };
     $.extend(opts,options);
 
@@ -17,13 +17,13 @@ myid=$(this).eq(0).attr('id');
 //$(this).css({"color":"#00C"});
 
 
-this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Title</label><input type="text" name="tab_title" id="tab_title" value="Tab Title" class="ui-widget-content ui-corner-all"><label for="tab_content" style="display:none">Content</label><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
+this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Product name</label><input type="text" name="tab_title" id="tab_title" value="" placeholder="Enter product name" class="ui-widget-content ui-corner-all"><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
 //list=this.append('<ul></ul>').find('ul');
-this.append('<ul><li><a href="#'+myid+'-1">product1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
+this.append('<ul><li><a href="#'+myid+'-1">product1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Product</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
 //////////////////////////////////////
 var tabTitle = $( "#tab_title" ),
 tabContent = $( "#tab_content" ),
-tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
+tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Product</span></li>",
 tabCounter = 2;
 
 var tabs = $( "#"+myid ).tabs();
@@ -55,10 +55,10 @@ var form = dialog.find( "form" ).submit(function( event ) {
 
 // actual addTab function: adds new tab using the input from the form above
 function addTab() {
-    var label = tabTitle.val() || "Tab " + tabCounter,
+    var label = tabTitle.val() || "Product " + tabCounter,
     id = myid+"-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-    tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+    tabContentHtml = tabContent.val() || "Product " + tabCounter + " content.";
 
     tabs.find( ".ui-tabs-nav" ).append( li );
     tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
