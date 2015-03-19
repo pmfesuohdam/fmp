@@ -36,7 +36,7 @@ while ($run) {
     //build upload string
     $upload_str='';
 
-
+    echo "test\n";
     //update status
     $tmp_status="$now|$cur_offset|$read_inode";
     if ($fp=@fopen($status_file,"wb")) {
