@@ -1,24 +1,16 @@
-//示例插件
 (function ($) {
     $.fn.fmp_tab = function (options) {
     // opts 里面是默认参数
     var opts={ 
-        color:'red',
         add_name:'Add Product',
         add_tab_name:'Product data',
         callback:function(){}
     };
     $.extend(opts,options);
 
-// jquery功能代码
-//this.children("p").css({"color":opts.color});
 myid=$(this).eq(0).attr('id');
 
-//$(this).css({"color":"#00C"});
-
-
 this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Product name</label><input type="text" name="tab_title" id="tab_title" value="" placeholder="Enter product name" class="ui-widget-content ui-corner-all"><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
-//list=this.append('<ul></ul>').find('ul');
 this.append('<ul><li><a href="#'+myid+'-1">product1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Product</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
 //////////////////////////////////////
 var tabTitle = $( "#tab_title" ),
