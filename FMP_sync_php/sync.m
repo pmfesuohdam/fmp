@@ -77,8 +77,8 @@ while ($run) {
                         $primary_page_info=json_decode($res2['body'],true);
                         $primary_page_info=$primary_page_info['primary_page'];
                         $res3=curlGet(__FB_GRAPH."/{$primary_page_info['id']}/picture",true);
-                        $query="insert into t_fb_business(business_id,business_name,primary_page_category,primary_page_name,primary_page_id,profile_pic) values({$businessInfo['id']},'{$businessInfo['name']}','{$primary_page_info['category']}','{$primary_page_info['name']}',{$primary_page_info['id']},'".addslashes($res3['body'])."') on duplicate key update business_name='{$businessInfo['name']}',primary_page_category='{$primary_page_info['category']}',primary_page_name='{$primary_page_info['name']}',primary_page_id={$primary_page_info['id']},profile_pic='".addslashes($res3['body'])."',update_time=now();";
-                        if ($result!=$link->query($query)) {
+                        $query2="insert into t_fb_business(business_id,business_name,primary_page_category,primary_page_name,primary_page_id,profile_pic) values({$businessInfo['id']},'{$businessInfo['name']}','{$primary_page_info['category']}','{$primary_page_info['name']}',{$primary_page_info['id']},'".addslashes($res3['body'])."') on duplicate key update business_name='{$businessInfo['name']}',primary_page_category='{$primary_page_info['category']}',primary_page_name='{$primary_page_info['name']}',primary_page_id={$primary_page_info['id']},profile_pic='".addslashes($res3['body'])."',update_time=now();";
+                        if ($result!=$link->query($query2)) {
                             $debug_data="[$process_name]::[sync]-[update business fail]-[cause:".mysqli_error($link)."]";
                             DebugInfo(2,$debug_level,$debug_data);
                         } else {
@@ -97,6 +97,14 @@ while ($run) {
         } else {
             $debug_data="[$process_name]::[sync]-[visit fail]-[url:{$visit_fb_url}]";
             DebugInfo(2,$debug_level,$debug_data);
+        }
+        $query3="update t_fb_account set want_sync=0 where ad_account_id={$syncRow['ad_account_id']};";
+        if ($result2!=$link->query($query3)) {
+            $debug_data="[$process_name]::[sync]-[update ad account id requirement ok]";
+            DebugInfo(3,$debug_level,$debug_data);
+        } else {
+            $debug_data="[$process_name]::[sync]-[update ad account id requirement fail]";
+            DebugInfo(1,$debug_level,$debug_data);
         }
     }
     @mysqli_close($link);
