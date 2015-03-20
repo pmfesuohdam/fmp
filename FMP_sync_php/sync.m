@@ -77,7 +77,7 @@ while ($run) {
                         $primary_page_info=json_decode($res2['body'],true);
                         $primary_page_info=$primary_page_info['primary_page'];
                         $res3=curlGet(__FB_GRAPH."/{$primary_page_info['id']}/picture",true);
-                        $query="insert into t_fb_business(business_id,business_name,primary_page_category,primary_page_name,primary_page_id,profile_pic) values({$businessInfo['id']},'{$businessInfo['name']}','{$primary_page_info['category']}','{$primary_page_info['name']}',{$primary_page_info['id']},'".addslashes($res3['body'])."') on duplicate key update business_name='{$businessInfo['name']}',primary_page_category='{$primary_page_info['category']}',primary_page_name='{$primary_page_info['name']}',primary_page_id={$primary_page_info['id']},profile_pic='".addslashes($res3['body'])."';";
+                        $query="insert into t_fb_business(business_id,business_name,primary_page_category,primary_page_name,primary_page_id,profile_pic) values({$businessInfo['id']},'{$businessInfo['name']}','{$primary_page_info['category']}','{$primary_page_info['name']}',{$primary_page_info['id']},'".addslashes($res3['body'])."') on duplicate key update business_name='{$businessInfo['name']}',primary_page_category='{$primary_page_info['category']}',primary_page_name='{$primary_page_info['name']}',primary_page_id={$primary_page_info['id']},profile_pic='".addslashes($res3['body'])."',update_time=now();";
                         if ($result!=$link->query($query)) {
                             $debug_data="[$process_name]::[sync]-[update business fail]-[cause:".mysqli_error($link)."]";
                             DebugInfo(2,$debug_level,$debug_data);
