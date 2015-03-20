@@ -35,3 +35,5 @@ define('__DB_MYSQL_USER', 'madcore');
 define('__DB_MYSQL_PASS', 'madcore');
 define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
+
+define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');

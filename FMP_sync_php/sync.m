@@ -42,10 +42,48 @@ while ($run) {
         $debug_data="[$process_name]::[run query fail]";
         DebugInfo(1,$debug_level,$debug_data);
     }
+    $rows=[];
     while ($row=mysqli_fetch_assoc($result)) {
-        print_r($row);
+        if ($row['want_sync']==1) {
+            $rows[]=$row;
+            $debug_data="[$process_name]::[found sync requirement]-[ad account id:{$row['ad_account_id']}]";
+            DebugInfo(1,$debug_level,$debug_data);
+        }
     }
     @mysqli_close($link);
+    $businessidArr=[]; //business是否查询过 
+    foreach($rows as $syncRow){
+        //已知一个广告帐号，通过对应access_token查询它的business，然后获取他的主页并保存下来
+        $debug_data="[$process_name]::[sync]-[ad account id:{$syncRow['ad_account_id']}]-[acess token:{$syncRow['access_token']}]";
+        DebugInfo(4,$debug_level,$debug_data);
+        //根据access token查询
+        $visit_fb_url=__FB_GRAPH."/me/businesses?access_token={$syncRow['access_token']}";
+        $res=curlGet($visit_fb_url);
+        if ($res['code']=='200') {
+            $debug_data="[$process_name]::[sync]-[url:{$visit_fb_url}]-[visit ok]-[body:{$res['body']}]";
+            $data=json_decode($res['body'],true);
+            foreach($data['data'] as $businessInfo) {
+                if ( !in_array($businessInfo['id'],$businessidArr) ) {
+                    $businessidArr[]=$businessInfo['id'];
+                    $debug_data="[$process_name]::[sync]-[business name:{$businessInfo['name']}]-[business id:{$businessInfo['id']}]-[added]";
+                    DebugInfo(3,$debug_level,$debug_data);
+                    //获取主页信息
+                    if ( empty($businessInfo['id']) ) {
+                        continue;
+                    }
+                    $visit_fb_url2=__FB_GRAPH."/{$businessInfo['id']}?fields=primary_page&access_token={$syncRow['access_token']}";
+                    $res2=curlGet($visit_fb_url2);
+                    print_r($res2);
+                } else {
+                    $debug_data="[$process_name]::[sync]-[business name:{$businessInfo['name']}]-[business id:{$businessInfo['id']}]-[no need add]";
+                    DebugInfo(3,$debug_level,$debug_data);
+                }
+            }
+        } else {
+            $debug_data="[$process_name]::[sync]-[visit fail]";
+            DebugInfo(2,$debug_level,$debug_data);
+        }
+    }
 
     //update status
     $tmp_status="$now|$cur_offset|$read_inode";

@@ -235,7 +235,7 @@ function curlGet($url){
     curl_close($ch);
     //$header = substr($response, 0, $header_size);
     $body = substr($response, $header_size);
-    return array($code,$body);
+    return array('code'=>$code, 'body'=>$body);
 }
 
 ?>
