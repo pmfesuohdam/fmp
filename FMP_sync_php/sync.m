@@ -16,6 +16,7 @@ include_once('inc/inc.sync.m');
 include_once('fun/fun.common.m');
 include_once('fun/fun.fs.m');
 include_once('fun/fun.mcd.m');
+include_once('GPLlib/simple_html_dom.php');
 list($process_name,$ext_name)=explode('.',basename(__FILE__));
 include_once('modules/sync_init.m');
 
@@ -50,8 +51,7 @@ while ($run) {
             DebugInfo(1,$debug_level,$debug_data);
         }
     }
-    @mysqli_close($link);
-    $businessidArr=[]; //business是否查询过 
+    $businessidArr=[];
     foreach($rows as $syncRow){
         //已知一个广告帐号，通过对应access_token查询它的business，然后获取他的主页并保存下来
         $debug_data="[$process_name]::[sync]-[ad account id:{$syncRow['ad_account_id']}]-[acess token:{$syncRow['access_token']}]";
@@ -73,17 +73,33 @@ while ($run) {
                     }
                     $visit_fb_url2=__FB_GRAPH."/{$businessInfo['id']}?fields=primary_page&access_token={$syncRow['access_token']}";
                     $res2=curlGet($visit_fb_url2);
-                    print_r($res2);
+                    if ($res2['code']=='200') {
+                        $primary_page_info=json_decode($res2['body'],true);
+                        $primary_page_info=$primary_page_info['primary_page'];
+                        $res3=curlGet(__FB_GRAPH."/{$primary_page_info['id']}/picture",true);
+                        $query="insert into t_fb_business(business_id,business_name,primary_page_category,primary_page_name,primary_page_id,profile_pic) values({$businessInfo['id']},'{$businessInfo['name']}','{$primary_page_info['category']}','{$primary_page_info['name']}',{$primary_page_info['id']},'".addslashes($res3['body'])."') on duplicate key update business_name='{$businessInfo['name']}',primary_page_category='{$primary_page_info['category']}',primary_page_name='{$primary_page_info['name']}',primary_page_id={$primary_page_info['id']},profile_pic='".addslashes($res3['body'])."';";
+                        if ($result!=$link->query($query)) {
+                            $debug_data="[$process_name]::[sync]-[update business fail]-[cause:".mysqli_error($link)."]";
+                            DebugInfo(2,$debug_level,$debug_data);
+                        } else {
+                            $debug_data="[$process_name]::[sync]-[update business ok]";
+                            DebugInfo(3,$debug_level,$debug_data);
+                        }
+                    } else {
+                        $debug_data="[$process_name]::[sync]-[visit fail]-[url:{$visit_fb_url2}]";
+                        DebugInfo(2,$debug_level,$debug_data);
+                    }
                 } else {
                     $debug_data="[$process_name]::[sync]-[business name:{$businessInfo['name']}]-[business id:{$businessInfo['id']}]-[no need add]";
                     DebugInfo(3,$debug_level,$debug_data);
                 }
             }
         } else {
-            $debug_data="[$process_name]::[sync]-[visit fail]";
+            $debug_data="[$process_name]::[sync]-[visit fail]-[url:{$visit_fb_url}]";
             DebugInfo(2,$debug_level,$debug_data);
         }
     }
+    @mysqli_close($link);
 
     //update status
     $tmp_status="$now|$cur_offset|$read_inode";

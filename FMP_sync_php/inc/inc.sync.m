@@ -37,3 +37,4 @@ define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
 
 define('__FB_GRAPH', 'https://graph.facebook.com/v2.2');
+define('__FB_URL', 'https://www.facebook.com');
