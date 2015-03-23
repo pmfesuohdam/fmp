@@ -39,17 +39,9 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 }
 
                 $row1=mysqli_fetch_assoc($result1);
-                //print_r($row1);
                 $act_url="https://graph.facebook.com/v2.2/act_{$fb_adaccount_id}?fields=name,currency,daily_spend_limit,account_status&access_token=".$row1['access_token'];
                 $ret=file_get_contents($act_url);
                 $ret=json_decode($ret,true);
-                //(
-                    //[currency] => USD
-                    //[daily_spend_limit] => 5000
-                    //[account_status] => 1
-                    //[account_id] => 1568648550045049
-                    //[id] => act_1568648550045049
-                //)
                 $adaccounts['adaccounts'][]=array(
                     'id'=>$fb_adaccount_id,
                     'name'=>$ret['name'],
@@ -62,9 +54,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 
             }
             //查询adaccount是否已经被导入
-            //print_r($adaccounts['adaccounts']);
             $query2="SELECT fb_adaccount_id FROM t_relationship_fmp_fb WHERE imported=0 AND fb_adaccount_id IN(".join(',',array_keys($ALL_AD_ACCOUNTS)).");";
-            //echo $query2;
             $notImportAccounts=null;
             $result2=$link->query($query2);
             while ($row2=mysqli_fetch_assoc($result2)) {
