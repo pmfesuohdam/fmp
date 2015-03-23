@@ -17,6 +17,35 @@ header("Content-type: application/json; charset=utf-8");
 if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         switch($GLOBALS['operation']) {
+        case(__OPERATION_DELETE):
+            if (empty($_GET['delete_adaccount'])) {
+                $msgs['err_msg'][]=array('delete_adaccount'=>'param delete_adaccount must not be empty');
+            } else {
+                include(dirname(__FILE__).'/../inc/conn.php');
+                $query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fmp_fb as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION['fmp_uid']}' and t1.fb_adaccount_id=t2.ad_account_id;";
+                $rows=null;
+                if ($result=$link->query($query)) {
+                    while ($row=mysqli_fetch_assoc($result)) {
+                        $rows[]=$row['fb_adaccount_id'];
+                    }
+                }
+                if (!in_array($_GET['delete_adaccount'],$rows)) {
+                    $msgs['err_msg'][]=array('delete_adaccount'=>'the ad account is not belong to you');
+                } else {
+                    $query2="delete a.*,b.* from t_fb_account a,t_relationship_fmp_fb b where a.ad_account_id={$_GET['delete_adaccount']} and a.ad_account_id=b.fb_adaccount_id;";
+                    if (!$link->query($query2)) {
+                        $msgs['err_msg'][]=array('delete_adaccount'=>'delete fail');
+                    }
+                }
+            }
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']='true';
+            } else {
+                $msgs['status']='false';
+            }
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            echo json_encode($msgs);
+            break;
         case(__OPERATION_READ):
             $adaccounts['adaccounts']=null;
             include(dirname(__FILE__).'/../inc/conn.php');
