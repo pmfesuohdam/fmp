@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created: 2011-02-23 10:19:45                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-01 22:28:07
+  | Last-Modified: 2015-03-23 14:20:31
   +----------------------------------------------------------------------+
 */
 $moduleName=basename(__FILE__);
@@ -74,6 +74,9 @@ if (!empty($GLOBALS['serviceName'])) {
         break;
     case __SERVICE_FBACCOUNT:
         $GLOBALS['prefix']=__PREFIX_FBACCOUNT;
+        break;
+    case __SERVICE_SYNC:
+        $GLOBALS['prefix']=__PREFIX_SYNC;
         break;
     case __SERVICE_CAMPAIGN:
         $GLOBALS['prefix']=__PREFIX_CAMPAIGN;

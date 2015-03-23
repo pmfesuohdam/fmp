@@ -65,7 +65,7 @@
                           <!--adaccount section start-->
                           <script id="adaccountTemplate" type="text/x-jquery-tmpl">
                               {{each(i,adaccount) adaccounts}}
-                              <tr><td>{{= adaccount.name}}</td><td>{{= adaccount.id}}</td><td>{{if adaccount.status=1}}OK{{else}}EXPIRED{{/if}}</td><td><input type="button" class="btn btn-xs btn-default btn-info" value="sync" /></td><td><input type="button" class="btn btn-xs btn-default btn-warning" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount({{= adaccount.id}});" /></td></tr>
+                              <tr><td>{{= adaccount.name}}</td><td>{{= adaccount.id}}</td><td>{{if adaccount.status=1}}OK{{else}}EXPIRED{{/if}}</td><td><input type="button" class="btn btn-xs btn-default btn-info" value="sync" onclick="javascript:doSyncAdAccount({{= adaccount.id}});" /></td><td><input type="button" class="btn btn-xs btn-default btn-warning" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount({{= adaccount.id}});" /></td></tr>
                               {{/each}}
                           </script>
                           <!--adaccount section end-->
@@ -128,6 +128,17 @@
                       }
                   }
               })
+          })
+      }
+
+      function doSyncAdAccount(adaccount){
+          $.ajax({
+              url:baseConf.api_prefix+"/get/login/@self",
+              method:"GET",
+              success: function(data){
+                  if (data.status=="false") {
+                  }
+              }
           })
       }
 
