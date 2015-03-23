@@ -11,6 +11,10 @@
 
     myid=$(this).eq(0).attr('id');
 
+
+    this
+        .find("#dialog-confirm")
+        .remove()
     this.append('<div id="dialog-confirm" title="'+opts.title+'"><p>'+opts.content+'</p></div>');
     //////////////////////////////////////
     $( "#dialog-confirm" ).dialog({
@@ -19,10 +23,10 @@
       modal: true,
       buttons: {
         "Delete ad account": function() {
-          $(this).dialog("close").remove("#dialog-confirm")
+          $(this).dialog("close")
         },
         Cancel: function() {
-          $(this).dialog("close").remove("#dialog-confirm")
+          $(this).dialog("close")
         }
       }
     });
