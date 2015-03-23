@@ -2,8 +2,9 @@
     $.fn.fmp_confirm_dialog = function (options) {
     // opts 里面是默认参数
     var opts={ 
-        title:'dialog title',
-        content:'dialog content',
+        title:'dialog_title',
+        content:'dialog_content',
+        height:180,
         callback:function(){}
     };
     $.extend(opts,options);
@@ -14,14 +15,14 @@
     //////////////////////////////////////
     $( "#dialog-confirm" ).dialog({
       resizable: false,
-      height:180,
+      height:opts.height,
       modal: true,
       buttons: {
         "Delete ad account": function() {
-          $( this ).dialog( "close" );
+          $(this).dialog("close").remove("#dialog-confirm")
         },
         Cancel: function() {
-          $( this ).dialog( "close" );
+          $(this).dialog("close").remove("#dialog-confirm")
         }
       }
     });
