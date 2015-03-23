@@ -135,6 +135,7 @@
           $.ajax({
               url:baseConf.api_prefix+"/get/sync/@self",
               method:"GET",
+              data:{sync_adaccount:adaccount},
               success: function(data){
                   if (data.status=="false") {
                       $("#fmp_account_alert_msg").fmp_alert_message({
