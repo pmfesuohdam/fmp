@@ -160,10 +160,25 @@
               content:"You are going to delete every campaign and statistics related to the account.Are you sure?",
               height:210,
               okfun:function(){
-                  $("#fmp_account_alert_msg").fmp_alert_message({
-                      type:1,
-                      strong:'Success!',
-                      content:'We are deleting the selected account, it could take some time.'
+                  $.ajax({
+                      url:baseConf.api_prefix+"/delete/fbaccount/@self",
+                      method:"GET",
+                      data:{sync_adaccount:adaccount},
+                      success: function(data){
+                          if (data.status=="false") {
+                              $("#fmp_account_alert_msg").fmp_alert_message({
+                                  type:0,
+                                  strong:'Fail!',
+                                  content:'Delete fail.'
+                              })
+                          } else {
+                              $("#fmp_account_alert_msg").fmp_alert_message({
+                                  type:1,
+                                  strong:'Success!',
+                                  content:'We are deleting the selected account, it could take some time.'
+                              })
+                          }
+                      }
                   })
               }
           })
