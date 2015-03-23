@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-23 14:19:53
+  | Last-Modified: 2015-03-23 17:44:17
   +----------------------------------------------------------------------+
  */
 
@@ -137,7 +137,7 @@ define('__FMP_ADTYPE_RIGHTCOL', 3); //Right-Hand Column(Website Clicks)
 $AD_TYPES=array(
     __FMP_ADTYPE_MUTIPRO=>"Multi-Product Ads(Website Clicks)",
     __FMP_ADTYPE_NEWSFEED=>"News feed(Website Clicks)",
-    __FMP_ERR_SELECT_ACCTOK=>"Right-Hand Column(Website Clicks)"
+    __FMP_ADTYPE_RIGHTCOL=>"Right-Hand Column(Website Clicks)"
 );
 
 // 业务错误代码
