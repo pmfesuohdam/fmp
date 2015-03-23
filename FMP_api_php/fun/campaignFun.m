@@ -479,4 +479,20 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP4) {
     }
 }
 /*}}}*/
+/*{{{ 发布广告第五步*/
+if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
+    switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if ($_SERVER['REQUEST_METHOD']=='GET') {
+            $pages[]=array('id'=>'xxx','name'=>'yyy','imgbase64'=>'data:image/png;base64,xxx','selected'=>"false");
+            $ret=array(
+                'pages'=>$pages
+            );
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            echo json_encode($ret);
+        }
+        break;
+    }
+}
+/*}}}*/
 ?>
