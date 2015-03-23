@@ -133,10 +133,21 @@
 
       function doSyncAdAccount(adaccount){
           $.ajax({
-              url:baseConf.api_prefix+"/get/login/@self",
+              url:baseConf.api_prefix+"/get/sync/@self",
               method:"GET",
               success: function(data){
                   if (data.status=="false") {
+                      $("#fmp_account_alert_msg").fmp_alert_message({
+                          type:0,
+                          strong:'Fail!',
+                          content:'Sync failed.An error occur.'
+                      })
+                  } else {
+                      $("#fmp_account_alert_msg").fmp_alert_message({
+                          type:1,
+                          strong:'Success!',
+                          content:'Sync started, new objects found on Facebook will be available in few minutes.'
+                      })
                   }
               }
           })
