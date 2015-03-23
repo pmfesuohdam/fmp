@@ -4,11 +4,16 @@
     var opts={ 
         title:'dialog_title',
         content:'dialog_content',
+        height:180,
         callback:function(){}
     };
     $.extend(opts,options);
 
-    //this.append('<div id="dialog-confirm" title="'+opts.title+'"><p>'+opts.content+'</p></div>');
+    this
+        .empty()
+        .append("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Success!</strong> We are deleting the selected account, it could take some time.</div>")
+        .css("display","none")
+        .fadeIn()
     opts.callback();
     };
 })(jQuery);

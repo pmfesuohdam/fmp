@@ -9,14 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/default/fbaccount.css?t=20150316101215" />
 	<link rel="stylesheet" type="text/css" href="../assets/css/default/table.css?t=20150316101215" />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/libs/jquery-ui.css?t=20150316101215">
-    <script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/base.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/account.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/libs/bootstrap.min.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/libs/jquery-ui.min.js?t=20150316101215"></script>
-    <script type="text/javascript" src="../assets/js/fmpConfirmDialog.js?t=20150316101215"></script>
+  <link rel="stylesheet" type="text/css" href="../assets/css/libs/jquery-ui.css?t=20150316101215">
+  <script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/base.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/account.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/bootstrap.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery-ui.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/fmpConfirmDialog.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/fmpAlertMessage.js?t=20150316101215"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -53,12 +54,7 @@
             <h2>Facebook Accounts</h2><hr />
             <h2 class="info_left_from_add_fb">Here you can manage your Facebook accounts and add new ones. If you just joined FMP remember that you need to add at least one Facebook account to start publishing campaigns. Facebook Ads will be billed directly by Facebook.</h2>
             <p class="add_fb"><a id="add_fb_a" class="abtn abtn-large abtn-facebook" href="{{ =add_fb_url}}">Add New Facebook Accounts</a></p>
-            <div style="clear:both">
-                <div class="alert alert-success">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Success!</strong> We are deleting the selected account, it could take some time. 
-                </div>
-            </div>
+            <div style="clear:both" id="fmp_account_alert_msg"><!--操作消息--></div>
             <div class="accounts-list">
                 <p class="total">ACCOUNTS ADDED</p>
                 <p class="info">Can't find your account?Contact us </p>
