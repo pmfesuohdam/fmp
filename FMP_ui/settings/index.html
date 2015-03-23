@@ -163,7 +163,7 @@
                   $.ajax({
                       url:baseConf.api_prefix+"/delete/fbaccount/@self",
                       method:"GET",
-                      data:{sync_adaccount:adaccount},
+                      data:{delete_adaccount:adaccount},
                       success: function(data){
                           if (data.status=="false") {
                               $("#fmp_account_alert_msg").fmp_alert_message({
