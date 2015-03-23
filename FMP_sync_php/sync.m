@@ -16,7 +16,7 @@ include_once('inc/inc.sync.m');
 include_once('fun/fun.common.m');
 include_once('fun/fun.fs.m');
 include_once('fun/fun.mcd.m');
-include_once('GPLlib/simple_html_dom.php');
+//include_once('GPLlib/simple_html_dom.php');
 list($process_name,$ext_name)=explode('.',basename(__FILE__));
 include_once('modules/sync_init.m');
 
@@ -67,10 +67,10 @@ while ($run) {
                     $businessidArr[]=$businessInfo['id'];
                     $debug_data="[$process_name]::[sync]-[business name:{$businessInfo['name']}]-[business id:{$businessInfo['id']}]-[added]";
                     DebugInfo(3,$debug_level,$debug_data);
-                    //获取主页信息
                     if ( empty($businessInfo['id']) ) {
                         continue;
                     }
+                    //获取主页信息,写入profile的logo图片
                     $visit_fb_url2=__FB_GRAPH."/{$businessInfo['id']}?fields=primary_page&access_token={$syncRow['access_token']}";
                     $res2=curlGet($visit_fb_url2);
                     if ($res2['code']=='200') {
