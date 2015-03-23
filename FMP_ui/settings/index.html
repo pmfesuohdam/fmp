@@ -13,6 +13,7 @@
   <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150316101215"></script>
   <script type="text/javascript" src="../assets/js/base.js?t=20150316101215"></script>
   <script type="text/javascript" src="../assets/js/account.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/fmpConfirmDialog.js?t=20150316101215"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -97,38 +98,35 @@
                     if (data.status=="false") { //没有登录退出
                         location.href="../"
                     }
-                    var user = [
-                    { UserName: data.username }
-                    ]
+                    var user=[{UserName:data.username}]
                     $("#headerTemplate").tmpl(user).appendTo('.header #user_profile_a');
                 }
             })
         bind_logout_btn()
-              $.ajax({
-              url:baseConf.api_prefix+"/get/fbaccount/@self",
-              type:"GET",
-              success: function(adaccounts) {
-              //adaccounts ={adaccounts:[{"name":"Sam Xu","spent_sum":"48888","status":"true"},{"name":"evoup","spent_sum":"28888","status":"true"},{"name":"akaya","spent_sum":"18888","status":"true"},{"name":"bobby li","spent_sum":"88888","status":"true"}]}
-              if (adaccounts['adaccounts']==null) {
-              $("tbody").append("<tr><td colspan=\"5\" style=\"text-align:center\">no data now</td></tr>");
-              }
-              $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
-              }
-              })
+        $.ajax({
+            url:baseConf.api_prefix+"/get/fbaccount/@self",
+            type:"GET",
+            success: function(adaccounts) {
+                if (adaccounts['adaccounts']==null) {
+                    $("tbody").append("<tr><td colspan=\"5\" style=\"text-align:center\">no data now</td></tr>");
+                }
+                $("#adaccountTemplate").tmpl(adaccounts).appendTo('tbody');
+            }
+        })
     })
 
       function bind_logout_btn(){
-         $("#logout_btn").bind("click",function(){
-          $.ajax({
-           url: baseConf.api_prefix+"/delete/login/@self",
-           type: "GET",
-           success: function(data){
-            if (data.status=="true") {
-             location.href="http://"+document.domain;
-         }
-     }
- })
-      })
+          $("#logout_btn").bind("click",function(){
+              $.ajax({
+                  url: baseConf.api_prefix+"/delete/login/@self",
+                  type: "GET",
+                  success: function(data){
+                      if (data.status=="true") {
+                          location.href="http://"+document.domain;
+                      }
+                  }
+              })
+          })
      }
  </script>
 </body>
