@@ -8,12 +8,24 @@
     };
     $.extend(opts,options);
 
-myid=$(this).eq(0).attr('id');
+    myid=$(this).eq(0).attr('id');
 
-alert(myid)
-this.append('<div id="dialog-confirm" title="'+title+'"><p>'+content+'</p></div>');
-//////////////////////////////////////
-/////////////////////////////////////
-opts.callback();
-};
+    this.append('<div id="dialog-confirm" title="'+opts.title+'"><p>'+opts.content+'</p></div>');
+    //////////////////////////////////////
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height:180,
+      modal: true,
+      buttons: {
+        "Delete ad account": function() {
+          $( this ).dialog( "close" );
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    /////////////////////////////////////
+    opts.callback();
+    };
 })(jQuery);
