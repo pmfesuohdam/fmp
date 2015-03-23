@@ -10,14 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/default/table.css?t=20150316101215" />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/libs/jquery-ui.css?t=20150316101215">
-  <script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/base.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/account.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/libs/bootstrap.min.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/libs/jquery-ui.min.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/fmpConfirmDialog.js?t=20150316101215"></script>
-  <script type="text/javascript" src="../assets/js/fmpAlertMessage.js?t=20150316101215"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -73,7 +65,7 @@
                           <!--adaccount section start-->
                           <script id="adaccountTemplate" type="text/x-jquery-tmpl">
                               {{each(i,adaccount) adaccounts}}
-                              <tr><td>{{= adaccount.name}}</td><td>{{= adaccount.id}}</td><td>{{if adaccount.status=1}}OK{{else}}EXPIRED{{/if}}</td><td><input type="button" class="btn btn-xs btn-default btn-info" value="sync" /></td><td><input type="button" class="btn btn-xs btn-default btn-warning" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount(712344008863677);" /></td></tr>
+                              <tr><td>{{= adaccount.name}}</td><td>{{= adaccount.id}}</td><td>{{if adaccount.status=1}}OK{{else}}EXPIRED{{/if}}</td><td><input type="button" class="btn btn-xs btn-default btn-info" value="sync" /></td><td><input type="button" class="btn btn-xs btn-default btn-warning" name="712344008863677" value="Delete" onclick="javascript:doDelAdAccount({{= adaccount.id}});" /></td></tr>
                               {{/each}}
                           </script>
                           <!--adaccount section end-->
@@ -91,6 +83,14 @@
       </div>
       <!--/fmp_footer-->
   </div>
+  <script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/base.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/account.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/bootstrap.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery-ui.min.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/fmpConfirmDialog.js?t=20150316101215"></script>
+  <script type="text/javascript" src="../assets/js/fmpAlertMessage.js?t=20150316101215"></script>
   <script>
       $(document).ready(function(){
           $.ajax({
