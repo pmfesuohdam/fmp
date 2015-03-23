@@ -5,6 +5,7 @@
         title:'dialog_title',
         content:'dialog_content',
         height:180,
+        okfun:function(){},
         callback:function(){}
     };
     $.extend(opts,options);
@@ -23,6 +24,7 @@
       modal: true,
       buttons: {
         "Delete ad account": function() {
+          opts.okfun()
           $(this).dialog("close")
         },
         Cancel: function() {

@@ -132,7 +132,12 @@
       }
 
       function doDelAdAccount(adaccount){
-          $("body").fmp_confirm_dialog({title:"ATTENTION",content:"You are going to delete every campaign and statistics related to the account.Are you sure?",height:210})
+          $("body").fmp_confirm_dialog({
+              title:"ATTENTION",
+              content:"You are going to delete every campaign and statistics related to the account.Are you sure?",
+              height:210,
+              okfun:function(){alert("myok")}
+          })
       }
 </script>
 </body>
