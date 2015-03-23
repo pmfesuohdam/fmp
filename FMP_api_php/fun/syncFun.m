@@ -32,20 +32,21 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 }
                 if (!in_array($_GET['sync_adaccount'],$rows)) {
                     $msgs['err_msg'][]=array('sync_adaccount'=>'the ad account is not belong to you');
-                }
-                $query2="update t_fb_account set want_sync=1 where ad_account_id={$_GET['sync_adaccount']} limit 1;";
-                if (!$link->query($query2)) {
-                    $msgs['err_msg'][]=array('sync_adaccount'=>'set sync flag fail');
+                } else {
+                    $query2="update t_fb_account set want_sync=1 where ad_account_id={$_GET['sync_adaccount']} limit 1;";
+                    if (!$link->query($query2)) {
+                        $msgs['err_msg'][]=array('sync_adaccount'=>'set sync flag fail');
+                    }
                 }
                 @mysqli_close($link);
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
-                $ret['status']='true';
+                $msgs['status']='true';
             } else {
-                $ret['status']='false';
+                $msgs['status']='false';
             }
                 $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            echo json_encode($ret);
+            echo json_encode($msgs);
             break;
         }
     }
