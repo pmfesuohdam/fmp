@@ -136,7 +136,13 @@
               title:"ATTENTION",
               content:"You are going to delete every campaign and statistics related to the account.Are you sure?",
               height:210,
-              okfun:function(){alert("myok")}
+              okfun:function(){
+                  $("#fmp_account_alert_msg").fmp_alert_message({
+                      type:1,
+                      strong:'Success!',
+                      content:'We are deleting the selected account, it could take some time.'
+                  })
+              }
           })
       }
 </script>
