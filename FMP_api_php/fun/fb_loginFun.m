@@ -99,7 +99,7 @@ EOT;
                     //print_r($adaccountDetail2);
                     $adaccountDetail2['id']=str_replace('act_','',$adaccountDetail2['id']);
                     $query=<<<EOT
-INSERT INTO `t_relationship_fmp_fb` (fmp_user_id,fb_adaccount_id)
+INSERT INTO `t_relationship_fbaccount` (fmp_user_id,fb_adaccount_id)
     VALUES ("{$_SESSION['fmp_uid']}","{$adaccountDetail2['id']}") 
     ON DUPLICATE KEY UPDATE 
       update_time=now();

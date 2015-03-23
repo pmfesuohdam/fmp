@@ -22,7 +22,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 $msgs['err_msg'][]=array('delete_adaccount'=>'param delete_adaccount must not be empty');
             } else {
                 include(dirname(__FILE__).'/../inc/conn.php');
-                $query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fmp_fb as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION['fmp_uid']}' and t1.fb_adaccount_id=t2.ad_account_id;";
+                $query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fbaccount as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION['fmp_uid']}' and t1.fb_adaccount_id=t2.ad_account_id;";
                 $rows=null;
                 if ($result=$link->query($query)) {
                     while ($row=mysqli_fetch_assoc($result)) {
@@ -32,7 +32,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 if (!in_array($_GET['delete_adaccount'],$rows)) {
                     $msgs['err_msg'][]=array('delete_adaccount'=>'the ad account is not belong to you');
                 } else {
-                    $query2="delete a.*,b.* from t_fb_account a,t_relationship_fmp_fb b where a.ad_account_id={$_GET['delete_adaccount']} and a.ad_account_id=b.fb_adaccount_id;";
+                    $query2="delete a.*,b.* from t_fb_account a,t_relationship_fbaccount b where a.ad_account_id={$_GET['delete_adaccount']} and a.ad_account_id=b.fb_adaccount_id;";
                     if (!$link->query($query2)) {
                         $msgs['err_msg'][]=array('delete_adaccount'=>'delete fail');
                     }
@@ -49,7 +49,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         case(__OPERATION_READ):
             $adaccounts['adaccounts']=null;
             include(dirname(__FILE__).'/../inc/conn.php');
-            $query="select fb_adaccount_id from t_relationship_fmp_fb where fmp_user_id='{$_SESSION['fmp_uid']}';";
+            $query="select fb_adaccount_id from t_relationship_fbaccount where fmp_user_id='{$_SESSION['fmp_uid']}';";
             if ( !($result=$link->query($query)) ) {
                 $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
                 echo json_encode(array('status'=>'false','system'=>__FMP_ERR_SELECT_ADACCOUNT));
@@ -83,7 +83,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 
             }
             //查询adaccount是否已经被导入
-            $query2="SELECT fb_adaccount_id FROM t_relationship_fmp_fb WHERE imported=0 AND fb_adaccount_id IN(".join(',',array_keys($ALL_AD_ACCOUNTS)).");";
+            $query2="SELECT fb_adaccount_id FROM t_relationship_fbaccount WHERE imported=0 AND fb_adaccount_id IN(".join(',',array_keys($ALL_AD_ACCOUNTS)).");";
             $notImportAccounts=null;
             $result2=$link->query($query2);
             while ($row2=mysqli_fetch_assoc($result2)) {

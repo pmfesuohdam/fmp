@@ -34,7 +34,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
     case(__OPERATION_READ): //发送当前保存的数据 
         if ($_SERVER['REQUEST_METHOD']=='GET'){
             include(dirname(__FILE__).'/../inc/conn.php');
-            $query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fmp_fb as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION['fmp_uid']}' and t1.fb_adaccount_id=t2.ad_account_id;";
+            $query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fbaccount as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION['fmp_uid']}' and t1.fb_adaccount_id=t2.ad_account_id;";
             $rows=null;
             if ($result=$link->query($query)) {
                 while ($row=mysqli_fetch_assoc($result)) {
