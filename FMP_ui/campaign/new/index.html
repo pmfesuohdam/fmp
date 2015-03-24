@@ -76,6 +76,7 @@
     <script type="text/javascript" src="../../assets/js/libs/bbq_init.js?t=20150316101215"></script>
     <script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js?t=20150316101215"></script>
     <script type="text/javascript" src="../../assets/js/base.js?t=20150316101215"></script>
+    <script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150316101215"></script>
     <script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150316101215"></script>
     <script type="text/javascript" src="../../assets/js/libs/json2.js?t=20150316101215"></script>
     <script>
@@ -102,7 +103,7 @@
     //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
     //新的方法一次性下载全部模板<!--{{{-->
     //gced:global campaign edit data
-    var gced={adaccounts:"",audience:"",spending:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
+    var gced={adaccounts:"",audience:"",spending:"",design:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
 $.when(
   // Get the all available ad accounts
   $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
@@ -113,6 +114,9 @@ $.when(
   }),
   $.get(baseConf.api_prefix+"/get/campaign/@step4", function(data) {
       gced.spending=data
+  }),
+  $.get(baseConf.api_prefix+"/get/campaign/@step5", function(data) {
+      gced.design=data
   }),
   $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150316101215", function(data) {
      gced.tpl_sidebar=data
