@@ -198,3 +198,7 @@ clear:both;
     line-height: normal;
     margin-top: 10px;
 }
+
+.clearboth {
+    clear:both;
+}
