@@ -420,6 +420,18 @@ $.when(
       try {
           generateDetail()
       } catch(e) {}
+      function bindDropDown(){
+          $( document.body ).on( 'click', '.dropdown-menu li', function( event ) {
+             var $target = $( event.currentTarget )
+             $target
+                 .closest( '.btn-group' )
+                 .find( '[data-bind="label"]' ).html( $target.html() )
+                 .end()
+                 .children( '.dropdown-toggle' ).dropdown( 'toggle' )
+             return false
+          })
+      }
+      bindDropDown()
   }
 </script>
 </body>

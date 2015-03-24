@@ -6,21 +6,20 @@
           <!--左侧编辑-->
           <div class="form-group">
             <label for="page">Page<code></code></label>
-                    <div class="input-append">
-                      <select class="form-control" id="select_page" name="select_page">
-                        <option>Please select a page</option>
-                      </select>
-                      <!---->
-                      <div class="btn-group" role="group">
-                          <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Dropdown <span class="caret"></span></a>
-                          <ul class="dropdown-menu" role="menu">
-                              <li><a>Action</a></li>
-                              <li><a>Another action</a></li>
-                              <li><a>Something else here</a></li>
-                          </ul>
-                     </div>
-                      <!---->
+                <div class="input-append">
+                    <!---->
+                    <div class="btn-group btn-input">
+                        <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                            <span data-bind="label">Please select a Page</span>&nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#step/5">Please select a Page</a></li>
+                            <li><a href="#step/5"><span class="pic"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c20.0.100.100/p100x100/11051857_1579657088944195_2100640913212936467_n.png?oh=94aac0d583e219f1b6fae0df01a3314d&oe=55BD6B61&__gda__=1433481687_320aa77b14ea45ad44df32ac25ce8c60"></span>Another item</a></li>
+                            <li><a href="#step/5">This is a longer item that will not fit properly</a></li>
+                        </ul>
                     </div>
+                    <!---->
+                </div>
           </div>
           <div id="fmp_tab_mlproduct"></div>
           <script>$("#fmp_tab_mlproduct").fmp_tab()</script>
