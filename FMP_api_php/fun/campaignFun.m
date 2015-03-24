@@ -484,17 +484,40 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ):
         if ($_SERVER['REQUEST_METHOD']=='GET') {
-            //include(dirname(__FILE__).'/../inc/conn.php');
-            //$query="select t1.fb_adaccount_id,t2.ad_account_name from t_relationship_fbaccount as t1 inner join t_fb_account as t2 where t1.fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and t1.fb_adaccount_id=t2.ad_account_id;";
-            //$rows=null;
-            //if ($result=$link->query($query)) {
-                //while ($row=mysqli_fetch_assoc($result)) {
-                    //$rows[]=array('id'=>$row['fb_adaccount_id'],'name'=>$row['ad_account_name']);
-                //}
-            //}
-            //@mysqli_close($link);
+            include(dirname(__FILE__).'/../inc/conn.php');
+            $query="select a.fb_adaccount_id,b.access_token from t_relationship_fbaccount a,t_fb_account b where a.fmp_user_id='{$_SESSION[__SESSION_FMP_UID]}' and a.fb_adaccount_id=b.ad_account_id;";
+            $rows=null;
+            if ($result=$link->query($query)) {
+                while ($row=mysqli_fetch_assoc($result)) {
+                    $rows[]=$row['access_token'];
+                }
+            }
+            $rows=array_unique($rows);
+            foreach ($rows as $accessToken) {
+                $business_url="https://graph.facebook.com/v2.2/me/businesses?access_token=$accessToken";
+                $res[]=array('content'=>json_decode(file_get_contents($business_url),true),'access_token'=>$accessToken);
+            }
+            foreach($res as $r) {
+                if ( isset($r['content']['data']) ) {
+                    foreach($r['content']['data'] as $businessInfo) {
+                        //business主页
+                        $business_page_url="https://graph.facebook.com/v2.2/{$businessInfo['id']}?fields=primary_page&access_token={$r['access_token']}";
+                        $res2=json_decode(file_get_contents($business_page_url),true);
+                        $query2="select profile_pic from t_fb_business where primary_page_id={$res2['primary_page']['id']} limit 1;";
+                        $row2=null;
+                        if ($result2=$link->query($query2)) {
+                            $row2=mysqli_fetch_assoc($result2); 
+                        }
+                        $picData=base64_encode($row2['profile_pic']);
+                        //主页的profile图片
+                        if (isset($res2['primary_page'])) {
+                            $pages[]=array('id'=>$res2['primary_page']['id'],'name'=>$res2['primary_page']['name'],'imgbase64'=>"data:image/png;base64,{$picData}",'selected'=>'false');
+                        }
+                    }
+                }
+            }
+            @mysqli_close($link);
             
-            $pages[]=array('id'=>'xxx','name'=>'yyy','imgbase64'=>'data:image/png;base64,xxx','selected'=>"false");
             $ret=array(
                 'pages'=>$pages
             );
