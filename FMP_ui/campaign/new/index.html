@@ -171,7 +171,7 @@ $.when(
                 break;
                 case("5"):
                 designProcess()
-                cache[url]=$.tmpl(gced["tpl_step"+stp],null).appendTo('#ad_edit_area');
+                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.design).appendTo('#ad_edit_area');
                 break;
                 default:
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
@@ -423,9 +423,11 @@ $.when(
       function bindDropDown(){
           $( document.body ).on( 'click', '.dropdown-menu li', function( event ) {
              var $target = $( event.currentTarget )
+             var $content = $($target.html())
+             $content.find('input').attr('name','select_page')
              $target
                  .closest( '.btn-group' )
-                 .find( '[data-bind="label"]' ).html( $target.html() )
+                 .find( '[data-bind="label"]' ).html( $content.html() )
                  .end()
                  .children( '.dropdown-toggle' ).dropdown( 'toggle' )
              return false
