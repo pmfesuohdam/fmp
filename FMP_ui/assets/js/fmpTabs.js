@@ -2,20 +2,20 @@
     $.fn.fmp_tab = function (options) {
     // opts 里面是默认参数
     var opts={ 
-        add_name:'Add Product',
-        add_tab_name:'Product data',
+        tab_item_name:'zebra',
         callback:function(){}
     };
     $.extend(opts,options);
 
 myid=$(this).eq(0).attr('id');
-
-this.before('<div id="dialog" title="'+opts.add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">Product name</label><input type="text" name="tab_title" id="tab_title" value="" placeholder="Enter product name" class="ui-widget-content ui-corner-all"><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+opts.add_name+'</button>')
-this.append('<ul><li><a href="#'+myid+'-1">product1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Product</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
+add_name='Add '+opts.tab_item_name
+add_tab_name=opts.tab_item_name+' data'
+this.before('<div id="dialog" title="'+add_tab_name+'"><form><fieldset class="ui-helper-reset"><label for="tab_title">'+opts.tab_item_name+' name</label><input type="text" name="tab_title" id="tab_title" value="" placeholder="Enter '+opts.tab_item_name+' name" class="ui-widget-content ui-corner-all"><textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all" style="display:none"></textarea></fieldset></form></div><button id="add_tab">'+add_name+'</button>')
+this.append('<ul><li><a href="#'+myid+'-1">'+opts.tab_item_name+'1</a> <span class="ui-icon ui-icon-close" role="presentation">Remove '+opts.tab_item_name+'</span></li></ul><div id="'+myid+'-1"><p>content</p></div>');
 //////////////////////////////////////
 var tabTitle = $( "#tab_title" ),
 tabContent = $( "#tab_content" ),
-tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Product</span></li>",
+tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove "+opts.tab_item_name+"</span></li>",
 tabCounter = 2;
 
 var tabs = $( "#"+myid ).tabs();
