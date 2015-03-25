@@ -50,7 +50,7 @@ function addTab() {
     var label = tabTitle.val() || "Product " + tabCounter,
     id = myid+"-" + tabCounter,
     li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-    tabContentHtml = tabContent.val() || "<div class=\"form-group\"><label for=\"product_link\">Product Link<code></code></label><input type=\"text\" class=\"form-control\" id=\"productLink\" name=\"productLink\" placeholder=\"Enter Link\" value=\"\"><label for=\"product_description\">Product Description<code></code></label><input type=\"text\" class=\"form-control\" id=\"productDesscription\" name=\"productDesscription\" placeholder=\"Enter Description\" value=\"\"></div>";
+    tabContentHtml = tabContent.val() || "<div class=\"form-group\"><label for=\"product_link\">Product Link<code></code></label><input type=\"text\" class=\"form-control\" id=\"productLink\" name=\"productLink\" placeholder=\"Enter Link\" value=\"\"></div><div class=\"form-group\"><label for=\"product_description\">Product Description<code></code></label><input type=\"text\" class=\"form-control\" id=\"productDesscription\" name=\"productDesscription\" placeholder=\"Enter Description\" value=\"\"><label for=\"Picture\">Picture<code></code></label></div>";
 
     tabs.find( ".ui-tabs-nav" ).append( li );
     tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
@@ -86,7 +86,7 @@ $("#dialog label, #dialog input").css({"display":"block","font-size":"12px"})
 $("#dialog label").css({"margin-top":"0.5em","font-size":"12px"})
 $("#dialog input, #dialog textarea").css({"width":"95%","font-size":"12px"})
 $("#tabs").css({"margin-top":"1em","font-size":"12px"})
-$("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointe","font-size":"12px"})
+$("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointer","font-size":"12px"})
 $("#add_tab").css("cursor","pointer")
 $(".ui-widget-header").css({border:"none",background:"none"})
 /////////////////////////////////////
