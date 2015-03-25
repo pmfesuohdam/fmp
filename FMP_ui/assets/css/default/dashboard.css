@@ -224,8 +224,12 @@ clear:both;
    top: 50%;
 }
 
-.dropdown-menu {
-   width:100%;
+.fmp_dropdown_field {
+    margin-bottom:52px;
+}
+
+.fmp_dropdown_field .dropdown-menu {
+    width:100%;
 }
 
 #form_camp_step5 .pic {
