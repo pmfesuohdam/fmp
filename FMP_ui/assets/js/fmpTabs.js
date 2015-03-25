@@ -2,7 +2,7 @@
     $.fn.fmp_tab = function (options) {
     // opts 里面是默认参数
     var opts={ 
-        tab_item_name:'zebra',
+        tab_item_name:'item',
         callback:function(){}
     };
     $.extend(opts,options);
