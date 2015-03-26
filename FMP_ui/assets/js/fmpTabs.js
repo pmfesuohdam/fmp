@@ -113,11 +113,11 @@
         var label = tb_tit
         id = myid+"-" + tabCounter,
         li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-        tabContentHtml = tb_content || "<div class=\"form-group\"><label for=\"product_link\">Product Link<code></code></label><input type=\"text\" class=\"form-control\" id=\"productLink\" name=\"productLink\" placeholder=\"Enter Link\" value=\"\"></div><div class=\"form-group\"><label for=\"product_description\">Product Description<code></code></label><input type=\"text\" class=\"form-control\" id=\"productDesscription\" name=\"productDesscription\" placeholder=\"Enter Description\" value=\"\"><label for=\"Picture\">Picture<code></code></label></div>";
-        tabs.find( ".ui-tabs-nav" ).append( li );
-        tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
-        tabs.tabs( "refresh" );
-        tabCounter++;
+        tabContentHtml = tb_content;
+        tabs.find( ".ui-tabs-nav" ).append( li )
+        tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" )
+        tabs.tabs( "refresh" )
+        tabCounter++
     }
 
     //Exposed functions 
