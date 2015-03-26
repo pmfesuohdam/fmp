@@ -36,7 +36,7 @@
         tabTitle = $( "#tab_title" ),
         tabContent = $( "#tab_content" ),
         tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove "+opts.tab_item_name+"</span></li>",
-        tabCounter = 2;
+        tabCounter = 1;
 
         tabs = $( "#"+myid ).tabs();
 
@@ -95,6 +95,9 @@
         $("#tabs li .ui-icon-close").css({float:"left",margin:"0.4em 0.2em 0 0",cursor:"pointer","font-size":"12px"})
         $("#add_tab").css("cursor","pointer")
         $(".ui-widget-header").css({border:"none",background:"none"})
+
+        //do callback after all
+        opts.callback()
     }
 
     // actual addTab function: adds new tab using the input from the form above

@@ -32,7 +32,15 @@
           </div>
           <div class="form-group">
               <div id="fmp_tab_mlproduct"></div>
-              <script>$("#fmp_tab_mlproduct").fmp_tab({tab_item_name:"product"})</script>
+              <!--创建tab，但是要把默认的tab删除，之后会在designProcess函数中动态追加-->
+              <script>
+              $("#fmp_tab_mlproduct").fmp_tab({
+                  tab_item_name:"product",
+                  callback:function(){
+                      $("span.ui-icon-close").trigger('click')
+                  }
+              })
+              </script>
           </div>
         <!--/左侧编辑-->
     </div>
