@@ -255,3 +255,7 @@ clear:both;
 .field {
     width:100%;
 }
+
+.jqx-fill-state-normal {
+    border-color:rgba(209, 209, 209, 0.48);
+}

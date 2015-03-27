@@ -4,17 +4,16 @@
   <meta charset="utf-8">
   <title>new campaign</title>
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150327140430">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150327140430">
+  <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150327140430">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/autocomplete.css?t=20150327140430">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150327140430">
   <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150327140430">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150327140430">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150327140430">
-
 </head>
 <body>
     <div class="wrapper">
@@ -176,12 +175,12 @@ $.when(
                 AudienceProcess()
                 break;
                 case("4"):
-                spendingProcess()
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.spending).appendTo('#ad_edit_area');
+                spendingProcess()
                 break;
                 case("5"):
-                designProcess()
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.design).appendTo('#ad_edit_area');
+                designProcess()
                 break;
                 default:
                 cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
@@ -365,12 +364,6 @@ $.when(
               })
           })
       }
-      function becameSplitter(){
-          $('#mainSplitter').jqxSplitter({ width: 774, height: 640, panels: [{ size: 500, collapsible: false }] })
-          $(".jqx-widget-content").css("background","transparent").css("border","none")
-          $("#mainSplitter .form-group").css("padding-right","20px")
-          $(".panel,.panel-default").css("margin-left","20px")
-      }
       audienceInit()
       bindLocAutoComplete()
       $("input[name='age_split'],input[name='save_template']").on('click',function(){bindCheck()})
@@ -380,7 +373,7 @@ $.when(
       generateDetail()
       $("#form_camp_step3 select").on('change',function(){generateDetail()})
       $("#fmp_loc_autocomplete").on('DOMSubtreeModified',function(){generateDetail()})
-      becameSplitter()
+      becameSplitter($('#mainSplitter_step3'))
   }
   function reloadAudienceByTmpl(template_id){
       $("#ad_edit_area").find("h2:contains('Audience')").remove()
@@ -434,11 +427,13 @@ $.when(
       })
   }
   function spendingProcess(){
+      becameSplitter($('#mainSplitter_step4'))
       try {
           generateDetail()
       } catch(e) {}
   }
   function designProcess(){
+      becameSplitter($('#mainSplitter_step5'))
       try {
           generateDetail()
       } catch(e) {}
@@ -456,6 +451,14 @@ $.when(
           })
       }
       bindDropDown()
+  }
+
+  function becameSplitter(obj){
+      obj
+          .jqxSplitter({ width: 774, height: 640, panels: [{ size: 500, collapsible: false }] })
+          .find(".form-group").css("padding-right","20px")
+      $(".jqx-widget-content").css("background","transparent").css("border","none")
+      $(".panel,.panel-default").css("margin-left","20px")
   }
 </script>
 </body>
