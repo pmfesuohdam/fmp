@@ -358,6 +358,13 @@ $.when(
               })
           })
       }
+      function becameSplitter(){
+          console.log($("#ad_edit_area"))
+          $('#mainSplitter').jqxSplitter({ width: 774, height: 670, panels: [{ size: 500, collapsible: false }] })
+          $(".jqx-widget-content").css("background","transparent").css("border","none")
+          $("#mainSplitter .form-group").css("padding-right","20px")
+          $(".panel,.panel-default").css("margin-left","20px")
+      }
       audienceInit()
       bindLocAutoComplete()
       $("input[name='age_split'],input[name='save_template']").on('click',function(){audienceInit()})
@@ -367,6 +374,7 @@ $.when(
       generateDetail()
       $("#form_camp_step3 select").on('change',function(){generateDetail()})
       $("#fmp_loc_autocomplete").on('DOMSubtreeModified',function(){generateDetail()})
+      becameSplitter()
   }
   function reloadAudienceByTmpl(template_id){
       $("#ad_edit_area").find("h2:contains('Audience')").remove()
