@@ -22,6 +22,14 @@
                     <!--/page选择-->
                 </div>
           </div>
+          <div class="form-group" style="clear:both">
+            <label for="createives">Messages<code></code></label>
+            <textarea name="creatives[body][]" placeholder="Insert message..." class="field"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="link">Link<code></code></label>
+            <input type="text" class="form-control" name="link" placeholder="Insert URL..." value="">
+          </div>
           <!--test jqx-->
           <div class="form-group">
               <div id='jqxTabs' style="float: left;">
@@ -41,17 +49,8 @@
               </div>
           </div>
           <!--/test jqx-->
-          <div class="form-group" style="clear:both">
-            <label for="createives">Messages<code></code></label>
-            <textarea name="creatives[body][]" placeholder="Insert message..." class="field"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="link">Link<code></code></label>
-            <input type="text" class="form-control" name="link" placeholder="Insert URL..." value="">
-          </div>
-          <div class="form-group">
+          <!--<div class="form-group">
               <div id="fmp_tab_mlproduct"></div>
-              <!--创建tab，但是要把默认的tab删除，之后会在designProcess函数中动态追加-->
               <script>
               $("#fmp_tab_mlproduct").fmp_tab({
                   tab_item_name:"product",
@@ -60,7 +59,7 @@
                   }
               })
               </script>
-          </div>
+          </div>-->
         <!--/左侧编辑-->
     </div>
     <div class="splitter-panel col-md-4">
