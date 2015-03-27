@@ -305,7 +305,7 @@ $.when(
       bindTrackingCheckBox()
   }
   function AudienceProcess(){
-      function audienceInit(){
+      function bindCheck(){
           $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(6)").css(
           "display",
           $("input[name='age_split']").is(":checked")?"block":"none"
@@ -314,6 +314,9 @@ $.when(
               "display",
               $("input[name='save_template']").is(":checked")?"block":"none"
           )
+      }
+      function audienceInit(){
+      bindCheck()
           $("#sel_fmptemplate").change(function(){reloadAudienceByTmpl($("#sel_fmptemplate").val())})
       }
       function bindLocAutoComplete(){
@@ -369,7 +372,7 @@ $.when(
       }
       audienceInit()
       bindLocAutoComplete()
-      $("input[name='age_split'],input[name='save_template']").on('click',function(){audienceInit()})
+      $("input[name='age_split'],input[name='save_template']").on('click',function(){bindCheck()})
       $("#fmp_loc_autocomplete_dummy").trigger("click")
       $("#fmplocation_autocomplete").trigger("blur")
       $("#fmp_loc_autocomplete").removeClass("ui-state-active")
