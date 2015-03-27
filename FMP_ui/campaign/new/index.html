@@ -456,7 +456,7 @@ $.when(
       }
       function createNewTabs(){
           // create jqxTabs.
-          $('#jqxTabs').jqxTabs({ height: 250, width: '100%',  showCloseButtons: true, scrollPosition: 'both'});
+          $('#jqxTabs').jqxTabs({ height: 350, width: '100%',  showCloseButtons: true, scrollPosition: 'both'});
           var index = 2;
           $('#jqxTabs').on('tabclick', function (event) {
               if (event.args.item == $('#unorderedList').find('li').length - 1) {
@@ -477,6 +477,7 @@ index);
           .jqxSplitter({ width: 774, height: 640, panels: [{ size: 550, collapsible: false }] })
           .find(".form-group").css("padding-right","20px")
       $(".jqx-widget-content").css("background","transparent").css("border","none")
+      $("#jqxTabs").css("background","").css("border","")
       $(".panel,.panel-default").css("margin-left","20px")
   }
 </script>
