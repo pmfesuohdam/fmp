@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150327164859">
   <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150327164859">
+  <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150327164859">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150327164859">
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150327164859">
@@ -453,7 +454,22 @@ $.when(
              return false
           })
       }
+      function createNewTabs(){
+          // create jqxTabs.
+          $('#jqxTabs').jqxTabs({ height: 250, width: 500,  showCloseButtons: true, scrollPosition: 'both'});
+          var index = 2;
+          $('#jqxTabs').on('tabclick', function (event) {
+              if (event.args.item == $('#unorderedList').find('li').length - 1) {
+                  var length = $('#unorderedList').find('li').length;
+                  $('#jqxTabs').jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' + 
+
+index);
+                  index++;
+              }
+          });
+      }
       bindDropDown()
+      createNewTabs()
   }
 
   function becameSplitter(obj){
