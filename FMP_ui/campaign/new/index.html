@@ -188,6 +188,7 @@ $.when(
                 break;
             }
         }
+        $("#fmp_leftmenu").height($("#ad_edit_area").height()<500?500:$("#ad_edit_area").height())
     })
     $(window).trigger( 'hashchange' );
     if ( (($.param.fragment()).split("/")).length<2 ) {
