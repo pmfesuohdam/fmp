@@ -51,6 +51,7 @@
                           <label for="picture">Picture<code></code></label>
                           <form>
                             <div id="queue"></div>
+                            <button class="btn btn-primary btn-sm">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
                             <input id="file_upload" name="file_upload" type="file" multiple="true">
                           </form>
                           <script type="text/javascript">
@@ -59,7 +60,7 @@
                                 'formData'     : {
                                 },
                                 'swf'      : '../../assets/widgets/uploadify/uploadify.swf',
-                                'uploader' : 'uploadify.php'
+                                'uploader' : '../../ajax_img_upload/'
                               });
                             });
                           </script>
