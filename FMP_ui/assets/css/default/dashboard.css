@@ -262,3 +262,6 @@ clear:both;
 #form_camp_step5 #jqxTabs .form-group{
     padding-left:20px;
 } 
+#step3_panel_detail > div.panel-body {
+    word-wrap: break-word;
+}
