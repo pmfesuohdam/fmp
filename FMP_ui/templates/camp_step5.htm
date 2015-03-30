@@ -36,30 +36,29 @@
                   <ul style="margin-left: 30px;" id="unorderedList">
                       <li>Product 0</li>
                       <li>Product 1</li>
-                      <li canselect='false' hasclosebutton='false'>Add New Tab</li>
+                      <li canselect='false' hasclosebutton='false'>Add new Product</li>
                   </ul>
                   <div>
-                      动态创建内容0
+                      <div class="form-group">
+                          <label for="productLink">Product Link<code></code></label>
+                          <input type="text" class="form-control" id="productLink" name="productLink" placeholder="Enter name" value="{{= productLink}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="productDescription">Product Description<code></code></label>
+                          <input type="text" class="form-control" id="productDescription" name="productDescription" placeholder="Enter product description" value="{{= productDescription}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="picture">Picture<code></code></label>
+                      </div>
                   </div>
                   <div>
-                      动态创建内容1
+                    动态创建内容1
                   </div>
                   <div>
                   </div>
               </div>
           </div>
           <!--/test jqx-->
-          <!--<div class="form-group">
-              <div id="fmp_tab_mlproduct"></div>
-              <script>
-              $("#fmp_tab_mlproduct").fmp_tab({
-                  tab_item_name:"product",
-                  callback:function(){
-                      $("span.ui-icon-close").trigger('click')
-                  }
-              })
-              </script>
-          </div>-->
         <!--/左侧编辑-->
     </div>
     <div class="splitter-panel col-md-4">

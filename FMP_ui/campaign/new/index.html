@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>new campaign</title>
   <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150327164859">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150327164859">
   <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150327164859">
   <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.bootstrap.css">
@@ -152,8 +152,7 @@ $.when(
   $.getScript(baseConf.domain+"/assets/js/libs/prettify.min.js?t=20150327164859"),
   $.getScript(baseConf.domain+"/assets/js/libs/bootstrap-datepicker.js?t=20150327164859"),
   $.getScript(baseConf.domain+"/assets/js/location_map.js?t=20150327164859"),
-  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150327164859"),
-  $.getScript(baseConf.domain+"/assets/js/fmpTabs.js?t=20150327164859")
+  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150327164859")
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');

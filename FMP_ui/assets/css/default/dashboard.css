@@ -258,3 +258,7 @@ clear:both;
 .jqx-fill-state-normal {
     border-color:rgba(209, 209, 209, 0.48);
 }
+
+#form_camp_step5 #jqxTabs .form-group{
+    padding-left:20px;
+} 
