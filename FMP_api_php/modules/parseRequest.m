@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created: 2011-02-23 10:19:45                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-23 14:20:31
+  | Last-Modified: 2015-03-30 17:20:57
   +----------------------------------------------------------------------+
 */
 $moduleName=basename(__FILE__);
@@ -83,6 +83,9 @@ if (!empty($GLOBALS['serviceName'])) {
         break;
     case __SERVICE_FB_GRAPH:
         $GLOBALS['prefix']=__PREFIX_CAMPAIGN_FB_GRAPH;
+        break;
+    case __SERVICE_AJAX_UPLOAD:
+        $GLOBALS['prefix']=__PREFIX_AJAX_UPLOAD;
         break;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
