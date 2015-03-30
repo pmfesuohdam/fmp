@@ -107,6 +107,12 @@ define('__SELECTOR_STEP3',    '@step3'); //广告第3步
 define('__SELECTOR_STEP4',    '@step4'); //广告第4步
 define('__SELECTOR_STEP5',    '@step5'); //广告第5步
 
+define('__SELECTOR_PRODUCT1', '@product1'); //上传广告图片1
+define('__SELECTOR_PRODUCT2', '@product2'); //上传广告图片2
+define('__SELECTOR_PRODUCT3', '@product3'); //上传广告图片3
+define('__SELECTOR_PRODUCT4', '@product4'); //上传广告图片4
+define('__SELECTOR_PRODUCT5', '@product5'); //上传广告图片5
+
 
 define('__SELECTOR_REPORT',  '@report');
 define('__SELECTOR_ALLSITE', '@all'); // 全部站点 
