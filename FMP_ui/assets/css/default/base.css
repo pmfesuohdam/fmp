@@ -1,5 +1,5 @@
-@import url("../bootstrap.css");
-@import url("../bootstrap-theme.css");
+@import url("http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css");
+@import url("http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap-theme.css");
 body{
 	margin:0;
     background: #eaeaea url("../../img/bg.png");
