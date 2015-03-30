@@ -50,20 +50,12 @@
                       <div class="form-group">
                           <label for="picture">Picture<code></code></label>
                           <form>
-                            <div id="queue"></div>
-                            <button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
+                            <input id="file_upload" name="file_upload" type="file" multiple="true" style="display:none">
+                            <div id="btn-group">
+                                <button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
                             or
-                            <button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button>
-                              <ul>
-                                <li>
-                                  <a title="file upload" href="javascript:">
-                                  <div>
-                                     <input id="file_upload" name="file_upload" type="file" multiple="true" style="display:none">
-                                  <span>file upload</span>
-                                  </div>
-                                  </a>
-                                  </li>
-                              </ul>
+                                <button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
                           </form>
                           <script type="text/javascript">
                             $(function() {
@@ -73,12 +65,16 @@
                                 'buttonImage'    : '../../assets/img/transparent.gif',
                                 'buttonClass'    : 'uploadify_no_display',
                                 'wmode' : 'transparent',
+                                'width' :  $("#btn-group > button:nth-child(1)").width()+20,
                                 'formData'     : {
                                 },
                                 'swf'      : '../../assets/widgets/uploadify/uploadify.swf',
                                 'uploader' : '../../ajax_img_upload/'
                               });
                             });
+                          </script>
+                          <script>
+                          $("#btn-group").offset({top:$("#file_upload").offset().top,left:$("#file_upload").offset().left})
                           </script>
                       </div>
                   </div>

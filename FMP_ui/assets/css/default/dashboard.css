@@ -286,3 +286,9 @@ clear:both;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.09);
   -webkit-font-smoothing: antialiased;
 }
+
+.uploadify-queue{
+    position: absolute;
+    width: 300px;
+
+}
