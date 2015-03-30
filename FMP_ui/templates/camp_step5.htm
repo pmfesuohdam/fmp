@@ -54,14 +54,25 @@
                             <button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
                             or
                             <button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button>
-                            <input id="file_upload" name="file_upload" type="file" multiple="true">
+                              <ul>
+                                <li>
+                                  <a title="file upload" href="javascript:">
+                                  <div>
+                                     <input id="file_upload" name="file_upload" type="file" multiple="true" style="display:none">
+                                  <span>file upload</span>
+                                  </div>
+                                  </a>
+                                  </li>
+                              </ul>
                           </form>
                           <script type="text/javascript">
                             $(function() {
                               $('#file_upload').uploadify({
                                 'multi'        : false,
-                                'buttonClass'  : 'uploadify_no_display', 
                                 'fileTypeExts' : '*.gif; *.jpg; *.png',
+                                'buttonImage'    : '../../assets/img/transparent.gif',
+                                'buttonClass'    : 'uploadify_no_display',
+                                'wmode' : 'transparent',
                                 'formData'     : {
                                 },
                                 'swf'      : '../../assets/widgets/uploadify/uploadify.swf',
