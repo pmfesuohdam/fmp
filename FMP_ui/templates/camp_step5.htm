@@ -49,6 +49,20 @@
                       </div>
                       <div class="form-group">
                           <label for="picture">Picture<code></code></label>
+                          <form>
+                            <div id="queue"></div>
+                            <input id="file_upload" name="file_upload" type="file" multiple="true">
+                          </form>
+                          <script type="text/javascript">
+                            $(function() {
+                              $('#file_upload').uploadify({
+                                'formData'     : {
+                                },
+                                'swf'      : 'uploadify.swf',
+                                'uploader' : 'uploadify.php'
+                              });
+                            });
+                          </script>
                       </div>
                   </div>
                   <div>
