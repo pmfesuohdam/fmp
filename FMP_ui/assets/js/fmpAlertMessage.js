@@ -23,8 +23,8 @@
         .append(appendStr+"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>"+opts.strong+"</strong> "+opts.content+"</div>")
         .css("display","none")
         .fadeIn()
-        .delay( 12000 )
-        .slideUp( 1000 )
+     //   .delay( 12000 )
+     //   .slideUp( 1000 )
     opts.callback();
     };
 })(jQuery);
