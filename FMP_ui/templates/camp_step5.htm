@@ -51,12 +51,17 @@
                           <label for="picture">Picture<code></code></label>
                           <form>
                             <div id="queue"></div>
-                            <button class="btn btn-primary btn-sm">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
+                            <button class="btn btn-default btn-sm">Upload new images <span class="glyphicon glyphicon-plus"></span></button>
+                            or
+                            <button class="btn btn-default btn-sm">Select from your galley <span class="glyphicon glyphicon-plus"></span></button>
                             <input id="file_upload" name="file_upload" type="file" multiple="true">
                           </form>
                           <script type="text/javascript">
                             $(function() {
                               $('#file_upload').uploadify({
+                                'multi'        : false,
+                                'buttonClass'  : 'uploadify_no_display', 
+                                'fileTypeExts' : '*.gif; *.jpg; *.png',
                                 'formData'     : {
                                 },
                                 'swf'      : '../../assets/widgets/uploadify/uploadify.swf',

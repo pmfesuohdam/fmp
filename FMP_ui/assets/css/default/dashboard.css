@@ -265,3 +265,7 @@ clear:both;
 #step3_panel_detail > div.panel-body {
     word-wrap: break-word;
 }
+
+.uploadify_no_display{
+    display:none;
+}
