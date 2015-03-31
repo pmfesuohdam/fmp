@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-31 23:19:24
+  | Last-Modified: 2015-04-01 00:58:49
   +----------------------------------------------------------------------+
  */
 switch($GLOBALS['operation']) {
@@ -21,6 +21,7 @@ case(__OPERATION_READ):
                 $minJs.="/*!\n* COMBINE:{$jsFile}\n*/\n".file_get_contents(__WEBUI_ROOT."/{$jsFile}");
             }
         }
+        header("Content-type: application/x-javascript; charset=utf-8");
         echo $minJs;
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
     }
