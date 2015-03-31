@@ -27,14 +27,55 @@ if( in_array(
     switch($GLOBALS['operation']) {
     case(__OPERATION_CREATE):
         $tempFile = $_FILES['Filedata']['tmp_name'];
-        //$fileTypes = array('jpg','jpeg','gif','png'); // File extensions
+        $fileContent=file_get_contents($tempFile);
+        $fileSize=$_FILES['Filedata']['size'];
+        $fileTypes = array('jpg','jpeg','gif','png'); // File extensions
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         $fileParts = pathinfo($_FILES['Filedata']['name']);
-        if (in_array($fileParts['extension'],$fileTypes)) {
-            echo 1;
+        $imgInfo=getimagesize($_FILES['Filedata']['tmp_name']);
+        if (!isset($imgInfo['mime']) || !in_array($imgInfo['mime'],array('image/gif','image/jpeg','image/png','image/pjpeg','image/x-png'))) {
+            $msgs['err_msg']='Not valid image.';
+        } elseif (!in_array($fileParts['extension'],$fileTypes)) {
+            $msgs['err_msg']='Not png,gif,jpeg';
         } else {
-            echo 'Invalid file type.';
+            //upload
+            include(dirname(__FILE__).'/../inc/conn.php');
+            $imgHash=md5($fileContent);
+            $imgWidth=$imgInfo[0];
+            $imgHeight=$imgInfo[1];
+            $imgMime=$imgInfo['mime'];
+            $content=addslashes($fileContent);
+            $link->query("SET AUTOCOMMIT=0");
+            $link->query("BEGIN");
+            $query=<<<EOT
+INSERT INTO t_fmp_material(fmp_hash,content,img_width,img_height,mime,filesize,create_time) 
+    VALUES('{$imgHash}','{$content}',{$imgWidth},{$imgHeight},'{$imgMime}',{$fileSize},now()) 
+    ON DUPLICATE KEY UPDATE update_time=now();
+EOT;
+            if ( !($link->query($query)) ) {
+                $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_MATERIAL;
+                $link->query("ROOLBACK");
+            } else {
+                $query2=<<<EOT
+INSERT INTO t_fmp_user_material(fmp_user_id,fmp_material_hash)
+    VALUES({$_SESSION[__SESSION_FMP_UID]},'{$imgHash}') 
+    ON DUPLICATE KEY UPDATE update_time=now();
+EOT;
+                if ( !($link->query($query2)) ) {
+                    $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_USER_MATERIAL;
+                    $link->query("ROOLBACK");
+                } else {
+                    $link->query("COMMIT") or $msgs['err_msg']='system error:'.__FMP_ERR_COMMIT_MATERIAL_UPLOAD;
+                }
+            }
         }
+        if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+            $msgs['status']='true';
+        } else {
+            $msgs['status']='false';
+        }
+        $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        echo json_encode($msgs);
         break;
     }
 }
