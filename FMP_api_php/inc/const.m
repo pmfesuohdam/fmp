@@ -50,6 +50,7 @@ define('__SERVICE_CAMPAIGN',          'campaign');
 define('__SERVICE_USER',              'user');
 define('__SERVICE_FB_GRAPH',          'fb_graph');
 define('__SERVICE_AJAX_UPLOAD',       'ajax_upload');
+define('__SERVICE_ADIMAGES',          'adimages');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
@@ -66,6 +67,7 @@ define('__PREFIX_SYNC',              'sync');
 define('__PREFIX_CAMPAIGN',          'campaign');
 define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_AJAX_UPLOAD',       'ajax_upload');
+define('__PREFIX_ADIMAGES',          'adimages');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
