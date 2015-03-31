@@ -129,4 +129,11 @@ function checkDateMMDDYYYY($date){
     $ret=preg_match($date_regex, $date)?true:false;
     return $ret;
 }
+
+function GetMaterialPath($md5checksum) {
+    $head=sprintf("%04s",hexdec(substr($md5checksum, 0, 4)));
+    $tail=sprintf("%04s",hexdec(substr($md5checksum, -4)));
+    $path=substr($head, -2).'/'.substr($tail, -2);
+    return $path;
+}
 ?>
