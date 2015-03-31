@@ -79,7 +79,7 @@
                                              $("#" + file.id).find('.data').css('color', 'red').html(' - ' + responseObj.err_msg);
                                              return;
                                          } else {
-                                         $('#adimage0').empty().append('<button type="button" class="close mynewclassclose" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><img src="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/5/0/54f6a6ff5971d.jpeg" style="width:150px;height:98px;">').css('display','none').fadeIn()
+                                         $('#adimage0').empty().append('<button type="button" class="close mynewclassclose" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><img src="'+responseObj.url+'" style="width:150px;height:98px;">').css('display','none').fadeIn()
                                          }
                                 }
                               });
