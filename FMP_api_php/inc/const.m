@@ -25,7 +25,7 @@ define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
 
 //物料地址
-define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0');
+define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/adimages');
 
 
 /* {{{ mysql tables */
