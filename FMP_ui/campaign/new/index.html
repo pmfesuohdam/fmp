@@ -82,22 +82,21 @@
         </div>
         <!--/fmp_footer-->
     </div>
-    <script type="text/javascript" src="../../fmpapi1.0/get/js_min/?f=assets/js/libs/jquery-1.11.2.min.js,assets/js/libs/jquery.tmpl.js,assets/js/libs/bbq_init.js,assets/js/libs/jquery.ba-bbq.js,assets/js/base.js,assets/js/libs/bootstrap.min.js,assets/js/libs/jquery-ui.min.js,assets/js/libs/json2.js,assets/widgets/jqwidgets/jqxcore.js,assets/widgets/jqwidgets/jqxsplitter.js,assets/widgets/jqwidgets/jqxbuttons.js,assets/widgets/jqwidgets/jqxscrollbar.js,assets/widgets/jqwidgets/jqxpanel.js,assets/widgets/jqwidgets/jqxtabs.js,assets/widgets/uploadify/jquery.uploadify.min.js,assets/js/libs/prettify.min.js,assets/js/libs/bootstrap-datepicker.js,assets/js/location_map.js,assets/js/libs/jquery.autocomplete.multiselect.js"></script>
-    <!--<script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/bbq_init.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/base.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/js/libs/json2.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxcore.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxsplitter.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxbuttons.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxscrollbar.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxpanel.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxtabs.js?t=20150331111335"></script>-->
-    <!--<script type="text/javascript" src="../../assets/widgets/uploadify/jquery.uploadify.min.js?t=20150331111335"></script>-->
+    <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/bbq_init.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/base.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/js/libs/json2.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxcore.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxsplitter.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxbuttons.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxscrollbar.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxpanel.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxtabs.js?t=20150331111335"></script>
+    <script type="text/javascript" src="../../assets/widgets/uploadify/jquery.uploadify.min.js?t=20150331111335"></script>
 
     <script>
           var cache = {
@@ -155,11 +154,11 @@ $.when(
   }),
   $.get(baseConf.domain+"/templates/camp_step5.htm?t=20150331111335", function(data) {
      gced.tpl_step5=data
-  })
-  <!--$.getScript(baseConf.domain+"/assets/js/libs/prettify.min.js?t=20150331111335"),-->
-  <!--$.getScript(baseConf.domain+"/assets/js/libs/bootstrap-datepicker.js?t=20150331111335"),-->
-  <!--$.getScript(baseConf.domain+"/assets/js/location_map.js?t=20150331111335"),-->
-  <!--$.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150331111335")-->
+  }),
+  $.getScript(baseConf.domain+"/assets/js/libs/prettify.min.js?t=20150331111335"),
+  $.getScript(baseConf.domain+"/assets/js/libs/bootstrap-datepicker.js?t=20150331111335"),
+  $.getScript(baseConf.domain+"/assets/js/location_map.js?t=20150331111335"),
+  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150331111335")
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
