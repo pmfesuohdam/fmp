@@ -58,7 +58,6 @@ INSERT INTO t_fmp_material(fmp_hash,content,img_width,img_height,mime,filesize,c
     ON DUPLICATE KEY UPDATE update_time=now();
 EOT;
                 if ( !($link->query($query)) ) {
-                    echo $query;
                     $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_MATERIAL;
                     $link->query("ROOLBACK");
                 } else {
