@@ -62,7 +62,17 @@ EOT;
         //路径不对吧
     } else {
         //出图
+        include(dirname(__FILE__).'/../inc/conn.php');
+        $query="select content from t_fmp_material where fmp_hash='{$hash}' limit 1";
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        if ($result=$link->query($query)) {
+            while ($row=mysqli_fetch_assoc($result)) {
+                $content=$row['content'];
+            }
+        }
+        @mysqli_close($link);
+        @header("content-type: image/png");
+        echo $content;
     }
 /*}}}*/
 }
