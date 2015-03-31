@@ -70,7 +70,15 @@
                                 'formData'     : {
                                 },
                                 'swf'      : '../../assets/widgets/uploadify/uploadify.swf',
-                                'uploader' : baseConf.api_prefix+"/create/ajax_upload/@product1"
+                                'uploader' : baseConf.api_prefix+"/create/ajax_upload/@product1",
+                                'onUploadSuccess' : function(file, data, response) {
+                                     var responseObj = JSON.parse(data);
+                                         if(responseObj.err_msg) {
+                                             $("#" + file.id).find('.data').css('color', 'red').html(' - ' + responseObj.err_msg);
+                                             return;
+                                         }
+                                         console.log(file, data, response);
+                                }
                               });
                             });
                           </script>
