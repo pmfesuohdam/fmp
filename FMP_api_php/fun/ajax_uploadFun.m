@@ -77,6 +77,7 @@ EOT;
         }
         @mysqli_close($link);
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+            $msgs['url']=GetMaterialPath($imgHash)."/{$imgHash}.";
             $msgs['status']='true';
         } else {
             $msgs['status']='false';
