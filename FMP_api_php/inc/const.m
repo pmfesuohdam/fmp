@@ -27,16 +27,11 @@ define('__DB_MYSQL_DB',   'fmp');
 //物料地址
 define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/adimages');
 
+//webui的根目录，会在下面合并JS或CSS
+define('__WEBUI_ROOT', '/usr/local/share/project/fmp/facebookprj_git/fmp/FMP_ui/');
 
 /* {{{ mysql tables */
 define('__TB_FMP_USER', 't_fmp_user');
-/* }}} */
-/* {{{ mdb setting
- */
-define('__MDB_HOST',        '127.0.0.1'); // TODO 这里也改成用ini配置的方式 
-define('__MDB_PORT',        '9090');
-define('__MDB_SENDTIMEOUT', '20000');  //20 seconds
-define('__MDB_RECVTIMEOUT', '20000');  //20 seconds
 /* }}} */
 /* {{{ redis server
  */
@@ -56,6 +51,7 @@ define('__SERVICE_USER',              'user');
 define('__SERVICE_FB_GRAPH',          'fb_graph');
 define('__SERVICE_AJAX_UPLOAD',       'ajax_upload');
 define('__SERVICE_ADIMAGES',          'adimages');
+define('__SERVICE_JSREQUIRE',         'js_min');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
@@ -73,6 +69,7 @@ define('__PREFIX_CAMPAIGN',          'campaign');
 define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_AJAX_UPLOAD',       'ajax_upload');
 define('__PREFIX_ADIMAGES',          'adimages');
+define('__PREFIX_JSREQUIRE',         'js_min');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */

@@ -90,6 +90,9 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_ADIMAGES:
         $GLOBALS['prefix']=__PREFIX_ADIMAGES;
         break;
+    case __SERVICE_JSREQUIRE:
+        $GLOBALS['prefix']=__PREFIX_JSREQUIRE;
+        break;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
         break;
