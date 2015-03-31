@@ -23,6 +23,11 @@ define('__DB_MYSQL_USER', 'madcore');
 define('__DB_MYSQL_PASS', 'madcore');
 define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
+
+//物料地址
+define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0');
+
+
 /* {{{ mysql tables */
 define('__TB_FMP_USER', 't_fmp_user');
 /* }}} */

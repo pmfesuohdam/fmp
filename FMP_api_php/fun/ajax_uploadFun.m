@@ -33,6 +33,18 @@ if( in_array(
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         $imgInfo=getimagesize($_FILES['Filedata']['tmp_name']);
+        $imgExt='png';
+        switch($imgInfo[2]) {
+        case(1):
+            $imgExt='gif';
+            break;
+        case(2):
+            $imgExt='jpg';
+            break;
+        case(3):
+            $imgExt='png';
+            break;
+        }
         if (!isset($imgInfo['mime']) || !in_array($imgInfo['mime'],array('image/gif','image/jpeg','image/png','image/pjpeg','image/x-png'))) {
             $msgs['err_msg']='Not valid image.';
         } elseif (!in_array($fileParts['extension'],$fileTypes)) {
@@ -77,7 +89,7 @@ EOT;
         }
         @mysqli_close($link);
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
-            $msgs['url']=GetMaterialPath($imgHash)."/{$imgHash}.";
+            $msgs['url']=__MATERIAL_URL."/".GetMaterialPath($imgHash)."/{$imgHash}.{$imgExt}";
             $msgs['status']='true';
         } else {
             $msgs['status']='false';
