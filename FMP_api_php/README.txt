@@ -1,15 +1,26 @@
-软件说明：监控的restful API
+软件说明：fmp的restful API
+
+环境依赖：
+php5.4
+编译参数
+'./configure'  '--prefix=/usr/local/php5_facebook' '--with-layout=GNU'
+'--with-config-file-scan-dir=/usr/local/php5_facebook/etc/php' '--enable-dom'
+'--enable-filter' '--enable-hash' '--enable-json' '--with-mcrypt'
+'--with-curl' '--with-pcre-regex' '--enable-mbstring' '--enable-ctype'
+'--enable-session' '--with-libxml-dir' '--enable-libxml' '--enable-simplexml'
+'--enable-pdo' '--with-pdo-mysql=mysqlnd' '--with-mysqli=mysqlnd'
+'--with-mysql=mysqlnd' '--enable-sysvsem' '--enable-pcntl' '--enable-dba'
+'--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-ftp'
+'--with-zlib' '--with-pear=/usr/local/pear' '--enable-xml' '--with-openssl'
+'--enable-fpm' '--enable-exif'
+
+memcache和gd扩展，暂时以so方式安装
+
 
 配置方法：
 
 inc/const.m中
-修改以下常量为实际运行环境的hbase参数
-define('__MDB_HOST',        '127.0.0.1'); // TODO 这里也改成用ini配置的方式 
-define('__MDB_PORT',        '9090');
-define('__MDB_SENDTIMEOUT', '6000');  //6 seconds
-define('__MDB_RECVTIMEOUT', '6000');  //6 seconds
-define('__MQ_HOST',         '127.0.0.1');
-define('__MQ_PORT',         '6379');
+修改以下常量为实际运行环境的参数
 
 修改以下常量为实际运行环境的syslog参数
 /* {{{ syslog(fancility&level)
