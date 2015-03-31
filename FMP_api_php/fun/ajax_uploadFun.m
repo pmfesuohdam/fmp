@@ -37,6 +37,8 @@ if( in_array(
             $msgs['err_msg']='Not valid image.';
         } elseif (!in_array($fileParts['extension'],$fileTypes)) {
             $msgs['err_msg']='Not png,gif,jpeg';
+        } elseif ($fileSize>2097152) {
+            $msgs['err_msg']='Size large than 2M limit';
         } else {
             //upload
             include(dirname(__FILE__).'/../inc/conn.php');
@@ -45,27 +47,32 @@ if( in_array(
             $imgHeight=$imgInfo[1];
             $imgMime=$imgInfo['mime'];
             $content=addslashes($fileContent);
-            $link->query("SET AUTOCOMMIT=0");
-            $link->query("BEGIN");
-            $query=<<<EOT
+            if ($imgWidth<458 || $imgHeight<458) {
+                $msgs['err_msg']='Image dimensions should be equal or greater than 458x458px';
+            } else {
+                $link->query("SET AUTOCOMMIT=0");
+                $link->query("BEGIN");
+                $query=<<<EOT
 INSERT INTO t_fmp_material(fmp_hash,content,img_width,img_height,mime,filesize,create_time) 
     VALUES('{$imgHash}','{$content}',{$imgWidth},{$imgHeight},'{$imgMime}',{$fileSize},now()) 
     ON DUPLICATE KEY UPDATE update_time=now();
 EOT;
-            if ( !($link->query($query)) ) {
-                $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_MATERIAL;
-                $link->query("ROOLBACK");
-            } else {
-                $query2=<<<EOT
+                if ( !($link->query($query)) ) {
+                    echo $query;
+                    $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_MATERIAL;
+                    $link->query("ROOLBACK");
+                } else {
+                    $query2=<<<EOT
 INSERT INTO t_fmp_user_material(fmp_user_id,fmp_material_hash)
     VALUES({$_SESSION[__SESSION_FMP_UID]},'{$imgHash}') 
     ON DUPLICATE KEY UPDATE update_time=now();
 EOT;
-                if ( !($link->query($query2)) ) {
-                    $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_USER_MATERIAL;
-                    $link->query("ROOLBACK");
-                } else {
-                    $link->query("COMMIT") or $msgs['err_msg']='system error:'.__FMP_ERR_COMMIT_MATERIAL_UPLOAD;
+                    if ( !($link->query($query2)) ) {
+                        $msgs['err_msg']='system error:'.__FMP_ERR_UPDATE_USER_MATERIAL;
+                        $link->query("ROOLBACK");
+                    } else {
+                        $link->query("COMMIT") or $msgs['err_msg']='system error:'.__FMP_ERR_COMMIT_MATERIAL_UPLOAD;
+                    }
                 }
             }
         }
