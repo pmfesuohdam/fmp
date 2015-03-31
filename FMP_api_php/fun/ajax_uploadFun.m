@@ -26,7 +26,15 @@ if( in_array(
     )) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_CREATE):
+        $tempFile = $_FILES['Filedata']['tmp_name'];
+        //$fileTypes = array('jpg','jpeg','gif','png'); // File extensions
         $GLOBALS['httpStatus'] = __HTTPSTATUS_OK;
+        $fileParts = pathinfo($_FILES['Filedata']['name']);
+        if (in_array($fileParts['extension'],$fileTypes)) {
+            echo 1;
+        } else {
+            echo 'Invalid file type.';
+        }
         break;
     }
 }
