@@ -99,18 +99,18 @@
                                    <div class="files">
                                        <ul>
                                            <li data-id="139917">
-                                                <a href="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64e89f40d.jpeg" class="img-preview" rel="139917">
-                                                    <img src="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64e89f40d.jpeg">
+                                                <a href="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64e89f40d.jpeg" class="img-preview" rel="139917">
+                                                    <img src="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64e89f40d.jpeg">
                                                 </a>
                                            </li>
                                            <li data-id="139915">
-                                               <a href="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64d9dec1e.jpeg" class="img-preview" rel="139915">
-                                                   <img src="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64d9dec1e.jpeg">
+                                               <a href="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64d9dec1e.jpeg" class="img-preview" rel="139915">
+                                                   <img src="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64d9dec1e.jpeg">
                                                </a>
                                            </li>
                                            <li data-id="139914" class="disabled">
-                                               <a href="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64d34e0f4.jpeg" class="img-preview" rel="139914">
-                                                   <img src="https://adespresso.s3-eu-west-1.amazonaws.com/adimages/c/a/551a64d34e0f4.jpeg">
+                                               <a href="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64d34e0f4.jpeg" class="img-preview" rel="139914">
+                                                   <img src="https://adespresso.s3-eu-west-1.amazonaws.com/images/c/a/551a64d34e0f4.jpeg">
                                                </a>
                                            </li>
                                        </ul>
@@ -137,6 +137,7 @@
                                   $('body').modalmanager('loading');
                                   setTimeout(function(){
                                       $ul=$("#galley_modal > div.modal-body > div.files > ul");
+                                      $ul.empty();
                                       $.get(baseConf.api_prefix+"/get/ajax_upload/@all", function(data) {
                                           $modal.modal();
                                           $.each(data,function(k,v){
