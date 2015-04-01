@@ -22,9 +22,36 @@ if( in_array(
         __SELECTOR_PRODUCT2,
         __SELECTOR_PRODUCT3,
         __SELECTOR_PRODUCT4,
-        __SELECTOR_PRODUCT5)
+        __SELECTOR_PRODUCT5,
+        __SELECTOR_MASS
+    )
     )) {
     switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if (!empty($_SESSION[__SESSION_FMP_UID])) {
+            $rows=null;
+            include(dirname(__FILE__).'/../inc/conn.php');
+            $query=<<<EOT
+SELECT a.`id`,a.`fmp_hash`,a.`img_width`,a.`img_height` FROM t_fmp_material a INNER JOIN t_fmp_user_material b 
+    WHERE b.fmp_user_id={$_SESSION[__SESSION_FMP_UID]}
+    AND b.fmp_material_hash=a.fmp_hash;
+EOT;
+            if ($result=$link->query($query)) {
+                while ($row=mysqli_fetch_assoc($result)) {
+                    $rows[]=array(
+                        'id'=>$row['id'],
+                        'hash'=>$row['fmp_hash'],
+                        'width'=>$row['img_width'],
+                        'height'=>$row['img_height'],
+                        'url'=>''
+                    );
+                }
+            }
+            @mysqli_close($link);
+            echo json_encode($rows);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+        break;
     case(__OPERATION_CREATE):
         $tempFile = $_FILES['Filedata']['tmp_name'];
         $fileContent=file_get_contents($tempFile);
