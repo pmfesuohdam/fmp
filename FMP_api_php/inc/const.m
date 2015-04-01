@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-30 17:21:01
+  | Last-Modified: 2015-04-02 00:52:54
   +----------------------------------------------------------------------+
  */
 
@@ -25,7 +25,7 @@ define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
 
 //物料地址
-define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/adimages');
+define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/images');
 
 //webui的根目录，会在下面合并JS或CSS
 define('__WEBUI_ROOT', '/usr/local/share/project/fmp/facebookprj_git/fmp/FMP_ui/');
@@ -50,7 +50,7 @@ define('__SERVICE_CAMPAIGN',          'campaign');
 define('__SERVICE_USER',              'user');
 define('__SERVICE_FB_GRAPH',          'fb_graph');
 define('__SERVICE_AJAX_UPLOAD',       'ajax_upload');
-define('__SERVICE_ADIMAGES',          'adimages');
+define('__SERVICE_IMAGES',            'images');
 define('__SERVICE_JSREQUIRE',         'js_min');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
@@ -68,7 +68,7 @@ define('__PREFIX_SYNC',              'sync');
 define('__PREFIX_CAMPAIGN',          'campaign');
 define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_AJAX_UPLOAD',       'ajax_upload');
-define('__PREFIX_ADIMAGES',          'adimages');
+define('__PREFIX_IMAGES',            'images');
 define('__PREFIX_JSREQUIRE',         'js_min');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');

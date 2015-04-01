@@ -87,8 +87,8 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_AJAX_UPLOAD:
         $GLOBALS['prefix']=__PREFIX_AJAX_UPLOAD;
         break;
-    case __SERVICE_ADIMAGES:
-        $GLOBALS['prefix']=__PREFIX_ADIMAGES;
+    case __SERVICE_IMAGES:
+        $GLOBALS['prefix']=__PREFIX_IMAGES;
         break;
     case __SERVICE_JSREQUIRE:
         $GLOBALS['prefix']=__PREFIX_JSREQUIRE;
