@@ -59,6 +59,7 @@
                           </form>
                           <div id="adimage0" class="modal-header" style="width:200px;border:none;">
                           </div>
+                          <!--上传控件-->
                           <script type="text/javascript">
                             $(function() {
                               $('#file_upload').uploadify({
@@ -85,8 +86,8 @@
                               });
                             });
                           </script>
+                          <!--设置btn-group的位置正好为file_upload的位置，这样点击图片就是点击上传swf控件-->
                           <script>
-                          // 设置btn-group的位置正好为file_upload的位置，这样点击图片就是点击上传swf控件
                           $("#btn-group").offset({top:$("#file_upload").offset().top,left:$("#file_upload").offset().left})
                           </script>
                       </div>
