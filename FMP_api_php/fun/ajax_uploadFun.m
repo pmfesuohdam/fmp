@@ -43,7 +43,7 @@ EOT;
                         'hash'=>$row['fmp_hash'],
                         'width'=>$row['img_width'],
                         'height'=>$row['img_height'],
-                        'url'=>''
+                        'url'=>__MATERIAL_URL."/".GetMaterialPath($row['fmp_hash'])."/{$row['fmp_hash']}"
                     );
                 }
             }
