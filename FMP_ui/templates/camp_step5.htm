@@ -87,7 +87,7 @@
                             });
                           </script>
                           <!--弹出层的模板-->
-                          <div id="responsive" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+                          <div id="galley_modal" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
                                <div class="modal-header">
                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                    <h3 class="tit-modal">Gallery</h3>
@@ -132,13 +132,19 @@
                           <!--弹出层-->
                           <script>
                           $(function() {
-                              var $modal = $('#responsive');
+                              var $modal = $('#galley_modal');
                               $('#btn-group > button:nth-child(2)').on('click', function(){
                                   $('body').modalmanager('loading');
                                   setTimeout(function(){
                                       $modal.modal();
-                                      $ul=$("#responsive > div.modal-body > div.files > ul");
+                                      $ul=$("#galley_modal > div.modal-body > div.files > ul");
                                       $ul.empty();
+                                      $.get(baseConf.api_prefix+"/get/ajax_upload/@all", function(data) {
+                                          $.each(data,function(k,v){
+                                             v!=null && $ul.append('<li><a href=\"'+v.url+'\" class=\"imgPreview\"><img src=\"'+
+                                             v.url+'\"></a></li>')
+                                          })
+                                      });
                                   }, 1000);
                               });
                           })
