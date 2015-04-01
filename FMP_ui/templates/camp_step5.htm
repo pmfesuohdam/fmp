@@ -137,6 +137,8 @@
                                   $('body').modalmanager('loading');
                                   setTimeout(function(){
                                       $modal.modal();
+                                      $ul=$("#responsive > div.modal-body > div.files > ul");
+                                      $ul.empty();
                                   }, 1000);
                               });
                           })
