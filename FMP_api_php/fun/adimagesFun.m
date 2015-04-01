@@ -51,12 +51,12 @@ EOT;
     $qs=explode('/',$arrPathInfo['path']);
     $fileName=array_pop($qs);
     $info=pathinfo($fileName);
-    $hash=$fileName;
+    $hash=$info['filename'];
     $tail=array_pop($qs);
     $head=array_pop($qs);
     if (strlen($hash)!=32) {
         //不是md5 32位啊
-    //} elseif(!in_array(strtolower($info['extension']),array('gif','png','jpg','jpeg'))) {
+    } elseif(!in_array(strtolower($info['extension']),array('gif','png','jpg','jpeg'))) {
         ////扩展名不对吧
     } elseif(GetMaterialPath($hash)!="{$head}/{$tail}") {
         //路径不对吧
@@ -72,6 +72,7 @@ EOT;
         }
         @mysqli_close($link);
         @header("content-type: {$mime}");
+        @header("content-length: ".strlen($content));
         echo $content;
     }
 /*}}}*/

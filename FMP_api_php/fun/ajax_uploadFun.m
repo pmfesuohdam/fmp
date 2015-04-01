@@ -116,8 +116,7 @@ EOT;
         }
         @mysqli_close($link);
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
-            //不要出现扩展名，理由是居然前面架设了cdn，而且没有给缓存，出一张1px的gif！！
-            $msgs['url']=__MATERIAL_URL."/".GetMaterialPath($imgHash)."/{$imgHash}";
+            $msgs['url']=__MATERIAL_URL."/".GetMaterialPath($imgHash)."/{$imgHash}.{$imgExt}";
             $msgs['status']='true';
         } else {
             $msgs['status']='false';
