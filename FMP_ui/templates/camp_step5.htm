@@ -136,10 +136,9 @@
                               $('#btn-group > button:nth-child(2)').on('click', function(){
                                   $('body').modalmanager('loading');
                                   setTimeout(function(){
-                                      $modal.modal();
                                       $ul=$("#galley_modal > div.modal-body > div.files > ul");
-                                      $ul.empty();
                                       $.get(baseConf.api_prefix+"/get/ajax_upload/@all", function(data) {
+                                          $modal.modal();
                                           $.each(data,function(k,v){
                                              v!=null && $ul.append('<li><a href=\"'+v.url+'\" class=\"imgPreview\"><img src=\"'+
                                              v.url+'\"></a></li>')
