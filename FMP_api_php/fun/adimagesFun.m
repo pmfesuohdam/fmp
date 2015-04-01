@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create: 2015-03-31 15:41:20
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-31 15:41:20
+  | Last-Modified: 2015-04-01 16:58:18
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -37,8 +37,8 @@ EOT;
             $result=$link->query($query);
             if ( !($row = mysqli_fetch_assoc($result)) ) {
                 $msgs['err_msg'][]=array('billingAccount'=>'billingAccount not exists');
-                @mysqli_close($link);
             }
+            @mysqli_close($link);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
         break;
