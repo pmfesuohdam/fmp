@@ -86,6 +86,35 @@
                               });
                             });
                           </script>
+                          <!--弹出层-->
+<div id="ajax-modal" class="modal fade" tabindex="-1" style="display: none;"></div>
+                          <script>
+                          $(function() {
+var $modal = $('#ajax-modal');
+ 
+$('#btn-group > button:nth-child(2)').on('click', function(){
+  $('body').modalmanager('loading');
+ 
+  setTimeout(function(){
+     $modal.load('http://jschr.github.io/bootstrap-modal/modal_ajax_test1.html', '', function(){
+      $modal.modal();
+    });
+  }, 1115000);
+});
+ 
+$modal.on('click', '.update', function(){
+  $modal.modal('loading');
+  setTimeout(function(){
+    $modal
+      .modal('loading')
+      .find('.modal-body')
+        .prepend('<div class="alert alert-info fade in">' +
+          'Updated!<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+        '</div>');
+  }, 1000);
+});
+                          })
+                          </script>
                           <!--设置btn-group的位置正好为file_upload的位置，这样点击图片就是点击上传swf控件-->
                           <script>
                           $("#btn-group").offset({top:$("#file_upload").offset().top,left:$("#file_upload").offset().left})
