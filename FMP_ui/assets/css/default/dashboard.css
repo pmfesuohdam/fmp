@@ -355,3 +355,12 @@ clear:both;
     max-height: 100%;
     /*max-height:88px;max-width:140px*/
 }
+
+
+#main-loading{
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:200px;
+    color:#bbb;
+    font-size:30px;
+}
