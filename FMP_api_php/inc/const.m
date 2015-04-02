@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-02 00:52:54
+  | Last-Modified: 2015-04-02 16:11:19
   +----------------------------------------------------------------------+
  */
 
@@ -23,6 +23,11 @@ define('__DB_MYSQL_USER', 'madcore');
 define('__DB_MYSQL_PASS', 'madcore');
 define('__DB_MYSQL_DB',   'fmp');
 /* }}} */
+
+list($memcache_host,$memcache_port)=isset($conf['memcache_host'])?explode(':',$conf['memcache_host']):array('localhost',11211);
+define(__MEMCACHE_HOST, $memcache_host);
+define(__MEMCACHE_PORT, $memcache_port);
+unset($memcache_host,$memcache_port);
 
 //物料地址
 define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/images');
