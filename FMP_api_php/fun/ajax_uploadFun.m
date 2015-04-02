@@ -18,6 +18,7 @@ header("Content-type: application/json; charset=utf-8");
 
 switch($GLOBALS['operation']) {
 case(__OPERATION_READ):
+/*{{{ 获取用户全部图片的url*/
     if ( $GLOBALS['selector']==__SELECTOR_MASS && !empty($_SESSION[__SESSION_FMP_UID]) ) {
         $rows=null;
         include(dirname(__FILE__).'/../inc/conn.php');
@@ -41,8 +42,10 @@ EOT;
         echo json_encode($rows);
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
     }
+/*}}}*/
     break;
 case(__OPERATION_CREATE):
+/*{{{ 上传产品物料图片*/
     if (!in_array($GLOBALS['selector'],
         array(
             __SELECTOR_PRODUCT1,
@@ -138,6 +141,7 @@ EOT;
     }
     $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
     echo json_encode($msgs);
+/*}}}*/
     break;
 }
 ?>
