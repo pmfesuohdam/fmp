@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create: 2015-03-30 17:47:34
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-02 16:43:29
+  | Last-Modified: 2015-04-02 16:46:51
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -60,6 +60,8 @@ case(__OPERATION_CREATE):
             __SELECTOR_PRODUCT5
         )
     )) {
+        break;
+    } elseif(empty($_SESSION[__SESSION_FMP_UID])) {
         break;
     }
     $tempFile = $_FILES['Filedata']['tmp_name'];
@@ -156,19 +158,28 @@ EOT;
     break;
     case(__OPERATION_DELETE):
 /*{{{ 删除当前上传的产品，并不会从物料库中删除*/
-    if ($_SERVER['REQUEST_METHOD']!='GET') {
-        break;
-    } elseif (!in_array($GLOBALS['selector'],
-        array(
-            __SELECTOR_PRODUCT1,
-            __SELECTOR_PRODUCT2,
-            __SELECTOR_PRODUCT3,
-            __SELECTOR_PRODUCT4,
-            __SELECTOR_PRODUCT5
-        )
-    )) {
-        break;
-    }
+    /*
+     *if ($_SERVER['REQUEST_METHOD']!='GET') {
+     *    break;
+     *} elseif (!in_array($GLOBALS['selector'],
+     *    array(
+     *        __SELECTOR_PRODUCT1,
+     *        __SELECTOR_PRODUCT2,
+     *        __SELECTOR_PRODUCT3,
+     *        __SELECTOR_PRODUCT4,
+     *        __SELECTOR_PRODUCT5
+     *    )
+     *)) {
+     *    break;
+     *} elseif (empty($_SESSION[__SESSION_FMP_UID])) {
+     *    break;
+     *}
+     *$memcache_key=sprintf(__KEY_MEMCACHE_USER_PRODUCTX,$_SESSION[__SESSION_FMP_UID],str_replace('@product','',$GLOBALS['selector']));
+     *$memcache = new Memcache;
+     *$memcache->connect(__MEMCACHE_HOST, __MEMCACHE_PORT);
+     *$memcache->delete($memcache_key);
+     *$memcache->close();
+     */
 /*}}}*/
     break;
 }
