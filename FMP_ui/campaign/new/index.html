@@ -422,6 +422,9 @@ $.when(
   }
   reachestimateTs=JSON.stringify(reachObj)
   targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":countryArr},"flexible_spec":{}})
+  if (gced.audience.billing_account==null){
+      gced.audience.billing_account=$(cache["step/1"][2]).find("#billingAccount").val()
+  }
       $.ajax({
           url:baseConf.api_prefix+"/get/fb_graph/@self",
           method:"POST",
