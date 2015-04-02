@@ -80,7 +80,7 @@
                                              $("#" + file.id).find('.data').css('color', 'red').html(' - ' + responseObj.err_msg);
                                              return;
                                          } else {
-                                         $('#adimage0').empty().append('<button type="button" class="close mynewclassclose" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="'+responseObj.url+'"></div>').css('display','none').fadeIn()
+                                         $('#adimage0').empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="'+responseObj.url+'"></div>').css('display','none').fadeIn()
                                          }
                                 }
                               });
@@ -115,6 +115,7 @@
                                              v.url+'\"></a></li>')
                                           });
                                           $modal.modal();
+                                                      
                                           $.each(
                                               $("#galley_modal ul").find('.imgPreview'),
                                               function(k,v){
