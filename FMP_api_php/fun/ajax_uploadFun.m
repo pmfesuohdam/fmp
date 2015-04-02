@@ -32,7 +32,7 @@ if( in_array(
             $rows=null;
             include(dirname(__FILE__).'/../inc/conn.php');
             $query=<<<EOT
-SELECT a.`id`,a.`fmp_hash`,a.`img_width`,a.`img_height` FROM t_fmp_material a INNER JOIN t_fmp_user_material b 
+SELECT a.`id`,a.`fmp_hash`,a.`ext`,a.`img_width`,a.`img_height` FROM t_fmp_material a INNER JOIN t_fmp_user_material b 
     WHERE b.fmp_user_id={$_SESSION[__SESSION_FMP_UID]}
     AND b.fmp_material_hash=a.fmp_hash;
 EOT;
@@ -43,7 +43,7 @@ EOT;
                         'hash'=>$row['fmp_hash'],
                         'width'=>$row['img_width'],
                         'height'=>$row['img_height'],
-                        'url'=>__MATERIAL_URL."/".GetMaterialPath($row['fmp_hash'])."/{$row['fmp_hash']}"
+                        'url'=>__MATERIAL_URL."/".GetMaterialPath($row['fmp_hash'])."/{$row['fmp_hash']}.{$row['ext']}"
                     );
                 }
             }
@@ -85,6 +85,20 @@ EOT;
             $imgWidth=$imgInfo[0];
             $imgHeight=$imgInfo[1];
             $imgMime=$imgInfo['mime'];
+            $imgExt='';
+            switch($imgInfo['mime']) {
+            case('image/gif'):
+                $imgExt='gif';
+                break;
+            case('image/jpeg'):
+            case('image/pjpeg'):
+                $imgExt='jpg';
+                break;
+            case('image/png'):
+            case('image/x-png'):
+                $imgExt='png';
+                break;
+            }
             $content=addslashes($fileContent);
             if ($imgWidth<458 || $imgHeight<458) {
                 $msgs['err_msg']='Image dimensions should be equal or greater than 458x458px';
@@ -92,8 +106,8 @@ EOT;
                 $link->query("SET AUTOCOMMIT=0");
                 $link->query("BEGIN");
                 $query=<<<EOT
-INSERT INTO t_fmp_material(fmp_hash,content,img_width,img_height,mime,filesize,create_time) 
-    VALUES('{$imgHash}','{$content}',{$imgWidth},{$imgHeight},'{$imgMime}',{$fileSize},now()) 
+INSERT INTO t_fmp_material(fmp_hash,content,img_width,img_height,mime,ext,filesize,create_time) 
+    VALUES('{$imgHash}','{$content}',{$imgWidth},{$imgHeight},'{$imgMime}','{$imgExt}',{$fileSize},now()) 
     ON DUPLICATE KEY UPDATE update_time=now();
 EOT;
                 if ( !($link->query($query)) ) {
