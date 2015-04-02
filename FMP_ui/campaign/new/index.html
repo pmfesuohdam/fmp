@@ -1,508 +1,589 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>new campaign</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150402183642">
-  <link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.bootstrap.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/autocomplete.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/uploadify/uploadify.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal-bs3patch.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal.css?t=20150402183642">
-</head>
-<body>
-    <div class="wrapper">
-        <!--fmp_header-->
-        <div class="header">
-            <a href="/" title="visit fmp"><h1 class="mainlogo"><u style="display:none;">FMP</u></h1></a>
-            <span class="beta">beta</span>
-            <div class="userarea"><a href="/profiles/" id="user_profile_a"></a> | <a class="btn btn-sm btn-info" href="../" id="logout_btn" onclick="javascript:return false;">logout</a></div>
-            <span class="description">a facebook  partner</span>
-        </div>
-        <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
-        <!--/fmp_header-->
-
-
-
-
-
-
-
-
-
-
-        <!--fmp_navibar-->
-        <div class="navibar">
-            <div class="navi">
-                <ul>
-                    <li><a href="../../../camps/">YOUR CAMPAIGNS</a></li>
-                    <li><a href="../../../campaign/new/">NEW CAMPAIGN</a></li>
-                    <li><a href="../../../report/">REPORT</a></li>
-                    <li><a href="../../../settings/">SETTINGS</a></li>
-                </ul>
-                <div id="camp_select_div">
-                    select camp:
-                    <select>
-                        <option>please select</option>
-                        <option>xxxxx</option>
-                    </select>
+    <head>
+        <meta charset="utf-8">
+        <title>new campaign</title>
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150402183642">
+        <link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.bootstrap.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/default/autocomplete.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/uploadify/uploadify.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal-bs3patch.css?t=20150402183642">
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal.css?t=20150402183642">
+    </head>
+    <body>
+        <div class="wrapper">
+            <!--fmp_header-->
+            <div class="header">
+                <a href="/" title="visit fmp">
+                    <h1 class="mainlogo"><u style="display:none;">FMP</u></h1>
+                </a>
+                <span class="beta">beta</span>
+                <div class="userarea"><a href="/profiles/" id="user_profile_a"></a> | <a class="btn btn-sm btn-info" href="../" id="logout_btn" onclick="javascript:return false;">logout</a></div>
+                <span class="description">a facebook  partner</span>
+            </div>
+            <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
+            <!--/fmp_header-->
+            <!--fmp_navibar-->
+            <div class="navibar">
+                <div class="navi">
+                    <ul>
+                        <li><a href="../../../camps/">YOUR CAMPAIGNS</a></li>
+                        <li><a href="../../../campaign/new/">NEW CAMPAIGN</a></li>
+                        <li><a href="../../../report/">REPORT</a></li>
+                        <li><a href="../../../settings/">SETTINGS</a></li>
+                    </ul>
+                    <div id="camp_select_div">
+                        select camp:
+                        <select>
+                            <option>please select</option>
+                            <option>xxxxx</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--/fmp_navibar-->
-
-
-
-
-
-
-
-
-
-
-        <!--main-->
-        <div class="main-content">
-            <div class="row" id="main-area" style="text-align:center">
-                <div class="col-sm-2" id="sidebar-area" style="text-align:left;float:left;">
-                    <!--sidebar-->
-                    <!--/sidebar-->
-                </div>
-                <div class="col-sm-9 bbq-content" id="ad_edit_area" style="text-align:left;float:left">
-                    <!--step1~5-->
-                    <!--/step1~5-->
+            <!--/fmp_navibar-->
+            <!--main-->
+            <div class="main-content">
+                <div class="row" id="main-area" style="text-align:center">
+                    <div class="col-sm-2" id="sidebar-area" style="text-align:left;float:left;">
+                        <!--sidebar-->
+                        <!--/sidebar-->
+                    </div>
+                    <div class="col-sm-9 bbq-content" id="ad_edit_area" style="text-align:left;float:left">
+                        <!--step1~5-->
+                        <!--/step1~5-->
+                    </div>
                 </div>
             </div>
+            <!--/main-->
+            <!--fmp_footer-->
+            <div class="footer">
+                <h2 class="logo">madhouse</h2>
+                <h3 class="credits">Developed by Madhouse Inc</h3>
+            </div>
+            <!--/fmp_footer-->
         </div>
-        <!--/main-->
-        <!--fmp_footer-->
-        <div class="footer">
-            <h2 class="logo">madhouse</h2>
-            <h3 class="credits">Developed by Madhouse Inc</h3>
-        </div>
-        <!--/fmp_footer-->
-    </div>
-    <!--<script type="text/javascript" src="../../fmpapi1.0/get/js_min/?f=assets/js/libs/jquery-1.11.2.min.js,assets/js/libs/jquery.tmpl.js,assets/js/libs/bbq_init.js,assets/js/libs/jquery.ba-bbq.js,assets/js/base.js,assets/js/libs/bootstrap.min.js,assets/js/libs/jquery-ui.min.js,assets/js/libs/json2.js,assets/widgets/jqwidgets/jqxcore.js,assets/widgets/jqwidgets/jqxsplitter.js,assets/widgets/jqwidgets/jqxbuttons.js,assets/widgets/jqwidgets/jqxscrollbar.js,assets/widgets/jqwidgets/jqxpanel.js,assets/widgets/jqwidgets/jqxtabs.js,assets/widgets/uploadify/jquery.uploadify.min.js,assets/js/libs/prettify.min.js,assets/js/libs/bootstrap-datepicker.js,assets/js/location_map.js,assets/js/libs/jquery.autocomplete.multiselect.js?t=20150402183642"></script>-->
-    <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/bbq_init.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/base.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/js/libs/json2.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxcore.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxsplitter.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxbuttons.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxscrollbar.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxpanel.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxtabs.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/uploadify/jquery.uploadify.min.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/bootstrap_modal/js/bootstrap-modal.js?t=20150402183642"></script>
-    <script type="text/javascript" src="../../assets/widgets/bootstrap_modal/js/bootstrap-modalmanager.js?t=20150402183642"></script>
-
-    <script>
-          var cache = {
-              '': $('.bbq-default')
-          };
-      $(document).ready(function(){
-          loading()
-          $.ajax({
-            url:baseConf.api_prefix+"/get/login/@self",
-            method:"GET",
-            success: function(data){
-                    if (data.status=="false") { //没有登录退出
-                        location.href="../"
+        <!--<script type="text/javascript" src="../../fmpapi1.0/get/js_min/?f=assets/js/libs/jquery-1.11.2.min.js,assets/js/libs/jquery.tmpl.js,assets/js/libs/bbq_init.js,assets/js/libs/jquery.ba-bbq.js,assets/js/base.js,assets/js/libs/bootstrap.min.js,assets/js/libs/jquery-ui.min.js,assets/js/libs/json2.js,assets/widgets/jqwidgets/jqxcore.js,assets/widgets/jqwidgets/jqxsplitter.js,assets/widgets/jqwidgets/jqxbuttons.js,assets/widgets/jqwidgets/jqxscrollbar.js,assets/widgets/jqwidgets/jqxpanel.js,assets/widgets/jqwidgets/jqxtabs.js,assets/widgets/uploadify/jquery.uploadify.min.js,assets/js/libs/prettify.min.js,assets/js/libs/bootstrap-datepicker.js,assets/js/location_map.js,assets/js/libs/jquery.autocomplete.multiselect.js?t=20150402183642"></script>-->
+        <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/bbq_init.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/jquery.ba-bbq.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/base.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/jquery-ui.min.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/js/libs/json2.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxcore.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxsplitter.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxbuttons.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxscrollbar.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxpanel.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/jqwidgets/jqxtabs.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/uploadify/jquery.uploadify.min.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/bootstrap_modal/js/bootstrap-modal.js?t=20150402183642"></script>
+        <script type="text/javascript" src="../../assets/widgets/bootstrap_modal/js/bootstrap-modalmanager.js?t=20150402183642"></script>
+        <script>
+            var cache = {
+                '': $('.bbq-default')
+            };
+            $(document).ready(function() {
+                    loading()
+                    $.ajax({
+                        url: baseConf.api_prefix + "/get/login/@self",
+                        method: "GET",
+                        success: function(data) {
+                            if (data.status == "false") { //没有登录退出
+                                location.href = "../"
+                            }
+                            var user = [{
+                                UserName: data.username
+                            }]
+                            $("#headerTemplate").tmpl(user).appendTo('.header #user_profile_a');
+                        }
+                    })
+                    bind_logout_btn()
+                })
+                //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
+                //新的方法一次性下载全部模板<!--{{{-->
+                //gced:global campaign edit data
+            var gced = {
+                adaccounts: "",
+                audience: "",
+                spending: "",
+                design: "",
+                tpl_sidebar: "",
+                tpl_step1: "",
+                tpl_step2: "",
+                tpl_step3: "",
+                tpl_step4: "",
+                tpl_step5: ""
+            };
+            $.when(
+                // Get the all available ad accounts
+                $.get(baseConf.api_prefix + "/get/campaign/@step1", function(data) {
+                    gced.adaccounts = data
+                }),
+                $.get(baseConf.api_prefix + "/get/campaign/@step3", function(data) {
+                    gced.audience = data
+                }),
+                $.get(baseConf.api_prefix + "/get/campaign/@step4", function(data) {
+                    gced.spending = data
+                }),
+                $.get(baseConf.api_prefix + "/get/campaign/@step5", function(data) {
+                    gced.design = data
+                }),
+                $.get(baseConf.domain + "/templates/camp.sidebar.htm?t=20150402183642", function(data) {
+                    gced.tpl_sidebar = data
+                }),
+                $.get(baseConf.domain + "/templates/camp_step1.htm?t=20150402183642", function(data) {
+                    gced.tpl_step1 = data
+                }),
+                $.get(baseConf.domain + "/templates/camp_step2.htm?t=20150402183642", function(data) {
+                    gced.tpl_step2 = data
+                }),
+                $.get(baseConf.domain + "/templates/camp_step3.htm?t=20150402183642", function(data) {
+                    gced.tpl_step3 = data
+                }),
+                $.get(baseConf.domain + "/templates/camp_step4.htm?t=20150402183642", function(data) {
+                    gced.tpl_step4 = data
+                }),
+                $.get(baseConf.domain + "/templates/camp_step5.htm?t=20150402183642", function(data) {
+                    gced.tpl_step5 = data
+                }),
+                $.getScript(baseConf.domain + "/assets/js/libs/prettify.min.js?t=20150402183642"),
+                $.getScript(baseConf.domain + "/assets/js/libs/bootstrap-datepicker.js?t=20150402183642"),
+                $.getScript(baseConf.domain + "/assets/js/location_map.js?t=20150402183642"),
+                $.getScript(baseConf.domain + "/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150402183642")
+            ).then(function() {
+                $("#main-loading").remove()
+                $.tmpl(gced.tpl_sidebar, null).appendTo('#sidebar-area');
+                $(window).bind('hashchange', function(e) {
+                    var url = $.param.fragment();
+                    $('.bbq-content').children(':visible').hide();
+                    arr = url.split("/")
+                    stp = (arr.length < 2) ? 1 : arr[1]
+                    changeNav(stp)
+                    if (cache[url]) {
+                        cache[url].show()
+                    } else {
+                        switch (stp) {
+                            case ("1"):
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.adaccounts).appendTo('#ad_edit_area');
+                                break;
+                            case ("2"):
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.adaccounts).appendTo('#ad_edit_area');
+                                trackingProcess()
+                                break;
+                            case ("3"):
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.audience).appendTo('#ad_edit_area');
+                                AudienceProcess()
+                                break;
+                            case ("4"):
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.spending).appendTo('#ad_edit_area');
+                                spendingProcess()
+                                break;
+                            case ("5"):
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.design).appendTo('#ad_edit_area');
+                                designProcess()
+                                break;
+                            default:
+                                cache[url] = $.tmpl(gced["tpl_step" + stp], gced.adaccounts).appendTo('#ad_edit_area');
+                                break;
+                        }
                     }
-                    var user = [
-                    { UserName: data.username }
-                    ]
-                    $("#headerTemplate").tmpl(user).appendTo('.header #user_profile_a');
+                    $("#fmp_leftmenu").height($("#ad_edit_area").height() < 500 ? 500 : $("#ad_edit_area").height())
+                })
+                $(window).trigger('hashchange');
+                if ((($.param.fragment()).split("/")).length < 2) {
+                    cache[""] = $.tmpl(gced["tpl_step1"], gced.adaccounts).appendTo('#ad_edit_area');
                 }
-            })
-          bind_logout_btn()
-    })
-    //根据url参数判断是第几步，下载模板和ajax数据动态构造编辑页面
-    //新的方法一次性下载全部模板<!--{{{-->
-    //gced:global campaign edit data
-    var gced={adaccounts:"",audience:"",spending:"",design:"",tpl_sidebar:"",tpl_step1:"",tpl_step2:"",tpl_step3:"",tpl_step4:"",tpl_step5:""};
-$.when(
-  // Get the all available ad accounts
-  $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
-      gced.adaccounts=data
-  }),
-  $.get(baseConf.api_prefix+"/get/campaign/@step3", function(data) {
-      gced.audience=data
-  }),
-  $.get(baseConf.api_prefix+"/get/campaign/@step4", function(data) {
-      gced.spending=data
-  }),
-  $.get(baseConf.api_prefix+"/get/campaign/@step5", function(data) {
-      gced.design=data
-  }),
-  $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150402183642", function(data) {
-     gced.tpl_sidebar=data
-  }),
-  $.get(baseConf.domain+"/templates/camp_step1.htm?t=20150402183642", function(data) {
-     gced.tpl_step1=data
-  }),
-  $.get(baseConf.domain+"/templates/camp_step2.htm?t=20150402183642", function(data) {
-     gced.tpl_step2=data
-  }),
-  $.get(baseConf.domain+"/templates/camp_step3.htm?t=20150402183642", function(data) {
-     gced.tpl_step3=data
-  }),
-  $.get(baseConf.domain+"/templates/camp_step4.htm?t=20150402183642", function(data) {
-     gced.tpl_step4=data
-  }),
-  $.get(baseConf.domain+"/templates/camp_step5.htm?t=20150402183642", function(data) {
-     gced.tpl_step5=data
-  }),
-  $.getScript(baseConf.domain+"/assets/js/libs/prettify.min.js?t=20150402183642"),
-  $.getScript(baseConf.domain+"/assets/js/libs/bootstrap-datepicker.js?t=20150402183642"),
-  $.getScript(baseConf.domain+"/assets/js/location_map.js?t=20150402183642"),
-  $.getScript(baseConf.domain+"/assets/js/libs/jquery.autocomplete.multiselect.js?t=20150402183642")
-).then(function() {
-    $("#main-loading").remove()
-    $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
-    $(window).bind( 'hashchange', function(e) {
-        var url = $.param.fragment();
-        $( '.bbq-content' ).children( ':visible' ).hide();
-        arr=url.split("/")
-        stp=(arr.length<2)?1:arr[1]
-        changeNav(stp)
-        if ( cache[ url ] ) {
-            cache[url].show()
-        } else {
-            switch(stp){
-                case("1"):
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
-                break;
-                case("2"):
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
-                trackingProcess()
-                break;
-                case("3"):
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.audience).appendTo('#ad_edit_area');
-                AudienceProcess()
-                break;
-                case("4"):
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.spending).appendTo('#ad_edit_area');
-                spendingProcess()
-                break;
-                case("5"):
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.design).appendTo('#ad_edit_area');
-                designProcess()
-                break;
-                default:
-                cache[url]=$.tmpl(gced["tpl_step"+stp],gced.adaccounts).appendTo('#ad_edit_area');
-                break;
+            });
+            <!--}}}-->
+            
+            function loading() {
+                $("#main-loading").remove()
+                $('#main-area').append("<div id=\"main-loading\"><i class=\"fa fa-cog fa-spin fa-3x fa-fw margin-bottom\"></i>loading...</div>")
             }
-        }
-        $("#fmp_leftmenu").height($("#ad_edit_area").height()<500?500:$("#ad_edit_area").height())
-    })
-    $(window).trigger( 'hashchange' );
-    if ( (($.param.fragment()).split("/")).length<2 ) {
-       cache[""]=$.tmpl(gced["tpl_step1"],gced.adaccounts).appendTo('#ad_edit_area');
-    }
-});
-<!--}}}-->
-
-      function loading(){
-        $("#main-loading").remove()
-        $('#main-area').append("<div id=\"main-loading\"><i class=\"fa fa-cog fa-spin fa-3x fa-fw margin-bottom\"></i>loading...</div>")
-    }
-    function bind_logout_btn(){
-       $("#logout_btn").bind("click",function(){
-          $.ajax({
-             url: baseConf.api_prefix+"/delete/login/@self",
-             type: "GET",
-             success: function(data){
-                if (data.status=="true") {
-                   location.href="http://"+document.domain;
-               }
-           }
-       })
-      })
-   }
-   function changeNav(step){
-       for(i=0;i<6;i++){
-           $("#fmp_leftmenu > ul > li:nth-child("+i+")").attr('class','')
-       }
-       $("#fmp_leftmenu > ul > li:nth-child("+step+")").attr('class','active')
-       location.href=baseConf.domain+"/campaign/new/#step/"+step
-   }
-   function goStep(step){
-       switch(step){
-           case(step):
-           current_step=step-1
-           d=$("#form_camp_step"+current_step).serialize()
-           save_step=step-1
-           $.ajax({
-               url: baseConf.api_prefix+"/update/campaign/@step"+save_step, 
-               type: "POST",
-               data:d,
-               success: function(data){
-                   $("code").html("")
-                   if (data.status=="true") {
-                       location.href=baseConf.domain+"/campaign/new/#step/"+step
-                       changeNav(step)
-                   } else {
-                       err_msg=data.err_msg
-                       for (i=0;i<err_msg.length;i++) {
-                           for ( id in err_msg[i] ){
-                               alert_dom_id="label[for="+id+"] code"
-                               $(alert_dom_id).text(err_msg[i][id])
-                           }
-                      }
-                   }
-               }
-           })
-           break;
-           default:
-               changeNav(step)
-               $("#ad_edit_area").html("")
-               $.tmpl(gced["tpl_step"+step],null).appendTo('#ad_edit_area')
-           break;
-       }
-   }
-   function goStepPram(obj){
-      step=obj.step
-      pram=obj.pram
-      changeNav(step)
-      $("#ad_edit_area").html("");
-      $.tmpl(gced["tpl_step"+step],pram).appendTo('#ad_edit_area');
-   }
-  function routeCampUrlAct(){
-      url=window.location.href
-      n=url.indexOf("#step")
-      if (n>=0){ //执行指定的路由
-          url_sub=url.substr(n)
-          sp_arr=url_sub.split("#step/")
-          //会调用第"+sp_arr[1]+"页的方法
-          return parseInt(sp_arr[1])
-      } else { //不然就是第一页
-          return 1
-      }
-  }
-  function trackingProcess(){
-      function trackingInit(){
-          //google analytics
-          if ($("input[name='ga_enable']").is(":checked")) {
-              for(i=2;i<5;i++){
-                 $("#form_camp_step2 > div:nth-child("+i+")").css("display","block")
-              }
-          } else {
-              for(i=2;i<5;i++){
-                 $("#form_camp_step2 > div:nth-child("+i+")").css("display","none")
-              }
-          }
-          //sigmad tracking code
-          if ($("input[name='sm_enable']").is(":checked")) {
-              $("#form_camp_step2 > div:nth-child(7)").css("display","block")
-          } else {
-              $("#form_camp_step2 > div:nth-child(7)").css("display","none")
-          }
-          //facebook convert pixel
-          if ($("input[name='fb_enable']").is(":checked")) {
-              $("#form_camp_step2 > div:nth-child(10)").css("display","block")
-          } else {
-              $("#form_camp_step2 > div:nth-child(10)").css("display","none")
-          }
-      }
-      function bindTrackingCheckBox(){
-          $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click',function(){trackingInit()})
-      }
-      trackingInit()
-      bindTrackingCheckBox()
-  }
-  function AudienceProcess(){
-      function bindCheck(){
-          $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(6)").css(
-          "display",
-          $("input[name='age_split']").is(":checked")?"block":"none"
-          )
-          $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(12)").css(
-              "display",
-              $("input[name='save_template']").is(":checked")?"block":"none"
-          )
-      }
-      function audienceInit(){
-      bindCheck()
-          $("#sel_fmptemplate").change(function(){reloadAudienceByTmpl($("#sel_fmptemplate").val())})
-      }
-      function bindLocAutoComplete(){
-          //预先载入一个假的自动完成
-          savedCountries=[];
-          $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
-          $("#fmp_loc_autocomplete_dummy").bind('click',function(){$("#fmplocation_autocomplete").click()})
-          $.each(gced.audience.fmplocation,function(k,v){
-              (v!=null) && savedCountries.push(v)
-          })
-          before_savedCounties="";
-          $.each(savedCountries,function(k,v){before_savedCounties+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"})
-          $("#fmplocation_autocomplete").before(before_savedCounties)
-          $(".ui-icon,.ui-icon-close").bind('click',function(){
-              $(this).parent().remove()
-              del_country=$(this).parent().text()
-              savedCountries=$.grep(savedCountries,function(n,i){return n!=del_country})
-              $("input[name=fmplocation]").val(($.unique(savedCountries)).join('|'))
-          })
-          var contrys=[]
-          $.each(fmp_loc_dic,function(k,v){contrys.push(v)})
-          $("#fmplocation_autocomplete").on('click',function(){
-              if ($("#fmplocation_autocomplete").parent().attr("id")=="fmp_loc_autocomplete_dummy"){
-                  $(".ui-autocomplete-multiselect-item").remove()
-                  $("#fmplocation_autocomplete").unwrap()
-              }
-              $("#fmplocation_autocomplete").autocomplete({
-                  source: contrys,
-                   multiselect: true
-              });
-              $("#fmplocation_autocomplete").parent().attr("id","fmp_loc_autocomplete")
-              before_savedCounties="";
-              $.each(savedCountries,function(k,v){before_savedCounties+="<div class=\"ui-autocomplete-multiselect-item\">"+v+"<span class=\"ui-icon ui-icon-close\"></span></div>"})
-              $("#fmplocation_autocomplete").before(before_savedCounties)
-              savedCountries=[]
-              $(".ui-icon,.ui-icon-close").bind('click',function(){$(this).parent().remove()})
-              $("#fmplocation_autocomplete").focus()
-              $("#form_camp_step3 input").on('blur',function(event) {
-                  arr=[];
-                  event.stopPropagation();
-                  $.each($(".ui-autocomplete-multiselect-item"),function(k,v){
-                      arr.push($(this).text())
-                  })
-                  $("input[name=fmplocation]").val(($.unique(arr)).join('|'))
-              })
-          })
-      }
-      audienceInit()
-      bindLocAutoComplete()
-      $("input[name='age_split'],input[name='save_template']").on('click',function(){bindCheck()})
-      $("#fmp_loc_autocomplete_dummy").trigger("click")
-      $("#fmplocation_autocomplete").trigger("blur")
-      $("#fmp_loc_autocomplete").removeClass("ui-state-active")
-      generateDetail()
-      $("#form_camp_step3 select").on('change',function(){generateDetail()})
-      $("#fmp_loc_autocomplete").on('DOMSubtreeModified',function(){generateDetail()})
-      becameSplitter($('#mainSplitter_step3'))
-  }
-  function reloadAudienceByTmpl(template_id){
-      $("#ad_edit_area").find("h2:contains('Audience')").remove()
-      $("#form_camp_step3").remove()
-      loading()
-      $.get(baseConf.api_prefix+"/get/campaign/@step3?template_id="+template_id, function(data) {
-          $("#main-loading").remove()
-          $("#ad_edit_area").css("display","none")
-          gced.audience=data
-          cache["step/3"]=$.tmpl(gced["tpl_step3"],gced.audience).appendTo('#ad_edit_area');
-          AudienceProcess()
-          $("#ad_edit_area").css("display","block")
-      })
-  }
-  function generateDetail(){
-      idx=2
-      age_min=$(cache["step/3"][idx]).find("#age_from").val()+""
-      age_max=$(cache["step/3"][idx]).find("#age_to").val()+""
-      gender=$(cache["step/3"][idx]).find("#gender").val()+""=="0"?null:[$(cache["step/3"][idx]).find("#gender").val()+""]
-      countryArr=[];
-      $(".ui-autocomplete-multiselect-item").each( function(k,v){
-          $.each(fmp_loc_dic,function(country_code,country){
-          v.innerText==country && countryArr.push(country_code)
-      })
-  })
-
-  reachObj={age_min:age_min,age_max:age_max,geo_locations:{countries:countryArr}}
-  if (gender!=null) {
-      reachObj['genders']=gender
-  }
-  reachestimateTs=JSON.stringify(reachObj)
-  targetingsentencelinesTs=JSON.stringify({"interests":[],"user_adclusters":[],"custom_audiences":[],"excluded_custom_audiences":[],"locales":[],"connections":[],"friends_of_connections":[],"excluded_connections":[],"targeted_entities":[],"wireless_carrier":[],"education_schools":[],"education_majors":[],"college_years":[],"work_employers":[],"work_positions":[],"behaviors":[],"age_min":age_min,"age_max":age_max,"geo_locations":{"zips":[],"cities":[],"regions":[],"countries":countryArr},"flexible_spec":{}})
-  if (gced.audience.billing_account==null){
-      gced.audience.billing_account=$(cache["step/1"][2]).find("#billingAccount").val()
-  }
-      $.ajax({
-          url:baseConf.api_prefix+"/get/fb_graph/@self",
-          method:"POST",
-          data:{batch:[
-            {method:"GET",url:"/act_"+gced.audience.billing_account+"/reachestimate?targeting_spec="+reachestimateTs},
-            {method:"GET",url:"/act_"+gced.audience.billing_account+"/targetingsentencelines?targeting_spec="+targetingsentencelinesTs}
-            ]},
-          success: function(data){
-              if (data.status=="false") { //没有登录退出
-                  location.href="../"
-              }
-              if (data[0][0]=="200") {
-                 estimate_audience=$.parseJSON(data[0][1]).users
-              }
-              item=""
-              if (data[1][0]=="200") {
-                  arr=$.parseJSON(data[1][1]).targetingsentencelines
-                  $.each(arr,function(k,v){item+="<li>"+v.content+v.children+"</li>"})
-              }
-              detailContent="<h4 class=\"tit\">Audience</h4><strong class=\"emphasize\">"+estimate_audience+"</strong>people<div class=\"summary\"><strong class=\"subtit\">Your ad targets people</strong><ul>"+item+"</ul></div>";
-              $("#step3_panel_detail > div.panel-body").html(detailContent)
-          }
-      })
-  }
-  function spendingProcess(){
-      becameSplitter($('#mainSplitter_step4'))
-      try {
-          generateDetail()
-      } catch(e) {}
-  }
-  function designProcess(){
-      becameSplitter($('#mainSplitter_step5'))
-      try {
-          generateDetail()
-      } catch(e) {}
-      function bindDropDown(){
-          $( document.body ).on( 'click', '.dropdown-menu li', function( event ) {
-             var $target = $( event.currentTarget )
-             var $content = $($target.html())
-             $content.find('input').attr('name','select_page')
-             $target
-                 .closest( '.btn-group' )
-                 .find( '[data-bind="label"]' ).html( $content.html() )
-                 .end()
-                 .children( '.dropdown-toggle' ).dropdown( 'toggle' )
-             return false
-          })
-      }
-      function createNewTabs(){
-          // create jqxTabs.
-          $('#multi_product_jqxtabs').jqxTabs({ height: 450, width: '100%',  showCloseButtons: true, scrollPosition: 'both'});
-          var index = 2;
-          $('#multi_product_jqxtabs').on('tabclick', function (event) {
-              if (event.args.item == $('#unorderedList').find('li').length - 1) {
-                  var length = $('#unorderedList').find('li').length;
-                  $('#multi_product_jqxtabs').jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' + 
-
-index);
-                  index++;
-              }
-          });
-      }
-      bindDropDown()
-      createNewTabs()
-  }
-
-  function becameSplitter(obj){
-      obj
-          .jqxSplitter({ width: 774, height: 640, panels: [{ size: 550, collapsible: false }] })
-          .find(".form-group").css("padding-right","20px")
-      $(".jqx-widget-content").css("background","transparent").css("border","none")
-      $("#multi_product_jqxtabs").css("background","").css("border","")
-      $(".panel,.panel-default").css("margin-left","20px")
-  }
-</script>
-</body>
+            
+            function bind_logout_btn() {
+                $("#logout_btn").bind("click", function() {
+                    $.ajax({
+                        url: baseConf.api_prefix + "/delete/login/@self",
+                        type: "GET",
+                        success: function(data) {
+                            if (data.status == "true") {
+                                location.href = "http://" + document.domain;
+                            }
+                        }
+                    })
+                })
+            }
+            
+            function changeNav(step) {
+                for (i = 0; i < 6; i++) {
+                    $("#fmp_leftmenu > ul > li:nth-child(" + i + ")").attr('class', '')
+                }
+                $("#fmp_leftmenu > ul > li:nth-child(" + step + ")").attr('class', 'active')
+                location.href = baseConf.domain + "/campaign/new/#step/" + step
+            }
+            
+            function goStep(step) {
+                switch (step) {
+                    case (step):
+                        current_step = step - 1
+                        d = $("#form_camp_step" + current_step).serialize()
+                        save_step = step - 1
+                        $.ajax({
+                            url: baseConf.api_prefix + "/update/campaign/@step" + save_step,
+                            type: "POST",
+                            data: d,
+                            success: function(data) {
+                                $("code").html("")
+                                if (data.status == "true") {
+                                    location.href = baseConf.domain + "/campaign/new/#step/" + step
+                                    changeNav(step)
+                                } else {
+                                    err_msg = data.err_msg
+                                    for (i = 0; i < err_msg.length; i++) {
+                                        for (id in err_msg[i]) {
+                                            alert_dom_id = "label[for=" + id + "] code"
+                                            $(alert_dom_id).text(err_msg[i][id])
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        break;
+                    default:
+                        changeNav(step)
+                        $("#ad_edit_area").html("")
+                        $.tmpl(gced["tpl_step" + step], null).appendTo('#ad_edit_area')
+                        break;
+                }
+            }
+            
+            function goStepPram(obj) {
+                step = obj.step
+                pram = obj.pram
+                changeNav(step)
+                $("#ad_edit_area").html("");
+                $.tmpl(gced["tpl_step" + step], pram).appendTo('#ad_edit_area');
+            }
+            
+            function routeCampUrlAct() {
+                url = window.location.href
+                n = url.indexOf("#step")
+                if (n >= 0) { //执行指定的路由
+                    url_sub = url.substr(n)
+                    sp_arr = url_sub.split("#step/")
+                        //会调用第"+sp_arr[1]+"页的方法
+                    return parseInt(sp_arr[1])
+                } else { //不然就是第一页
+                    return 1
+                }
+            }
+            
+            function trackingProcess() {
+                function trackingInit() {
+                    //google analytics
+                    if ($("input[name='ga_enable']").is(":checked")) {
+                        for (i = 2; i < 5; i++) {
+                            $("#form_camp_step2 > div:nth-child(" + i + ")").css("display", "block")
+                        }
+                    } else {
+                        for (i = 2; i < 5; i++) {
+                            $("#form_camp_step2 > div:nth-child(" + i + ")").css("display", "none")
+                        }
+                    }
+                    //sigmad tracking code
+                    if ($("input[name='sm_enable']").is(":checked")) {
+                        $("#form_camp_step2 > div:nth-child(7)").css("display", "block")
+                    } else {
+                        $("#form_camp_step2 > div:nth-child(7)").css("display", "none")
+                    }
+                    //facebook convert pixel
+                    if ($("input[name='fb_enable']").is(":checked")) {
+                        $("#form_camp_step2 > div:nth-child(10)").css("display", "block")
+                    } else {
+                        $("#form_camp_step2 > div:nth-child(10)").css("display", "none")
+                    }
+                }
+            
+                function bindTrackingCheckBox() {
+                    $("input[name='ga_enable'],input[name='sm_enable'],input[name='fb_enable']").on('click', function() {
+                        trackingInit()
+                    })
+                }
+                trackingInit()
+                bindTrackingCheckBox()
+            }
+            
+            function AudienceProcess() {
+                function bindCheck() {
+                    $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(6)").css(
+                        "display",
+                        $("input[name='age_split']").is(":checked") ? "block" : "none"
+                    )
+                    $("#form_camp_step3 > div > div > div:nth-child(1) > div:nth-child(12)").css(
+                        "display",
+                        $("input[name='save_template']").is(":checked") ? "block" : "none"
+                    )
+                }
+            
+                function audienceInit() {
+                    bindCheck()
+                    $("#sel_fmptemplate").change(function() {
+                        reloadAudienceByTmpl($("#sel_fmptemplate").val())
+                    })
+                }
+            
+                function bindLocAutoComplete() {
+                    //预先载入一个假的自动完成
+                    savedCountries = [];
+                    $("#fmplocation_autocomplete").wrap("<div class=\"ui-autocomplete-multiselect ui-state-default ui-widget\" id=\"fmp_loc_autocomplete_dummy\"></div>")
+                    $("#fmp_loc_autocomplete_dummy").bind('click', function() {
+                        $("#fmplocation_autocomplete").click()
+                    })
+                    $.each(gced.audience.fmplocation, function(k, v) {
+                        (v != null) && savedCountries.push(v)
+                    })
+                    before_savedCounties = "";
+                    $.each(savedCountries, function(k, v) {
+                        before_savedCounties += "<div class=\"ui-autocomplete-multiselect-item\">" + v + "<span class=\"ui-icon ui-icon-close\"></span></div>"
+                    })
+                    $("#fmplocation_autocomplete").before(before_savedCounties)
+                    $(".ui-icon,.ui-icon-close").bind('click', function() {
+                        $(this).parent().remove()
+                        del_country = $(this).parent().text()
+                        savedCountries = $.grep(savedCountries, function(n, i) {
+                            return n != del_country
+                        })
+                        $("input[name=fmplocation]").val(($.unique(savedCountries)).join('|'))
+                    })
+                    var contrys = []
+                    $.each(fmp_loc_dic, function(k, v) {
+                        contrys.push(v)
+                    })
+                    $("#fmplocation_autocomplete").on('click', function() {
+                        if ($("#fmplocation_autocomplete").parent().attr("id") == "fmp_loc_autocomplete_dummy") {
+                            $(".ui-autocomplete-multiselect-item").remove()
+                            $("#fmplocation_autocomplete").unwrap()
+                        }
+                        $("#fmplocation_autocomplete").autocomplete({
+                            source: contrys,
+                            multiselect: true
+                        });
+                        $("#fmplocation_autocomplete").parent().attr("id", "fmp_loc_autocomplete")
+                        before_savedCounties = "";
+                        $.each(savedCountries, function(k, v) {
+                            before_savedCounties += "<div class=\"ui-autocomplete-multiselect-item\">" + v + "<span class=\"ui-icon ui-icon-close\"></span></div>"
+                        })
+                        $("#fmplocation_autocomplete").before(before_savedCounties)
+                        savedCountries = []
+                        $(".ui-icon,.ui-icon-close").bind('click', function() {
+                            $(this).parent().remove()
+                        })
+                        $("#fmplocation_autocomplete").focus()
+                        $("#form_camp_step3 input").on('blur', function(event) {
+                            arr = [];
+                            event.stopPropagation();
+                            $.each($(".ui-autocomplete-multiselect-item"), function(k, v) {
+                                arr.push($(this).text())
+                            })
+                            $("input[name=fmplocation]").val(($.unique(arr)).join('|'))
+                        })
+                    })
+                }
+                audienceInit()
+                bindLocAutoComplete()
+                $("input[name='age_split'],input[name='save_template']").on('click', function() {
+                    bindCheck()
+                })
+                $("#fmp_loc_autocomplete_dummy").trigger("click")
+                $("#fmplocation_autocomplete").trigger("blur")
+                $("#fmp_loc_autocomplete").removeClass("ui-state-active")
+                generateDetail()
+                $("#form_camp_step3 select").on('change', function() {
+                    generateDetail()
+                })
+                $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
+                    generateDetail()
+                })
+                becameSplitter($('#mainSplitter_step3'))
+            }
+            
+            function reloadAudienceByTmpl(template_id) {
+                $("#ad_edit_area").find("h2:contains('Audience')").remove()
+                $("#form_camp_step3").remove()
+                loading()
+                $.get(baseConf.api_prefix + "/get/campaign/@step3?template_id=" + template_id, function(data) {
+                    $("#main-loading").remove()
+                    $("#ad_edit_area").css("display", "none")
+                    gced.audience = data
+                    cache["step/3"] = $.tmpl(gced["tpl_step3"], gced.audience).appendTo('#ad_edit_area');
+                    AudienceProcess()
+                    $("#ad_edit_area").css("display", "block")
+                })
+            }
+            
+            function generateDetail() {
+                idx = 2
+                age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
+                age_max = $(cache["step/3"][idx]).find("#age_to").val() + ""
+                gender = $(cache["step/3"][idx]).find("#gender").val() + "" == "0" ? null : [$(cache["step/3"][idx]).find("#gender").val() + ""]
+                countryArr = [];
+                $(".ui-autocomplete-multiselect-item").each(function(k, v) {
+                    $.each(fmp_loc_dic, function(country_code, country) {
+                        v.innerText == country && countryArr.push(country_code)
+                    })
+                })
+            
+                reachObj = {
+                    age_min: age_min,
+                    age_max: age_max,
+                    geo_locations: {
+                        countries: countryArr
+                    }
+                }
+                if (gender != null) {
+                    reachObj['genders'] = gender
+                }
+                reachestimateTs = JSON.stringify(reachObj)
+                targetingsentencelinesTs = JSON.stringify({
+                    "interests": [],
+                    "user_adclusters": [],
+                    "custom_audiences": [],
+                    "excluded_custom_audiences": [],
+                    "locales": [],
+                    "connections": [],
+                    "friends_of_connections": [],
+                    "excluded_connections": [],
+                    "targeted_entities": [],
+                    "wireless_carrier": [],
+                    "education_schools": [],
+                    "education_majors": [],
+                    "college_years": [],
+                    "work_employers": [],
+                    "work_positions": [],
+                    "behaviors": [],
+                    "age_min": age_min,
+                    "age_max": age_max,
+                    "geo_locations": {
+                        "zips": [],
+                        "cities": [],
+                        "regions": [],
+                        "countries": countryArr
+                    },
+                    "flexible_spec": {}
+                })
+                if (gced.audience.billing_account == null) {
+                    gced.audience.billing_account = $(cache["step/1"][2]).find("#billingAccount").val()
+                }
+                $.ajax({
+                    url: baseConf.api_prefix + "/get/fb_graph/@self",
+                    method: "POST",
+                    data: {
+                        batch: [{
+                            method: "GET",
+                            url: "/act_" + gced.audience.billing_account + "/reachestimate?targeting_spec=" + reachestimateTs
+                        }, {
+                            method: "GET",
+                            url: "/act_" + gced.audience.billing_account + "/targetingsentencelines?targeting_spec=" + targetingsentencelinesTs
+                        }]
+                    },
+                    success: function(data) {
+                        if (data.status == "false") { //没有登录退出
+                            location.href = "../"
+                        }
+                        if (data[0][0] == "200") {
+                            estimate_audience = $.parseJSON(data[0][1]).users
+                        }
+                        item = ""
+                        if (data[1][0] == "200") {
+                            arr = $.parseJSON(data[1][1]).targetingsentencelines
+                            $.each(arr, function(k, v) {
+                                item += "<li>" + v.content + v.children + "</li>"
+                            })
+                        }
+                        detailContent = "<h4 class=\"tit\">Audience</h4><strong class=\"emphasize\">" + estimate_audience + "</strong>people<div class=\"summary\"><strong class=\"subtit\">Your ad targets people</strong><ul>" + item + "</ul></div>";
+                        $("#step3_panel_detail > div.panel-body").html(detailContent)
+                    }
+                })
+            }
+            
+            function spendingProcess() {
+                becameSplitter($('#mainSplitter_step4'))
+                try {
+                    generateDetail()
+                } catch (e) {}
+            }
+            
+            function designProcess() {
+                becameSplitter($('#mainSplitter_step5'))
+                try {
+                    generateDetail()
+                } catch (e) {}
+            
+                function bindDropDown() {
+                    $(document.body).on('click', '.dropdown-menu li', function(event) {
+                        var $target = $(event.currentTarget)
+                        var $content = $($target.html())
+                        $content.find('input').attr('name', 'select_page')
+                        $target
+                            .closest('.btn-group')
+                            .find('[data-bind="label"]').html($content.html())
+                            .end()
+                            .children('.dropdown-toggle').dropdown('toggle')
+                        return false
+                    })
+                }
+            
+                function createNewTabs() {
+                    // create jqxTabs.
+                    $('#multi_product_jqxtabs').jqxTabs({
+                        height: 450,
+                        width: '100%',
+                        showCloseButtons: true,
+                        scrollPosition: 'both'
+                    });
+                    var index = 2;
+                    $('#multi_product_jqxtabs').on('tabclick', function(event) {
+                        if (event.args.item == $('#unorderedList').find('li').length - 1) {
+                            var length = $('#unorderedList').find('li').length;
+                            $('#multi_product_jqxtabs').jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' +
+            
+                                index);
+                            index++;
+                        }
+                    });
+                }
+                bindDropDown()
+                createNewTabs()
+            }
+            
+            function becameSplitter(obj) {
+                obj
+                    .jqxSplitter({
+                        width: 774,
+                        height: 640,
+                        panels: [{
+                            size: 550,
+                            collapsible: false
+                        }]
+                    })
+                    .find(".form-group").css("padding-right", "20px")
+                $(".jqx-widget-content").css("background", "transparent").css("border", "none")
+                $("#multi_product_jqxtabs").css("background", "").css("border", "")
+                $(".panel,.panel-default").css("margin-left", "20px")
+            }
+        </script>
+    </body>
 </html>
