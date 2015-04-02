@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create: 2015-03-30 17:47:34
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-02 14:45:26
+  | Last-Modified: 2015-04-02 16:43:29
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -19,6 +19,9 @@ header("Content-type: application/json; charset=utf-8");
 switch($GLOBALS['operation']) {
 case(__OPERATION_READ):
 /*{{{ 获取用户全部图片的url*/
+    if ($_SERVER['REQUEST_METHOD']!='GET') {
+        break;
+    }
     if ( $GLOBALS['selector']==__SELECTOR_MASS && !empty($_SESSION[__SESSION_FMP_UID]) ) {
         $rows=null;
         include(dirname(__FILE__).'/../inc/conn.php');
@@ -46,7 +49,9 @@ EOT;
     break;
 case(__OPERATION_CREATE):
 /*{{{ 上传产品物料图片*/
-    if (!in_array($GLOBALS['selector'],
+    if ($_SERVER['REQUEST_METHOD']!='POST') {
+        break;
+    } elseif (!in_array($GLOBALS['selector'],
         array(
             __SELECTOR_PRODUCT1,
             __SELECTOR_PRODUCT2,
@@ -147,6 +152,23 @@ EOT;
     }
     $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
     echo json_encode($msgs);
+/*}}}*/
+    break;
+    case(__OPERATION_DELETE):
+/*{{{ 删除当前上传的产品，并不会从物料库中删除*/
+    if ($_SERVER['REQUEST_METHOD']!='GET') {
+        break;
+    } elseif (!in_array($GLOBALS['selector'],
+        array(
+            __SELECTOR_PRODUCT1,
+            __SELECTOR_PRODUCT2,
+            __SELECTOR_PRODUCT3,
+            __SELECTOR_PRODUCT4,
+            __SELECTOR_PRODUCT5
+        )
+    )) {
+        break;
+    }
 /*}}}*/
     break;
 }
