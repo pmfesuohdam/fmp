@@ -238,9 +238,7 @@ if (!$conf['debug']) {
 
 
 // message queue
-//define(__MQ_TABLE, 'edgeServerStatus'); // 存消息队列的表名
-//define(__MQ_KEY,   'edgeServerList');   // for智能路由控制中心的队列
 
-//memcache的key
-//define('__KEY_HBASEMASTER', 'hbasemaster'); //取monitor_server保存的hbasemaster的信息 
+// memcache的key
+define(__KEY_MEMCACHE_USER_PRODUCTX,"a|%s|%s"); // 第二位为uid，第三位为多产品的次序，如产品一为1，产品二2,依此类推
 ?>

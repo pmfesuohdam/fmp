@@ -133,6 +133,12 @@ EOT;
         }
     }
     @mysqli_close($link);
+    //写一份当前缓存
+    $memcache_key=sprintf(__KEY_MEMCACHE_USER_PRODUCTX,$_SESSION[__SESSION_FMP_UID],str_replace('@product','',$GLOBALS['selector']));
+    $memcache = new Memcache;
+    $memcache->connect(__MEMCACHE_HOST, __MEMCACHE_PORT);
+    $memcache->set($memcache_key,base64_encode($content).'|'.$imgExt);
+    $memcache->close();
     if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
         $msgs['url']=__MATERIAL_URL."/".GetMaterialPath($imgHash)."/{$imgHash}.{$imgExt}";
         $msgs['status']='true';
