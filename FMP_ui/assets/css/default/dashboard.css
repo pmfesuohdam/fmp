@@ -259,7 +259,7 @@ clear:both;
     border-color:rgba(209, 209, 209, 0.48);
 }
 
-#form_camp_step5 #jqxTabs .form-group{
+#form_camp_step5 #multi_product_jqxtabs .form-group{
     padding-left:20px;
 } 
 #step3_panel_detail > div.panel-body {
@@ -363,4 +363,8 @@ clear:both;
     padding-top:200px;
     color:#bbb;
     font-size:30px;
+}
+
+#multi_product_jqxtabs{
+    float: left;
 }

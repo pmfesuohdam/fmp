@@ -475,12 +475,12 @@ $.when(
       }
       function createNewTabs(){
           // create jqxTabs.
-          $('#jqxTabs').jqxTabs({ height: 450, width: '100%',  showCloseButtons: true, scrollPosition: 'both'});
+          $('#multi_product_jqxtabs').jqxTabs({ height: 450, width: '100%',  showCloseButtons: true, scrollPosition: 'both'});
           var index = 2;
-          $('#jqxTabs').on('tabclick', function (event) {
+          $('#multi_product_jqxtabs').on('tabclick', function (event) {
               if (event.args.item == $('#unorderedList').find('li').length - 1) {
                   var length = $('#unorderedList').find('li').length;
-                  $('#jqxTabs').jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' + 
+                  $('#multi_product_jqxtabs').jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' + 
 
 index);
                   index++;
@@ -496,7 +496,7 @@ index);
           .jqxSplitter({ width: 774, height: 640, panels: [{ size: 550, collapsible: false }] })
           .find(".form-group").css("padding-right","20px")
       $(".jqx-widget-content").css("background","transparent").css("border","none")
-      $("#jqxTabs").css("background","").css("border","")
+      $("#multi_product_jqxtabs").css("background","").css("border","")
       $(".panel,.panel-default").css("margin-left","20px")
   }
 </script>
