@@ -468,7 +468,7 @@
                     var $content = $($target.html())
                     $content.find('input').attr('name', 'select_page')
                     $target
-                        .closest('.btn-group'+idx)
+                        .closest('.btn-group')
                         .find('[data-bind="label"]').html($content.html())
                         .end()
                         .children('.dropdown-toggle').dropdown('toggle')
@@ -503,6 +503,7 @@
                 
                 this.createTabContent(obj_tabs, 0)
                 this.createTabContent(obj_tabs, 1)
+                obj_tabs.jqxTabs('select', 0)
                 return this
             },
             /** 创建tabs的内容
