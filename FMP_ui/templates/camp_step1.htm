@@ -1,34 +1,34 @@
 <h2>Create Campaign</h2>
-              <form id="form_camp_step1">
-                <div class="form-group">
-                  <label for="billingAccount">Billing Account<code></code></label>
-                    <select class="form-control" id="billingAccount" name="billingAccount">
-                      {{each(i,adaccount) billingAccount}}
-                      <option value="{{= adaccount.id}}" {{if adaccount.selected}}selected="selected"{{/if}}>{{= adaccount.id}} {{= adaccount.name}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                <div class="form-group">
-                  <label for="campaignName">Name<code></code></label>
-                  <input type="text" class="form-control" id="campaignName" name="campaignName" placeholder="Enter name" value="{{= campaignName}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="buyingType">Buying Type<code></code></label>
-                    <select class="form-control" id="buyingType" name="buyingType">
-                      {{each(i,buytype) buyingType}}
-                      <option value="{{= buytype.value}}" {{if buytype.selected}}selected="selected"{{/if}}>{{= buytype.text}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="objective">Objective<code></code></label>
-                    <select class="form-control" id="objective" name="objective">
-                      {{each(i,obj) objective}}
-                      <option value="{{= obj.value}}" {{if obj.selected}}selected="selected"{{/if}}>{{= obj.text}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                  <footer style="text-align:center">
-                    <a id="jsProceed" class="btn btn-lg btn-success" href="#step/2" onclick="goStep(2);return false;">Proceed</a>
-                  </footer>
-                </form>
+<form id="form_camp_step1">
+    <div class="form-group">
+        <label for="billingAccount">Billing Account<code></code></label>
+        <select class="form-control" id="billingAccount" name="billingAccount">
+            {{each(i,adaccount) billingAccount}}
+            <option value="{{= adaccount.id}}" {{if adaccount.selected}}selected="selected" {{/if}}>{{= adaccount.id}} {{= adaccount.name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="campaignName">Name<code></code></label>
+        <input type="text" class="form-control" id="campaignName" name="campaignName" placeholder="Enter name" value="{{= campaignName}}">
+    </div>
+    <div class="form-group">
+        <label for="buyingType">Buying Type<code></code></label>
+        <select class="form-control" id="buyingType" name="buyingType">
+            {{each(i,buytype) buyingType}}
+            <option value="{{= buytype.value}}" {{if buytype.selected}}selected="selected" {{/if}}>{{= buytype.text}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="objective">Objective<code></code></label>
+        <select class="form-control" id="objective" name="objective">
+            {{each(i,obj) objective}}
+            <option value="{{= obj.value}}" {{if obj.selected}}selected="selected" {{/if}}>{{= obj.text}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <footer style="text-align:center">
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/2" onclick="goStep(2);return false;">Proceed</a>
+    </footer>
+</form>
