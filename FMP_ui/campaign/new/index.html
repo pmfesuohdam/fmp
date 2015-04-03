@@ -583,6 +583,8 @@
                                     $("#galley_modal ul").find('.imgPreview'),
                                     function(k, v) {
                                         $(v).bind('click', function() {
+                                            $('#adimage'+idx).remove()
+                                            $('#multi_product_jqxtabs #fg'+idx).after('<div id="adimage'+idx+'" class="modal-header" style="width:200px;border:none;"></div>')
                                             $('#adimage'+idx).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
 
                                             $("#adimage"+idx+" > button").on('click', function() {
