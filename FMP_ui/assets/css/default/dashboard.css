@@ -267,9 +267,7 @@ body {
 .jqx-fill-state-normal {
     border-color: rgba(209, 209, 209, 0.48);
 }
-#form_camp_step5 #multi_product_jqxtabs .form-group {
-    padding-left: 20px;
-}
+
 #step3_panel_detail > div.panel-body {
     word-wrap: break-word;
 }
@@ -363,4 +361,15 @@ body {
 }
 #multi_product_jqxtabs {
     float: left;
+}
+
+
+/*#form_camp_step5 #multi_product_jqxtabs .form-group {
+    padding-left: 20px;
+}*/
+/*#multi_product_jqxtabs  #unorderedList{
+    margin-left: 30px;
+}*/
+.jqx-tabs-content-element {
+    padding: 20px;
 }
