@@ -514,7 +514,7 @@
                 pane_content += '<label for="productLink">Product Link<code></code></label><input type="text" class="form-control" id="productLink" name="productLink" placeholder="Enter name" value=""></div>'
                 pane_content += '<div class="form-group"><label for="productDescription">Product Description<code></code></label><input type="text" class="form-control" id="productDescription" name="productDescription" placeholder="Enter product description" value=""></div>'
                 pane_content += '<div class="form-group"><label for="picture">Picture<code></code></label><form><input id="file_upload" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
-                pane_content += '<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>'
+                //pane_content += '<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>'
                 pane_content += '</div>'
                 obj.jqxTabs('addAt', 0, 'Product ' + idx, pane_content)
 
@@ -537,10 +537,21 @@
                             return;
                         } else {
                             // 绑定当前上传图片的行为，展示和关闭
+                            $('#adimage0').remove()
+                            $('#multi_product_jqxtabs > div.jqx-tabs-content.jqx-widget-content.jqx-rc-b > div:nth-child(2) > div:nth-child(3)').after('<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>')
                             $('#adimage0').empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
                             $("#adimage0 > button").on('click', function() {
                                 $("#adimage0").empty()
                             });
+                            setTimeout(function() {
+                                var prev_offset=$("#adimage0").offset()
+                                $("#adimage0").attr('position','absolute')
+                                $("#adimage0").offset({
+                                    top: prev_offset.top-20,
+                                    left: prev_offset.left
+                                })
+                                $("#adimage0").animate({ "top": "-=30px" }, "slow" );
+                            },3500)
                         }
                     }
                 });
@@ -550,7 +561,7 @@
                         top: $("#file_upload").offset().top,
                         left: $("#file_upload").offset().left
                     })
-                
+
                 // 绑定物料库的操作
                 $(function() {
                     var $modal = $('#galley_modal');
