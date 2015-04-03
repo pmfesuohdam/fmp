@@ -1,55 +1,59 @@
 <h2>Spending</h2>
 <form id="form_camp_step4">
     <div class="form-group">
-      <div class="row" id="mainSplitter_step4">
-        <div class="splitter-panel col-md-8">
-          <!--左侧编辑-->
-          <div class="form-group">
-            <label for="budget">Budget<code></code></label>
+        <div class="row" id="mainSplitter_step4">
+            <div class="splitter-panel col-md-8">
+                <!--左侧编辑-->
+                <div class="form-group">
+                    <label for="budget">Budget<code></code></label>
                     <div class="input-append">
                         <input type="text" name="budget" value="{{= budget}}">
                         <span class="add-on jsCurrency">$</span>
                     </div>
-        </div>
-        <div class="form-group">
-          <label for="schedule_start">Schedule Start<code></code></label>
+                </div>
+                <div class="form-group">
+                    <label for="schedule_start">Schedule Start<code></code></label>
                     <div class="input-group date" id="dp0">
-                      <input type="text" class="form-control" name="schedule_start" value="{{= schedule_start}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                        <input type="text" class="form-control" name="schedule_start" value="{{= schedule_start}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
                     </div>
-                    <script>$('#dp0').datepicker({});</script>
-        </div>
-        <div class="form-group">
-          <label for="schedule_end">Schedule End<code></code></label>
+                    <script>
+                        $('#dp0').datepicker({});
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="schedule_end">Schedule End<code></code></label>
                     <div class="input-group date" id="dp1">
-                      <input type="text" class="form-control" name="schedule_end" value="{{= schedule_end}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
+                        <input type="text" class="form-control" name="schedule_end" value="{{= schedule_end}}"><span class="input-group-addon"><!--<i class="glyphicon glyphicon-th"></i>--></span>
                     </div>
-                    <script>$('#dp1').datepicker({});</script>
+                    <script>
+                        $('#dp1').datepicker({});
+                    </script>
+                </div>
+                <!--/左侧编辑-->
+            </div>
+            <div class="splitter-panel col-md-4">
+                <!--右侧预览-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">At least</h3>
+                    </div>
+                    <div class="panel-body">
+                        xxx{{= num}} ads
+                    </div>
+                </div>
+                <div class="panel panel-default" id="step3_panel_detail">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{= detail}}
+                    </div>
+                </div>
+                <!--/右侧预览-->
+            </div>
         </div>
-        <!--/左侧编辑-->
     </div>
-    <div class="splitter-panel col-md-4">
-      <!--右侧预览-->
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">At least</h3>
-          </div>
-          <div class="panel-body">
-          xxx{{= num}} ads 
-          </div>
-     </div>
-      <div class="panel panel-default" id="step3_panel_detail">
-          <div class="panel-heading">
-              <h3 class="panel-title">Details</h3>
-          </div>
-          <div class="panel-body">
-          {{= detail}}
-          </div>
-     </div>
-     <!--/右侧预览-->
-  </div>
-</div>
-</div>
-<footer style="text-align:center">
-    <a id="jsProceed" class="btn btn-lg btn-success" href="#step/5" onclick="goStep(5);return false;">Proceed</a>
-</footer>
+    <footer style="text-align:center">
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/5" onclick="goStep(5);return false;">Proceed</a>
+    </footer>
 </form>

@@ -1,111 +1,112 @@
 <h2>Audience</h2>
 <form id="form_camp_step3">
     <div class="form-group">
-      <div class="row" id="mainSplitter_step3">
-        <div class="splitter-panel col-md-8">
-          <!--左侧编辑-->
-          <div class="form-group">
-            <label for="sel_fmptemplate">Use existed templates<code></code></label>
+        <div class="row" id="mainSplitter_step3">
+            <div class="splitter-panel col-md-8">
+                <!--左侧编辑-->
+                <div class="form-group">
+                    <label for="sel_fmptemplate">Use existed templates<code></code></label>
                     <select class="form-control" id="sel_fmptemplate" name="sel_fmptemplate">
-                      <option value="">-------------- Not Selected --------------</option>
-                      {{each(i,tpl) sel_fmptemplate}}
-                      <option value="{{= tpl.id}}" {{if tpl.selected}}selected="selected"{{/if}}>{{= tpl.name}}</option>
-                      {{/each}}
+                        <option value="">-------------- Not Selected --------------</option>
+                        {{each(i,tpl) sel_fmptemplate}}
+                        <option value="{{= tpl.id}}" {{if tpl.selected}}selected="selected" {{/if}}>{{= tpl.name}}</option>
+                        {{/each}}
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="fmplocation">Locations<code></code></label>
+                    <input id="fmplocation_autocomplete" type="text" class="form-control" style="-webkit-box-shadow:none;box-shadow:none;" />
+                </div>
+                <div class="form-group">
+                    <hr>
+                    <input type="hidden" name="fmplocation" value="{{each(i,loc) fmplocation}}|{{= loc}}{{/each}}">
+                </div>
+                <div class="form-group">
+                    <label for="age_from">Age from<code></code></label>
+                    <select class="form-control" id="age_from" name="age_from">
+                        {{each(i,ag) age_from}}
+                        <option value="{{= ag.id}}" {{if ag.selected}}selected="selected" {{/if}}>{{= ag.name}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="age_to">Age to<code></code></label>
+                    <select class="form-control" id="age_to" name="age_to">
+                        {{each(i,ag) age_to}}
+                        <option value="{{= ag.id}}" {{if ag.selected}}selected="selected" {{/if}}>{{= ag.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="age_split" {{if age_split==1}}checked="checked" {{/if}}>split with age
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age_split_intval">intval<code></code></label>
+                    <select class="form-control" id="age_split_intval" name="age_split_intval">
+                        {{each(i,itv) age_split_intval}}
+                        <option value="{{= itv.id}}" {{if itv.selected}}selected="selected" {{/if}}>{{= itv.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <hr>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender<code></code></label>
+                    <select class="form-control" id="gender" name="gender">
+                        {{each(i,gd) gender}}
+                        <option value="{{= gd.id}}" {{if gd.selected}}selected="selected" {{/if}}>{{= gd.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="gender_split" {{if gender_split==1}}checked="checked" {{/if}}>split with gender
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <hr>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="save_template"> Saved as templates
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="template_name">template name<code></code></label>
+                    <input type="text" class="form-control" id="template_name" name="template_name" placeholder="Enter template name" value="{{= template_name}}">
+                </div>
+                <!--/左侧编辑-->
+            </div>
+            <div class="splitter-panel col-md-4">
+                <!--右侧预览-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">At least</h3>
+                    </div>
+                    <div class="panel-body">
+                        xxx{{= num}} ads
+                    </div>
+                </div>
+                <div class="panel panel-default" id="step3_panel_detail">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--detail content-->
+                    </div>
+                </div>
+                <!--/右侧预览-->
+            </div>
         </div>
-        <div class="form-group">
-          <label for="fmplocation">Locations<code></code></label>
-              <input id="fmplocation_autocomplete" type="text" class="form-control" style="-webkit-box-shadow:none;box-shadow:none;" />
-        </div>
-        <div class="form-group">
-          <hr><input type="hidden" name="fmplocation" value="{{each(i,loc) fmplocation}}|{{= loc}}{{/each}}">
-        </div>
-        <div class="form-group">
-          <label for="age_from">Age from<code></code></label>
-              <select class="form-control" id="age_from" name="age_from">
-                {{each(i,ag) age_from}}
-                <option value="{{= ag.id}}" {{if ag.selected}}selected="selected"{{/if}}>{{= ag.name}}</option>
-                {{/each}}
-              </select>
-              <label for="age_to">Age to<code></code></label>
-              <select class="form-control" id="age_to" name="age_to">
-                {{each(i,ag) age_to}}
-                <option value="{{= ag.id}}" {{if ag.selected}}selected="selected"{{/if}}>{{= ag.name}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-            <input type="checkbox" name="age_split" {{if age_split==1}}checked="checked"{{/if}}>split with age
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="age_split_intval">intval<code></code></label>
-              <select class="form-control" id="age_split_intval" name="age_split_intval">
-                {{each(i,itv) age_split_intval}}
-                <option value="{{= itv.id}}" {{if itv.selected}}selected="selected"{{/if}}>{{= itv.name}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-              <hr>
-        </div>
-        <div class="form-group">
-          <label for="gender">Gender<code></code></label>
-              <select class="form-control" id="gender" name="gender">
-                {{each(i,gd) gender}}
-                <option value="{{= gd.id}}" {{if gd.selected}}selected="selected"{{/if}}>{{= gd.name}}</option>
-                {{/each}}
-              </select>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="gender_split" {{if gender_split==1}}checked="checked"{{/if}}>split with gender
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <hr>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-            <input type="checkbox" name="save_template"> Saved as templates
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="template_name">template name<code></code></label>
-          <input type="text" class="form-control" id="template_name" name="template_name" placeholder="Enter template name" value="{{= template_name}}">
-        </div>
-        <!--/左侧编辑-->
     </div>
-    <div class="splitter-panel col-md-4">
-      <!--右侧预览-->
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">At least</h3>
-          </div>
-          <div class="panel-body">
-          xxx{{= num}} ads 
-          </div>
-     </div>
-      <div class="panel panel-default" id="step3_panel_detail">
-          <div class="panel-heading">
-              <h3 class="panel-title">Details</h3>
-          </div>
-          <div class="panel-body">
-              <!--detail content-->
-          </div>
-     </div>
-     <!--/右侧预览-->
-  </div>
-</div>
-</div>
-<footer style="text-align:center">
-    <a id="jsProceed" class="btn btn-lg btn-success" href="#step/4" onclick="goStep(4);return false;">Proceed</a>
-</footer>
+    <footer style="text-align:center">
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/4" onclick="goStep(4);return false;">Proceed</a>
+    </footer>
 </form>
