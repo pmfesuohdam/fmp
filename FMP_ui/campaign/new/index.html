@@ -537,20 +537,20 @@
                             return;
                         } else {
                             // 绑定当前上传图片的行为，展示和关闭
-                            $('#adimage0').remove()
+                            $('#adimage'+idx).remove()
                             $('#multi_product_jqxtabs > div.jqx-tabs-content.jqx-widget-content.jqx-rc-b > div:nth-child(2) > div:nth-child(3)').after('<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>')
-                            $('#adimage0').empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
-                            $("#adimage0 > button").on('click', function() {
-                                $("#adimage0").empty()
+                            $('#adimage'+idx).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
+                            $("#adimage"+idx+" > button").on('click', function() {
+                                $("#adimage"+idx).empty()
                             });
                             setTimeout(function() {
                                 var prev_offset=$("#adimage0").offset()
-                                $("#adimage0").attr('position','absolute')
-                                $("#adimage0").offset({
+                                $("#adimage"+idx).attr('position','absolute')
+                                $("#adimage"+idx).offset({
                                     top: prev_offset.top-20,
                                     left: prev_offset.left
                                 })
-                                $("#adimage0").animate({ "top": "-=30px" }, "slow" );
+                                $("#adimage"+idx).animate({ "top": "-=30px" }, "slow" );
                             },3500)
                         }
                     }
@@ -581,10 +581,10 @@
                                     $("#galley_modal ul").find('.imgPreview'),
                                     function(k, v) {
                                         $(v).bind('click', function() {
-                                            $('#adimage0').empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
+                                            $('#adimage'+idx).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
 
-                                            $("#adimage0 > button").on('click', function() {
-                                                $("#adimage0").empty()
+                                            $("#adimage"+idx+" > button").on('click', function() {
+                                                $("#adimage"+idx).empty()
                                             });
                                             $('#galley_modal').modal('hide');
                                             return false;
@@ -619,7 +619,7 @@
         }
 
         window.generateDetail = function() {
-            idx = 2
+            var idx = 2
             age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
             age_max = $(cache["step/3"][idx]).find("#age_to").val() + ""
             gender = $(cache["step/3"][idx]).find("#gender").val() + "" == "0" ? null : [$(cache["step/3"][idx]).find("#gender").val() + ""]
