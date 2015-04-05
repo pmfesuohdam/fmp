@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-02 16:11:19
+  | Last-Modified: 2015-04-05 08:06:23
   +----------------------------------------------------------------------+
  */
 
@@ -29,8 +29,11 @@ define(__MEMCACHE_HOST, $memcache_host);
 define(__MEMCACHE_PORT, $memcache_port);
 unset($memcache_host,$memcache_port);
 
-//物料地址
-define('__MATERIAL_URL', 'http://54.175.164.231/fmpapi1.0/get/images');
+/* {{{ 物料地址 */
+$material_url=isset($conf['material_url'])?$conf['material_url']:$_SERVER['HTTP_HOST'];
+define('__MATERIAL_URL', "http://{$material_url}/fmpapi1.0/get/images");
+unset($material_url);
+/* }}} */
 
 //webui的根目录，会在下面合并JS或CSS
 define('__WEBUI_ROOT', '/usr/local/share/project/fmp/facebookprj_git/fmp/FMP_ui/');
@@ -140,7 +143,7 @@ if (!$conf['debug']) {
 define('__SYSLOG_LV_DEBUG',     'LOG_ERR');
 /* }}} */
 
-/* {{{ (mmsapi)DB表 
+/* {{{ debug 
  */
 if (!$conf['debug']) {
 } else {
