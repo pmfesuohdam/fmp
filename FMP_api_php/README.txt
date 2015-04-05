@@ -1,6 +1,8 @@
 软件说明：fmp的restful API
 
 环境依赖：
+yum groupinstall development
+
 php5.4
 编译参数
 './configure'  '--prefix=/usr/local/php5_facebook' '--with-layout=GNU'
