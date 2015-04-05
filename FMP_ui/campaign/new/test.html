@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <title>new campaign</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150402183642">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150405081931">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150405081931">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150405081931">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150405081931">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150405081931">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150402183642">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150402183642">
-  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150402183642"></script>
-  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150402183642"></script>
-  <script type="text/javascript" src="../../assets/js/base.js?t=20150402183642"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150405081931">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150405081931">
+  <script type="text/javascript" src="../../assets/js/libs/jquery-1.11.2.min.js?t=20150405081931"></script>
+  <script type="text/javascript" src="../../assets/js/libs/jquery.tmpl.js?t=20150405081931"></script>
+  <script type="text/javascript" src="../../assets/js/base.js?t=20150405081931"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -26,6 +26,7 @@
         </div>
         <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
+
 
 
 
@@ -55,6 +56,7 @@
             </div>
         </div>
         <!--/fmp_navibar-->
+
 
 
 
@@ -113,26 +115,26 @@ $.when(
   $.get(baseConf.api_prefix+"/get/campaign/@step1", function(data) {
       gced.adaccounts=data
   }),
-  $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp.sidebar.htm?t=20150405081931", function(data) {
      gced.tpl_sidebar=data
   }),
-  $.get(baseConf.domain+"/templates/camp_step1.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp_step1.htm?t=20150405081931", function(data) {
      gced.tpl_step1=data
   }),
-  $.get(baseConf.domain+"/templates/camp_step2.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp_step2.htm?t=20150405081931", function(data) {
      gced.tpl_step2=data
   }),
-  $.get(baseConf.domain+"/templates/camp_step3.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp_step3.htm?t=20150405081931", function(data) {
      gced.tpl_step3=data
   }),
-  $.get(baseConf.domain+"/templates/camp_step4.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp_step4.htm?t=20150405081931", function(data) {
      gced.tpl_step4=data
   }),
-  $.get(baseConf.domain+"/templates/camp_step5.htm?t=20150402183642", function(data) {
+  $.get(baseConf.domain+"/templates/camp_step5.htm?t=20150405081931", function(data) {
      gced.tpl_step5=data
   }),
-  $.getScript( "/assets/js/libs/prettify.min.js?t=20150402183642" ),
-  $.getScript( "/assets/js/libs/bootstrap-datepicker.js?t=20150402183642" )
+  $.getScript( "/assets/js/libs/prettify.min.js?t=20150405081931" ),
+  $.getScript( "/assets/js/libs/bootstrap-datepicker.js?t=20150405081931" )
 ).then(function() {
     $("#main-loading").remove()
     $.tmpl(gced.tpl_sidebar,null).appendTo('#sidebar-area');
