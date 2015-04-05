@@ -2,6 +2,10 @@
 
 环境依赖：
 yum groupinstall development
+libxml2-devel
+openssl-devel
+libcurl-devel
+libmcrypt-devel
 
 php5.4
 编译参数
