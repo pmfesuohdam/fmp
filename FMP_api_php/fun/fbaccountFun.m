@@ -73,7 +73,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 
                 $row1=mysqli_fetch_assoc($result1);
                 $act_url="https://graph.facebook.com/v2.2/act_{$fb_adaccount_id}?fields=name,currency,daily_spend_limit,account_status&access_token=".$row1['access_token'];
-                $ret=file_get_contents($act_url);
+                $ret=curlGet($act_url);
                 $ret=json_decode($ret,true);
                 $adaccounts['adaccounts'][]=array(
                     'id'=>$fb_adaccount_id,

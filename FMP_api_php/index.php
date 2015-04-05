@@ -9,13 +9,12 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:41:44                                      
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-12 14:23:38
+  | Last-Modified: 2015-04-05 04:46:14
   +----------------------------------------------------------------------+
  */
 session_start();
 ini_set('default_socket_timeout', 120);
 define(__API_ROOT,    dirname(__FILE__).'/');
-//define(__THRIFT_ROOT, dirname(__FILE__).'/thrift');
 //error_reporting(E_ALL | E_STRICT);
 error_reporting(0);
 $conf = parse_ini_file(dirname(__FILE__).'/conf/api.conf'); //配置文件 
