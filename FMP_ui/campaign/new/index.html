@@ -699,10 +699,11 @@
                     if (data.status == "false") { //没有登录退出
                         location.href = "../"
                     }
+                    item = ""
+                    estimate_audience = "n/a"
                     if (data[0][0] == "200") {
                         estimate_audience = $.parseJSON(data[0][1]).users
                     }
-                    item = ""
                     if (data[1][0] == "200") {
                         arr = $.parseJSON(data[1][1]).targetingsentencelines
                         $.each(arr, function(k, v) {
