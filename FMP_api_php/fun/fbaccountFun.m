@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-05 04:01:26
+  | Last-Modified: 2015-04-05 04:04:27
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -18,6 +18,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         switch($GLOBALS['operation']) {
         case(__OPERATION_DELETE):
+            /*{{{ 删除关联的facebook账号*/
             if (empty($_GET['delete_adaccount'])) {
                 $msgs['err_msg'][]=array('delete_adaccount'=>'param delete_adaccount must not be empty');
             } else {
@@ -46,8 +47,10 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
             @mysqli_close($link);
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
             echo json_encode($msgs);
+            /*}}}*/
             break;
         case(__OPERATION_READ):
+            /*{{{ 读取已经关联上的facebook账号*/
             $adaccounts['adaccounts']=null;
             include(dirname(__FILE__).'/../inc/conn.php');
             $query="select fb_adaccount_id from t_relationship_fbaccount where fmp_user_id='{$_SESSION['fmp_uid']}';";
@@ -112,6 +115,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
 
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
             echo json_encode($adaccounts);
+            /*}}}*/
             break;
         }
     }
