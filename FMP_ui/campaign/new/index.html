@@ -250,6 +250,9 @@
                         type: "POST",
                         data: d,
                         success: function(data) {
+                            var body = $("html, body")
+                            body.animate({scrollTop:0}, '1000', 'swing', function() { 
+                            })
                             $("code").html("")
                             if (data.status == "true") {
                                 location.href = baseConf.domain + "/campaign/new/#step/" + step
