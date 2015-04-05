@@ -124,6 +124,10 @@ function curlGet($url){
     curl_close($ch);
     //$header = substr($response, 0, $header_size);
     $body = substr($response, $header_size);
+    if ($conf['use_proxy']) {
+        preg_match("/\r\n\r\n(.*)/",$body,$match);
+        $body=$match[1];
+    }
     return array($code,$body);
 }
 

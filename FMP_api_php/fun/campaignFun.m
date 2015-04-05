@@ -495,14 +495,14 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             $rows=array_unique($rows);
             foreach ($rows as $accessToken) {
                 $business_url="https://graph.facebook.com/v2.2/me/businesses?access_token=$accessToken";
-                $res[]=array('content'=>json_decode(file_get_contents($business_url),true),'access_token'=>$accessToken);
+                $res[]=array('content'=>json_decode(curlGet($business_url),true),'access_token'=>$accessToken);
             }
             foreach($res as $r) {
                 if ( isset($r['content']['data']) ) {
                     foreach($r['content']['data'] as $businessInfo) {
                         //business主页
                         $business_page_url="https://graph.facebook.com/v2.2/{$businessInfo['id']}?fields=primary_page&access_token={$r['access_token']}";
-                        $res2=json_decode(file_get_contents($business_page_url),true);
+                        $res2=json_decode(curlGet($business_page_url),true);
                         $query2="select profile_pic from t_fb_business where primary_page_id={$res2['primary_page']['id']} limit 1;";
                         $row2=null;
                         if ($result2=$link->query($query2)) {
