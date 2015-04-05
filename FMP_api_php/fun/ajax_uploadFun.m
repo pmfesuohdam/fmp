@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create: 2015-03-30 17:47:34
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-02 16:46:51
+  | Last-Modified: 2015-04-05 08:48:37
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -23,7 +23,7 @@ case(__OPERATION_READ):
         break;
     }
     if ( $GLOBALS['selector']==__SELECTOR_MASS && !empty($_SESSION[__SESSION_FMP_UID]) ) {
-        $rows=null;
+        $rows=[];
         include(dirname(__FILE__).'/../inc/conn.php');
         $query=<<<EOT
 SELECT a.`id`,a.`fmp_hash`,a.`ext`,a.`img_width`,a.`img_height` FROM t_fmp_material a INNER JOIN t_fmp_user_material b 
@@ -85,7 +85,7 @@ case(__OPERATION_CREATE):
     }
     if (!isset($imgInfo['mime']) || !in_array($imgInfo['mime'],array('image/gif','image/jpeg','image/png','image/pjpeg','image/x-png'))) {
         $msgs['err_msg']='Not valid image.';
-    } elseif (!in_array($fileParts['extension'],$fileTypes)) {
+    } elseif (!in_array(strtolower($fileParts['extension']),$fileTypes)) {
         $msgs['err_msg']='Not png,gif,jpeg';
     } elseif ($fileSize>2097152) {
         $msgs['err_msg']='Size large than 2M limit';

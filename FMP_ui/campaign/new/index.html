@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>new campaign</title>
@@ -101,6 +100,7 @@
                 $.ajax({
                     url: baseConf.api_prefix + "/get/login/@self",
                     method: "GET",
+                    async: false,
                     success: function(data) {
                         if (data.status == "false") { //没有登录退出
                             location.href = "../"
