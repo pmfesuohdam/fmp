@@ -85,7 +85,6 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
                 }
             }
         }
-        /* }}} */
         if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
             $msgs['status']="true";
             $_SESSION['username']=$row['name'];
@@ -93,6 +92,7 @@ if($GLOBALS['selector'] == __SELECTOR_SINGLE) {
         } else $msgs['status']="false";
         $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         echo json_encode($msgs);
+        /* }}} */
         break;
     case(__OPERATION_DELETE):
         /* {{{ 退出登录
