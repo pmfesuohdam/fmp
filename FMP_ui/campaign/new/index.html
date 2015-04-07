@@ -424,6 +424,10 @@
          */
         var DesignProcess = function() {}
         DesignProcess.prototype = {
+            // 可以被加入的tab索引
+            tabIndexs: [1,2,3,4,5],
+            // 最大的tab数目
+            maxTabNums: 5,
             // 初始化生成splitter和右侧明细,创建tabs，动态填充tabs
             init: function() {
                 window.becameSplitter($('#mainSplitter_step5'),660)
@@ -453,7 +457,8 @@
              * @param {obj} obj_tabs - 创建的tabs的id
              */
             createNewTabs: function(obj_tabs) {
-                var index = 2;
+                //var index = 3;
+                var $this=this
                 obj_tabs
                     .append("<ul id=\"unorderedList\"></ul>")
                     .find('#unorderedList').append("<li canselect='false' hasclosebutton='false'>Add new Product</li>")
@@ -466,14 +471,15 @@
                         scrollPosition: 'both'
                     })
                     .on('tabclick', function(event) {
+                        
                         if (event.args.item == $('#unorderedList').find('li').length - 1) {
                             var length = $('#unorderedList').find('li').length
-                            obj_tabs.jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' +
-                                index)
-                            index++
+                            //obj_tabs.jqxTabs('addAt', event.args.item, 'Product ' + index, 'Sample content number: ' +
+                            //    index)
+                            length<=$this.maxTabNums && $this.createTabContent(obj_tabs,length-1)
+                            //index++
                         }
                     })
-                
                 this.createTabContent(obj_tabs, 0)
                 this.createTabContent(obj_tabs, 1)
                 this.createTabContent(obj_tabs, 2)
@@ -482,27 +488,35 @@
             },
             /** 创建tabs的内容
              * @param {obj} obj - tabs的id
-             * @param {int} idx - 内部一个tab索引号
+             * @param {int} idx - 从idx位置开始创建新的tab内容
              */
             createTabContent: function(obj, idx) {
+                // 剩下还可以创建的索引
+                this.tabIndexs = $.grep(this.tabIndexs, function(value) {
+                    return value != idx;
+                })
+                // 用剩余最小的id作为默认产品名字
+                var newTabId=Math.min.apply(Math,this.tabIndexs)
                 // pane的主要部分
                 var pane_content = '<div class="form-group">'
-                pane_content += '<label for="productLink">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+idx+'" name="productLink" placeholder="Enter name" value=""></div>'
-                pane_content += '<div class="form-group"><label for="productDescription">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+idx+'" name="productDescription" placeholder="Enter product description" value=""></div>'
-                pane_content += '<div class="form-group" id="fg'+idx+'"><label for="picture">Picture<code></code></label><form><input id="file_upload'+idx+'" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group'+idx+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
+                pane_content += '<label for="productLink">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink" placeholder="Enter name" value=""></div>'
+                pane_content += '<div class="form-group"><label for="productDescription">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription" placeholder="Enter product description" value=""></div>'
+                pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="picture">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
                 //pane_content += '<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>'
                 pane_content += '</div>'
-                obj.jqxTabs('addAt', idx, 'Product ' + idx, pane_content)
+
+                //obj.jqxTabs('addAt', idx, 'Product ' + idx, pane_content)
+                obj.jqxTabs('addAt', idx, 'Product ' + newTabId, pane_content)
 
                 // 上传控件初始化
-                $('#file_upload'+idx).uploadify({
+                $('#file_upload'+newTabId).uploadify({
                     'multi': false,
                     'queueSizeLimit': 1,
                     'fileTypeExts': '*.gif; *.jpg; *.png',
                     'buttonImage': '../../assets/img/transparent.gif',
                     'buttonClass': 'uploadify_no_display',
                     'wmode': 'transparent',
-                    'width': $("#btn-group"+idx+" > button:nth-child(1)").width() + 20,
+                    'width': $("#btn-group"+newTabId+" > button:nth-child(1)").width() + 20,
                     'formData': {},
                     'swf': '../../assets/widgets/uploadify/uploadify.swf',
                     'uploader': baseConf.api_prefix + "/create/ajax_upload/@product1",
@@ -513,35 +527,35 @@
                             return;
                         } else {
                             // 绑定当前上传图片的行为，展示和关闭
-                            $('#adimage'+idx).remove()
-                            $('#multi_product_jqxtabs #fg'+idx).after('<div id="adimage'+idx+'" class="modal-header" style="width:200px;border:none;"></div>')
-                            $('#adimage'+idx).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
-                            $("#adimage"+idx+" > button").on('click', function() {
-                                $("#adimage"+idx).empty()
+                            $('#adimage'+newTabId).remove()
+                            $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
+                            $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
+                            $("#adimage"+newTabId+" > button").on('click', function() {
+                                $("#adimage"+newTabId).empty()
                             });
                             setTimeout(function() {
-                                var prev_offset=$("#adimage"+idx).offset()
-                                $("#adimage"+idx).attr('position','absolute')
-                                $("#adimage"+idx).offset({
+                                var prev_offset=$("#adimage"+newTabId).offset()
+                                $("#adimage"+newTabId).attr('position','absolute')
+                                $("#adimage"+newTabId).offset({
                                     top: prev_offset.top-20,
                                     left: prev_offset.left
                                 })
-                                $("#adimage"+idx).animate({ "top": "-=30px" }, "slow" );
+                                $("#adimage"+newTabId).animate({ "top": "-=30px" }, "slow" );
                             },3500)
                         }
                     }
                 });
 
                 // 对齐上传按钮到swf上传控件的位置
-                $("#btn-group"+idx).offset({
-                        top: $("#file_upload"+idx).offset().top,
-                        left: $("#file_upload"+idx).offset().left
+                $("#btn-group"+newTabId).offset({
+                        top: $("#file_upload"+newTabId).offset().top,
+                        left: $("#file_upload"+newTabId).offset().left
                     })
 
                 // 绑定物料库的操作
                 $(function() {
                     var $modal = $('#galley_modal');
-                    $('#btn-group'+idx+' > button:nth-child(2)').on('click', function() {
+                    $('#btn-group'+newTabId+' > button:nth-child(2)').on('click', function() {
                         $('body').modalmanager('loading');
                         setTimeout(function() {
                             $ul = $("#galley_modal > div.modal-body > div.files > ul");
@@ -557,19 +571,19 @@
                                     $("#galley_modal ul").find('.imgPreview'),
                                     function(k, v) {
                                         $(v).bind('click', function() {
-                                            $('#adimage'+idx).remove()
-                                            $('#multi_product_jqxtabs #fg'+idx).after('<div id="adimage'+idx+'" class="modal-header" style="width:200px;border:none;"></div>')
-                                            $("#adimage"+idx).attr('position','absolute')
-                                            var prev_ofs=$("#adimage"+idx).offset()
-                                            $("#adimage"+idx).offset({
+                                            $('#adimage'+newTabId).remove()
+                                            $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
+                                            $("#adimage"+newTabId).attr('position','absolute')
+                                            var prev_ofs=$("#adimage"+newTabId).offset()
+                                            $("#adimage"+newTabId).offset({
                                                 top: prev_ofs.top-20,
                                                 left: prev_ofs.left
                                             })
-                                            $("#adimage"+idx).animate({ "top": "-=30px" }, "slow" )
-                                            $('#adimage'+idx).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
+                                            $("#adimage"+newTabId).animate({ "top": "-=30px" }, "slow" )
+                                            $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
 
-                                            $("#adimage"+idx+" > button").on('click', function() {
-                                                $("#adimage"+idx).empty()
+                                            $("#adimage"+newTabId+" > button").on('click', function() {
+                                                $("#adimage"+newTabId).empty()
                                             });
                                             $('#galley_modal').modal('hide');
                                             return false;
