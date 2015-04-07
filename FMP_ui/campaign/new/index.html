@@ -436,6 +436,7 @@
                 } catch (e) {}
                 this.bindDropDown()
                 this.createNewTabs($('#multi_product_jqxtabs'))
+                this.bindTabsCloseBtn($('#multi_product_jqxtabs'))
                 return this
             },
             // 绑定下拉page的选择变换
@@ -487,16 +488,20 @@
                 return this
             },
             /** 创建tabs的内容
-             * @param {obj} obj - tabs的id
+             * @param {obj} obj - jqxtabs的id
              * @param {int} idx - 从idx位置开始创建新的tab内容
+             * @param {int} product_idx - 产品序号
              */
-            createTabContent: function(obj, idx) {
+            createTabContent: function(obj, idx, product_idx) {
                 // 剩下还可以创建的索引
-                this.tabIndexs = $.grep(this.tabIndexs, function(value) {
-                    return value != idx;
-                })
+                //alert("本次创建前剩下还可以创建的索引:"+this.tabIndexs)
                 // 用剩余最小的id作为默认产品名字
                 var newTabId=Math.min.apply(Math,this.tabIndexs)
+                this.tabIndexs = $.grep(this.tabIndexs, function(value) {
+                    return value != newTabId;
+                })
+                //alert("本次创建完剩下还可以创建的索引:"+this.tabIndexs)
+
                 // pane的主要部分
                 var pane_content = '<div class="form-group">'
                 pane_content += '<label for="productLink">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink" placeholder="Enter name" value=""></div>'
@@ -594,6 +599,45 @@
                         return false;
                     });
                 })
+            },
+
+            /** 更新剩余可用的tab索引
+             * @param {obj} obj - jqxtabs的id
+             */
+            updateTabIndexs: function(obj) {
+                var $this=this
+                //alert("本次删除前还剩下的索引"+$this.tabIndexs)
+                //console.log("before update tabIndexs:"+$this.tabIndexs)
+                var alreadyHasId=[]
+                var oldInx=$this.tabIndexs=[1,2,3,4,5]
+
+                try{
+                    for(var i=0;i<$(obj).jqxTabs('length');i++){  
+                        var inp=$(obj)
+                            .jqxTabs('getContentAt',i)
+                            .find(">.form-group>input:first")
+                            console.log("id:"+parseInt(inp.attr("id").substr(inp.attr("id").length-1)))
+                        alreadyHasId.push(parseInt(inp.attr("id").substr(inp.attr("id").length-1)))
+                    }
+                } catch(e){}
+                //alert("本次预先重置的索引"+$this.tabIndexs)
+                //alert("本次已经占用的索引"+alreadyHasId)
+                $.each(alreadyHasId,function(k,v){
+                    //从总的索引中排除这些索引
+                    oldInx.splice( $.inArray(v,oldInx) ,1 );
+                })
+                //alert("排除这些后剩下的索引"+oldInx)
+                //console.log("tabIndexs:"+$this.tabIndexs)
+            },
+
+           /** 绑定jqxtabs上每个小tab的关闭按钮
+            * @param {obj} obj - jqxtabs的id
+            */
+            bindTabsCloseBtn: function(obj) {
+                var $this=this
+                 obj.on('removed', function (event) {
+                     $this.updateTabIndexs(obj)
+                 })
             }
         }
 
