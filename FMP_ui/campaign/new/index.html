@@ -5,20 +5,6 @@
     <meta charset="utf-8">
     <title>new campaign</title>
     <link rel="stylesheet" type="text/css" href="/min/?b=assets&f=css/default/base.css,css/libs/jquery-ui.css,widgets/jqwidgets/styles/jqx.base.css,widgets/jqwidgets/styles/jqx.bootstrap.css,css/default/menu.css,css/default/dashboard.css,css/default/sidebar.css,css/default/fbaccount.css,css/default/table.css,css/default/autocomplete.css,css/libs/datepicker3.css,widgets/uploadify/uploadify.css,widgets/bootstrap_modal/css/bootstrap-modal-bs3patch.css,widgets/bootstrap_modal/css/bootstrap-modal.css">
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/base.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/libs/jquery-ui.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.base.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/jqwidgets/styles/jqx.bootstrap.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/menu.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/dashboard.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/sidebar.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/fbaccount.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/table.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/default/autocomplete.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/css/libs/datepicker3.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/uploadify/uploadify.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal-bs3patch.css?t=20150406005706">-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/bootstrap_modal/css/bootstrap-modal.css?t=20150406005706">-->
 </head>
 
 <body>
@@ -32,9 +18,6 @@
         </div>
         <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
         <!--/fmp_header-->
-
-
-
         <!--fmp_navibar-->
         <div class="navibar">
             <div class="navi">
@@ -54,9 +37,6 @@
             </div>
         </div>
         <!--/fmp_navibar-->
-
-
-
         <!--main-->
         <div class="main-content">
             <div class="row" id="main-area" style="text-align:center">
@@ -78,10 +58,15 @@
         </div>
         <!--/fmp_footer-->
     </div>
-    <script src="/min/?b=assets&f=js/libs/jquery-1.11.2.min.js,js/libs/jquery.tmpl.js,js/libs/bbq_init.js,js/libs/jquery.ba-bbq.js,js/base.js,js/libs/jquery-ui.min.js,js/libs/bootstrap.min.js,js/libs/json2.js,widgets/jqwidgets/jqxcore.js,widgets/jqwidgets/jqxsplitter.js,widgets/jqwidgets/jqxbuttons.js,widgets/jqwidgets/jqxscrollbar.js,widgets/jqwidgets/jqxpanel.js,widgets/jqwidgets/jqxtabs.js,widgets/uploadify/jquery.uploadify.min.js,widgets/bootstrap_modal/js/bootstrap-modal.js,widgets/bootstrap_modal/js/bootstrap-modalmanager.js,js/libs/prettify.min.js,js/libs/bootstrap-datepicker.js,js/location_map.js,js/libs/jquery.autocomplete.multiselect.js">
-    <!-- TODO:合并需要再次加入bootstrap，原因未知 -->
-    <script type="text/javascript" src="../../assets/js/libs/bootstrap.min.js?t=20150406005706"></script>
+    <script src="../../assets/js/libs/jquery-1.11.2.min.js"></script>
     <script>
+        // 部分插件合并出现src方式调用问题，需要同步
+        $.ajax({
+            async: false,
+            dataType: "script",
+            cache: true,
+            url: "/min/?b=assets&f=js/libs/jquery.tmpl.js,js/libs/bbq_init.js,js/libs/jquery.ba-bbq.js,js/base.js,js/libs/jquery-ui.min.js,js/libs/bootstrap.min.js,js/libs/json2.js,widgets/jqwidgets/jqxcore.js,widgets/jqwidgets/jqxsplitter.js,widgets/jqwidgets/jqxbuttons.js,widgets/jqwidgets/jqxscrollbar.js,widgets/jqwidgets/jqxpanel.js,widgets/jqwidgets/jqxtabs.js,widgets/uploadify/jquery.uploadify.min.js,widgets/bootstrap_modal/js/bootstrap-modal.js,widgets/bootstrap_modal/js/bootstrap-modalmanager.js,js/libs/prettify.min.js,js/libs/bootstrap-datepicker.js,js/location_map.js,js/libs/jquery.autocomplete.multiselect.js"
+        });
         var cache = {
             '': $('.bbq-default')
         };
