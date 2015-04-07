@@ -437,6 +437,7 @@
                 this.bindDropDown()
                 this.createNewTabs($('#multi_product_jqxtabs'))
                 this.bindTabsCloseBtn($('#multi_product_jqxtabs'))
+                this.bindDbClkChTabTitle($('#multi_product_jqxtabs'))
                 return this
             },
             // 绑定下拉page的选择变换
@@ -496,6 +497,7 @@
                 // 剩下还可以创建的索引
                 //alert("本次创建前剩下还可以创建的索引:"+this.tabIndexs)
                 // 用剩余最小的id作为默认产品名字
+                var $this=this
                 var newTabId=Math.min.apply(Math,this.tabIndexs)
                 this.tabIndexs = $.grep(this.tabIndexs, function(value) {
                     return value != newTabId;
@@ -598,6 +600,7 @@
                         }, 1000);
                         return false;
                     });
+                    $this.bindDbClkChTabTitle($('#multi_product_jqxtabs'))
                 })
             },
 
@@ -638,6 +641,51 @@
                  obj.on('removed', function (event) {
                      $this.updateTabIndexs(obj)
                  })
+            },
+
+            /** 绑定tab标题双击修改产品名字的功能
+            * @param {obj} obj - jqxtabs的id
+            */
+            bindDbClkChTabTitle: function(obj) {
+                var me = this;
+                // disable keyboard navigation. The keyboard navigation handles the arrow keys and selects the next or previous tab depending on the // pressed arrow key.
+                obj.jqxTabs({ keyboardNavigation: false });
+                // find the tab we will show an editor for.
+                var tabs = obj.find("li");
+                // bind to the double-click event.
+                tabs.bind('dblclick', function (event) {
+                    // find the double-clicked tab title.
+                    var target = event.target;
+                    var tab = target.tagName == "LI" ? $(target) : $(target).parents('li:first');
+                    // create a text input or get the already created.
+                    var input = me.input || $("<div style='position: absolute; z-index: 9999; background: white'><input/></div>");
+                    var textinput = input.find('input');
+                    if (!me.input) {
+                        // add the text input to the document's body.
+                        $(document.body).append(input);
+                        // update the tab's text on blur.
+                        textinput.bind('blur', function () {
+                            var newtext = textinput.val();
+                            me.edittab.text(newtext);
+                            input.css('display', 'none');
+                            obj.jqxTabs('_performHeaderLayout');
+                        });
+                    }
+                    me.input = input;
+                    // show the input.
+                    input.css('display', 'block');
+                    // position the input over the tab and set its size.
+                    var taboffset = tab.offset();
+                    me.input.css({ left: taboffset.left, top: taboffset.top });
+                    me.input.height(tab.outerHeight());
+                    me.input.width(tab.outerWidth());
+                    var sizeoffset = 6;
+                    textinput.width(me.input.width() - sizeoffset);
+                    textinput.height(me.input.height() - sizeoffset);
+                    // set the initial text of the input.
+                    textinput.val(tab.text());
+                    me.edittab = tab;
+                });
             }
         }
 
