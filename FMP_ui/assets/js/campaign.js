@@ -365,7 +365,7 @@ DesignProcess.prototype = {
         try {
             window.generateDetail()
         } catch (e) {}
-        this.bindDropDown()
+        var select_page_id=this.bindDropDown()
         this.createNewTabs($('#multi_product_jqxtabs'))
         this.bindTabsCloseBtn($('#multi_product_jqxtabs'))
         this.bindDbClkChTabTitle($('#multi_product_jqxtabs'))
@@ -376,12 +376,14 @@ DesignProcess.prototype = {
         $(document.body).on('click', '#form_camp_step5 .dropdown-menu li', function(event) {
             var $target = $(event.currentTarget)
             var $content = $($target.html())
-            $content.find('input').attr('name', 'select_page')
+            var my_selected_page_id=$target.find("input[type='hidden']").val()
             $target
                 .closest('.btn-group')
                 .find('[data-bind="label"]').html($content.html())
                 .end()
                 .children('.dropdown-toggle').dropdown('toggle')
+            //传递到实际代表page的id的控件上
+            $("input[name='hid_selected_page']").val(my_selected_page_id)
             return false
         })
         return this
