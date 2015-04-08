@@ -150,14 +150,17 @@ function goStep(step) {
                 type: "POST",
                 data: d,
                 success: function(data) {
+                    // 移动滚动条到最上
                     var body = $("html, body")
                     body.animate({scrollTop:0}, '1000', 'swing', function() { 
                     })
                     $("code").html("")
+                    // 成功展现下一页
                     if (data.status == "true") {
                         location.href = baseConf.domain + "/campaign/new/#step/" + step
                         changeNav(step)
                     } else {
+                        // 失败在code标签上显示错误
                         err_msg = data.err_msg
                         for (i = 0; i < err_msg.length; i++) {
                             for (id in err_msg[i]) {
@@ -439,9 +442,9 @@ DesignProcess.prototype = {
 
         // pane的主要部分
         var pane_content = '<div class="form-group">'
-        pane_content += '<label for="productLink">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink" placeholder="Enter name" value=""></div>'
-        pane_content += '<div class="form-group"><label for="productDescription">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription" placeholder="Enter product description" value=""></div>'
-        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="picture">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
+        pane_content += '<label for="productLink'+newTabId+'">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink" placeholder="Enter name" value=""></div>'
+        pane_content += '<div class="form-group"><label for="productDescription'+newTabId+'">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription" placeholder="Enter product description" value=""></div>'
+        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="picture'+newTabId+'">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         //pane_content += '<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>'
         pane_content += '</div>'
 
