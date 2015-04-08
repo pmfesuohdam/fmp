@@ -158,7 +158,7 @@ $min_serveOptions['minApp']['groupsOnly'] = false;
  * array('//static' => 'D:\\staticStorage')  // Windows
  * </code>
  */
-$min_symlinks = array();
+$min_symlinks = array('//assets'=>'/usr/local/share/project/fmp/facebookprj_git/fmp/FMP_ui/assets');
 
 
 /**

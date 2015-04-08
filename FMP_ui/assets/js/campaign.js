@@ -394,7 +394,7 @@ DesignProcess.prototype = {
         var $this=this
         obj_tabs
             .append("<ul id=\"unorderedList\"></ul>")
-            .find('#unorderedList').append("<li canselect='false' hasclosebutton='false'>Add new Product</li>")
+            .find('#unorderedList').append("<li canselect='false' hasclosebutton='false' name='li_add_new_product'>Add new Product</li>")
             .after("<div></div>")
             .parent()
             .jqxTabs({
@@ -575,9 +575,9 @@ DesignProcess.prototype = {
     },
 
     /** 绑定tab标题双击修改产品名字的功能
-    * @param {obj} obj - jqxtabs的id
-    */
-    bindDbClkChTabTitle: function(obj) {
+     * @param {obj} obj - jqxtabs的id
+     */
+     bindDbClkChTabTitle: function(obj) {
         var me = this;
         // disable keyboard navigation. The keyboard navigation handles the arrow keys and selects the next or previous tab depending on the // pressed arrow key.
         obj.jqxTabs({ keyboardNavigation: false });
@@ -600,6 +600,8 @@ DesignProcess.prototype = {
                     me.edittab.text(newtext);
                     input.css('display', 'none');
                     obj.jqxTabs('_performHeaderLayout');
+                    //需要再绑定一次否则关闭按钮会消失
+                    me.bindDbClkChTabTitle(obj);
                 });
             }
             me.input = input;
@@ -617,6 +619,8 @@ DesignProcess.prototype = {
             textinput.val(tab.text());
             me.edittab = tab;
         });
+        //添加按钮不能出现能被双击的情况
+        $("#unorderedList > li[name='li_add_new_product']").unbind("dblclick");
     }
 }
 
