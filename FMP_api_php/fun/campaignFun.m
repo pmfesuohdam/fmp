@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-03-14 21:34:10
+  | Last-Modified: 2015-04-08 18:28:35
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -543,6 +543,36 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
         }
         break;
     case(__OPERATION_UPDATE):
+        $msgs=null;
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+            // page必须指定,而且属于当前用户的business旗下
+            if (empty($_POST['selected_page'])) {
+                $msgs['err_msg'][]=array('selected_page'=>'field is required');
+            }
+            // TODO 检查page是否属于当前用户
+            // messages必须指定，而且长度不能超过486
+            if (empty($_POST['messages'])) {
+                $msgs['err_msg'][]=array('messages'=>'field is required');
+            } elseif(strlen($_POST['messages'])>486) {
+                $msgs['err_msg'][]=array('messages'=>'messages size too long');
+            }
+            // link必须指定，而且必须是url
+            if (empty($_POST['link'])) {
+                $msgs['err_msg'][]=array('link'=>'field is required');
+            } elseif(strlen($_POST['link'])>500) {
+                $msgs['err_msg'][]=array('link'=>'link size too long');
+            } elseif (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['link'])) {
+                $msgs['err_msg'][]=array('link'=>'not a valid url');
+            } 
+            // 遍历产品，如果发现有product_name[0-9]就检查多少个产品
+            if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
+                $msgs['status']='true';
+            } else {
+                $msgs['status']='false';
+            }
+            echo json_encode($msgs);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
         break;
     }
 }

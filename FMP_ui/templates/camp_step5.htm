@@ -5,7 +5,7 @@
             <div class="splitter-panel col-md-8">
                 <!--左侧编辑-->
                 <div class="form-group fmp_dropdown_field">
-                    <label for="page">Page<code></code></label>
+                    <label for="selected_page">Page<code></code></label>
                     <div class="input-append">
                         <!--page选择-->
                         <div class="btn-group btn-input">
@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="form-group" style="clear:both">
-                    <label for="createives">Messages<code></code></label>
-                    <textarea name="creatives" placeholder="Insert message..." class="field">{{= messages}}</textarea>
+                    <label for="messages">Messages<code></code></label>
+                    <textarea name="messages" placeholder="Insert message..." class="field">{{= messages}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="link">Link<code></code></label>
@@ -75,6 +75,6 @@
         </div>
     </div>
     <footer style="text-align:center">
-        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/6" onclick="goStep6();return false;">Proceed</a>
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/6" onclick="goStep(6);return false;">Proceed</a>
     </footer>
 </form>
