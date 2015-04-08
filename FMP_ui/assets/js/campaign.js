@@ -359,9 +359,9 @@ function spendingProcess() {
 var DesignProcess = function() {}
 DesignProcess.prototype = {
     // 可以被加入的tab索引
-    tabIndexs: [1,2,3,4,5],
+    tabIndexs: _.range(1,baseConf.product_multi_max+1),
     // 最大的tab数目
-    maxTabNums: 5,
+    maxTabNums: baseConf.product_multi_max,
     // 初始化生成splitter和右侧明细,创建tabs，动态填充tabs
     init: function() {
         window.becameSplitter($('#mainSplitter_step5'),720)
@@ -551,7 +551,7 @@ DesignProcess.prototype = {
         //alert("本次删除前还剩下的索引"+$this.tabIndexs)
         //console.log("before update tabIndexs:"+$this.tabIndexs)
         var alreadyHasId=[]
-        var oldInx=$this.tabIndexs=[1,2,3,4,5]
+        var oldInx=$this.tabIndexs=_.range(1,baseConf.product_multi_max+1)
 
         try{
             for(var i=0;i<$(obj).jqxTabs('length');i++){  

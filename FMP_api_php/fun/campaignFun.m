@@ -542,6 +542,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             echo json_encode($ret);
         }
         break;
+    case(__OPERATION_UPDATE):
+        break;
     }
 }
 /*}}}*/
