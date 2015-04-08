@@ -386,7 +386,7 @@ DesignProcess.prototype = {
                 .end()
                 .children('.dropdown-toggle').dropdown('toggle')
             //传递到实际代表page的id的控件上
-            $("input[name='hid_selected_page']").val(my_selected_page_id)
+            $("input[name='selected_page']").val(my_selected_page_id)
             return false
         })
         return this
@@ -442,13 +442,11 @@ DesignProcess.prototype = {
 
         // pane的主要部分
         var pane_content = '<div class="form-group">'
-        pane_content += '<label for="productLink'+newTabId+'">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink" placeholder="Enter name" value=""></div>'
-        pane_content += '<div class="form-group"><label for="productDescription'+newTabId+'">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription" placeholder="Enter product description" value=""></div>'
-        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="picture'+newTabId+'">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
-        //pane_content += '<div id="adimage0" class="modal-header" style="width:200px;border:none;"></div>'
+        pane_content += '<label for="productLink'+newTabId+'">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink'+newTabId+'" placeholder="Enter name" value=""></div>'
+        pane_content += '<div class="form-group"><label for="productDescription'+newTabId+'">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription'+newTabId+'" placeholder="Enter product description" value=""></div>'
+        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="product_hash'+newTabId+'">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload'+newTabId+'" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         pane_content += '</div>'
 
-        //obj.jqxTabs('addAt', idx, 'Product ' + idx, pane_content)
         obj.jqxTabs('addAt', idx, 'Product ' + newTabId, pane_content)
 
         // 上传控件初始化
@@ -472,7 +470,7 @@ DesignProcess.prototype = {
                     // 绑定当前上传图片的行为，展示和关闭
                     $('#adimage'+newTabId).remove()
                     $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
-                    $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"></div>').css('display', 'none').fadeIn();
+                    $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"><input type="hidden" name="product_hash'+newTabId+'" value="'+responseObj.hash+'"></div>').css('display', 'none').fadeIn();
                     $("#adimage"+newTabId+" > button").on('click', function() {
                         $("#adimage"+newTabId).empty()
                     });
@@ -518,12 +516,17 @@ DesignProcess.prototype = {
                                     $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
                                     $("#adimage"+newTabId).attr('position','absolute')
                                     var prev_ofs=$("#adimage"+newTabId).offset()
-                                    $("#adimage"+newTabId).offset({
-                                        top: prev_ofs.top-20,
-                                        left: prev_ofs.left
-                                    })
-                                    $("#adimage"+newTabId).animate({ "top": "-=30px" }, "slow" )
-                                    $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + $(this).attr('href') + '"></div>').css('display', 'none').fadeIn();
+                                    var the_product_url=$(this).attr('href')
+                                    var the_product_hash=the_product_url.substr(the_product_url.lastIndexOf("/") + 1).split('.')[0]
+                                    // 选择完毕呈现在下方的展示区域
+                                    $("#adimage"+newTabId)
+                                        .offset({
+                                            top: prev_ofs.top-20,
+                                            left: prev_ofs.left
+                                        })
+                                        .animate({ "top": "-=30px" }, "slow" )
+                                        .empty()
+                                        .append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + the_product_url + '"><input type="hidden" name="product_hash'+newTabId+'" value="'+the_product_hash+'"></div>').css('display', 'none').fadeIn();
 
                                     $("#adimage"+newTabId+" > button").on('click', function() {
                                         $("#adimage"+newTabId).empty()

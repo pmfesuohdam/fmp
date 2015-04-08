@@ -148,6 +148,7 @@ EOT;
     $memcache->close();
     if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
         $msgs['url']=__MATERIAL_URL."/".GetMaterialPath($imgHash)."/{$imgHash}.{$imgExt}";
+        $msgs['hash']=$imgHash;
         $msgs['status']='true';
     } else {
         $msgs['status']='false';
