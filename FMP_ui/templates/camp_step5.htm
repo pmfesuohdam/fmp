@@ -24,11 +24,11 @@
                 </div>
                 <div class="form-group" style="clear:both">
                     <label for="createives">Messages<code></code></label>
-                    <textarea name="creatives[body][]" placeholder="Insert message..." class="field"></textarea>
+                    <textarea name="creatives[body][]" placeholder="Insert message..." class="field">{{= messages}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="link">Link<code></code></label>
-                    <input type="text" class="form-control" name="link" placeholder="Insert URL..." value="">
+                    <input type="text" class="form-control" name="link" placeholder="Insert URL..." value="{{= link}}">
                 </div>
                 <!--弹出层-->
                 <div id="galley_modal" class="modal fade" tabindex="-1" data-width="760" style="display: none;">

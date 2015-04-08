@@ -520,8 +520,23 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             }
             @mysqli_close($link);
             
+            $messages="messages121";
+            $link="link123";
+            $productMulti[]=array(
+                'product_link'=>'http://www.baidu.com',
+                'product_desc'=>'baidu',
+                'product_pic'=>'http://www.baidu.com/img/logo.gif'
+            );
+            $productMulti[]=array(
+                'product_link'=>'http://www.sina.com',
+                'product_desc'=>'sina',
+                'product_pic'=>'http://tp2.sinaimg.cn/2261192165/50/5628047497/1'
+            );
             $ret=array(
-                'pages'=>$pages
+                'pages'=>$pages,
+                'messages'=>$messages,
+                'link'=>$link,
+                'product_multi'=>$productMulti
             );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
             echo json_encode($ret);
