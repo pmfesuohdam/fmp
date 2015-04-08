@@ -373,4 +373,9 @@ body {
 }*/
 .jqx-tabs-content-element {
     padding: 20px;
+    padding-bottom: 0;
+}
+
+#form_camp_step5  #mainSplitter_step5 textarea {
+    height: 5em;
 }

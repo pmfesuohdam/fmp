@@ -104,7 +104,7 @@ $.when(
                     break;
             }
         }
-        $("#fmp_leftmenu").height($("#ad_edit_area").height() < 500 ? 500 : $("#ad_edit_area").height())
+        $("#fmp_leftmenu").height($("#ad_edit_area").height() < 470 ? 470 : $("#ad_edit_area").height())
     })
     $(window).trigger('hashchange');
     if ((($.param.fragment()).split("/")).length < 2) {
@@ -361,7 +361,7 @@ DesignProcess.prototype = {
     maxTabNums: 5,
     // 初始化生成splitter和右侧明细,创建tabs，动态填充tabs
     init: function() {
-        window.becameSplitter($('#mainSplitter_step5'),660)
+        window.becameSplitter($('#mainSplitter_step5'),720)
         try {
             window.generateDetail()
         } catch (e) {}
@@ -398,7 +398,7 @@ DesignProcess.prototype = {
             .after("<div></div>")
             .parent()
             .jqxTabs({
-                height: 500,
+                height: 470,
                 width: '100%',
                 showCloseButtons: true,
                 scrollPosition: 'both'
