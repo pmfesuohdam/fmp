@@ -564,9 +564,21 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             } elseif (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['link'])) {
                 $msgs['err_msg'][]=array('link'=>'not a valid url');
             } 
-            // 遍历产品，如果发现有product_name[0-9]就检查多少个产品
-            //print_r($_POST);
+            // 遍历产品，如果发现有product_name[1-9]就检查多少个产品
+            $productSeqArr=array_keys($_POST['productName']);
+            foreach($productSeqArr as $sequence_num){
+                if (empty($_POST['productName']["{$sequence_num}"]) || strlen($_POST['productName']["{$sequence_num}"])>50){
+                    $msgs['err_msg'][]=array("productName\[{$sequence_num}\]"=>'bad product name');
+                }
+            }
             // 遍历产品url
+            foreach($productSeqArr as $sequence_num){
+                if ( empty($_POST['productLink']["{$sequence_num}"]) ) {
+                    $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'field us required');
+                } elseif(!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['productLink']["{$sequence_num}"])) {
+                    $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'not valid product url');
+                }
+            }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']='true';
             } else {
