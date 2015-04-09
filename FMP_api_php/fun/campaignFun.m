@@ -565,6 +565,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                 $msgs['err_msg'][]=array('link'=>'not a valid url');
             } 
             // 遍历产品，如果发现有product_name[0-9]就检查多少个产品
+            //print_r($_POST);
+            // 遍历产品url
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']='true';
             } else {
