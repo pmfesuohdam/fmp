@@ -520,8 +520,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             }
             @mysqli_close($link);
             
-            $messages="messages121";
-            $link="link123";
+            $messages="";
+            $link="";
             $productMulti[]=array(
                 'product_link'=>'http://www.baidu.com',
                 'product_desc'=>'baidu',
