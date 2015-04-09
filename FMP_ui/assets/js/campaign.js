@@ -442,9 +442,9 @@ DesignProcess.prototype = {
 
         // pane的主要部分
         var pane_content = '<div class="form-group">'
-        pane_content += '<input type="hidden" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink'+newTabId+'">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
-        pane_content += '<div class="form-group"><label for="productDescription'+newTabId+'">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value=""></div>'
-        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="product_hash'+newTabId+'">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
+        pane_content += '<input type="hidden" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
+        pane_content += '<div class="form-group"><label for="productDescription['+newTabId+']">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value=""></div>'
+        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="product_hash['+newTabId+']">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         pane_content += '</div>'
 
         obj.jqxTabs('addAt', idx, 'Product ' + newTabId, pane_content)
@@ -608,6 +608,13 @@ DesignProcess.prototype = {
                     me.edittab.text(newtext);
                     input.css('display', 'none');
                     obj.jqxTabs('_performHeaderLayout');
+
+                    // 把值传递给实际控件
+                    var sele_itm=obj.jqxTabs('selectedItem')
+                    var current_pane=obj.jqxTabs('getContentAt', sele_itm)
+                    var $product_name=current_pane.find("input:first")            
+                    $product_name.val(newtext)
+                    
                     //需要再绑定一次否则关闭按钮会消失
                     me.bindDbClkChTabTitle(obj);
                 });
@@ -627,7 +634,7 @@ DesignProcess.prototype = {
             textinput.val(tab.text());
             me.edittab = tab;
         });
-        //添加按钮不能出现能被双击的情况
+        // 使add new product按钮不能被双击修改
         $("#unorderedList > li[name='li_add_new_product']").unbind("dblclick");
     }
 }
