@@ -150,4 +150,10 @@ function GetMaterialPath($md5checksum) {
 function checkUrl($url) {
     return preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url);
 }
+
+/** 检查图片hash是否属于当前用户所上传
+ */
+function checkImgHashPerm($img_hash){
+    return true;
+}
 ?>

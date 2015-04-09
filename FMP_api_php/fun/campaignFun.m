@@ -556,7 +556,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             } elseif(strlen($_POST['messages'])>500) {
                 $msgs['err_msg'][]=array('messages'=>'maximum length is 500 characters');
             }
-            // link必须指定，而且必须是url
+            // link必须指定，而且必须是url,而且不大于500字符
             if (empty($_POST['link'])) {
                 $msgs['err_msg'][]=array('link'=>'field is required');
             } elseif(strlen($_POST['link'])>500) {
@@ -571,7 +571,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                     $msgs['err_msg'][]=array("productName\[{$sequence_num}\]"=>'maximum length is 35 characters');
                 }
             }
-            // 遍历产品url
+            // 遍历产品url,必须设置而且为url
             foreach($productSeqArr as $sequence_num) {
                 if ( empty($_POST['productLink']["{$sequence_num}"]) ) {
                     $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'field us required');
@@ -579,12 +579,20 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                     $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'not valid product url');
                 }
             }
-            // 遍历产品描述
+            // 遍历产品描述,必须设置而且不大于30
             foreach($productSeqArr as $sequence_num) {
                 if ( empty($_POST['productDescription']["{$sequence_num}"]) ) {
                     $msgs['err_msg'][]=array("productDescription\[{$sequence_num}\]"=>'field us required');
                 } elseif( strlen($_POST['productDescription']["{$sequence_num}"])>30 ) {
                     $msgs['err_msg'][]=array("productDescription\[{$sequence_num}\]"=>'maximum length is 30 characters');
+                }
+            }
+            // 遍历产品图片，必须设置，而且属于图片必须得是自己创建的
+            foreach ($productSeqArr as $sequence_num) {
+                if ( empty($_POST['productHash']["{$sequence_num}"]) ) {
+                    $msgs['err_msg'][]=array("productHash\[{$sequence_num}\]"=>'picture us required');
+                } elseif(!checkImgHashPerm($_POST['productHash']["{$sequence_num}"])) {
+                    $msgs['err_msg'][]=array("productHash\[{$sequence_num}\]"=>'this picture isn`t yours');
                 }
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {

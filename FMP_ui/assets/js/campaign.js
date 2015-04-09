@@ -448,7 +448,7 @@ DesignProcess.prototype = {
         var pane_content = '<div class="form-group">'
         pane_content += '<input type="hidden" id="hid_product_name'+newTabId+'" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
         pane_content += '<div class="form-group"><label for="productDescription['+newTabId+']">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value=""></div>'
-        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="product_hash['+newTabId+']">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
+        pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="productHash['+newTabId+']">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         pane_content += '</div>'
 
         obj.jqxTabs('addAt', idx, 'Product ' + newTabId, pane_content)
@@ -474,7 +474,7 @@ DesignProcess.prototype = {
                     // 绑定当前上传图片的行为，展示和关闭
                     $('#adimage'+newTabId).remove()
                     $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
-                    $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"><input type="hidden" name="product_hash['+newTabId+']" value="'+responseObj.hash+'"></div>').css('display', 'none').fadeIn();
+                    $('#adimage'+newTabId).empty().append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + responseObj.url + '"><input type="hidden" name="productHash['+newTabId+']" value="'+responseObj.hash+'"></div>').css('display', 'none').fadeIn();
                     $("#adimage"+newTabId+" > button").on('click', function() {
                         $("#adimage"+newTabId).empty()
                     });
@@ -530,7 +530,7 @@ DesignProcess.prototype = {
                                         })
                                         .animate({ "top": "-=30px" }, "slow" )
                                         .empty()
-                                        .append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + the_product_url + '"><input type="hidden" name="product_hash['+newTabId+']" value="'+the_product_hash+'"></div>').css('display', 'none').fadeIn();
+                                        .append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + the_product_url + '"><input type="hidden" name="productHash['+newTabId+']" value="'+the_product_hash+'"></div>').css('display', 'none').fadeIn();
 
                                     $("#adimage"+newTabId+" > button").on('click', function() {
                                         $("#adimage"+newTabId).empty()
