@@ -601,7 +601,12 @@ DesignProcess.prototype = {
                 $(document.body).append(input);
                 // update the tab's text on blur.
                 textinput.bind('blur', function () {
-                    var newtext = textinput.val();
+                    // 最多35个字符
+                    var newtext = $.trim(textinput.val()).substr(0,35);
+                    if (newtext==""){
+                        newtext=me.edittab.text()
+                    }
+
                     me.edittab.text(newtext);
                     input.css('display', 'none');
                     obj.jqxTabs('_performHeaderLayout');

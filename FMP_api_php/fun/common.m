@@ -146,4 +146,8 @@ function GetMaterialPath($md5checksum) {
     $path=substr($head, -2).'/'.substr($tail, -2);
     return $path;
 }
+
+function checkUrl($url) {
+    return preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url);
+}
 ?>

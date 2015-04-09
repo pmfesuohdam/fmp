@@ -553,8 +553,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             // messages必须指定，而且长度不能超过486
             if (empty($_POST['messages'])) {
                 $msgs['err_msg'][]=array('messages'=>'field is required');
-            } elseif(strlen($_POST['messages'])>486) {
-                $msgs['err_msg'][]=array('messages'=>'messages size too long');
+            } elseif(strlen($_POST['messages'])>500) {
+                $msgs['err_msg'][]=array('messages'=>'maximum length is 500 characters');
             }
             // link必须指定，而且必须是url
             if (empty($_POST['link'])) {
@@ -566,17 +566,25 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             } 
             // 遍历产品，如果发现有product_name[1-9]就检查多少个产品
             $productSeqArr=array_keys($_POST['productName']);
-            foreach($productSeqArr as $sequence_num){
-                if (empty($_POST['productName']["{$sequence_num}"]) || strlen($_POST['productName']["{$sequence_num}"])>50){
-                    $msgs['err_msg'][]=array("productName\[{$sequence_num}\]"=>'bad product name');
+            foreach($productSeqArr as $sequence_num) {
+                if (empty($_POST['productName']["{$sequence_num}"]) || strlen($_POST['productName']["{$sequence_num}"])>35){
+                    $msgs['err_msg'][]=array("productName\[{$sequence_num}\]"=>'maximum length is 35 characters');
                 }
             }
             // 遍历产品url
-            foreach($productSeqArr as $sequence_num){
+            foreach($productSeqArr as $sequence_num) {
                 if ( empty($_POST['productLink']["{$sequence_num}"]) ) {
                     $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'field us required');
-                } elseif(!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['productLink']["{$sequence_num}"])) {
+                } elseif( !checkUrl($_POST['productLink']["{$sequence_num}"]) ) {
                     $msgs['err_msg'][]=array("productLink\[{$sequence_num}\]"=>'not valid product url');
+                }
+            }
+            // 遍历产品描述
+            foreach($productSeqArr as $sequence_num) {
+                if ( empty($_POST['productDescription']["{$sequence_num}"]) ) {
+                    $msgs['err_msg'][]=array("productDescription\[{$sequence_num}\]"=>'field us required');
+                } elseif( strlen($_POST['productDescription']["{$sequence_num}"])>30 ) {
+                    $msgs['err_msg'][]=array("productDescription\[{$sequence_num}\]"=>'maximum length is 30 characters');
                 }
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
