@@ -442,7 +442,7 @@ DesignProcess.prototype = {
 
         // pane的主要部分
         var pane_content = '<div class="form-group">'
-        pane_content += '<input type="hidden" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
+        pane_content += '<input type="hidden" id="hid_product_name'+newTabId+'" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
         pane_content += '<div class="form-group"><label for="productDescription['+newTabId+']">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value=""></div>'
         pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="product_hash['+newTabId+']">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         pane_content += '</div>'
@@ -549,7 +549,6 @@ DesignProcess.prototype = {
     updateTabIndexs: function(obj) {
         var $this=this
         //alert("本次删除前还剩下的索引"+$this.tabIndexs)
-        //console.log("before update tabIndexs:"+$this.tabIndexs)
         var alreadyHasId=[]
         var oldInx=$this.tabIndexs=_.range(1,baseConf.product_multi_max+1)
 
@@ -558,8 +557,7 @@ DesignProcess.prototype = {
                 var inp=$(obj)
                     .jqxTabs('getContentAt',i)
                     .find(">.form-group>input:first")
-                    console.log("id:"+parseInt(inp.attr("id").substr(inp.attr("id").length-1)))
-                alreadyHasId.push(parseInt(inp.attr("id").substr(inp.attr("id").length-1)))
+                alreadyHasId.push(parseInt(inp.attr("id").match(/\d+/)[0]))
             }
         } catch(e){}
         //alert("本次预先重置的索引"+$this.tabIndexs)
@@ -569,7 +567,6 @@ DesignProcess.prototype = {
             oldInx.splice( $.inArray(v,oldInx) ,1 );
         })
         //alert("排除这些后剩下的索引"+oldInx)
-        //console.log("tabIndexs:"+$this.tabIndexs)
     },
 
    /** 绑定jqxtabs上每个小tab的关闭按钮
