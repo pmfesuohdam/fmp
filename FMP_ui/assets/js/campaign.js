@@ -162,10 +162,14 @@ function goStep(step) {
                     } else {
                         // 失败在code标签上显示错误
                         err_msg = data.err_msg
+                        $("form").find('label>code').removeClass('error');
                         for (i = 0; i < err_msg.length; i++) {
                             for (id in err_msg[i]) {
                                 alert_dom_id = "label[for=" + id + "] code"
-                                $(alert_dom_id).text(err_msg[i][id])
+                                //$(alert_dom_id).text(err_msg[i][id]).addClass("error")
+                                var emsg_str=err_msg[i][id]
+                                emsg_str=emsg_str.charAt(0).toUpperCase() + emsg_str.slice(1)
+                                $(alert_dom_id).text(emsg_str).addClass("error")
                             }
                         }
                     }

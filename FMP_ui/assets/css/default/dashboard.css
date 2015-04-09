@@ -379,3 +379,19 @@ body {
 #form_camp_step5  #mainSplitter_step5 textarea {
     height: 5em;
 }
+
+.error::before {
+    content: "\f071";
+    font-family: "FontAwesome";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1em;
+    margin-right: 5px;
+}
+.error:first-letter{
+    text-transform:capitalize;
+}
