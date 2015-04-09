@@ -157,6 +157,7 @@ function goStep(step) {
                     $("code").html("")
                     // 成功展现下一页
                     if (data.status == "true") {
+                        $("form").find('label>code').removeClass('error');
                         location.href = baseConf.domain + "/campaign/new/#step/" + step
                         changeNav(step)
                     } else {
