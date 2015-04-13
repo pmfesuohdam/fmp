@@ -33,7 +33,8 @@ var gced = {
     tpl_step2: "",
     tpl_step3: "",
     tpl_step4: "",
-    tpl_step5: ""
+    tpl_step5: "",
+    tpl_step6: ""
 };
 $.when(
     // Get the all available ad accounts
@@ -66,6 +67,9 @@ $.when(
     }),
     $.get(baseConf.domain + "/templates/camp_step5.htm?t=20150406005706", function(data) {
         gced.tpl_step5 = data
+    }),
+    $.get(baseConf.domain + "/templates/camp_step6.htm?t=20150406005706", function(data) {
+        gced.tpl_step6 = data
     })
 ).then(function() {
     $("#main-loading").remove()
