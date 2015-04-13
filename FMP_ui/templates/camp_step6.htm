@@ -1,14 +1,91 @@
-<h2>Create Campaign</h2>
+<h2>Publish</h2>
 <form id="form_camp_step6">
     <div class="form-group">
-        <!--<label for="billingAccount">Billing Account<code></code></label>-->
-        <!--<select class="form-control" id="billingAccount" name="billingAccount">-->
-            <!--{{each(i,adaccount) billingAccount}}-->
-            <!--<option value="{{= adaccount.id}}" {{if adaccount.selected}}selected="selected" {{/if}}>{{= adaccount.id}} {{= adaccount.name}}</option>-->
-            <!--{{/each}}-->
-        <!--</select>-->
+        <div class="row" id="mainSplitter_step6">
+            <div class="splitter-panel col-md-8">
+                <!--左侧编辑-->
+                <div class="form-group">
+                  <!--确认表格-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var theme = 'classic';
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+           { name: 'campaign_name', type: 'string' },
+           { name: 'delivery', type: 'int' },
+           { name: 'ad_set_name', type: 'string' },
+           { name: 'start', type: 'string' },
+           { name: 'end', type: 'string' },
+           { name: 'objective', type: 'string' },
+           { name: 'location', type: 'string' },
+                ],
+                cache: false,
+                url: baseConf.api_prefix+'/get/campaign/@step6',
+                root: 'Rows',
+                beforeprocessing: function (data) {
+                    source.totalrecords = data[0].TotalRows;
+                }
+            };
+            var dataadapter = new $.jqx.dataAdapter(source);
+            $("#jqxgrid").jqxGrid(
+            {
+                width: "800",
+                source: dataadapter,
+                theme: theme,
+                autoheight: true,
+                pageable: true,
+                virtualmode: true,
+                sortable: true,
+                altrows: true,
+                enabletooltips: true,
+                editable: true,
+                selectionmode: 'checkbox',
+                rendergridrows: function (params) {
+                    return params.data;
+                },
+                columns:
+                [
+                    { text: 'Campaign Name', datafield: 'campaign_name', width: 150 },
+                    { text: 'Delivery', datafield: 'delivery', width: 70 },
+                    { text: 'Ad set Name', datafield: 'ad_set_name', width: 120 },
+                    { text: 'Start', datafield: 'start', width: 160 },
+                    { text: 'End', datafield: 'end', width: 160 },
+                    { text: 'Objective', datafield: 'objective', width: 120 },
+                    { text: 'Location', datafield: 'location', width: 140 }
+                ]
+            });
+        });
+    </script>
+    <div id="jqxgrid"></div>
+    <!--/确认表格-->
+                </div>
+                <!--/左侧编辑-->
+            </div>
+            <div class="splitter-panel col-md-4">
+                <!--右侧预览-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">At least</h3>
+                    </div>
+                    <div class="panel-body">
+                        xxx{{= num}} ads
+                    </div>
+                </div>
+                <div class="panel panel-default" id="step3_panel_detail">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{= detail}}
+                    </div>
+                </div>
+                <!--/右侧预览-->
+            </div>
+        </div>
     </div>
     <footer style="text-align:center">
-        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/2" onclick="goStep(2);return false;">Proceed</a>
+        <a id="jsProceed" class="btn btn-lg btn-success" href="#step/6" onclick="return false;">Publish to Facebook</a>
     </footer>
 </form>

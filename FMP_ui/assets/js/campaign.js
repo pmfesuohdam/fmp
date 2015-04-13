@@ -103,6 +103,10 @@ $.when(
                     cache[url] = $.tmpl(gced["tpl_step" + stp], gced.design).appendTo('#ad_edit_area');
                     new DesignProcess().init()
                     break;
+                    case("6"):
+                    cache[url] = $.tmpl(gced["tpl_step" + stp], gced.publish).appendTo('#ad_edit_area');
+                    publishProcess()
+                    break;
                 default:
                     cache[url] = $.tmpl(gced["tpl_step" + stp], gced.adaccounts).appendTo('#ad_edit_area');
                     break;
@@ -648,6 +652,13 @@ DesignProcess.prototype = {
         // 使add new product按钮不能被双击修改
         $("#unorderedList > li[name='li_add_new_product']").unbind("dblclick");
     }
+}
+
+function publishProcess() {
+    becameSplitter($('#mainSplitter_step6'),400)
+    try {
+        generateDetail()
+    } catch (e) {}
 }
 
 /**
