@@ -607,4 +607,84 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
     }
 }
 /*}}}*/
+/*{{{ 发布广告第六步*/
+if ($GLOBALS['selector'] == __SELECTOR_STEP6) {
+    switch($GLOBALS['operation']) {
+    case(__OPERATION_READ):
+        if ($_SERVER['REQUEST_METHOD']=='GET') {
+            // 1.构造全部记录
+            // 2.选择到临时表
+            if(empty($_SESSION[__SESSION_FMP_UID])) {
+                break;
+            }
+            include(dirname(__FILE__).'/../inc/conn.php');
+            $temp_tbl_name="t_fmp_temp_camps_{$_SESSION[__SESSION_FMP_UID]}";
+            $create_table_query=<<<EOT
+CREATE TEMPORARY TABLE IF NOT EXISTS `{$temp_tbl_name}` (
+  `id` BIGINT(20) DEFAULT NULL,
+  `campaign_name` VARCHAR(150) DEFAULT NULL,
+  `delivery` TINYINT(1) DEFAULT NULL,
+  `fmp_adset_name` VARCHAR(100) DEFAULT NULL,
+  `start` TIMESTAMP NULL DEFAULT NULL,
+  `end` TIMESTAMP NULL DEFAULT NULL,
+  `objective` VARCHAR(100) DEFAULT NULL,
+  `location` MEDIUMTEXT
+) ENGINE=INNODB DEFAULT CHARSET=utf8
+EOT;
+            if (!$link->query($create_table_query)) {
+                //$msgs['err_msg']=array('system'=>__FMP_ERR_CREATE_MUL_TEMP_TBL);
+                break;
+            }
+            for($i=0;$i<25;$i++){
+                $customers[] = array(
+                    'campaign_name' => 'campaign name',
+                    'delivery' => 1,
+                    'ad_set_name' => 'ad set name'.$i,
+                    'start' => '2015-01-01 00:00:00',
+                    'end' => '2015-01-02 00:00:00',
+                    'objective' => 'web clicks' ,
+                    'location' => 'china,india'
+                    );
+            }
+
+            $total_rows=sizeof($customers);
+            $ct=0;
+            foreach($customers as $row){
+                $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\")";
+                $ct++;
+            }
+            $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`) values '.join(',',$sql).';';
+            if (!$link->query($insert_table_query)) {
+                break;
+            }
+            // 分页变量
+            $pagenum = $_GET['pagenum'];
+            $pagesize = $_GET['pagesize'];
+            $start = $pagenum * $pagesize;
+            $select_table_query = "SELECT SQL_CALC_FOUND_ROWS * FROM {$temp_tbl_name} LIMIT $start, $pagesize;";
+            $result = $link->query($select_table_query);
+            $select_table_query2 = "SELECT FOUND_ROWS();";
+            $result2= $link->query($select_table_query2);
+            $total_rows = $result2->fetch_row();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $customersx[] = array(
+                    'campaign_name' => $row['campaign_name'],
+                    'delivery' => $row['delivery'],
+                    'ad_set_name' => $row['fmp_adset_name'],
+                    'start' => $row['start'],
+                    'end' => $row['end'],
+                    'objective' => $row['objective'],
+                    'location' => $row['location']
+                );
+            }
+            $data[] = array(
+                'TotalRows' => $total_rows,
+                'Rows' => $customersx
+            );
+            echo json_encode($data);
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+        }
+    }
+}
+/*}}}*/
 ?>

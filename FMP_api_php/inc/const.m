@@ -108,22 +108,23 @@ define('__HTTPSTATUS_INTERNAL_SERVER_ERROR', 500);
 /* {{{ selector
  */
 define('__SELECTOR_SINGLE',   '@self');
-define('__SELECTOR_NEW',      '@new'); //是否为新用户，就是没有任何广告活动的 
+define('__SELECTOR_NEW',      '@new'); // 是否为新用户，就是没有任何广告活动的 
 define('__SELECTOR_MASS',     '@all');
 define('__SELECTOR_GROUP',    '@group');
 
 
-define('__SELECTOR_STEP1',    '@step1'); //广告第1步 
-define('__SELECTOR_STEP2',    '@step2'); //广告第2步
-define('__SELECTOR_STEP3',    '@step3'); //广告第3步
-define('__SELECTOR_STEP4',    '@step4'); //广告第4步
-define('__SELECTOR_STEP5',    '@step5'); //广告第5步
+define('__SELECTOR_STEP1',    '@step1'); // 广告第1步 
+define('__SELECTOR_STEP2',    '@step2'); // 广告第2步
+define('__SELECTOR_STEP3',    '@step3'); // 广告第3步
+define('__SELECTOR_STEP4',    '@step4'); // 广告第4步
+define('__SELECTOR_STEP5',    '@step5'); // 广告第5步
+define('__SELECTOR_STEP6',    '@step6'); // 广告第6步
 
-define('__SELECTOR_PRODUCT1', '@product1'); //上传广告图片1
-define('__SELECTOR_PRODUCT2', '@product2'); //上传广告图片2
-define('__SELECTOR_PRODUCT3', '@product3'); //上传广告图片3
-define('__SELECTOR_PRODUCT4', '@product4'); //上传广告图片4
-define('__SELECTOR_PRODUCT5', '@product5'); //上传广告图片5
+define('__SELECTOR_PRODUCT1', '@product1'); // 上传广告图片1
+define('__SELECTOR_PRODUCT2', '@product2'); // 上传广告图片2
+define('__SELECTOR_PRODUCT3', '@product3'); // 上传广告图片3
+define('__SELECTOR_PRODUCT4', '@product4'); // 上传广告图片4
+define('__SELECTOR_PRODUCT5', '@product5'); // 上传广告图片5
 
 
 define('__SELECTOR_REPORT',  '@report');
@@ -169,6 +170,7 @@ define('__FMP_ERR_UPDATE_TEMPLATE',   10557);
 define('__FMP_ERR_UPDATE_MATERIAL',   10558);
 define('__FMP_ERR_UPDATE_USER_MATERIAL',     10559);
 define('__FMP_ERR_COMMIT_MATERIAL_UPLOAD',   10560);
+define('__FMP_ERR_CREATE_MUL_TEMP_TBL',      10561);
 
 
 //日志类型
