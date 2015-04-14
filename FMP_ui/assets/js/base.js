@@ -7,10 +7,16 @@ var baseConf = {
   "fb_login_url": "https://www.facebook.com/v2.2/dialog/oauth?client_id=798558363555177&redirect_uri=http://"+document.domain+"/fb_login/index.html&scope=offline_access,manage_pages,ads_management,read_insights,publish_actions",
   "product_multi_max": 5
 };
-$( document ).ajaxComplete(function( event, xhr, settings ) {
-    // 全局ajax完成触发检查超时登出
-    if (xhr.status===400) {
-      //$("body").fadeIn()
+$(document).ajaxComplete(function(event, xhr, settings) {
+    /** 全局ajax完成触发检查超时登出
+     * TODO如果是本方API调用才会检查返回状态
+     */
+    var login_status=false
+    try {
+        login_status=JSON.parse(xhr.responseText).status
+    } catch(e) {}
+    //请求API出现400或者明文出现status为false，则为没有登录，跳转到未登录页
+    if (xhr.status===400 || login_status===false) {
       location.href=baseConf.redirect_url+"not_login.html"
     }
 });
