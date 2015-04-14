@@ -11,6 +11,7 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     /** 全局ajax完成触发检查超时登出
      * TODO如果是本方API调用才会检查返回状态
      */
+    //console.log(settings.type)
     console.log(settings.url)
     try {
         login_status=(xhr.responseJSON).status
@@ -18,8 +19,14 @@ $(document).ajaxComplete(function(event, xhr, settings) {
         if (xhr.status===400 || login_status==="false" || login_status===false) {
             console.log("redirect")
             if (settings.url===baseConf.api_prefix+"/get/login/@self"){
+              // 登录页不跳转
+            } else if(settings.url===baseConf.api_prefix+"/get/fb_graph/@self") {
+              // facebook的请求api接口出问题不跳转
             } else {
-                window.location.href=baseConf.redirect_url+"not_login.html"
+              // fmp的其他接口都跳转
+                if (settings.type=="GET") {
+                    window.location.href=baseConf.redirect_url+"not_login.html"
+                }
             }
         }
     } catch(e) {}
