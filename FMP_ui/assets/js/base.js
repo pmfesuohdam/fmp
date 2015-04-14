@@ -17,10 +17,9 @@ $(document).ajaxComplete(function(event, xhr, settings) {
         //console.log(login_status)
         //console.log(typeof(login_status))
         // 请求API出现400或者明文出现status为false，则为没有登录，跳转到未登录页
-        if (xhr.status===400 || login_status==="false") {
+        if (xhr.status===400 || login_status==="false" || login_status===false) {
           console.log("redirect")
           //window.location.href=baseConf.redirect_url+"not_login.html"
-          //window.location.href="http://www.baidu.com"
         }
     } catch(e) {}
 });
