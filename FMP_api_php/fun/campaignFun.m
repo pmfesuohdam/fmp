@@ -57,7 +57,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
                 $selected=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective']==$adtype?true:false;
                 $objective[]=array('value'=>$adtype,'text'=>$adtype_desc,'selected'=>$selected);
             }
-            $ret=array(
+            $dat=array(
                 'billingAccount'=>$adaccounts,
                 'campaignName'=>!empty($_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'])?
                 $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName']:'',
@@ -65,7 +65,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP1) {
                 'objective'=>$objective
             );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            echo json_encode($ret);
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            echo json_encode(array('data'=>$dat,'status'=>$st));
         }
         break;
     case(__OPERATION_UPDATE): //接受提交数据 
@@ -132,6 +133,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP2) {
     switch($GLOBALS['operation']) {
     case(__OPERATION_READ):
         if ($_SERVER['REQUEST_METHOD']=='GET'){
+            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            echo json_encode(array('status'=>$st));
         }
         break;
     case(__OPERATION_UPDATE): //接受提交数据 
@@ -285,7 +289,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $ret['gender_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])?1:0;
             }
             $ret['billing_account']=$_SESSION['camp_edit']['step1']['billingAccount'];
-            echo json_encode($ret);
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            echo json_encode(array('data'=>$ret,'status'=>$st));
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
         }
         break;
@@ -428,7 +433,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP4) {
                 'schedule_end'=>$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']
             );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            echo json_encode($ret);
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            echo json_encode(array('data'=>$ret,'status'=>$st));
         }
         break;
     case(__OPERATION_UPDATE):
@@ -539,7 +545,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                 'product_multi'=>$productMulti
             );
             $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
-            echo json_encode($ret);
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            echo json_encode(array('data'=>$ret,'status'=>$st));
         }
         break;
     case(__OPERATION_UPDATE):
@@ -681,8 +688,11 @@ EOT;
                 'TotalRows' => $total_rows,
                 'Rows' => $customersx
             );
-            echo json_encode($data);
-            $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+            $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
+            if ($st) {
+                $GLOBALS['httpStatus']=__HTTPSTATUS_OK;
+                echo json_encode($data);
+            }
         }
     }
 }

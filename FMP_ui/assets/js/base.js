@@ -11,12 +11,16 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     /** 全局ajax完成触发检查超时登出
      * TODO如果是本方API调用才会检查返回状态
      */
-    var login_status=false
+    console.log(settings.url)
     try {
-        login_status=JSON.parse(xhr.responseText).status
+        var login_status=(xhr.responseJSON).status
+        //console.log(login_status)
+        //console.log(typeof(login_status))
+        // 请求API出现400或者明文出现status为false，则为没有登录，跳转到未登录页
+        if (xhr.status===400 || login_status==="false") {
+          console.log("redirect")
+          //window.location.href=baseConf.redirect_url+"not_login.html"
+          //window.location.href="http://www.baidu.com"
+        }
     } catch(e) {}
-    //请求API出现400或者明文出现status为false，则为没有登录，跳转到未登录页
-    if (xhr.status===400 || login_status===false) {
-      location.href=baseConf.redirect_url+"not_login.html"
-    }
 });

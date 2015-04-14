@@ -38,17 +38,17 @@ var gced = {
 };
 $.when(
     // Get the all available ad accounts
-    $.get(baseConf.api_prefix + "/get/campaign/@step1", function(data) {
-        gced.adaccounts = data
+    $.get(baseConf.api_prefix + "/get/campaign/@step1", function(response) {
+        gced.adaccounts = response.data
     }),
-    $.get(baseConf.api_prefix + "/get/campaign/@step3", function(data) {
-        gced.audience = data
+    $.get(baseConf.api_prefix + "/get/campaign/@step3", function(response) {
+        gced.audience = response.data
     }),
-    $.get(baseConf.api_prefix + "/get/campaign/@step4", function(data) {
-        gced.spending = data
+    $.get(baseConf.api_prefix + "/get/campaign/@step4", function(response) {
+        gced.spending = response.data
     }),
-    $.get(baseConf.api_prefix + "/get/campaign/@step5", function(data) {
-        gced.design = data
+    $.get(baseConf.api_prefix + "/get/campaign/@step5", function(response) {
+        gced.design = response.data
     }),
     $.get(baseConf.domain + "/templates/camp.sidebar.htm?t=20150406005706", function(data) {
         gced.tpl_sidebar = data
@@ -350,7 +350,7 @@ function reloadAudienceByTmpl(template_id) {
     $.get(baseConf.api_prefix + "/get/campaign/@step3?template_id=" + template_id, function(data) {
         $("#main-loading").remove()
         $("#ad_edit_area").css("display", "none")
-        gced.audience = data
+        gced.audience = data.data
         cache["step/3"] = $.tmpl(gced["tpl_step3"], gced.audience).appendTo('#ad_edit_area');
         AudienceProcess()
         $("#ad_edit_area").css("display", "block")
