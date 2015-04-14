@@ -639,7 +639,8 @@ CREATE TEMPORARY TABLE IF NOT EXISTS `{$temp_tbl_name}` (
   `end` TIMESTAMP NULL DEFAULT NULL,
   `objective` VARCHAR(100) DEFAULT NULL,
   `location` MEDIUMTEXT,
-  `age` INT(3) NULL DEFAULT NULL,
+  `age_from` INT(3) NULL DEFAULT NULL,
+  `age_to` INT(3) NULL DEFAULT NULL,
   `gender` varchar(10) NULL DEFAULT NULL
 ) ENGINE=INNODB DEFAULT CHARSET=utf8
 EOT;
@@ -677,43 +678,47 @@ EOT;
             //print_r($_SESSION);
             //print_r($demonsion);
             $tblRowInfo=null;
-            foreach($demonsion as $categoryType=>$data){
-                $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
-                $tblRowInfo['delivery']=1;
-                $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
-                $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
-                $tblRowInfo['objective']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'];
-                $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
-                switch($categoryType){
-                case('age'):
-                    //$tblRowInfo['']
-                    break;
-                case('gender'):
-                    break;
+            $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
+            $tblRowInfo['delivery']=1;
+            $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
+            $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
+            $tblRowInfo['objective']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'];
+            $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
+            foreach($demonsion['age'] as $ageInfo){
+                foreach($demonsion['gender'] as $gender){
+                    $tblRowInfo['age_from']=$ageInfo['from'];
+                    $tblRowInfo['age_to']=$ageInfo['to'];
+                    $tblRowInfo['gender']=$gender;
+                    $tblRowInfo['ad_set_name']="ag{$ageInfo['from']}-{$ageInfo['to']}_gd{$gender}";
+                    $customers[]=$tblRowInfo;
                 }
             }
 
-            for($i=0;$i<25;$i++){
-                $customers[] = array(
-                    'campaign_name' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'],
-                    'delivery' => 1,
-                    'ad_set_name' => 'ad set name'.$i,
-                    'start' => "{$start_year}-{$start_mon}-{$start_day} 00:00:00",
-                    'end' => "{$end_year}-{$end_mon}-{$end_day} 23:59:59",
-                    'objective' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'],
-                    'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location'],
-                    'age'=>12,
-                    'gender'=>'male'
-                    );
-            }
+            /*
+             *for($i=0;$i<25;$i++){
+             *    $customers[] = array(
+             *        'campaign_name' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'],
+             *        'delivery' => 1,
+             *        'ad_set_name' => 'ad set name'.$i,
+             *        'start' => "{$start_year}-{$start_mon}-{$start_day} 00:00:00",
+             *        'end' => "{$end_year}-{$end_mon}-{$end_day} 23:59:59",
+             *        'objective' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'],
+             *        'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location'],
+             *        'age_from'=>12,
+             *        'age_to'=>12,
+             *        'gender'=>'male'
+             *        );
+             *}
+             */
 
             $total_rows=sizeof($customers);
             $ct=0;
+            $strGender=array(0=>'all',1=>'male',2=>'female');
             foreach($customers as $row){
-                $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\",12,\"male\")";
+                $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\",{$row['age_from']},{$row['age_to']},\"{$strGender[$row['gender']]}\")";
                 $ct++;
             }
-            $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`,`age`,`gender`) values '.join(',',$sql).';';
+            $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`,`age_from`,`age_to`,`gender`) values '.join(',',$sql).';';
             if (!$link->query($insert_table_query)) {
                 break;
             }
@@ -735,7 +740,8 @@ EOT;
                     'end' => $row['end'],
                     'objective' => $row['objective'],
                     'location' => $row['location'],
-                    'age' => $row['age'],
+                    'age_from' => $row['age_from'],
+                    'age_to' => $row['age_to'],
                     'gender' => $row['gender']
                 );
             }
