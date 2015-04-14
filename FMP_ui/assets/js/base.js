@@ -10,7 +10,7 @@ var baseConf = {
 $( document ).ajaxComplete(function( event, xhr, settings ) {
     // 全局ajax完成触发检查超时登出
     if (xhr.status===400) {
-      $("body").hide()
+      //$("body").fadeIn()
       location.href=baseConf.redirect_url+"not_login.html"
     }
 });
