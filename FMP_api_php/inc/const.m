@@ -161,6 +161,13 @@ $AD_TYPES=array(
     __FMP_ADTYPE_RIGHTCOL=>"Right-Hand Column(Website Clicks)"
 );
 
+
+// 性别
+define('__FMP_GENDER_ALL',    0);
+define('__FMP_GENDER_MALE',   1);
+define('__FMP_GENDER_FEMALE', 2);
+
+
 // 业务错误代码
 define('__FMP_ERR_UPDATE_ADACCOUNT',  10553);
 define('__FMP_ERR_UPDATE_FMP_FB_REL', 10554);

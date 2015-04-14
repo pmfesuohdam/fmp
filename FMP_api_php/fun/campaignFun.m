@@ -273,9 +273,9 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             } else {
                 $ret['age_split']=($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split'])?1:0;
             }
-            $ret['gender'][]=array('id'=>0,'name'=>'all');
-            $ret['gender'][]=array('id'=>1,'name'=>'male');
-            $ret['gender'][]=array('id'=>2,'name'=>'female');
+            $ret['gender'][]=array('id'=>__FMP_GENDER_ALL,'name'=>'all');
+            $ret['gender'][]=array('id'=>__FMP_GENDER_MALE,'name'=>'male');
+            $ret['gender'][]=array('id'=>__FMP_GENDER_FEMALE,'name'=>'female');
             if (isset($selectedTemplateOption['gender'])) {
                 $ret['gender'][$selectedTemplateOption['gender']]['selected']=1;
             } elseif (empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'])) {
@@ -410,7 +410,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']=$STEP3_SAVE_DATA['age_split'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval']=$STEP3_SAVE_DATA['age_split_interval'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']=$STEP3_SAVE_DATA['gender'];
-                $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split']=$STEP3_SAVE_DATA['gender_split'];
+                if ($STEP3_SAVE_DATA['gender']==__FMP_GENDER_ALL) {
+                    // 只有当性别为全部时切分才有意义
+                    $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split']=$STEP3_SAVE_DATA['gender_split'];
+                }
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['location']=$STEP3_SAVE_DATA['location'];
             } else {
                 $msgs['status']="false";
