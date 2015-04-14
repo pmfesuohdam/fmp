@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="age_split_intval">intval<code></code></label>
-                    <select class="form-control" id="age_split_intval" name="age_split_intval">
-                        {{each(i,itv) age_split_intval}}
+                    <label for="age_split_interval">interval<code></code></label>
+                    <select class="form-control" id="age_split_interval" name="age_split_interval">
+                        {{each(i,itv) age_split_interval}}
                         <option value="{{= itv.id}}" {{if itv.selected}}selected="selected" {{/if}}>{{= itv.name}}</option>
                         {{/each}}
                     </select>

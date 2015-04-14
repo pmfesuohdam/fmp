@@ -257,15 +257,15 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                     $ret['age_from'][]=array("id"=>$i,"name"=>$i);
                 }
             }
-            $age_split_intval_range=array(1,2,4,6,8,16);
-            foreach($age_split_intval_range as $itv) {
-                if (isset($selectedTemplateOption['age_split_intval'])) {
-                    $ret['age_split_intval'][]=$selectedTemplateOption['age_split_intval']==$itv?
+            $age_split_interval_range=array(1,2,4,6,8,16);
+            foreach($age_split_interval_range as $itv) {
+                if (isset($selectedTemplateOption['age_split_interval'])) {
+                    $ret['age_split_interval'][]=$selectedTemplateOption['age_split_interval']==$itv?
                         array('id'=>$itv,"name"=>$itv,'selected'=>'selected'):array('id'=>$itv,"name"=>$itv);
-                } elseif ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']==$itv) {
-                    $ret['age_split_intval'][]=array('id'=>$itv,"name"=>$itv,'selected'=>'selected');
+                } elseif ($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval']==$itv) {
+                    $ret['age_split_interval'][]=array('id'=>$itv,"name"=>$itv,'selected'=>'selected');
                 } else {
-                    $ret['age_split_intval'][]=array('id'=>$itv,"name"=>$itv);
+                    $ret['age_split_interval'][]=array('id'=>$itv,"name"=>$itv);
                 }
             }
             if (isset($selectedTemplateOption['age_split'])) {
@@ -298,7 +298,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             $msgs=null;
             $STEP3_SAVE_DATA=array(
-                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_intval'=>0,'gender'=>0,''=>0,'location'=>''
+                'name'=>'','age_from'=>0,'age_to'=>0,'age_split'=>0,'age_split_interval'=>0,'gender'=>0,''=>0,'location'=>''
             );
             //sel_fmptemplate选择，必须id存在且属于当前用户
             if (!empty($_POST['sel_fmptemplate'])) {
@@ -371,13 +371,13 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
             } else {
                 $STEP3_SAVE_DATA['age_to']=intval($_POST['age_to']);
             }
-            //age_split选择，则必须age_split_intval不为空，且要在age_split_intval的范围里
+            //age_split选择，则必须age_split_interval不为空，且要在age_split_interval的范围里
             if (isset($_POST['age_split']) && $_POST['age_split']=='on') {
-                if (!in_array($_POST['age_split_intval'],array(1,2,4,6,8,16))) {
-                    $msgs['err_msg'][]=array('age_split_intval'=>'age intval must in 1,2,4,6,8,16');
+                if (!in_array($_POST['age_split_interval'],array(1,2,4,6,8,16))) {
+                    $msgs['err_msg'][]=array('age_split_interval'=>'age intval must in 1,2,4,6,8,16');
                 } else {
                     $STEP3_SAVE_DATA['age_split']=1;
-                    $STEP3_SAVE_DATA['age_split_intval']=intval($_POST['age_split_intval']);
+                    $STEP3_SAVE_DATA['age_split_interval']=intval($_POST['age_split_interval']);
                 }
             }
             //gender必须为0,1,2，也就是all、male、female
@@ -394,7 +394,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['last_template_id']=null;
                 if (!empty($STEP3_SAVE_DATA['name'])) {
                     include(dirname(__FILE__).'/../inc/conn.php');
-                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_intval,gender,gender_split,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_intval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['gender_split']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_intval={$STEP3_SAVE_DATA['age_split_intval']},gender={$STEP3_SAVE_DATA['gender']},gender_split={$STEP3_SAVE_DATA['gender_split']},location='{$STEP3_SAVE_DATA['location']}';";
+                    $query="insert into t_fmp_template(fmp_user_id,name,age_from,age_to,age_split,age_split_interval,gender,gender_split,location) values ({$_SESSION[__SESSION_FMP_UID]},'{$STEP3_SAVE_DATA['name']}',{$STEP3_SAVE_DATA['age_from']},{$STEP3_SAVE_DATA['age_to']},{$STEP3_SAVE_DATA['age_split']},{$STEP3_SAVE_DATA['age_split_interval']},{$STEP3_SAVE_DATA['gender']},{$STEP3_SAVE_DATA['gender_split']},'{$STEP3_SAVE_DATA['location']}') on duplicate key update age_from={$STEP3_SAVE_DATA['age_from']},age_to={$STEP3_SAVE_DATA['age_to']},age_split={$STEP3_SAVE_DATA['age_split']},age_split_interval={$STEP3_SAVE_DATA['age_split_interval']},gender={$STEP3_SAVE_DATA['gender']},gender_split={$STEP3_SAVE_DATA['gender_split']},location='{$STEP3_SAVE_DATA['location']}';";
                     if (!$link->query($query)) {
                         addLog(__FMP_LOGTYPE_ERROR,array('run query error'=>$query));
                         $msgs['err_msg'][]=Array('system'=>'Sorry, something we are disturbed.('.__FMP_ERR_UPDATE_TEMPLATE.')');
@@ -408,7 +408,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP3) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from']=$STEP3_SAVE_DATA['age_from'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to']=$STEP3_SAVE_DATA['age_to'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']=$STEP3_SAVE_DATA['age_split'];
-                $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_intval']=$STEP3_SAVE_DATA['age_split_intval'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval']=$STEP3_SAVE_DATA['age_split_interval'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender']=$STEP3_SAVE_DATA['gender'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split']=$STEP3_SAVE_DATA['gender_split'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step3']['location']=$STEP3_SAVE_DATA['location'];
@@ -644,6 +644,28 @@ EOT;
             }
             list($start_mon,$start_day,$start_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start']);
             list($end_mon,$end_day,$end_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']);
+            // 切分算法，如果有interval的，间隔的挖掉，用剩下的组成范围
+            $demonsion=array(
+                'ages'=>null,
+                'age_range'=>null,
+                'genders'=>null,
+                'gender_range'=>null
+            );
+            $age_from=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'];
+            $age_to=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'];
+            $age_interval=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval'];
+            if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']) && !empty($age_interval)){
+                $dm_end=$dm_start=$age_from;
+                for($i=$age_from;$i<=$age_to;null){
+                    $demonsion['ages'][]=$i;
+                    $i+=$age_interval;
+                }
+            } else {
+                $demonsion['age_range']="$age_from-$age_to";
+            }
+            //print_r($_SESSION);
+            //print_r($demonsion);
+
             for($i=0;$i<25;$i++){
                 $customers[] = array(
                     'campaign_name' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'],
