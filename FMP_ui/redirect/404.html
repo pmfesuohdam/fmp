@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>page not found</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/base.css?t=20150414105425" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/menu.css?t=20150414105425" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/dashboard.css?t=20150414105425" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/fbaccount.css?t=20150414105425" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/default/table.css?t=20150414105425" />
+  <link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/libs/jquery-ui.css?t=20150414105425">
+</head>
+<body>
+    <div class="wrapper">
+        <!--fmp_header-->
+        <div class="header">
+            <a href="/" title="visit fmp"><h1 class="mainlogo"><u style="display:none;">FMP</u></h1></a>
+            <span class="beta">beta</span>
+            <div class="userarea"><a href="/profiles/" id="user_profile_a"></a> | <a class="btn btn-sm btn-info" href="../" id="logout_btn" onclick="javascript:return false;">logout</a></div>
+            <span class="description">a facebook  partner</span>
+        </div>
+        <script id="headerTemplate" type="text/x-jquery-tmpl">${UserName}</script>
+        <!--/fmp_header-->
+
+
+        <!--fmp_navibar-->
+        <div class="navibar">
+            <div class="navi">
+                <ul>
+                    <li><a href="../../../camps/">YOUR CAMPAIGNS</a></li>
+                    <li><a href="../../../campaign/new/">NEW CAMPAIGN</a></li>
+                    <li><a href="../../../report/">REPORT</a></li>
+                    <li><a href="../../../settings/">SETTINGS</a></li>
+                </ul>
+                <div id="camp_select_div">
+                    select camp:
+                    <select>
+                        <option>please select</option>
+                        <option>xxxxx</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--/fmp_navibar-->
+
+
+        <!--main-->
+        <div class="main-content-single">
+            <h2>Page not found</h2><hr />
+      </div>
+      <!--/main-->
+      <!--fmp_footer-->
+        <div class="footer">
+            <h2 class="logo">madhouse</h2>
+            <h3 class="credits">Developed by Madhouse Inc</h3>
+        </div>
+        <!--/fmp_footer-->
+  </div>
+  <script type="text/javascript" src="../assets/js/libs/jquery-1.11.2.min.js?t=20150414105425"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery.tmpl.js?t=20150414105425"></script>
+  <script type="text/javascript" src="../assets/js/base.js?t=20150414105425"></script>
+  <script type="text/javascript" src="../assets/js/account.js?t=20150414105425"></script>
+  <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../assets/js/libs/jquery-ui.min.js?t=20150414105425"></script>
+  <script>
+  $(document).ready(function(){
+  $(".main-content-single").append('<p>Please <a href="'+baseConf.domain+'/">go main site page</a></p>')
+  $(".userarea").hide()
+  })
+  </script>
+</body>
+</html>
