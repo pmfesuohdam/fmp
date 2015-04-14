@@ -638,7 +638,9 @@ CREATE TEMPORARY TABLE IF NOT EXISTS `{$temp_tbl_name}` (
   `start` TIMESTAMP NULL DEFAULT NULL,
   `end` TIMESTAMP NULL DEFAULT NULL,
   `objective` VARCHAR(100) DEFAULT NULL,
-  `location` MEDIUMTEXT
+  `location` MEDIUMTEXT,
+  `age` INT(3) NULL DEFAULT NULL,
+  `gender` varchar(10) NULL DEFAULT NULL
 ) ENGINE=INNODB DEFAULT CHARSET=utf8
 EOT;
             if (!$link->query($create_table_query)) {
@@ -649,10 +651,8 @@ EOT;
             list($end_mon,$end_day,$end_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']);
             // 切分算法，如果有interval的，间隔的挖掉，用剩下的组成范围
             $demonsion=array(
-                'ages'=>null,
-                'age_range'=>null,
-                'genders'=>null,
-                'gender_range'=>null
+                'age'=>null,
+                'gender'=>null
             );
             $age_from=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'];
             $age_to=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'];
@@ -660,14 +660,38 @@ EOT;
             if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']) && !empty($age_interval)){
                 $dm_end=$dm_start=$age_from;
                 for($i=$age_from;$i<=$age_to;null){
-                    $demonsion['ages'][]=$i;
+                    $demonsion['age'][]=array('from'=>$i,'to'=>$i);
                     $i+=$age_interval;
                 }
             } else {
-                $demonsion['age_range']="$age_from-$age_to";
+                $demonsion['age'][]=array('from'=>$age_from,'to'=>$age_to);
+            }
+            $gender=$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'];
+            if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])) {
+                $demonsion['gender'][]=__FMP_GENDER_ALL;
+                $demonsion['gender'][]=__FMP_GENDER_MALE;
+                $demonsion['gender'][]=__FMP_GENDER_FEMALE;
+            } else {
+                $demonsion['gender'][]=$gender;
             }
             //print_r($_SESSION);
             //print_r($demonsion);
+            $tblRowInfo=null;
+            foreach($demonsion as $categoryType=>$data){
+                $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
+                $tblRowInfo['delivery']=1;
+                $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
+                $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
+                $tblRowInfo['objective']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'];
+                $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
+                switch($categoryType){
+                case('age'):
+                    //$tblRowInfo['']
+                    break;
+                case('gender'):
+                    break;
+                }
+            }
 
             for($i=0;$i<25;$i++){
                 $customers[] = array(
@@ -677,17 +701,19 @@ EOT;
                     'start' => "{$start_year}-{$start_mon}-{$start_day} 00:00:00",
                     'end' => "{$end_year}-{$end_mon}-{$end_day} 23:59:59",
                     'objective' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'],
-                    'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location']
+                    'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location'],
+                    'age'=>12,
+                    'gender'=>'male'
                     );
             }
 
             $total_rows=sizeof($customers);
             $ct=0;
             foreach($customers as $row){
-                $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\")";
+                $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\",12,\"male\")";
                 $ct++;
             }
-            $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`) values '.join(',',$sql).';';
+            $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`,`age`,`gender`) values '.join(',',$sql).';';
             if (!$link->query($insert_table_query)) {
                 break;
             }
@@ -708,7 +734,9 @@ EOT;
                     'start' => $row['start'],
                     'end' => $row['end'],
                     'objective' => $row['objective'],
-                    'location' => $row['location']
+                    'location' => $row['location'],
+                    'age' => $row['age'],
+                    'gender' => $row['gender']
                 );
             }
             $data[] = array(
