@@ -655,7 +655,7 @@ DesignProcess.prototype = {
 }
 
 function publishProcess() {
-    becameSplitter($('#mainSplitter_step6'),400)
+    becameSplitter($('#mainSplitter_step6'),600)
     try {
         generateDetail()
     } catch (e) {}
