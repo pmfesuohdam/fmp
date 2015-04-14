@@ -642,15 +642,17 @@ EOT;
                 //$msgs['err_msg']=array('system'=>__FMP_ERR_CREATE_MUL_TEMP_TBL);
                 break;
             }
+            list($start_mon,$start_day,$start_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start']);
+            list($end_mon,$end_day,$end_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']);
             for($i=0;$i<25;$i++){
                 $customers[] = array(
-                    'campaign_name' => 'campaign name',
+                    'campaign_name' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'],
                     'delivery' => 1,
                     'ad_set_name' => 'ad set name'.$i,
-                    'start' => '2015-01-01 00:00:00',
-                    'end' => '2015-01-02 00:00:00',
-                    'objective' => 'web clicks' ,
-                    'location' => 'china,india'
+                    'start' => "{$start_year}-{$start_mon}-{$start_day} 00:00:00",
+                    'end' => "{$end_year}-{$end_mon}-{$end_day} 23:59:59",
+                    'objective' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'],
+                    'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location']
                     );
             }
 
