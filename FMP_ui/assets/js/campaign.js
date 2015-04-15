@@ -758,6 +758,7 @@ window.becameSplitter = function(obj,hgt) {
     $(".panel,.panel-default").css("margin-left", "20px")
 }
 
+// 生成右侧明细
 window.generateDetail = function() {
     var idx = 2
     age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
