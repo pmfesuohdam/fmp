@@ -682,7 +682,7 @@ EOT;
             $tblRowInfo['delivery']=1;
             $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
             $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
-            $tblRowInfo['objective']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'];
+            $tblRowInfo['objective']=$OBJECTIVE_ARR[$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective']];
             $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
             foreach($demonsion['age'] as $ageInfo){
                 foreach($demonsion['gender'] as $gender){

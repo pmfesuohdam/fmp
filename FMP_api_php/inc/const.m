@@ -209,6 +209,12 @@ $BYT_ARR=array(
 define('__OBJT_MULTI_PRODUCT', 1);
 define('__OBJT_NEWSFEED',      2);
 define('__OBJT_RIGHTCOL',      3);
+$OBJECTIVE_ARR=array(
+    __OBJT_MULTI_PRODUCT=>'Multi-Product Ads(Website Clicks)',
+    __OBJT_NEWSFEED=>'News feed(Website Clicks)',
+    __OBJT_RIGHTCOL=>'Right-Hand Column(Website Clicks)'
+);
+
 
 
 //用户能创建最大的模板数目
