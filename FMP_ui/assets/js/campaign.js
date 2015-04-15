@@ -168,10 +168,6 @@ window.blurValidate =function(current_step){
         data: d,
         async: false,
         success: function(data) {
-            // 移动滚动条到最上
-            var body = $("html, body")
-            body.animate({scrollTop:0}, '1000', 'swing', function() { 
-            })
             $("code").html("")
             // 成功展现下一页
             if (data.status == "true") {
@@ -201,6 +197,10 @@ function goStep(step) {
     switch (step) {
         case (step):
             if (true==window.blurValidate(step-1)){
+                // 移动滚动条到最上
+                var body = $("html, body")
+                body.animate({scrollTop:0}, '1000', 'swing', function() { 
+                })
                 location.href = baseConf.domain + "/campaign/new/#step/" + step
                 changeNav(step)
             }
@@ -356,10 +356,12 @@ function AudienceProcess() {
     generateAtLeast()
     generateDetail(true)
     $("#form_camp_step3 select").on('change', function() {
+        window.blurValidate(3)
         generateAtLeast()
         generateDetail(true)
     })
     $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
+        window.blurValidate(3)
         generateAtLeast()
         generateDetail(true)
     })
