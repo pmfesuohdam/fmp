@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2014-06-12 14:26:16
+  | Last-Modified: 2015-04-15 17:58:47
   +----------------------------------------------------------------------+
  */
 
@@ -151,9 +151,61 @@ function checkUrl($url) {
     return preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url);
 }
 
-/** 检查图片hash是否属于当前用户所上传
+/** @检查图片hash是否属于当前用户所上传
  */
 function checkImgHashPerm($img_hash){
     return true;
+}
+
+/** @brief 获取切分后的n个活动
+  * @return arr 
+  */
+function getSplitedCampaigns(){
+    global $OBJECTIVE_ARR;
+    list($start_mon,$start_day,$start_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start']);
+    list($end_mon,$end_day,$end_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']);
+    // 切分算法，如果有interval的，间隔的挖掉，用剩下的组成范围
+    $demonsion=array(
+        'age'=>null,
+        'gender'=>null
+    );
+    $age_from=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'];
+    $age_to=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'];
+    $age_interval=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval'];
+    if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']) && !empty($age_interval)){
+        $dm_end=$dm_start=$age_from;
+        for($i=$age_from;$i<=$age_to;null){
+            $demonsion['age'][]=array('from'=>$i,'to'=>$i);
+            $i+=$age_interval;
+        }
+    } else {
+        $demonsion['age'][]=array('from'=>$age_from,'to'=>$age_to);
+    }
+    $gender=$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'];
+    if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])) {
+        $demonsion['gender'][]=__FMP_GENDER_ALL;
+        $demonsion['gender'][]=__FMP_GENDER_MALE;
+        $demonsion['gender'][]=__FMP_GENDER_FEMALE;
+    } else {
+        $demonsion['gender'][]=$gender;
+    }
+
+    $tblRowInfo=null;
+    $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
+    $tblRowInfo['delivery']=1;
+    $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
+    $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
+    $tblRowInfo['objective']=$OBJECTIVE_ARR[$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective']];
+    $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
+    foreach($demonsion['age'] as $ageInfo){
+        foreach($demonsion['gender'] as $gender){
+            $tblRowInfo['age_from']=$ageInfo['from'];
+            $tblRowInfo['age_to']=$ageInfo['to'];
+            $tblRowInfo['gender']=$gender;
+            $tblRowInfo['ad_set_name']="ag{$ageInfo['from']}-{$ageInfo['to']}_gd{$gender}";
+            $publish_rows[]=$tblRowInfo;
+        }
+    }
+    return $publish_rows;
 }
 ?>

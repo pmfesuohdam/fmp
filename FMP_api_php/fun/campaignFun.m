@@ -650,60 +650,17 @@ EOT;
                 addLog(__FMP_LOGTYPE_ERROR,array('run query error'=>$create_table_query));
                 break;
             }
-            list($start_mon,$start_day,$start_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start']);
-            list($end_mon,$end_day,$end_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_end']);
-            // 切分算法，如果有interval的，间隔的挖掉，用剩下的组成范围
-            $demonsion=array(
-                'age'=>null,
-                'gender'=>null
-            );
-            $age_from=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_from'];
-            $age_to=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_to'];
-            $age_interval=$_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split_interval'];
-            if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['age_split']) && !empty($age_interval)){
-                $dm_end=$dm_start=$age_from;
-                for($i=$age_from;$i<=$age_to;null){
-                    $demonsion['age'][]=array('from'=>$i,'to'=>$i);
-                    $i+=$age_interval;
-                }
-            } else {
-                $demonsion['age'][]=array('from'=>$age_from,'to'=>$age_to);
-            }
-            $gender=$_SESSION[__SESSION_CAMP_EDIT]['step3']['gender'];
-            if (!empty($_SESSION[__SESSION_CAMP_EDIT]['step3']['gender_split'])) {
-                $demonsion['gender'][]=__FMP_GENDER_ALL;
-                $demonsion['gender'][]=__FMP_GENDER_MALE;
-                $demonsion['gender'][]=__FMP_GENDER_FEMALE;
-            } else {
-                $demonsion['gender'][]=$gender;
-            }
-
-            $tblRowInfo=null;
-            $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
-            $tblRowInfo['delivery']=1;
-            $tblRowInfo['start']="{$start_year}-{$start_mon}-{$start_day} 00:00:00";
-            $tblRowInfo['end']="{$end_year}-{$end_mon}-{$end_day} 23:59:59";
-            $tblRowInfo['objective']=$OBJECTIVE_ARR[$_SESSION[__SESSION_CAMP_EDIT]['step1']['objective']];
-            $tblRowInfo['location']=$_SESSION[__SESSION_CAMP_EDIT]['step3']['location'];
-            foreach($demonsion['age'] as $ageInfo){
-                foreach($demonsion['gender'] as $gender){
-                    $tblRowInfo['age_from']=$ageInfo['from'];
-                    $tblRowInfo['age_to']=$ageInfo['to'];
-                    $tblRowInfo['gender']=$gender;
-                    $tblRowInfo['ad_set_name']="ag{$ageInfo['from']}-{$ageInfo['to']}_gd{$gender}";
-                    $publish_rows[]=$tblRowInfo;
-                }
-            }
-
-            $total_rows=sizeof($publish_rows);
+            $publishRows=getSplitedCampaigns();
+            $total_rows=sizeof($publishRows);
             $ct=0;
             $strGender=array(0=>'all',1=>'male',2=>'female');
-            foreach($publish_rows as $row){
+            foreach($publishRows as $row){
                 $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\",{$row['age_from']},{$row['age_to']},\"{$strGender[$row['gender']]}\")";
                 $ct++;
             }
             $insert_table_query='INSERT INTO '.$temp_tbl_name.'(`id`,`campaign_name`,`delivery`,`fmp_adset_name`,`start`,`end`,`objective`,`location`,`age_from`,`age_to`,`gender`) values '.join(',',$sql).';';
             if (!$link->query($insert_table_query)) {
+                addLog(__FMP_LOGTYPE_ERROR,array('run query error'=>$insert_table_query));
                 break;
             }
             // 分页变量
@@ -716,7 +673,7 @@ EOT;
             $result2= $link->query($select_table_query2);
             $total_rows = $result2->fetch_row();
             while ($row = $result->fetch_array(MYSQLI_BOTH)) {
-                $publish_rows2[] = array(
+                $pbRows[] = array(
                     'campaign_name' => $row['campaign_name'],
                     'delivery' => $row['delivery'],
                     'ad_set_name' => $row['fmp_adset_name'],
@@ -731,7 +688,7 @@ EOT;
             }
             $data[] = array(
                 'TotalRows' => $total_rows,
-                'Rows' => $publish_rows2
+                'Rows' => $pbRows
             );
             $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
             if ($st) {
