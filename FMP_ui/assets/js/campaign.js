@@ -371,9 +371,7 @@ function reloadAudienceByTmpl(template_id) {
 
 function spendingProcess() {
     becameSplitter($('#mainSplitter_step4'),400)
-    try {
-        generateDetail()
-    } catch (e) {}
+    generateDetail()
 }
 
 /**
@@ -388,9 +386,7 @@ DesignProcess.prototype = {
     // 初始化生成splitter和右侧明细,创建tabs，动态填充tabs
     init: function() {
         window.becameSplitter($('#mainSplitter_step5'),720)
-        try {
-            window.generateDetail()
-        } catch (e) {}
+        window.generateDetail()
         var select_page_id=this.bindDropDown()
         this.createNewTabs($('#multi_product_jqxtabs'))
         this.bindTabsCloseBtn($('#multi_product_jqxtabs'))
@@ -669,9 +665,7 @@ PublishProcess.prototype = {
     // 初始化splitter和右侧明细，创建确定table，并生成确认的
     init: function() {
         window.becameSplitter($('#mainSplitter_step6'),700)
-        try {
-            window.generateDetail()
-        } catch (e) {}
+        window.generateDetail()
         this.createVerifyTbl($('#jqxgrid'));
     },
     /** 创建确认表格
@@ -760,7 +754,7 @@ window.becameSplitter = function(obj,hgt) {
 
 // 生成右侧明细
 window.generateDetail = function() {
-    var age_min,age_max,gender
+    var age_min,age_max,gender,cccontent
     var countryArr = []
     var $cc=$(cache["step/3"])
     var hasCache=$cc.length==0?true:false // 从第三步拿参数 
@@ -798,74 +792,85 @@ window.generateDetail = function() {
             })
         })
     }
+    try{
+        // 找到已经cache过的明细
+        cccontent=$(cache["step/3"][2])
+                    .find(".splitter-panel,col-md-4")
+                    .find("#step3_panel_detail .panel-body")
+                    .html()
+    } catch(e) {}
+    if ($.trim(cccontent)==""){
+        reachObj = {
+            age_min: age_min,
+            age_max: age_max,
+            geo_locations: {
+                countries: countryArr
+            }
+        }
+        if (gender != null) {
+            reachObj['genders'] = gender
+        }
+        reachestimateTs = JSON.stringify(reachObj)
+        targetingsentencelinesTs = JSON.stringify({
+            "interests": [],
+            "user_adclusters": [],
+            "custom_audiences": [],
+            "excluded_custom_audiences": [],
+            "locales": [],
+            "connections": [],
+            "friends_of_connections": [],
+            "excluded_connections": [],
+            "targeted_entities": [],
+            "wireless_carrier": [],
+            "education_schools": [],
+            "education_majors": [],
+            "college_years": [],
+            "work_employers": [],
+            "work_positions": [],
+            "behaviors": [],
+            "age_min": age_min,
+            "age_max": age_max,
+            "geo_locations": {
+                "zips": [],
+                "cities": [],
+                "regions": [],
+                "countries": countryArr
+            },
+            "flexible_spec": {}
+        })
+        $.ajax({
+            url: baseConf.api_prefix + "/get/fb_graph/@self",
+            method: "POST",
+            data: {
+                batch: [{
+                    method: "GET",
+                    url: "/act_" + gced.audience.billing_account + "/reachestimate?targeting_spec=" + reachestimateTs
+                }, {
+                    method: "GET",
+                    url: "/act_" + gced.audience.billing_account + "/targetingsentencelines?targeting_spec=" + targetingsentencelinesTs
+                }]
+            },
+            success: function(data) {
+                if (data.status == "false") { //没有登录退出
+                    location.href = "../"
+                }
+                item = ""
+                estimate_audience = "n/a"
+                if (data[0][0] == "200") {
+                    estimate_audience = $.parseJSON(data[0][1]).users
+                }
+                if (data[1][0] == "200") {
+                    arr = $.parseJSON(data[1][1]).targetingsentencelines
+                    $.each(arr, function(k, v) {
+                        item += "<li>" + v.content + v.children + "</li>"
+                    })
+                }
+                detailContent = "<h4 class=\"tit\">Audience</h4><strong class=\"emphasize\">" + estimate_audience + "</strong>people<div class=\"summary\"><strong class=\"subtit\">Your ad targets people</strong><ul>" + item + "</ul></div>";
+                $("#step3_panel_detail > div.panel-body").html(detailContent)
+            }
+        })
+    } else {
+        $("#step3_panel_detail .panel-body").html(cccontent)
+    }
 
-    reachObj = {
-        age_min: age_min,
-        age_max: age_max,
-        geo_locations: {
-            countries: countryArr
-        }
-    }
-    if (gender != null) {
-        reachObj['genders'] = gender
-    }
-    reachestimateTs = JSON.stringify(reachObj)
-    targetingsentencelinesTs = JSON.stringify({
-        "interests": [],
-        "user_adclusters": [],
-        "custom_audiences": [],
-        "excluded_custom_audiences": [],
-        "locales": [],
-        "connections": [],
-        "friends_of_connections": [],
-        "excluded_connections": [],
-        "targeted_entities": [],
-        "wireless_carrier": [],
-        "education_schools": [],
-        "education_majors": [],
-        "college_years": [],
-        "work_employers": [],
-        "work_positions": [],
-        "behaviors": [],
-        "age_min": age_min,
-        "age_max": age_max,
-        "geo_locations": {
-            "zips": [],
-            "cities": [],
-            "regions": [],
-            "countries": countryArr
-        },
-        "flexible_spec": {}
-    })
-    $.ajax({
-        url: baseConf.api_prefix + "/get/fb_graph/@self",
-        method: "POST",
-        data: {
-            batch: [{
-                method: "GET",
-                url: "/act_" + gced.audience.billing_account + "/reachestimate?targeting_spec=" + reachestimateTs
-            }, {
-                method: "GET",
-                url: "/act_" + gced.audience.billing_account + "/targetingsentencelines?targeting_spec=" + targetingsentencelinesTs
-            }]
-        },
-        success: function(data) {
-            if (data.status == "false") { //没有登录退出
-                location.href = "../"
-            }
-            item = ""
-            estimate_audience = "n/a"
-            if (data[0][0] == "200") {
-                estimate_audience = $.parseJSON(data[0][1]).users
-            }
-            if (data[1][0] == "200") {
-                arr = $.parseJSON(data[1][1]).targetingsentencelines
-                $.each(arr, function(k, v) {
-                    item += "<li>" + v.content + v.children + "</li>"
-                })
-            }
-            detailContent = "<h4 class=\"tit\">Audience</h4><strong class=\"emphasize\">" + estimate_audience + "</strong>people<div class=\"summary\"><strong class=\"subtit\">Your ad targets people</strong><ul>" + item + "</ul></div>";
-            $("#step3_panel_detail > div.panel-body").html(detailContent)
-        }
-    })
 }
