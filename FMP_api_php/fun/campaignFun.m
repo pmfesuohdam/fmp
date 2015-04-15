@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-08 18:28:35
+  | Last-Modified: 2015-04-15 17:48:20
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -646,6 +646,8 @@ CREATE TEMPORARY TABLE IF NOT EXISTS `{$temp_tbl_name}` (
 EOT;
             if (!$link->query($create_table_query)) {
                 //$msgs['err_msg']=array('system'=>__FMP_ERR_CREATE_MUL_TEMP_TBL);
+                // 这里不能往前台范围status为error，因为前端jqxgrid插件数据格式只允许一维
+                addLog(__FMP_LOGTYPE_ERROR,array('run query error'=>$create_table_query));
                 break;
             }
             list($start_mon,$start_day,$start_year)=explode('/',$_SESSION[__SESSION_CAMP_EDIT]['step4']['schedule_start']);
