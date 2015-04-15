@@ -147,14 +147,16 @@ function bind_logout_btn() {
     })
 }
 
+// 修改左侧菜单样式
 function changeNav(step) {
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < 7; i++) {
         $("#fmp_leftmenu > ul > li:nth-child(" + i + ")").attr('class', '')
     }
     $("#fmp_leftmenu > ul > li:nth-child(" + step + ")").attr('class', 'active')
     location.href = baseConf.domain + "/campaign/new/#step/" + step
 }
 
+// 下一步
 function goStep(step) {
     switch (step) {
         case (step):
