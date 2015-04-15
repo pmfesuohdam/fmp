@@ -356,14 +356,18 @@ function AudienceProcess() {
     generateAtLeast()
     generateDetail(true)
     $("#form_camp_step3 select").on('change', function() {
-        window.blurValidate(3)
-        generateAtLeast()
-        generateDetail(true)
+        setTimeout(function(){
+            window.blurValidate(3);
+            generateAtLeast();
+            generateDetail(true);
+        },500)
     })
     $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
-        window.blurValidate(3)
-        generateAtLeast()
-        generateDetail(true)
+        setTimeout(function(){
+            window.blurValidate(3);
+            generateAtLeast();
+            generateDetail(true);
+        },500)
     })
     becameSplitter($('#mainSplitter_step3'),660)
 }
@@ -789,9 +793,14 @@ window.generateDetail = function() {
     var hasCache=$cc.length==0?false:true // 从第三步拿参数 
     // 如果没有cache用全局设置
     if (arguments.length==1) {
-      forceGen=arguments[0]==true?true:false;
-      }
+        forceGen=arguments[0]==true?true:false;
+    }
     if (!hasCache || forceGen) {
+        $.ajaxSetup({async:false})
+        $.get(baseConf.api_prefix + "/get/campaign/@step3", function(response) {
+            gced.audience = response.data
+        })
+        $.ajaxSetup({async:true})
         // 从全局广告活动编辑数据取参数
         $.each(gced.audience.age_from,function(k,v){
             if (_.propertyOf(v)("selected")=="selected") {
