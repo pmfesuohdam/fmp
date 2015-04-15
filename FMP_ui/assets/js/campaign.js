@@ -346,9 +346,11 @@ function AudienceProcess() {
     generateAtLeast()
     generateDetail()
     $("#form_camp_step3 select").on('change', function() {
+        generateAtLeast()
         generateDetail()
     })
     $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
+        generateAtLeast()
         generateDetail()
     })
     becameSplitter($('#mainSplitter_step3'),660)
@@ -372,6 +374,7 @@ function reloadAudienceByTmpl(template_id) {
 
 function spendingProcess() {
     becameSplitter($('#mainSplitter_step4'),400)
+    generateAtLeast()
     generateDetail()
 }
 
@@ -387,6 +390,7 @@ DesignProcess.prototype = {
     // 初始化生成splitter和右侧明细,创建tabs，动态填充tabs
     init: function() {
         window.becameSplitter($('#mainSplitter_step5'),720)
+        window.generateAtLeast()
         window.generateDetail()
         var select_page_id=this.bindDropDown()
         this.createNewTabs($('#multi_product_jqxtabs'))
@@ -666,6 +670,7 @@ PublishProcess.prototype = {
     // 初始化splitter和右侧明细，创建确定table，并生成确认的
     init: function() {
         window.becameSplitter($('#mainSplitter_step6'),700)
+        window.generateAtLeast()
         window.generateDetail()
         this.createVerifyTbl($('#jqxgrid'));
     },
@@ -759,7 +764,7 @@ window.generateAtLeast = function() {
         url: baseConf.api_prefix + "/get/sp_campaigns/@all",
         method: "GET",
         success: function(data) {
-          console.log(data)
+          $("div[id$='_panel_atleast']").find(".panel-body").html(data.sp_camps.length+" Ads")
         }
     })
 }
