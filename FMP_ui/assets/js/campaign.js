@@ -760,11 +760,12 @@ window.becameSplitter = function(obj,hgt) {
 
 // 生成右侧明细
 window.generateDetail = function() {
-    var idx = 2
     var age_min,age_max,gender
-    var countryArr = [];
+    var countryArr = []
+    var $cc=$(cache["step/3"])
+    var hasCache=$cc.length==0?true:false // 从第三步拿参数 
     // 如果没有cache用全局设置
-    if ($(cache["step/3"]).length==0) {
+    if (hasCache) {
         $.each(gced.audience.age_from,function(k,v){
             if (_.propertyOf(v)("selected")=="selected") {
               age_min=v.name
@@ -777,7 +778,6 @@ window.generateDetail = function() {
         })
         $.each(gced.audience.gender,function(k,v){
             if (_.propertyOf(v)("selected")==1) {
-              console.log(k)
                 gender=k==0?null:k
             }
         })
@@ -788,9 +788,10 @@ window.generateDetail = function() {
         })
     } else {
         // 有cache用cache的
-        age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
-        age_max = $(cache["step/3"][idx]).find("#age_to").val() + ""
-        gender = $(cache["step/3"][idx]).find("#gender").val() + "" == "0" ? null : [$(cache["step/3"][idx]).find("#gender").val() + ""]
+        var $ccform=$($cc[2])
+        age_min = $ccform.find("#age_from").val() + ""
+        age_max = $ccform.find("#age_to").val() + ""
+        gender = $ccform.find("#gender").val() + "" == "0" ? null : [$ccform.find("#gender").val() + ""]
         $(".ui-autocomplete-multiselect-item").each(function(k, v) {
             $.each(fmp_loc_dic, function(country_code, country) {
                 v.innerText == country && countryArr.push(country_code)
@@ -836,9 +837,6 @@ window.generateDetail = function() {
         },
         "flexible_spec": {}
     })
-    if (gced.audience.billing_account == null) {
-        gced.audience.billing_account = $(cache["step/1"][2]).find("#billingAccount").val()
-    }
     $.ajax({
         url: baseConf.api_prefix + "/get/fb_graph/@self",
         method: "POST",
