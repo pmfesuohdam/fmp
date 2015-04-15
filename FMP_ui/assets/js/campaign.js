@@ -344,14 +344,14 @@ function AudienceProcess() {
     $("#fmplocation_autocomplete").trigger("blur")
     $("#fmp_loc_autocomplete").removeClass("ui-state-active")
     generateAtLeast()
-    generateDetail()
+    generateDetail(true)
     $("#form_camp_step3 select").on('change', function() {
         generateAtLeast()
-        generateDetail()
+        generateDetail(true)
     })
     $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
         generateAtLeast()
-        generateDetail()
+        generateDetail(true)
     })
     becameSplitter($('#mainSplitter_step3'),660)
 }
@@ -771,12 +771,16 @@ window.generateAtLeast = function() {
 
 // 生成右侧明细
 window.generateDetail = function() {
-    var age_min,age_max,gender,cccontent
+    var age_min,age_max,gender,cccontent,forceGen
     var countryArr = []
     var $cc=$(cache["step/3"])
-    var hasCache=$cc.length==0?true:false // 从第三步拿参数 
+    var hasCache=$cc.length==0?false:true // 从第三步拿参数 
     // 如果没有cache用全局设置
-    if (hasCache) {
+    if (arguments.length==1) {
+      forceGen=arguments[0]==true?true:false;
+      }
+    if (!hasCache || forceGen) {
+        // 从全局广告活动编辑数据取参数
         $.each(gced.audience.age_from,function(k,v){
             if (_.propertyOf(v)("selected")=="selected") {
               age_min=v.name
@@ -797,26 +801,6 @@ window.generateDetail = function() {
                 v == country && countryArr.push(country_code)
             })
         })
-    } else {
-        // 有cache用cache的
-        var $ccform=$($cc[2])
-        age_min = $ccform.find("#age_from").val() + ""
-        age_max = $ccform.find("#age_to").val() + ""
-        gender = $ccform.find("#gender").val() + "" == "0" ? null : [$ccform.find("#gender").val() + ""]
-        $(".ui-autocomplete-multiselect-item").each(function(k, v) {
-            $.each(fmp_loc_dic, function(country_code, country) {
-                v.innerText == country && countryArr.push(country_code)
-            })
-        })
-    }
-    try{
-        // 找到已经cache过的明细
-        cccontent=$(cache["step/3"][2])
-                    .find(".splitter-panel,col-md-4")
-                    .find("#step3_panel_detail .panel-body")
-                    .html()
-    } catch(e) {}
-    if ($.trim(cccontent)==""){
         reachObj = {
             age_min: age_min,
             age_max: age_max,
@@ -887,6 +871,23 @@ window.generateDetail = function() {
             }
         })
     } else {
+        // 有cache用cache的
+        var $ccform=$($cc[2])
+        age_min = $ccform.find("#age_from").val() + ""
+        age_max = $ccform.find("#age_to").val() + ""
+        gender = $ccform.find("#gender").val() + "" == "0" ? null : [$ccform.find("#gender").val() + ""]
+        $(".ui-autocomplete-multiselect-item").each(function(k, v) {
+            $.each(fmp_loc_dic, function(country_code, country) {
+                v.innerText == country && countryArr.push(country_code)
+            })
+        })
+        try{
+          // 找到已经cache过的明细
+          cccontent=$(cache["step/3"][2])
+            .find(".splitter-panel,col-md-4")
+            .find("#step3_panel_detail .panel-body")
+            .html()
+        } catch(e) {}
         $("#step3_panel_detail .panel-body").html(cccontent)
     }
 
