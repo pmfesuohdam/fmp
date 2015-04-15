@@ -689,14 +689,14 @@ EOT;
                     $tblRowInfo['age_to']=$ageInfo['to'];
                     $tblRowInfo['gender']=$gender;
                     $tblRowInfo['ad_set_name']="ag{$ageInfo['from']}-{$ageInfo['to']}_gd{$gender}";
-                    $customers[]=$tblRowInfo;
+                    $publish_rows[]=$tblRowInfo;
                 }
             }
 
-            $total_rows=sizeof($customers);
+            $total_rows=sizeof($publish_rows);
             $ct=0;
             $strGender=array(0=>'all',1=>'male',2=>'female');
-            foreach($customers as $row){
+            foreach($publish_rows as $row){
                 $sql[]="({$ct},\"{$row['campaign_name']}\",{$row['delivery']},\"{$row['ad_set_name']}\",\"{$row['start']}\",\"{$row['end']}\",\"{$row['objective']}\",\"{$row['location']}\",{$row['age_from']},{$row['age_to']},\"{$strGender[$row['gender']]}\")";
                 $ct++;
             }
@@ -714,7 +714,7 @@ EOT;
             $result2= $link->query($select_table_query2);
             $total_rows = $result2->fetch_row();
             while ($row = $result->fetch_array(MYSQLI_BOTH)) {
-                $customersx[] = array(
+                $publish_rows2[] = array(
                     'campaign_name' => $row['campaign_name'],
                     'delivery' => $row['delivery'],
                     'ad_set_name' => $row['fmp_adset_name'],
@@ -729,7 +729,7 @@ EOT;
             }
             $data[] = array(
                 'TotalRows' => $total_rows,
-                'Rows' => $customersx
+                'Rows' => $publish_rows2
             );
             $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
             if ($st) {
