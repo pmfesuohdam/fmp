@@ -343,6 +343,7 @@ function AudienceProcess() {
     $("#fmp_loc_autocomplete_dummy").trigger("click")
     $("#fmplocation_autocomplete").trigger("blur")
     $("#fmp_loc_autocomplete").removeClass("ui-state-active")
+    generateAtLeast()
     generateDetail()
     $("#form_camp_step3 select").on('change', function() {
         generateDetail()
@@ -750,6 +751,17 @@ window.becameSplitter = function(obj,hgt) {
     $(".jqx-widget-content").css("background", "transparent").css("border", "none")
     $("#multi_product_jqxtabs").css("background", "").css("border", "")
     $(".panel,.panel-default").css("margin-left", "20px")
+}
+
+// 生成至少有多少
+window.generateAtLeast = function() {
+    $.ajax({
+        url: baseConf.api_prefix + "/get/sp_campaigns/@all",
+        method: "GET",
+        success: function(data) {
+          console.log(data)
+        }
+    })
 }
 
 // 生成右侧明细
