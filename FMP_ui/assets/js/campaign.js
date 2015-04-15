@@ -160,11 +160,13 @@ function changeNav(step) {
  * @param {int} current_step - 要验证哪一步
  */
 window.blurValidate =function(current_step){
-    d = $("#form_camp_step" + current_step).serialize()
+    var d = $("#form_camp_step" + current_step).serialize()
+    var ret = false
     $.ajax({
         url: baseConf.api_prefix + "/update/campaign/@step" + current_step,
         type: "POST",
         data: d,
+        async: false,
         success: function(data) {
             // 移动滚动条到最上
             var body = $("html, body")
@@ -173,7 +175,8 @@ window.blurValidate =function(current_step){
             $("code").html("")
             // 成功展现下一页
             if (data.status == "true") {
-              return true;
+                $("form").find('label>code').removeClass('error')
+                ret = true
             } else {
                 // 失败在code标签上显示错误
                 err_msg = data.err_msg
@@ -190,14 +193,14 @@ window.blurValidate =function(current_step){
             }
         }
     })
+    return ret
 }
 
 // 下一步
 function goStep(step) {
     switch (step) {
         case (step):
-            if (true===window.blurValidate(step-1)){
-                $("form").find('label>code').removeClass('error');
+            if (true==window.blurValidate(step-1)){
                 location.href = baseConf.domain + "/campaign/new/#step/" + step
                 changeNav(step)
             }
