@@ -93,6 +93,8 @@ if (!empty($GLOBALS['serviceName'])) {
     case __SERVICE_JSREQUIRE:
         $GLOBALS['prefix']=__PREFIX_JSREQUIRE;
         break;
+    case __SERVICE_SPCAMPAIGNS:
+        $GLOBALS['prefix']=__PREFIX_SPCAMPAIGNS;
     case __SERVICE_USER:
         $GLOBALS['prefix']=__PREFIX_USER;
         break;

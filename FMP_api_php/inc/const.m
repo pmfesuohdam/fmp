@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Created:2011-02-22 10:30:48                                          |
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-05 08:06:23
+  | Last-Modified: 2015-04-15 18:05:12
   +----------------------------------------------------------------------+
  */
 
@@ -60,6 +60,7 @@ define('__SERVICE_FB_GRAPH',          'fb_graph');
 define('__SERVICE_AJAX_UPLOAD',       'ajax_upload');
 define('__SERVICE_IMAGES',            'images');
 define('__SERVICE_JSREQUIRE',         'js_min');
+define('__SERVICE_SPCAMPAIGNS',       'sp_campaigns');
 define('__SERVICE_GRAPH',             'graph');
 define('__SERVICE_DISTRICT',          'district');
 /* }}} */
@@ -78,6 +79,7 @@ define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_AJAX_UPLOAD',       'ajax_upload');
 define('__PREFIX_IMAGES',            'images');
 define('__PREFIX_JSREQUIRE',         'js_min');
+define('__PREFIX_SPCAMPAIGNS',        'sp_campaigns');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
