@@ -761,15 +761,42 @@ window.becameSplitter = function(obj,hgt) {
 // 生成右侧明细
 window.generateDetail = function() {
     var idx = 2
-    age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
-    age_max = $(cache["step/3"][idx]).find("#age_to").val() + ""
-    gender = $(cache["step/3"][idx]).find("#gender").val() + "" == "0" ? null : [$(cache["step/3"][idx]).find("#gender").val() + ""]
-    countryArr = [];
-    $(".ui-autocomplete-multiselect-item").each(function(k, v) {
-        $.each(fmp_loc_dic, function(country_code, country) {
-            v.innerText == country && countryArr.push(country_code)
+    var age_min,age_max,gender
+    var countryArr = [];
+    // 如果没有cache用全局设置
+    if ($(cache["step/3"]).length==0) {
+        $.each(gced.audience.age_from,function(k,v){
+            if (_.propertyOf(v)("selected")=="selected") {
+              age_min=v.name
+            }
         })
-    })
+        $.each(gced.audience.age_to,function(k,v){
+            if (_.propertyOf(v)("selected")=="selected") {
+              age_max=v.name
+            }
+        })
+        $.each(gced.audience.gender,function(k,v){
+            if (_.propertyOf(v)("selected")==1) {
+              console.log(k)
+                gender=k==0?null:k
+            }
+        })
+        $.each(gced.audience.fmplocation,function(k,v){
+            $.each(fmp_loc_dic, function(country_code, country) {
+                v == country && countryArr.push(country_code)
+            })
+        })
+    } else {
+        // 有cache用cache的
+        age_min = $(cache["step/3"][idx]).find("#age_from").val() + ""
+        age_max = $(cache["step/3"][idx]).find("#age_to").val() + ""
+        gender = $(cache["step/3"][idx]).find("#gender").val() + "" == "0" ? null : [$(cache["step/3"][idx]).find("#gender").val() + ""]
+        $(".ui-autocomplete-multiselect-item").each(function(k, v) {
+            $.each(fmp_loc_dic, function(country_code, country) {
+                v.innerText == country && countryArr.push(country_code)
+            })
+        })
+    }
 
     reachObj = {
         age_min: age_min,
