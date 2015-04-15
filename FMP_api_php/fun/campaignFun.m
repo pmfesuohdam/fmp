@@ -675,8 +675,7 @@ EOT;
             } else {
                 $demonsion['gender'][]=$gender;
             }
-            //print_r($_SESSION);
-            //print_r($demonsion);
+
             $tblRowInfo=null;
             $tblRowInfo['campaign_name']=$_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'];
             $tblRowInfo['delivery']=1;
@@ -693,23 +692,6 @@ EOT;
                     $customers[]=$tblRowInfo;
                 }
             }
-
-            /*
-             *for($i=0;$i<25;$i++){
-             *    $customers[] = array(
-             *        'campaign_name' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['campaignName'],
-             *        'delivery' => 1,
-             *        'ad_set_name' => 'ad set name'.$i,
-             *        'start' => "{$start_year}-{$start_mon}-{$start_day} 00:00:00",
-             *        'end' => "{$end_year}-{$end_mon}-{$end_day} 23:59:59",
-             *        'objective' => $_SESSION[__SESSION_CAMP_EDIT]['step1']['objective'],
-             *        'location' => $_SESSION[__SESSION_CAMP_EDIT]['step3']['location'],
-             *        'age_from'=>12,
-             *        'age_to'=>12,
-             *        'gender'=>'male'
-             *        );
-             *}
-             */
 
             $total_rows=sizeof($customers);
             $ct=0;
