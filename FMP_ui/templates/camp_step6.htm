@@ -7,62 +7,6 @@
                 <div class="form-group">
                   <!--确认表格-->
     <script type="text/javascript">
-        $(document).ready(function () {
-            var theme = 'classic';
-            var source =
-            {
-                datatype: "json",
-                datafields: [
-           { name: 'campaign_name', type: 'string' },
-           { name: 'delivery', type: 'int' },
-           { name: 'ad_set_name', type: 'string' },
-           { name: 'start', type: 'string' },
-           { name: 'end', type: 'string' },
-           { name: 'objective', type: 'string' },
-           { name: 'location', type: 'string' },
-           { name: 'age_from', type: 'int' },
-           { name: 'age_to', type: 'int' },
-           { name: 'gender', type: 'string' }
-                ],
-                cache: false,
-                url: baseConf.api_prefix+'/get/campaign/@step6',
-                root: 'Rows',
-                beforeprocessing: function (data) {
-                    source.totalrecords = data[0].TotalRows;
-                }
-            };
-            var dataadapter = new $.jqx.dataAdapter(source);
-            $("#jqxgrid").jqxGrid(
-            {
-                width: "100%",
-                source: dataadapter,
-                theme: theme,
-                autoheight: true,
-                pageable: true,
-                virtualmode: true,
-                sortable: true,
-                altrows: true,
-                enabletooltips: true,
-                editable: true,
-                selectionmode: 'checkbox',
-                rendergridrows: function (params) {
-                    return params.data;
-                },
-                columns:
-                [
-                    { text: 'Campaign Name', datafield: 'campaign_name', width: 150 },
-                    { text: 'Delivery', datafield: 'delivery', width: 70 },
-                    { text: 'Ad set Name', datafield: 'ad_set_name', width: 120 },
-                    { text: 'Start', datafield: 'start', width: 160 },
-                    { text: 'End', datafield: 'end', width: 160 },
-                    { text: 'Objective', datafield: 'objective', width: 120 },
-                    { text: 'Location', datafield: 'location', width: 140 },
-                    { text: 'Age From', datafield: 'age_from', width: 80 },
-                    { text: 'Age To', datafield: 'age_to', width: 80 },
-                    { text: 'Gender', datafield: 'gender', width: 80 }
-                ]
-            });
-        });
     </script>
     <div id="jqxgrid"></div>
     <a id="jsProceed" class="btn btn-lg btn-success" href="#step/6" onclick="return false;">Publish to Facebook</a>
