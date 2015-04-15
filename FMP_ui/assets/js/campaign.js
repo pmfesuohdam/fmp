@@ -156,44 +156,51 @@ function changeNav(step) {
     location.href = baseConf.domain + "/campaign/new/#step/" + step
 }
 
+/** 失去焦点后的验证
+ * @param {int} current_step - 要验证哪一步
+ */
+window.blurValidate =function(current_step){
+    d = $("#form_camp_step" + current_step).serialize()
+    $.ajax({
+        url: baseConf.api_prefix + "/update/campaign/@step" + current_step,
+        type: "POST",
+        data: d,
+        success: function(data) {
+            // 移动滚动条到最上
+            var body = $("html, body")
+            body.animate({scrollTop:0}, '1000', 'swing', function() { 
+            })
+            $("code").html("")
+            // 成功展现下一页
+            if (data.status == "true") {
+              return true;
+            } else {
+                // 失败在code标签上显示错误
+                err_msg = data.err_msg
+                $("form").find('label>code').removeClass('error');
+                for (i = 0; i < err_msg.length; i++) {
+                    for (id in err_msg[i]) {
+                        alert_dom_id = "label[for=" + id + "] code"
+                        var emsg_str=err_msg[i][id]
+                        // 首字大写
+                        emsg_str=emsg_str.charAt(0).toUpperCase() + emsg_str.slice(1)
+                        $(alert_dom_id).text(emsg_str).addClass("error")
+                    }
+                }
+            }
+        }
+    })
+}
+
 // 下一步
 function goStep(step) {
     switch (step) {
         case (step):
-            current_step = step - 1
-            d = $("#form_camp_step" + current_step).serialize()
-            save_step = step - 1
-            $.ajax({
-                url: baseConf.api_prefix + "/update/campaign/@step" + save_step,
-                type: "POST",
-                data: d,
-                success: function(data) {
-                    // 移动滚动条到最上
-                    var body = $("html, body")
-                    body.animate({scrollTop:0}, '1000', 'swing', function() { 
-                    })
-                    $("code").html("")
-                    // 成功展现下一页
-                    if (data.status == "true") {
-                        $("form").find('label>code').removeClass('error');
-                        location.href = baseConf.domain + "/campaign/new/#step/" + step
-                        changeNav(step)
-                    } else {
-                        // 失败在code标签上显示错误
-                        err_msg = data.err_msg
-                        $("form").find('label>code').removeClass('error');
-                        for (i = 0; i < err_msg.length; i++) {
-                            for (id in err_msg[i]) {
-                                alert_dom_id = "label[for=" + id + "] code"
-                                var emsg_str=err_msg[i][id]
-                                // 首字大写
-                                emsg_str=emsg_str.charAt(0).toUpperCase() + emsg_str.slice(1)
-                                $(alert_dom_id).text(emsg_str).addClass("error")
-                            }
-                        }
-                    }
-                }
-            })
+            if (true===window.blurValidate(step-1)){
+                $("form").find('label>code').removeClass('error');
+                location.href = baseConf.domain + "/campaign/new/#step/" + step
+                changeNav(step)
+            }
             break;
         default:
             changeNav(step)
