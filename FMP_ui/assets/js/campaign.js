@@ -81,8 +81,16 @@ $.when(
         stp = (arr.length < 2) ? 1 : arr[1]
         changeNav(stp)
         if (cache[url]) {
+            // 已经缓存
             cache[url].show()
+            switch (stp) {
+              case("6"):
+              // 每次进入需要计算切分
+              publishProcess()
+              break;
+            }
         } else {
+            // 首次加载
             switch (stp) {
                 case ("1"):
                     cache[url] = $.tmpl(gced["tpl_step" + stp], gced.adaccounts).appendTo('#ad_edit_area');
@@ -655,7 +663,7 @@ DesignProcess.prototype = {
 }
 
 function publishProcess() {
-    becameSplitter($('#mainSplitter_step6'),600)
+    becameSplitter($('#mainSplitter_step6'),700)
     try {
         generateDetail()
     } catch (e) {}
