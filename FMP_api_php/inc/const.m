@@ -79,7 +79,7 @@ define('__PREFIX_CAMPAIGN_FB_GRAPH', 'fb_graph');
 define('__PREFIX_AJAX_UPLOAD',       'ajax_upload');
 define('__PREFIX_IMAGES',            'images');
 define('__PREFIX_JSREQUIRE',         'js_min');
-define('__PREFIX_SPCAMPAIGNS',        'sp_campaigns');
+define('__PREFIX_SPCAMPAIGNS',       'sp_campaigns');
 define('__PREFIX_GRAPH',             'graph');
 define('__PREFIX_DISTRICT',          'district');
 /* }}} */
