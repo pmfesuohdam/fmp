@@ -522,7 +522,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                         $picData=base64_encode($row2['profile_pic']);
                         //主页的profile图片
                         if (isset($res2['primary_page'])) {
-                            $pages[]=array('id'=>$res2['primary_page']['id'],'name'=>$res2['primary_page']['name'],'imgbase64'=>"data:image/png;base64,{$picData}",'selected'=>'false');
+                            $selected_flag=($res2['primary_page']['id']==$_SESSION[__SESSION_CAMP_EDIT]['step5']['selected_page'])?'true':'false';
+                            $pages[]=array('id'=>$res2['primary_page']['id'],'name'=>$res2['primary_page']['name'],'imgbase64'=>"data:image/png;base64,{$picData}",'selected'=>$selected_flag);
                         }
                     }
                 }

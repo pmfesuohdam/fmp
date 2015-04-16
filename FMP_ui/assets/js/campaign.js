@@ -415,17 +415,38 @@ DesignProcess.prototype = {
         window.becameSplitter($('#mainSplitter_step5'),720)
         window.generateAtLeast()
         window.generateDetail()
-        var select_page_id=this.bindDropDown()
+        this.loadDropDown()
+        this.bindDropDown()
         this.createNewTabs($('#multi_product_jqxtabs'))
         this.bindTabsCloseBtn($('#multi_product_jqxtabs'))
         this.bindDbClkChTabTitle($('#multi_product_jqxtabs'))
         return this
+    },
+    // 预先载入下拉page的选定项
+    loadDropDown: function() {
+        var content
+        var $target=$('#form_camp_step5 .dropdown-menu li')
+        var pages=gced.design.pages
+        console.log(pages)
+        if (pages==null || pages.length==0) {
+            return
+        }
+        $.each(pages,function(k,v){
+            if(v.selected=='true') {
+                content='<span class="pic"><img src="'+v.imgbase64+'"></span>'+v.name+'<input type="hidden" value="'+v.id+'">'
+                $target
+                    .closest('.btn-group')
+                    .find('[data-bind="label"]').html(content)
+                $("input[name='selected_page']").val(v.id)
+            }
+        })
     },
     // 绑定下拉page的选择变换
     bindDropDown: function() {
         $(document.body).on('click', '#form_camp_step5 .dropdown-menu li', function(event) {
             var $target = $(event.currentTarget)
             var $content = $($target.html())
+            console.log($content)
             var my_selected_page_id=$target.find("input[type='hidden']").val()
             $target
                 .closest('.btn-group')
