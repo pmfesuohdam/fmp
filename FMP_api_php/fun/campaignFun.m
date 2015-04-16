@@ -529,8 +529,8 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             }
             @mysqli_close($link);
             
-            $messages="";
-            $link="";
+            $messages=$_SESSION[__SESSION_CAMP_EDIT]['step5']['messages'];
+            $link=$_SESSION[__SESSION_CAMP_EDIT]['step5']['link'];
             $productMulti[]=array(
                 'product_link'=>'http://www.baidu.com',
                 'product_desc'=>'baidu',
@@ -551,6 +551,7 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             $st=empty($_SESSION[__SESSION_FMP_UID])?false:true;
             echo json_encode(array('data'=>$ret,'status'=>$st));
         }
+        //print_r($_SESSION);
         break;
     case(__OPERATION_UPDATE):
         $msgs=null;
@@ -607,6 +608,10 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             }
             if ( !isset($msgs['err_msg']) || empty($msgs['err_msg']) ) {
                 $msgs['status']='true';
+                // 保存选择
+                $_SESSION[__SESSION_CAMP_EDIT]['step5']['selected_page']=$_POST['selected_page'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step5']['messages']=$_POST['messages'];
+                $_SESSION[__SESSION_CAMP_EDIT]['step5']['link']=$_POST['link'];
             } else {
                 $msgs['status']='false';
             }
