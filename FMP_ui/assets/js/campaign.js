@@ -427,7 +427,7 @@ DesignProcess.prototype = {
         var content
         var $target=$('#form_camp_step5 .dropdown-menu li')
         var pages=gced.design.pages
-        console.log(pages)
+        //console.log(pages)
         if (pages==null || pages.length==0) {
             return
         }
@@ -446,7 +446,7 @@ DesignProcess.prototype = {
         $(document.body).on('click', '#form_camp_step5 .dropdown-menu li', function(event) {
             var $target = $(event.currentTarget)
             var $content = $($target.html())
-            console.log($content)
+            //console.log($content)
             var my_selected_page_id=$target.find("input[type='hidden']").val()
             $target
                 .closest('.btn-group')
@@ -490,18 +490,34 @@ DesignProcess.prototype = {
                     //index++
                 }
             })
-        this.createTabContent(obj_tabs, 0)
-        this.createTabContent(obj_tabs, 1)
-        this.createTabContent(obj_tabs, 2)
-        obj_tabs.jqxTabs('select', 0)
+        var product_mul=gced.design.product_multi
+        var $this=this
+        if (product_mul==null || product_mul.length==0){
+            // 默认填充三枚tab pane
+            $this.createTabContent(obj_tabs, 0)
+            $this.createTabContent(obj_tabs, 1)
+            $this.createTabContent(obj_tabs, 2)
+            obj_tabs.jqxTabs('select', 0)
+        } else {
+            $.each(product_mul,function(k,v){
+                console.log(v)
+                $this.createTabContent(obj_tabs, 0, v.product_name, v.product_link, v.product_desc, v.product_pic)
+            })
+        }
         return this
     },
     /** 创建tabs的内容
-     * @param {obj} obj - jqxtabs的id
-     * @param {int} idx - 从idx位置开始创建新的tab内容
-     * @param {int} product_idx - 产品序号
+     * @param {obj} obj - jqxtabs的id(必须提供)
+     * @param {int} idx - 从idx位置开始创建新的tab内容(必须提供)
+     * @param {string} pd_name 产品名字(可选参数，如提供以下三个都需要提供)
+     * @param {string} pd_link 产品链接(可选参数)
+     * @param {string} pd_desc 产品描述(可选参数)
+     * @param {string} pd_hash 产品图片的hash(可选参数)
      */
-    createTabContent: function(obj, idx, product_idx) {
+    createTabContent: function() {
+        var obj=arguments[0]
+        var idx=arguments[1]
+        console.log(arguments)
         // 剩下还可以创建的索引
         //alert("本次创建前剩下还可以创建的索引:"+this.tabIndexs)
         // 用剩余最小的id作为默认产品名字
@@ -510,16 +526,21 @@ DesignProcess.prototype = {
         this.tabIndexs = $.grep(this.tabIndexs, function(value) {
             return value != newTabId;
         })
+        var pd_name=(arguments[2]!=null) ? arguments[2] : 'Product ' + newTabId
+        var pd_link=(arguments[3]!=null) ? arguments[3] : ''
+        var pd_desc=(arguments[4]!=null) ? arguments[4] : ''
+        var pd_hash=(arguments[5]!=null) ? arguments[5] : ''
+        var hasData=(arguments.length>2) ? true : false
         //alert("本次创建完剩下还可以创建的索引:"+this.tabIndexs)
 
         // pane的主要部分
         var pane_content = '<div class="form-group">'
-        pane_content += '<input type="hidden" id="hid_product_name'+newTabId+'" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value=""></div>'
-        pane_content += '<div class="form-group"><label for="productDescription['+newTabId+']">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value=""></div>'
+        pane_content += '<input type="hidden" id="hid_product_name'+newTabId+'" name="productName['+newTabId+']" value="product '+newTabId+'"><label for="productLink['+newTabId+']">Product Link<code></code></label><input type="text" class="form-control" id="productLink'+newTabId+'" name="productLink['+newTabId+']" placeholder="Enter name" value="'+pd_link+'"></div>'
+        pane_content += '<div class="form-group"><label for="productDescription['+newTabId+']">Product Description<code></code></label><input type="text" class="form-control" id="productDescription'+newTabId+'" name="productDescription['+newTabId+']" placeholder="Enter product description" value="'+pd_desc+'"></div>'
         pane_content += '<div class="form-group" id="fg'+newTabId+'"><label for="productHash['+newTabId+']">Picture<code></code></label><form><input id="file_upload'+newTabId+'" name="file_upload['+newTabId+']" type="file" multiple="true" style="display:none"><div id="btn-group'+newTabId+'"><button class="btn btn-default btn-sm btn-upload">Upload new images <span class="glyphicon glyphicon-plus"></span></button>or<button class="btn btn-default btn-sm btn-upload">Select from your galley <span class="glyphicon glyphicon-plus"></span></button></div></form></div>'
         pane_content += '</div>'
 
-        obj.jqxTabs('addAt', idx, 'Product ' + newTabId, pane_content)
+        obj.jqxTabs('addAt', idx, pd_name, pane_content)
 
         // 上传控件初始化
         $('#file_upload'+newTabId).uploadify({
@@ -613,6 +634,32 @@ DesignProcess.prototype = {
             });
             $this.bindDbClkChTabTitle($('#multi_product_jqxtabs'))
         })
+
+        // 呈现已经选择的展示区域的图片
+        $(function() {
+            if (true==hasData) {
+                console.log("load uploaded img")
+                $('#adimage'+newTabId).remove()
+                $('#multi_product_jqxtabs #fg'+newTabId).after('<div id="adimage'+newTabId+'" class="modal-header" style="width:200px;border:none;"></div>')
+                  $("#adimage"+newTabId).attr('position','absolute')
+                  prev_ofs=$("#adimage"+newTabId).offset()
+                  console.log(newTabId)
+                  the_product_url="http://www.baidu.com/img/logo.gif"
+                  $("#adimage"+newTabId)
+                      .offset({
+                          top: prev_ofs.top-20,
+                          left: prev_ofs.left
+                      })
+                      .animate({ "top": "-=30px" }, "slow" )
+                      .empty()
+                      .append('<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="../../assets/img/modal_close.png"/></button><div class="img-thumbnail imgPreview"><img src="' + the_product_url + '"><input type="hidden" name="productHash['+newTabId+']" value="'+pd_hash+'"></div>').css('display', 'none').fadeIn();
+
+                  $("#adimage"+newTabId+" > button").on('click', function() {
+                      $("#adimage"+newTabId).empty()
+                  });
+            }
+        })
+        //
     },
 
     /** 更新剩余可用的tab索引
