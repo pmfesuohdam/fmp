@@ -501,7 +501,7 @@ DesignProcess.prototype = {
         } else {
             $.each(product_mul,function(k,v){
                 console.log(v)
-                $this.createTabContent(obj_tabs, 0, v.product_name, v.product_link, v.product_desc, v.product_pic)
+                $this.createTabContent(obj_tabs, 0, v.product_name, v.product_link, v.product_desc, v.product_pic, v.product_pic_url)
             })
         }
         return this
@@ -530,6 +530,7 @@ DesignProcess.prototype = {
         var pd_link=(arguments[3]!=null) ? arguments[3] : ''
         var pd_desc=(arguments[4]!=null) ? arguments[4] : ''
         var pd_hash=(arguments[5]!=null) ? arguments[5] : ''
+        var pd_pic_url=(arguments[6]!=null) ? arguments[6] : ''
         var hasData=(arguments.length>2) ? true : false
         //alert("本次创建完剩下还可以创建的索引:"+this.tabIndexs)
 
@@ -644,7 +645,7 @@ DesignProcess.prototype = {
                   $("#adimage"+newTabId).attr('position','absolute')
                   prev_ofs=$("#adimage"+newTabId).offset()
                   console.log(newTabId)
-                  the_product_url="http://www.baidu.com/img/logo.gif"
+                  the_product_url=pd_pic_url
                   $("#adimage"+newTabId)
                       .offset({
                           top: prev_ofs.top-20,
