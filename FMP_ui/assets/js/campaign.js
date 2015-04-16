@@ -499,10 +499,12 @@ DesignProcess.prototype = {
             $this.createTabContent(obj_tabs, 2)
             obj_tabs.jqxTabs('select', 0)
         } else {
+            var ci=0;
             $.each(product_mul,function(k,v){
                 console.log(v)
-                $this.createTabContent(obj_tabs, 0, v.product_name, v.product_link, v.product_desc, v.product_pic, v.product_pic_url)
+                $this.createTabContent(obj_tabs, ci++, v.product_name, v.product_link, v.product_desc, v.product_pic, v.product_pic_url)
             })
+            obj_tabs.jqxTabs('select', 0)
         }
         return this
     },
