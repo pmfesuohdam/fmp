@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-15 17:48:20
+  | Last-Modified: 2015-04-16 11:42:04
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -532,16 +532,19 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
             
             $messages=$_SESSION[__SESSION_CAMP_EDIT]['step5']['messages'];
             $link=$_SESSION[__SESSION_CAMP_EDIT]['step5']['link'];
-            $productMulti[]=array(
-                'product_link'=>'http://www.baidu.com',
-                'product_desc'=>'baidu',
-                'product_pic'=>'http://www.baidu.com/img/logo.gif'
-            );
-            $productMulti[]=array(
-                'product_link'=>'http://www.sina.com',
-                'product_desc'=>'sina',
-                'product_pic'=>'http://tp2.sinaimg.cn/2261192165/50/5628047497/1'
-            );
+            $productMulti=$_SESSION[__SESSION_CAMP_EDIT]['step5']['product_multi'];
+            //$productMulti[]=array(
+                //'product_name'=>'a',
+                //'product_link'=>'http://www.baidu.com',
+                //'product_desc'=>'baidu',
+                //'product_pic'=>'http://www.baidu.com/img/logo.gif'
+            //);
+            //$productMulti[]=array(
+                //'product_name'=>'b',
+                //'product_link'=>'http://www.sina.com',
+                //'product_desc'=>'sina',
+                //'product_pic'=>'http://tp2.sinaimg.cn/2261192165/50/5628047497/1'
+            //);
             $ret=array(
                 'pages'=>$pages,
                 'messages'=>$messages,
@@ -613,6 +616,15 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['selected_page']=$_POST['selected_page'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['messages']=$_POST['messages'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['link']=$_POST['link'];
+                foreach($productSeqArr as $sequence_num) {
+                    $productMulti[]=array(
+                        'product_name'=>$_POST['productName']["{$sequence_num}"],
+                        'product_link'=>$_POST['productLink']["{$sequence_num}"],
+                        'product_desc'=>$_POST['productDescription']["{$sequence_num}"],
+                        'product_pic'=>$_POST['productHash']["{$sequence_num}"]
+                    );
+                }
+                $_SESSION[__SESSION_CAMP_EDIT]['step5']['product_multi']=$productMulti;
             } else {
                 $msgs['status']='false';
             }
