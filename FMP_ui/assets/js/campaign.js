@@ -433,7 +433,11 @@ DesignProcess.prototype = {
                 .end()
                 .children('.dropdown-toggle').dropdown('toggle')
             //传递到实际代表page的id的控件上
-            $("input[name='selected_page']").val(my_selected_page_id)
+            if ($($("span:nth-child(1)")[0]).text()=="Please select a Page") {
+                $("input[name='selected_page']").val("")
+            } else {
+                $("input[name='selected_page']").val(my_selected_page_id)
+            }
             return false
         })
         return this
