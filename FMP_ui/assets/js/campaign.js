@@ -362,6 +362,13 @@ function AudienceProcess() {
             generateDetail(true);
         },500)
     })
+    $("#form_camp_step3 input[type='checkbox']").on('click', function() {
+        setTimeout(function(){
+            window.blurValidate(3);
+            generateAtLeast();
+            generateDetail(true);
+        },500)
+    })
     $("#fmp_loc_autocomplete").on('DOMSubtreeModified', function() {
         setTimeout(function(){
             window.blurValidate(3);
