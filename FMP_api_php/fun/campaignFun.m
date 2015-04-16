@@ -9,7 +9,7 @@
   +----------------------------------------------------------------------+
   | Create:
   +----------------------------------------------------------------------+
-  | Last-Modified: 2015-04-16 11:42:04
+  | Last-Modified: 2015-04-16 14:23:01
   +----------------------------------------------------------------------+
  */
 $GLOBALS['httpStatus'] = __HTTPSTATUS_BAD_REQUEST; //默认返回400 
@@ -616,14 +616,31 @@ if ($GLOBALS['selector'] == __SELECTOR_STEP5) {
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['selected_page']=$_POST['selected_page'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['messages']=$_POST['messages'];
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['link']=$_POST['link'];
+                include(dirname(__FILE__).'/../inc/conn.php');
                 foreach($productSeqArr as $sequence_num) {
+                    // 根据上传的hash，获取对应的物料地址
+                    $pd_hash=$_POST['productHash']["{$sequence_num}"];
+                    $query=<<<EOT
+SELECT a.`id`,a.`fmp_hash`,a.`ext`,a.`img_width`,a.`img_height` FROM t_fmp_material a INNER JOIN t_fmp_user_material b 
+    WHERE b.fmp_user_id={$_SESSION[__SESSION_FMP_UID]}
+    AND b.fmp_material_hash="{$pd_hash}"
+    AND b.fmp_material_hash=a.fmp_hash 
+    LIMIT 1;
+EOT;
+                    $row=null;
+                    if ($result=$link->query($query)) {
+                        $row=@mysqli_fetch_assoc($result);
+                    }
+                    $row_url=__MATERIAL_URL."/".GetMaterialPath($row['fmp_hash'])."/{$row['fmp_hash']}.{$row['ext']}";
                     $productMulti[]=array(
                         'product_name'=>$_POST['productName']["{$sequence_num}"],
                         'product_link'=>$_POST['productLink']["{$sequence_num}"],
                         'product_desc'=>$_POST['productDescription']["{$sequence_num}"],
-                        'product_pic'=>$_POST['productHash']["{$sequence_num}"]
+                        'product_pic'=>$pd_hash,
+                        'product_pic_url'=>$row_url
                     );
                 }
+                @mysqli_close($link);
                 $_SESSION[__SESSION_CAMP_EDIT]['step5']['product_multi']=$productMulti;
             } else {
                 $msgs['status']='false';
